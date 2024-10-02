@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Clinica Medica 'Mala Praxis SXXI" Height="400" Width="600">
+	<Grid>
+		<TextBox HorizontalAlignment="Left" Margin="300,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+		<TextBlock HorizontalAlignment="Left" Margin="135,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="24"><Run Language="es-ar" Text="Sistema Gestor de Turnos"/></TextBlock>
+		<TextBlock Margin="135,86,343,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16"><Run Language="es-ar" Text="Usuario: "/></TextBlock>
+		<TextBlock Margin="135,134,343,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16"><Run Language="es-ar" Text="Contraseña:"/></TextBlock>
+		<TextBox HorizontalAlignment="Left" Margin="300,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+		<Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="244,192,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="Button_Click" FontSize="18" Background="#FFE0DEAF" IsDefault="True" Cursor="Hand"/>
 
-    </Grid>
+	</Grid>
 </Window>
