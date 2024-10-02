@@ -1,4 +1,4 @@
-# Trabajo Práctico Nº1: Programación en C#
+# Trabajo Práctico Nº2: Interfez Grafica con C# WPF
 
 
 ## INTEGRANTES
