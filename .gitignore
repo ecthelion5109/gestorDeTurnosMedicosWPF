@@ -1,0 +1,54 @@
+# Archivos generados por la compilación
+*.rar
+
+
+
+
+
+
+
+
+# Archivos generados por la compilación
+bin/
+obj/
+
+# Información de usuario específica de Visual Studio
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos generados por NuGet
+*.nupkg
+*.snupkg
+# Archivos de bloqueo de dependencias
+project.lock.json
+project.fragment.lock.json
+# Paquetes locales o generados
+packages/
+# Archivos de configuración de NuGet
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+# Archivos de configuración globales
+.vscode/
+.vs/
+
+# Archivos de compilación y depuración
+*.pdb
+*.mdb
+*.ilk
+*.log
+*.csproj.user
+*.csproj.FileListAbsolute.txt
+
+# Archivos temporales de Visual Studio y del sistema
+*.tmp
+*.cache
+*.config
+*.log
+*.ide
+
+# Archivos de la publicación
+publish/
