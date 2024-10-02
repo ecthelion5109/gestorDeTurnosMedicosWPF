@@ -8,4 +8,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="blur-hospital.jpg" />
+    <None Remove="icono.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="blur-hospital.jpg" />
+    <Resource Include="icono.png" />
+  </ItemGroup>
+
 </Project>
