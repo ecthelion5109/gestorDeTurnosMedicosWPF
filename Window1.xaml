@@ -18,6 +18,7 @@
 			</Image.RenderTransform>
 		</Image>
 		<Label Content="BIENVENIDO USUARIA!&#xD;&#xA;&#xD;&#xA;HAS INCIIADO SESION!!!!!" Margin="500,102,60,168" FontSize="22"/>
+		<Button Content="SALIR" HorizontalAlignment="Left" Margin="544,304,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
 
 	</Grid>
 </Window>

@@ -31,7 +31,6 @@ namespace ClinicaMedica {
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
 				//escondo la anterior
 				this.Hide();
-
 				//creo una nueva y la vinculo a la aplicacion completa
 				Inicio inicio = new Inicio();
 				inicio.Owner = this;
@@ -42,7 +41,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-        private void MetodoBotonSalir(object sender, RoutedEventArgs e)
+        public void MetodoBotonSalir(object sender, RoutedEventArgs e)
         {
 			Application.Current.Shutdown ();
         }

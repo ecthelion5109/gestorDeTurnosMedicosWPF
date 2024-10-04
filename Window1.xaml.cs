@@ -20,5 +20,9 @@ namespace ClinicaMedica {
 		public Inicio() {
 			InitializeComponent();
 		}
+
+		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+		}
 	}
 }
