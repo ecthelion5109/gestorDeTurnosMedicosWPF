@@ -19,14 +19,20 @@ namespace ClinicaMedica {
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e) {
-			MessageBox.Show($"Usuario correcta?: {label_user.Text.Equals("juanita_conchuda_123")}");
-			MessageBox.Show($"Contraseña correcta?: {label_pass.Text.Equals("123")}");
+			//MessageBox.Show($"Usuario correcta?: {label_user.Text.Equals("juanita_conchuda_123")}");
+			//MessageBox.Show($"Contraseña correcta?: {label_pass.Text.Equals("123")}");
 
 			Console.WriteLine(sender.ToString());
 			//MessageBox.Show(sender.ToString());
-			if (label_pass.Text.Equals("123"))
-			{
-				MessageBox.Show("Bien, hija de puta!!");
+			string usuario = "mariela";
+			string contraseña = "123";
+
+
+			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
+				MessageBox.Show("Bienvenida, hija de puta!!");
+			}
+			else {
+				MessageBox.Show("No tudiaste muchacho. Bochado");
 			}
 		}
 
