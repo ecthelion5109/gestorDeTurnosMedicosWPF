@@ -30,6 +30,8 @@ namespace ClinicaMedica {
 
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
 				MessageBox.Show("Bienvenida, hija de puta!!");
+				new Inicio().Show();
+
 			}
 			else {
 				MessageBox.Show("No tudiaste muchacho. Bochado");
