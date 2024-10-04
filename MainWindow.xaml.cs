@@ -30,11 +30,16 @@ namespace ClinicaMedica {
 
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
 				//escondo la anterior
-				this.Hide();
+				//this.Hide();
+
+
 				//creo una nueva y la vinculo a la aplicacion completa
 				Inicio inicio = new Inicio();
-				inicio.Owner = this;
+				Application.Current.MainWindow = inicio;
 				inicio.Show();
+
+				//cierro la anterior.
+				this.Close();
 			}
 			else {
 				MessageBox.Show("Contraseña o usuario incorrecta");
