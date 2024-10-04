@@ -29,12 +29,16 @@ namespace ClinicaMedica {
 
 
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
-				MessageBox.Show("Bienvenida, hija de puta!!");
-				new Inicio().Show();
+				//escondo la anterior
+				this.Hide();
 
+				//creo una nueva y la vinculo a la aplicacion completa
+				Inicio inicio = new Inicio();
+				inicio.Owner = this;
+				inicio.Show();
 			}
 			else {
-				MessageBox.Show("No tudiaste muchacho. Bochado");
+				MessageBox.Show("Contraseña o usuario incorrecta");
 			}
 		}
 
