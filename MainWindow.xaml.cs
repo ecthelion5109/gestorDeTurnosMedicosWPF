@@ -24,6 +24,10 @@ namespace ClinicaMedica {
 
 			Console.WriteLine(sender.ToString());
 			//MessageBox.Show(sender.ToString());
+			if (label_pass.Text.Equals("123"))
+			{
+				MessageBox.Show("Bien, hija de puta!!");
+			}
 		}
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
