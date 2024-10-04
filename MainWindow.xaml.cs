@@ -18,7 +18,7 @@ namespace ClinicaMedica {
 			InitializeComponent();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e) {
+		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
 			//MessageBox.Show($"Usuario correcta?: {label_user.Text.Equals("juanita_conchuda_123")}");
 			//MessageBox.Show($"Contraseña correcta?: {label_pass.Text.Equals("123")}");
 
@@ -42,17 +42,9 @@ namespace ClinicaMedica {
 			}
 		}
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void MetodoBotonSalir(object sender, RoutedEventArgs e)
         {
 			Application.Current.Shutdown ();
         }
-
-		private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e) {
-		}
 	}
 }
