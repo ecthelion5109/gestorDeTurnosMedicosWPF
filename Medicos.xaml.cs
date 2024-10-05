@@ -20,5 +20,20 @@ namespace ClinicaMedica {
 		public Medicos() {
 			InitializeComponent();
 		}
-	}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MedicosAgregar medicoAgregarWindow = new MedicosAgregar();
+            Application.Current.MainWindow = medicoAgregarWindow;
+            medicoAgregarWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
+    }
 }
