@@ -19,6 +19,7 @@
         <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
         <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
+        <Button Content="Volver" HorizontalAlignment="Left" Margin="631,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

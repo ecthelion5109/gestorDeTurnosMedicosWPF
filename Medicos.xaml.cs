@@ -33,5 +33,15 @@ namespace ClinicaMedica {
             medicoAgregarWindow.Show();
             this.Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
+            Application.Current.MainWindow = pantallaPrincipalWindow;
+            pantallaPrincipalWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
     }
 }
