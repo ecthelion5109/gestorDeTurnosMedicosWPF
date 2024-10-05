@@ -20,5 +20,10 @@ namespace ClinicaMedica {
 		public Pacientes() {
 			InitializeComponent();
 		}
-	}
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
 }
