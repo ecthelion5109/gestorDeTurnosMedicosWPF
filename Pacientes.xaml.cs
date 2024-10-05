@@ -54,5 +54,25 @@ namespace ClinicaMedica {
 			//cierro la anterior.
 			this.Close();
 		}
-	}
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            PacientesModificar pacientesModificarWindow = new PacientesModificar();
+            Application.Current.MainWindow = pacientesModificarWindow;
+            pacientesModificarWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            PacientesEliminar pacientesEliminarWindow = new PacientesEliminar();
+            Application.Current.MainWindow = pacientesEliminarWindow;
+            pacientesEliminarWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
+    }
 }

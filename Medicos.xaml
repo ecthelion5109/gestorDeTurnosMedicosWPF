@@ -16,8 +16,8 @@
 		<Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
         <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click_1"/>
         <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
-        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
+        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click_2"/>
+        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click_3"/>
 
     </Grid>
 </Window>

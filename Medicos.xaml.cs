@@ -36,5 +36,21 @@ namespace ClinicaMedica {
             medicoAgregarWindow.Show();
             this.Close();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MedicosEliminar medicoEliminarWindow = new MedicosEliminar();
+            Application.Current.MainWindow = medicoEliminarWindow;
+            medicoEliminarWindow.Show();
+            this.Close();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            MedicosVermas medicoVermasWindow = new MedicosVermas();
+            Application.Current.MainWindow = medicoVermasWindow;
+            medicoVermasWindow.Show();
+            this.Close();
+        }
     }
 }
