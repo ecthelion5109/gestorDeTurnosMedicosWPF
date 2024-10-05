@@ -21,7 +21,7 @@ namespace ClinicaMedica {
 			InitializeComponent();
 		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonMedicosModificar(object sender, RoutedEventArgs e)
         {
             MedicosModificar medicoModificarWindow = new MedicosModificar();
             Application.Current.MainWindow = medicoModificarWindow;
@@ -29,7 +29,7 @@ namespace ClinicaMedica {
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
         {
             MedicosAgregar medicoAgregarWindow = new MedicosAgregar();
             Application.Current.MainWindow = medicoAgregarWindow;
@@ -37,13 +37,26 @@ namespace ClinicaMedica {
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
+        {
+            MedicosEliminar medicoEliminarWindow = new MedicosEliminar();
+            Application.Current.MainWindow = medicoEliminarWindow;
+            medicoEliminarWindow.Show();
+            this.Close();
+        }
+
+        private void ButtonMedicosVer(object sender, RoutedEventArgs e)
+        {
+            MedicosVer medicoVerWindow = new MedicosVer();
+            Application.Current.MainWindow = medicoVerWindow;
+            medicoVerWindow.Show();
+		}
+
+        private void ButtonVolver(object sender, RoutedEventArgs e)
         {
             PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
             Application.Current.MainWindow = pantallaPrincipalWindow;
             pantallaPrincipalWindow.Show();
-
-            //cierro la anterior.
             this.Close();
         }
     }
