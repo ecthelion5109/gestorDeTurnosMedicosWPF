@@ -45,6 +45,19 @@ namespace ClinicaMedica {
 			this.Close();
 		}
 
+<<<<<<< HEAD
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            agregarPaciente agregarPacienteWindow = new agregarPaciente();
+            Application.Current.MainWindow = agregarPacienteWindow;
+            agregarPacienteWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+
+        }
+    }
+=======
 		private void ButtonPacienteAgregar(object sender, RoutedEventArgs e) {
 
 			PacientesAgregar pacientesAgregarWindow = new PacientesAgregar();
@@ -54,6 +67,7 @@ namespace ClinicaMedica {
 			//cierro la anterior.
 			this.Close();
 		}
+<<<<<<< HEAD
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -75,4 +89,8 @@ namespace ClinicaMedica {
             this.Close();
         }
     }
+=======
+	}
+>>>>>>> 7f8d09c42c7564281ba5b12b29cf8c62295ea13a
+>>>>>>> da5440a253a2c8906aa62e2583e527103083752e
 }

@@ -39,6 +39,7 @@ namespace ClinicaMedica {
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             MedicosEliminar medicoEliminarWindow = new MedicosEliminar();
             Application.Current.MainWindow = medicoEliminarWindow;
             medicoEliminarWindow.Show();
@@ -50,6 +51,13 @@ namespace ClinicaMedica {
             MedicosVermas medicoVermasWindow = new MedicosVermas();
             Application.Current.MainWindow = medicoVermasWindow;
             medicoVermasWindow.Show();
+=======
+            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
+            Application.Current.MainWindow = pantallaPrincipalWindow;
+            pantallaPrincipalWindow.Show();
+
+            //cierro la anterior.
+>>>>>>> da5440a253a2c8906aa62e2583e527103083752e
             this.Close();
         }
     }
