@@ -13,13 +13,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace ClinicaMedica {
-	/// <summary>
-	/// Lógica de interacción para Pacientes.xaml
-	/// </summary>
-	public partial class Pacientes : Window {
-		public Pacientes() {
-			InitializeComponent();
-		}
+    /// <summary>
+    /// Lógica de interacción para Pacientes.xaml
+    /// </summary>
+    public partial class Pacientes : Window {
+        public Pacientes() {
+            InitializeComponent();
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PacientesVer pacientesVerWindow = new PacientesVer();
+            Application.Current.MainWindow = pacientesVerWindow;
+            pacientesVerWindow.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
+
+        private void BotonVolver(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }

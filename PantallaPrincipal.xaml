@@ -6,22 +6,14 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid>
-        <Image Margin="177,109,217,105" Source="/20191115_172516.jpg" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Label Content="BIENVENIDO USUARIA!&#xD;&#xA;&#xD;&#xA;HAS INCIIADO SESION!!!!!" Margin="22,31,538,239" FontSize="22"/>
-        <Button Content="SALIR" HorizontalAlignment="Left" Margin="558,280,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
-		<Button Content="TURNOS" HorizontalAlignment="Left" Margin="558,230,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonTurnos"/>
-        <Button Content="PACIENTES" HorizontalAlignment="Left" Margin="558,179,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonPacientes"/>
-		<Button Content="MÉDICOS" HorizontalAlignment="Left" Margin="558,124,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonMedicos"/>
+    <Grid Background="#FFEEDED2">
+
+        <Label Content="                     Bienvenido a la Clínica" Margin="0,1,0,0" FontSize="36" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="#FFFCA871" Width="800" VerticalAlignment="Top" Foreground="White"/>
+        <Button Content="SALIR" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="White" BorderBrush="Black" Click="MetodoBotonSalir"/>
+        <Button Content="TURNOS" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="White" BorderBrush="Black" Click="MetodoBotonTurnos"/>
+        <Button Content="PACIENTES" HorizontalAlignment="Center" Margin="0,157,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="White" BorderBrush="Black" Click="MetodoBotonPacientes"/>
+        <Button Content="MÉDICOS" HorizontalAlignment="Center" Margin="0,102,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="White" BorderBrush="Black" Click="MetodoBotonMedicos"/>
 
     </Grid>
+
 </Window>
