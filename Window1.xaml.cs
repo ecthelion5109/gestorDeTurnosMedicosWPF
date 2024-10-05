@@ -24,5 +24,15 @@ namespace ClinicaMedica {
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
-	}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            médicos médicos = new médicos();
+            Application.Current.MainWindow = médicos;
+            médicos.Show();
+
+            //cierro la anterior.
+            this.Close();
+        }
+    }
 }
