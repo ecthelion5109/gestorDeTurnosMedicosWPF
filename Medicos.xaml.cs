@@ -23,7 +23,10 @@ namespace ClinicaMedica {
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            MedicosModificar medicoModificarWindow = new MedicosModificar();
+            Application.Current.MainWindow = medicoModificarWindow;
+            medicoModificarWindow.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
