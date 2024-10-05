@@ -16,7 +16,6 @@ namespace ClinicaMedica {
     /// <summary>
     /// Lógica de interacción para Pacientes.xaml
     /// </summary>
-<<<<<<< HEAD
     public partial class Pacientes : Window {
         public Pacientes() {
             InitializeComponent();
@@ -34,19 +33,16 @@ namespace ClinicaMedica {
 
         private void BotonVolver(object sender, RoutedEventArgs e)
         {
-           
-=======
-    public partial class Pacientes : Window
-    {
-        public Pacientes()
-        {
-            InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+		private void Button_Click_1(object sender, RoutedEventArgs e) {
 
->>>>>>> ec35a0751cb8be94e75391bc561fc53879573c36
-        }
-    }
+			PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
+			Application.Current.MainWindow = pantallaPrincipalWindow;
+			pantallaPrincipalWindow.Show();
+
+			//cierro la anterior.
+			this.Close();
+		}
+	}
 }

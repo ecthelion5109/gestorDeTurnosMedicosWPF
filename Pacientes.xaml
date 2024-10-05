@@ -13,7 +13,7 @@
         <Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
-        <Button Content="Volver" HorizontalAlignment="Left" Height="49" Margin="660,351,0,0" VerticalAlignment="Top" Width="101"/>
+        <Button Content="Volver" HorizontalAlignment="Left" Height="49" Margin="660,351,0,0" VerticalAlignment="Top" Width="101" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

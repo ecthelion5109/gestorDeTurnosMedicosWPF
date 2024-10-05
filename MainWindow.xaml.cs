@@ -24,8 +24,8 @@ namespace ClinicaMedica {
 
 			Console.WriteLine(sender.ToString());
 			//MessageBox.Show(sender.ToString());
-			string usuario = "mariela";
-			string contraseña = "123";
+			string usuario = ""; //"mariela";
+			string contraseña = ""; // "123";
 
 
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {

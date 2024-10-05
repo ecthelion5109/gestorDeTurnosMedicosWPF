@@ -7,17 +7,11 @@
         mc:Ignorable="d"
         Title="Medicos" Height="450" Width="800">
 
-<<<<<<< HEAD
-    <Window.Background>
-        <ImageBrush ImageSource="MedicosFondo.jpg" />
-    </Window.Background>
-=======
-	<!--
+<!--
 	<Window.Background>
 		<ImageBrush ImageSource="lpuamtadre/medicosfondo.jpg" />
 	</Window.Background>
 -->
->>>>>>> ec35a0751cb8be94e75391bc561fc53879573c36
 
 	<Grid>
         <Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
