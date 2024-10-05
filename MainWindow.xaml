@@ -6,15 +6,17 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d" MinHeight="400" MinWidth="600"
         Title="Clinica Medica 'Mala Praxis SXXI" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600" MaxHeight="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Icon="/icono.png" >
-	<Grid Background="#FFEAE5C7" VerticalAlignment="Center" Height="400" Width="600" HorizontalAlignment="Center">
-		<TextBox x:Name="label_user" HorizontalAlignment="Center" Margin="303,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
-		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="24" FontFamily="Ringbearer" Margin="0,24,0,0"><Run Language="es-ar" Text="Sistema Gestor de Turnos"/></TextBlock>
-		<TextBlock Margin="138,243,340,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16" HorizontalAlignment="Center"><Run Language="es-ar" Text="Usuario: "/></TextBlock>
-		<TextBlock Margin="138,291,340,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16" HorizontalAlignment="Center"><Run Language="es-ar" Text="Contraseña:"/></TextBlock>
-		<TextBox x:Name="label_pass" HorizontalAlignment="Center" Margin="303,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
-		<Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="127,329,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonIniciarSesion" FontSize="12" Background="#FFE0DEAF" IsDefault="True" Cursor="Hand" FontFamily="SachaWynterTight"/>
-		<Image x:Name="homeBackground" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" Source="/blur-hospital.jpg" Height="154" Width="232"/>
-		<Button Content="SALIR" HorizontalAlignment="Left" Margin="354,330,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
+    <Grid VerticalAlignment="Center" Height="400" Width="600" HorizontalAlignment="Center">
+        <Grid.Background>
+            <ImageBrush ImageSource="/doctor.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="label_user" HorizontalAlignment="Left" Margin="199,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="24" FontFamily="Segoe UI Variable Text Semibold" Margin="0,42,0,0" Background="#FFE7F0FB" Foreground="Black"><Run Language="es-ar" Text="Sistema Gestor de Turnos"/></TextBlock>
+        <TextBlock Margin="0,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16" HorizontalAlignment="Center" Text="Usuario " FontFamily="Bahnschrift Light"/>
+        <TextBlock Margin="255,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="16" HorizontalAlignment="Left" FontFamily="Bahnschrift Light"><Run Text="Contraseñ"/><Run Language="es-es" Text="a"/></TextBlock>
+        <TextBox x:Name="label_pass" HorizontalAlignment="Left" Margin="199,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+        <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonIniciarSesion" FontSize="12" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="SachaWynterTight"/>
+        <Button Content="SALIR" HorizontalAlignment="Left" Margin="488,341,0,0" VerticalAlignment="Top" Height="32" Width="87" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonSalir"/>
 
-	</Grid>
+    </Grid>
 </Window>
