@@ -59,5 +59,10 @@ namespace ClinicaMedica {
             pantallaPrincipalWindow.Show();
             this.Close();
         }
+		
+		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+		}
+		
     }
 }

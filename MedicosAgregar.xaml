@@ -6,41 +6,41 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="Medicos" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="btnnuevo" Content="NUEVO" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnregistrar" Content="REGISTRAR" HorizontalAlignment="Left" Margin="62,6,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnmodificar" Content="MODIFICAR" HorizontalAlignment="Left" Margin="136,6,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btneliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="212,6,0,0" VerticalAlignment="Top"/>
-        <Label Content="DNI" HorizontalAlignment="Left" Margin="16,42,0,0" VerticalAlignment="Top"/>
-        <Label Content="NOMBRE" HorizontalAlignment="Left" Margin="16,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="APELLIDO" HorizontalAlignment="Left" Margin="16,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="TELÉFONO" HorizontalAlignment="Left" Margin="16,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="DIRECCIÓN " HorizontalAlignment="Left" Margin="16,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="LOCALIDAD" HorizontalAlignment="Left" Margin="16,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="PROVINCIA" HorizontalAlignment="Left" Margin="16,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="E MAIL" HorizontalAlignment="Left" Margin="16,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="ESPECIALIDAD" HorizontalAlignment="Left" Margin="16,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="DÍAS DE ATENCIÓN" HorizontalAlignment="Left" Margin="16,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="147"/>
-        <Label Content="GUARDIAS" HorizontalAlignment="Left" Margin="16,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
-        <Label Content="FECHA DE INGRESO" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="150"/>
-        <Label Content="SUELDO MÍNIMO" HorizontalAlignment="Left" Margin="16,259,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="134"/>
-        <TextBox x:Name="txtdni" HorizontalAlignment="Left" Margin="129,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="129,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
-        <TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="129,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
-        <TextBox x:Name="txttelefono" HorizontalAlignment="Left" Margin="129,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="129,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtlocalidad" HorizontalAlignment="Left" Margin="129,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
-        <TextBox x:Name="txtprovincia" HorizontalAlignment="Left" Margin="129,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtemail" HorizontalAlignment="Left" Margin="129,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
-        <TextBox x:Name="txtespecialidad" HorizontalAlignment="Left" Margin="129,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtdiasdeatencion" HorizontalAlignment="Left" Margin="129,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="172" />
-        <TextBox x:Name="txtguardias" HorizontalAlignment="Left" Margin="129,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtfechadeingreso" HorizontalAlignment="Left" Margin="129,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <TextBox x:Name="txtsueldominimo" HorizontalAlignment="Left" Margin="129,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-        <DataGrid x:Name="dataGridMedicos" HorizontalAlignment="Left" VerticalAlignment="Top" Height="410" Width="496" Margin="302,22,0,0" />
-        <Button x:Name="btnsalir" Content="SALIR" HorizontalAlignment="Left" Margin="147,377,0,0" VerticalAlignment="Top" Width="110"/>
-        <Button x:Name="btnvolver" Content="VOLVER" HorizontalAlignment="Left" Margin="40,377,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="txtirapacientes" Content="IR A PACIENTES" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="txtiraturnos" Content="IR A TURNOS" HorizontalAlignment="Left" Margin="147,347,0,0" VerticalAlignment="Top" Width="110"/>
+	<Grid>
+		<Button x:Name="btnnuevo" Content="NUEVO" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="btnregistrar" Content="REGISTRAR" HorizontalAlignment="Left" Margin="62,6,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="btnmodificar" Content="MODIFICAR" HorizontalAlignment="Left" Margin="136,6,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="btneliminar" Content="ELIMINAR" HorizontalAlignment="Left" Margin="212,6,0,0" VerticalAlignment="Top"/>
+		<Label Content="DNI" HorizontalAlignment="Left" Margin="16,42,0,0" VerticalAlignment="Top"/>
+		<Label Content="NOMBRE" HorizontalAlignment="Left" Margin="16,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="APELLIDO" HorizontalAlignment="Left" Margin="16,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="TELÉFONO" HorizontalAlignment="Left" Margin="16,97,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="DIRECCIÓN " HorizontalAlignment="Left" Margin="16,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="LOCALIDAD" HorizontalAlignment="Left" Margin="16,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="PROVINCIA" HorizontalAlignment="Left" Margin="16,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="E MAIL" HorizontalAlignment="Left" Margin="16,168,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="ESPECIALIDAD" HorizontalAlignment="Left" Margin="16,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="DÍAS DE ATENCIÓN" HorizontalAlignment="Left" Margin="16,205,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="147"/>
+		<Label Content="GUARDIAS" HorizontalAlignment="Left" Margin="16,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589"/>
+		<Label Content="FECHA DE INGRESO" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="150"/>
+		<Label Content="SUELDO MÍNIMO" HorizontalAlignment="Left" Margin="16,259,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="134"/>
+		<TextBox x:Name="txtdni" HorizontalAlignment="Left" Margin="129,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="129,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
+		<TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="129,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
+		<TextBox x:Name="txttelefono" HorizontalAlignment="Left" Margin="129,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="129,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtlocalidad" HorizontalAlignment="Left" Margin="129,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
+		<TextBox x:Name="txtprovincia" HorizontalAlignment="Left" Margin="129,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtemail" HorizontalAlignment="Left" Margin="129,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" />
+		<TextBox x:Name="txtespecialidad" HorizontalAlignment="Left" Margin="129,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtdiasdeatencion" HorizontalAlignment="Left" Margin="129,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="172" />
+		<TextBox x:Name="txtguardias" HorizontalAlignment="Left" Margin="129,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtfechadeingreso" HorizontalAlignment="Left" Margin="129,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<TextBox x:Name="txtsueldominimo" HorizontalAlignment="Left" Margin="129,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+		<!-- <DataGrid x:Name="dataGridMedicos" HorizontalAlignment="Left" VerticalAlignment="Top" Height="410" Width="496" Margin="302,22,0,0" /> -->
+
+		<Button Content="Volver a Medicos" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="107" Click="MetodoBotonVolverAMedicos"/>
+		<Button Content="Volver a Home" HorizontalAlignment="Left" Margin="169,347,0,0" VerticalAlignment="Top" Width="97" Click="MetodoBotonPaginaPrincipal"/>
+		<Button Content="Salir" HorizontalAlignment="Left" Margin="290,347,0,0" VerticalAlignment="Top" Width="110" Click="MetodoBotonSalir"/>
 	</Grid>
 </Window>
