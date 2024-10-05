@@ -9,7 +9,11 @@
     <Grid Background="#FFFCF3DF">
 
         <Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                         Gestor de Pacientes" FontFamily="Georgia" Background="#FFF0BA71"/>
+<<<<<<< HEAD
         <Button Content="Agregar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click_2"/>
+=======
+        <Button Content="Agregar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacienteAgregar"/>
+>>>>>>> 7f8d09c42c7564281ba5b12b29cf8c62295ea13a
         <Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
