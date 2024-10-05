@@ -27,15 +27,5 @@ namespace ClinicaMedica {
         {
 
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PacientesAgregar pacientesAgregarWindow = new PacientesAgregar();
-            Application.Current.MainWindow = pacientesAgregarWindow;
-            pacientesAgregarWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
-        }
     }
 }
