@@ -12,12 +12,14 @@
     <None Remove="20191115_172516.jpg" />
     <None Remove="blur-hospital.jpg" />
     <None Remove="icono.png" />
+    <None Remove="MedicosFondo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="20191115_172516.jpg" />
     <Resource Include="blur-hospital.jpg" />
     <Resource Include="icono.png" />
+    <Resource Include="MedicosFondo.jpg" />
   </ItemGroup>
 
 </Project>
