@@ -23,5 +23,23 @@ namespace ClinicaMedica
         {
             InitializeComponent();
         }
+		
+		public void MetodoBotonVolverAMedicos(object sender, RoutedEventArgs e) {
+            Medicos medicosWindow = new Medicos();
+            Application.Current.MainWindow = medicosWindow;
+            medicosWindow.Show();
+            this.Close();
+		}
+		
+		public void MetodoBotonPaginaPrincipal(object sender, RoutedEventArgs e) {
+            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
+            Application.Current.MainWindow = pantallaPrincipalWindow;
+            pantallaPrincipalWindow.Show();
+            this.Close();
+		}
+		
+		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+		}
 	}
 }
