@@ -21,7 +21,7 @@ namespace ClinicaMedica {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonPacientesVer(object sender, RoutedEventArgs e)
         {
             PacientesVer pacientesVerWindow = new PacientesVer();
             Application.Current.MainWindow = pacientesVerWindow;
@@ -31,11 +31,8 @@ namespace ClinicaMedica {
             this.Close();
         }
 
-        private void BotonVolver(object sender, RoutedEventArgs e)
-        {
-        }
 
-		private void Button_Click_1(object sender, RoutedEventArgs e) {
+		private void ButtonVolver(object sender, RoutedEventArgs e) {
 
 			PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
 			Application.Current.MainWindow = pantallaPrincipalWindow;
@@ -45,20 +42,7 @@ namespace ClinicaMedica {
 			this.Close();
 		}
 
-<<<<<<< HEAD
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            agregarPaciente agregarPacienteWindow = new agregarPaciente();
-            Application.Current.MainWindow = agregarPacienteWindow;
-            agregarPacienteWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
-
-        }
-    }
-=======
-		private void ButtonPacienteAgregar(object sender, RoutedEventArgs e) {
+		private void ButtonPacientesAgregar(object sender, RoutedEventArgs e) {
 
 			PacientesAgregar pacientesAgregarWindow = new PacientesAgregar();
 			Application.Current.MainWindow = pacientesAgregarWindow;
@@ -91,6 +75,9 @@ namespace ClinicaMedica {
     }
 =======
 	}
+<<<<<<< HEAD
 >>>>>>> 7f8d09c42c7564281ba5b12b29cf8c62295ea13a
 >>>>>>> da5440a253a2c8906aa62e2583e527103083752e
+=======
+>>>>>>> 8d28eeb35fbb15d120b2680642287623c68c5f32
 }
