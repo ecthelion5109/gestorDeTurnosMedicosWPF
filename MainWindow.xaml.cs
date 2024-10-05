@@ -34,7 +34,7 @@ namespace ClinicaMedica {
 
 
 				//creo una nueva y la vinculo a la aplicacion completa
-				Inicio inicio = new Inicio();
+				PantallaPrincipal inicio = new PantallaPrincipal();
 				Application.Current.MainWindow = inicio;
 				inicio.Show();
 

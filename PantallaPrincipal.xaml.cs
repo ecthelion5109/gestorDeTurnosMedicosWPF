@@ -16,8 +16,8 @@ namespace ClinicaMedica {
 	/// <summary>
 	/// Lógica de interacción para Window1.xaml
 	/// </summary>
-	public partial class Inicio : Window {
-		public Inicio() {
+	public partial class PantallaPrincipal : Window {
+		public PantallaPrincipal() {
 			InitializeComponent();
 		}
 
