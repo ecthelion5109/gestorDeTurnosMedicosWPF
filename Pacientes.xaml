@@ -10,7 +10,7 @@
         <Label HorizontalAlignment="Center" Height="63" Margin="0,53,0,0" VerticalAlignment="Top" Width="358" FontSize="40" Content="Gestor de Pacientes" FontFamily="Georgia">
 
         </Label>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click_1"/>
+        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
         <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="Button_Click"/>
         <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
         <Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18"/>
