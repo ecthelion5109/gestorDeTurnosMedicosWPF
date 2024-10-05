@@ -19,9 +19,9 @@
         </Image>
         <Label Content="BIENVENIDO USUARIA!&#xD;&#xA;&#xD;&#xA;HAS INCIIADO SESION!!!!!" Margin="22,31,538,239" FontSize="22"/>
         <Button Content="SALIR" HorizontalAlignment="Left" Margin="558,280,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
-        <Button Content="TURNOS" HorizontalAlignment="Left" Margin="558,230,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
-        <Button Content="PACIENTES" HorizontalAlignment="Left" Margin="558,179,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
-        <Button Content="MÉDICOS" HorizontalAlignment="Left" Margin="558,124,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonSalir"/>
+		<Button Content="TURNOS" HorizontalAlignment="Left" Margin="558,230,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonTurnos"/>
+        <Button Content="PACIENTES" HorizontalAlignment="Left" Margin="558,179,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonPacientes"/>
+		<Button Content="MÉDICOS" HorizontalAlignment="Left" Margin="558,124,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFC28359" BorderBrush="#FFE91313" Click="MetodoBotonMedicos"/>
 
     </Grid>
 </Window>
