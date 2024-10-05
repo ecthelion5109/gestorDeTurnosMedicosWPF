@@ -31,8 +31,6 @@ namespace ClinicaMedica {
             MedicosAgregar medicoAgregarWindow = new MedicosAgregar();
             Application.Current.MainWindow = medicoAgregarWindow;
             medicoAgregarWindow.Show();
-
-            //cierro la anterior.
             this.Close();
         }
     }

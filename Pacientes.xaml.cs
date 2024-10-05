@@ -16,6 +16,7 @@ namespace ClinicaMedica {
     /// <summary>
     /// Lógica de interacción para Pacientes.xaml
     /// </summary>
+<<<<<<< HEAD
     public partial class Pacientes : Window {
         public Pacientes() {
             InitializeComponent();
@@ -34,6 +35,18 @@ namespace ClinicaMedica {
         private void BotonVolver(object sender, RoutedEventArgs e)
         {
            
+=======
+    public partial class Pacientes : Window
+    {
+        public Pacientes()
+        {
+            InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+>>>>>>> ec35a0751cb8be94e75391bc561fc53879573c36
         }
     }
 }
