@@ -6,13 +6,20 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="Pacientes" Height="450" Width="800">
-    <Grid Background="#FFFCF3DF">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/GestorPacientes.jpg"/>
+        </Grid.Background>
 
-		<Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="Gestor de Pacientes" FontFamily="Georgia" Background="#FFF0BA71"/>
-        <Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesModificar"/>
-        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesEliminar"/>
-		<Button Content="Agregar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesAgregar"/>
-        <Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesVer"/>
-        <Button Content="Volver" HorizontalAlignment="Left" Height="49" Margin="660,351,0,0" VerticalAlignment="Top" Width="101" Click="ButtonVolver"/>
+        <Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                      Gestor de Pacientes" FontFamily="Georgia">
+            <Label.Background>
+                <ImageBrush/>
+            </Label.Background>
+        </Label>
+        <Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesModificar" Background="#FFFCFCFC" BorderBrush="#FF111010"/>
+        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesEliminar" Background="White" BorderBrush="#FF030303"/>
+        <Button Content="Agregar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="168" FontSize="18" Click="ButtonPacientesAgregar" Background="#FFF7F7F7" BorderBrush="#FF000311"/>
+        <Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesVer" Background="#FFFAFAFA" BorderBrush="Black"/>
+        <Button Content="Volver" HorizontalAlignment="Left" Height="49" Margin="673,356,0,0" VerticalAlignment="Top" Width="87" Click="ButtonVolver" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
     </Grid>
 </Window>
