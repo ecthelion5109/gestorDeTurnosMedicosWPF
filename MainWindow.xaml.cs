@@ -8,32 +8,47 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+// using System;
+// using System.Text.Json;
+// using System.Text.Json.Serialization;
+// using System.IO;
+
+
 
 namespace ClinicaMedica {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	
-	// public class Paciente{
-		// int pk;
-		// string name;
-		// string lastname;
-		// string fecha_ingreso;
-	// }
-	
-	
-	// public class Medico{
-		// int pk;
-		// string name;
-		// string lastname;
-	// }
+	public class Paciente{
+		int dni;
+		string name;
+		string lastname;
+		Date fecha_ingreso;	//delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
+		string email;
+		string telefono;
+		string cobertura_medica;
+		DateTime fecha_nacimiento;
+	}
 	
 	
+	public class Medico{
+		int dni;
+		string name; //50 digitos
+		string lastname; //50 digitos
+		string provincia; //40 digitos
+		string domicilio; //50 digitos
+		string localidad; //50 digitos
+		string specialidad; //20 digitos
+		string telefono;
+		string[] dias_de_atencion;
+		bool guardia;
+		DateTime fecha_ingreso;	//delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
+		double sueldo_minimo_garantizado; //no puede tener cero ni numeros negativos
+	}
 	
-	// public class Turno{
-		// int pk;
-		// string fecha;
-	// }
+	public class Turno{
+		int medico_pk; 
+		int paciente_pk;
+		DateTime fecha_y_hora_asignada;
+	}
 	
 	// Paciente instance = Paciente new(){
 		// pk = 1;
@@ -46,6 +61,9 @@ namespace ClinicaMedica {
 	
 	
 	
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
 	
 	public partial class MainWindow : Window {
 		public MainWindow() {
