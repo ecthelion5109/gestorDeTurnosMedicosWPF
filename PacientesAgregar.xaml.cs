@@ -28,5 +28,25 @@ namespace ClinicaMedica
         {
 
         }
+
+        private void txtdiasdeatencion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtfechadeingreso_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void MetodoBotonVolverAMedicos(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MetodoBotonSalir(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
