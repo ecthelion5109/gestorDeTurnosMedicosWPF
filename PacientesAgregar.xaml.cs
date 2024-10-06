@@ -23,5 +23,10 @@ namespace ClinicaMedica
         {
             InitializeComponent();
         }
+
+        private void txtfechadeingreso_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
