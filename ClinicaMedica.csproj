@@ -13,6 +13,7 @@
     <None Remove="blur-hospital.jpg" />
     <None Remove="doctor.jpg" />
     <None Remove="gestion.jpg" />
+    <None Remove="GestorPacientes.jpg" />
     <None Remove="icono.png" />
     <None Remove="MedicosFondo.jpg" />
   </ItemGroup>
@@ -22,6 +23,7 @@
     <Resource Include="blur-hospital.jpg" />
     <Resource Include="doctor.jpg" />
     <Resource Include="gestion.jpg" />
+    <Resource Include="GestorPacientes.jpg" />
     <Resource Include="icono.png" />
     <Resource Include="MedicosFondo.jpg" />
   </ItemGroup>

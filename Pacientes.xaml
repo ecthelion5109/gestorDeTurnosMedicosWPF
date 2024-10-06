@@ -7,14 +7,12 @@
         mc:Ignorable="d"
         Title="Pacientes" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/GestorPacientes.jpg"/>
-        </Grid.Background>
+        <!-- <Grid.Background> -->
+            <!-- <ImageBrush ImageSource="GestorPacientes.jpg"/> -->
+        <!-- </Grid.Background> -->
 
         <Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                      Gestor de Pacientes" FontFamily="Georgia">
-            <Label.Background>
-                <ImageBrush/>
-            </Label.Background>
+
         </Label>
         <Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesModificar" Background="#FFFCFCFC" BorderBrush="#FF111010"/>
         <Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesEliminar" Background="White" BorderBrush="#FF030303"/>

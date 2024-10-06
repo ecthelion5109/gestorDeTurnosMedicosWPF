@@ -9,9 +9,10 @@
 
 
 	<Grid>
-		<Grid.Background>
-			<ImageBrush ImageSource="/MedicosFondo.jpg"/>
-		</Grid.Background>
+
+		<!-- <Grid.Background> -->
+			<!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
+		<!-- </Grid.Background> -->
 
 		<Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
         <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar"/>
