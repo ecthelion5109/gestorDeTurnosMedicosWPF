@@ -8,7 +8,15 @@
         Title="Medicos" Height="450" Width="800">
 
 
+<<<<<<< HEAD
     <Grid Background="#FF81DEF7">
+=======
+	<Grid>
+
+		<!-- <Grid.Background> -->
+			<!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
+		<!-- </Grid.Background> -->
+>>>>>>> 6d5a3fa1231216fd5ec1fd54b8aa9054d2694a7c
 
         <Label Content="Personal Médico" HorizontalAlignment="Left" Margin="260,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="276" FontFamily="Bahnschrift SemiBold" Background="#FFC7EEF9"/>
         <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar" Background="#FF83D6ED"/>

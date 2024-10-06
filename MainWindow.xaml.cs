@@ -13,6 +13,40 @@ namespace ClinicaMedica {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
+	
+	// public class Paciente{
+		// int pk;
+		// string name;
+		// string lastname;
+		// string fecha_ingreso;
+	// }
+	
+	
+	// public class Medico{
+		// int pk;
+		// string name;
+		// string lastname;
+	// }
+	
+	
+	
+	// public class Turno{
+		// int pk;
+		// string fecha;
+	// }
+	
+	// Paciente instance = Paciente new(){
+		// pk = 1;
+		// name = "Carlos";
+		// lastname = "Mendiguren";
+		// fecha_ingreso = "15-06-2024"
+	// }
+	
+	
+	
+	
+	
+	
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();

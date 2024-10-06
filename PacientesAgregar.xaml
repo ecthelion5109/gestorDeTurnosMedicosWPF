@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="PacientesAgregar" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Agregar Pacientes" HorizontalAlignment="Left" Height="51" Margin="10,10,0,0" VerticalAlignment="Top" Width="181" FontSize="20"/>
+
     </Grid>
 </Window>
