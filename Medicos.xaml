@@ -8,22 +8,21 @@
         Title="Medicos" Height="450" Width="800">
 
 
-<<<<<<< HEAD
-    <Grid Background="#FF81DEF7">
-=======
 	<Grid>
 
-		<!-- <Grid.Background> -->
-			<!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
-		<!-- </Grid.Background> -->
->>>>>>> 6d5a3fa1231216fd5ec1fd54b8aa9054d2694a7c
 
-        <Label Content="Personal Médico" HorizontalAlignment="Left" Margin="260,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="276" FontFamily="Bahnschrift SemiBold" Background="#FFC7EEF9"/>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar" Background="#FF83D6ED"/>
-        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosModificar" Background="#FF83D6ED"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosEliminar" Background="#FF83D6ED"/>
-        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosVer" Background="#FF83D6ED"/>
-        <Button Content="Volver" HorizontalAlignment="Left" Margin="647,356,0,0" VerticalAlignment="Top" Height="49" Width="86" Click="ButtonVolver" Background="#FFD9EDF3"/>
+		<Grid.Background>
+			<ImageBrush ImageSource="MedicosFondo.jpg"/>
+			<!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
+			<!-- <ImageBrush ImageSource="pack://application:,,,/medicosfondo.jpg"/> -->
+		</Grid.Background>
+
+		<Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar"/>
+        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosModificar"/>
+        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosEliminar"/>
+        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosVer"/>
+        <Button Content="Volver" HorizontalAlignment="Left" Margin="631,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonVolver"/>
 
     </Grid>
 </Window>
