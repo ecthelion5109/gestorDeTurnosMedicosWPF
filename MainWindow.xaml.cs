@@ -35,9 +35,7 @@ namespace ClinicaMedica {
 			Medico medicoLeido = BaseDeDatos.LeerDesdeJson<Medico>("medico.json");
 			Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
 
-			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}");
-			MessageBox.Show($"Se ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}");
-			MessageBox.Show($"Se ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
+			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}\nSe ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}\nSe ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
 		}
         public static void TestGuardar(){
 			// Crear instancias de ejemplo
@@ -78,9 +76,7 @@ namespace ClinicaMedica {
 			BaseDeDatos.GuardarComoJson(medico, "medico.json");
 			BaseDeDatos.GuardarComoJson(turno, "turno.json");
 
-			MessageBox.Show($"Se ha instaciado y guardado a Paciente: {paciente.Name} {paciente.Lastname}");
-			MessageBox.Show($"Se ha instaciado y guardado a Medico: {medico.Name} {medico.Lastname}");
-			MessageBox.Show($"Se ha instaciado y guardado a Turno Asignado: {turno.FechaYHoraAsignada}");
+			MessageBox.Show($"Se ha instanciado y guardado a Paciente: {paciente.Name} {paciente.Lastname}\nSe ha instanciado y guardado a Medico: {medico.Name} {medico.Lastname}\nSe ha instanciado y guardado a Turno Asignado: {turno.FechaYHoraAsignada}");
 		}
 	}
 	public class Paciente{
