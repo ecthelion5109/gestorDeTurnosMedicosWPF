@@ -51,16 +51,16 @@
 
 
         <Label Content="    ANTECEDENTES &#xD;&#xA;    MÉDICOS" HorizontalAlignment="Left" Margin="0,238,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="214" Height="48"/>
-        <TextBox x:Name="txtdiasdeatencion" HorizontalAlignment="Left" Margin="168,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="33" TextChanged="txtdiasdeatencion_TextChanged" />
+        <TextBox x:Name="txtdiasdeatencion" HorizontalAlignment="Left" Margin="168,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="33" />
 
 
         <Label Content="CUBERTURA MÉDICA" HorizontalAlignment="Left" Margin="16,273,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Width="202" Height="31"/>
-        <TextBox x:Name="txtfechadeingreso" HorizontalAlignment="Left" Margin="168,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Height="25" TextChanged="txtfechadeingreso_TextChanged_1"/>
+        <TextBox x:Name="txtfechadeingreso" HorizontalAlignment="Left" Margin="168,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Height="25" />
 
 
         <!-- <DataGrid x:Name="dataGridMedicos" HorizontalAlignment="Left" VerticalAlignment="Top" Height="410" Width="496" Margin="302,22,0,0" /> -->
 
-        <Button Content="Volver a Medicos" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="107" Click="MetodoBotonVolverAMedicos" Background="#FFD4CECE"/>
+        <Button Content="Volver a Pacientes" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="107" Click="MetodoBotonVolverAPacientes" Background="#FFD4CECE"/>
         <Button Content="Volver a Home" HorizontalAlignment="Left" Margin="169,347,0,0" VerticalAlignment="Top" Width="97" Click="MetodoBotonPaginaPrincipal" Background="#FFD7D3D3"/>
         <Button Content="Salir" HorizontalAlignment="Left" Margin="290,347,0,0" VerticalAlignment="Top" Width="110" Click="MetodoBotonSalir" Background="#FFE2E2E2"/>
 

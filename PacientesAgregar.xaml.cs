@@ -24,29 +24,26 @@ namespace ClinicaMedica
             InitializeComponent();
         }
 
-        private void txtfechadeingreso_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
+        public void MetodoBotonVolverAPacientes(object sender, RoutedEventArgs e)
+        {
+            Pacientes pacientesWindow = new Pacientes();
+            Application.Current.MainWindow = pacientesWindow;
+            pacientesWindow.Show();
+            this.Close();
         }
 
-        private void txtdiasdeatencion_TextChanged(object sender, TextChangedEventArgs e)
+        public void MetodoBotonPaginaPrincipal(object sender, RoutedEventArgs e)
         {
-
+            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
+            Application.Current.MainWindow = pantallaPrincipalWindow;
+            pantallaPrincipalWindow.Show();
+            this.Close();
         }
 
-        private void txtfechadeingreso_TextChanged_1(object sender, TextChangedEventArgs e)
+        public void MetodoBotonSalir(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void MetodoBotonVolverAMedicos(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MetodoBotonSalir(object sender, RoutedEventArgs e)
-        {
-
+            Application.Current.Shutdown();
         }
     }
 }
