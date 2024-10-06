@@ -41,5 +41,9 @@ namespace ClinicaMedica
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
+
+		private void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e) {
+
+		}
 	}
 }

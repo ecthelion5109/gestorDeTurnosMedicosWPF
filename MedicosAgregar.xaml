@@ -71,5 +71,6 @@
 		<Button Content="Volver a Pacientes" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="107" Click="MetodoBotonVolverAMedicos"/>
 		<Button Content="Volver a Home" HorizontalAlignment="Left" Margin="168,347,0,0" VerticalAlignment="Top" Width="103" Click="MetodoBotonPaginaPrincipal"/>
 		<Button Content="Salir" HorizontalAlignment="Left" Margin="290,347,0,0" VerticalAlignment="Top" Width="110" Click="MetodoBotonSalir"/>
+		<Button x:Name="iniciarSesionButton_Copiar" Content="test guardar" HorizontalAlignment="Left" Margin="153,383,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/>
 	</Grid>
 </Window>
