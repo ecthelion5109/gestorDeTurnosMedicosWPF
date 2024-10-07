@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="TurnosEliminar" Height="450" Width="800">
     <Grid>
-        <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="10,278,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-        <Button Content="Salir" HorizontalAlignment="Left" Height="58" Margin="545,337,0,0" VerticalAlignment="Top" Width="149" Foreground="Black" Click="ButtonSalir" FontSize="24"/>
-        <Button Content="Turnos" HorizontalAlignment="Left" Margin="284,217,0,0" VerticalAlignment="Top" Height="54" Width="116" FontSize="24" Click="ButtonTurnos"/>
-        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="252,325,0,0" VerticalAlignment="Top" Height="62" Width="131" FontSize="24"/>
+        <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="34,315,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button Content="Salir" HorizontalAlignment="Left" Height="58" Margin="558,319,0,0" VerticalAlignment="Top" Width="149" Foreground="Black" Click="ButtonSalir" FontSize="24"/>
+        <Button Content="Turnos" HorizontalAlignment="Left" Margin="319,180,0,0" VerticalAlignment="Top" Height="54" Width="116" FontSize="24" Click="ButtonTurnos"/>
+        <Button Content="Eliminar" HorizontalAlignment="Left" Margin="319,315,0,0" VerticalAlignment="Top" Height="62" Width="131" FontSize="24"/>
         <Label Content="Eliminar Turnos" HorizontalAlignment="Left" Margin="154,14,0,0" VerticalAlignment="Top" Height="99" Width="542" FontSize="72" FontFamily="Matura MT Script Capitals" Foreground="#FF7C92EA"/>
 
     </Grid>

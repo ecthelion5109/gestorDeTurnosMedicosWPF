@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="TurnosModificar" Height="450" Width="800">
     <Grid>
-        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="473,338,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-        <Button FontSize="24" Content="Modificar" HorizontalAlignment="Left" Height="62" Margin="198,336,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="589,337,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Modificar" HorizontalAlignment="Left" Height="62" Margin="107,327,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
         <Label Content="Modificar Turnos" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="72" FontFamily="Matura MT Script Capitals" Height="99" Width="630" Foreground="#FF7C92EA" RenderTransformOrigin="0.507,1.403"/>
-        <Button FontSize="24" Content="Turno" HorizontalAlignment="Center" Height="62" Margin="0,217,0,0" VerticalAlignment="Top" Width="108" Click="ButtonTurnos" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-        <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Center" Height="62" Margin="0,306,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Turno" HorizontalAlignment="Center" Height="62" VerticalAlignment="Center" Width="108" Click="ButtonTurnos" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Center" Height="62" Margin="0,326,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
     </Grid>
     <Window.Background>
         <ImageBrush ImageSource="/images/turnos - agregar.png" />

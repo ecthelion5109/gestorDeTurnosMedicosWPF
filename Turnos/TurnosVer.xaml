@@ -1,4 +1,4 @@
-﻿<Window x:Class="ClinicaMedica.TurnosVer"
+﻿<Window x:Class="ClinicaMedica.TurnosVer" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="TurnosVer" Height="450" Width="800">
     <Grid>
-        
+        <!-- Definimos dos columnas, una para el almanaque y otra para la grilla de turnos -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Control de Calendario -->
+        <!--Calendar Grid.Column="0" Name="CalendarioTurnos" SelectedDateChanged="CalendarioTurnos_SelectedDateChanged" /-->
+
+        <!-- DataGrid para los turnos por hora -->
+        <DataGrid Grid.Column="1" Name="DataGridTurnos" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <!-- Columna para mostrar la hora -->
+                <DataGridTextColumn Header="Hora" Binding="{Binding Hora}" Width="*" />
+
+                <!-- Columna para mostrar el número de turno -->
+                <DataGridTextColumn Header="Turno" Binding="{Binding NumeroTurno}" Width="*" />
+
+                <!-- Columna para el estado de la reserva (disponible, reservado, etc.) -->
+                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Calendar HorizontalAlignment="Left" Margin="67,35,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
