@@ -32,7 +32,7 @@ namespace ClinicaMedica
 
         public void MetodoBotonPaginaPrincipal(object sender, RoutedEventArgs e)
         {
-			this.NavegarA<PantallaPrincipal>();
+			this.NavegarA<MainWindow>();
         }
 
         public void MetodoBotonSalir(object sender, RoutedEventArgs e)

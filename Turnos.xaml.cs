@@ -31,12 +31,12 @@ namespace ClinicaMedica {
             this.NavegarA<TurnosAgregar>();
         }
 
-        private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
-        {
-            this.NavegarA<TurnosEliminar>();
-        }
+		private void ButtonTurnosEliminar(object sender, RoutedEventArgs e) {
 
-        private void ButtonTurnosVer(object sender, RoutedEventArgs e)
+			this.NavegarA<TurnosEliminar>();
+		}
+
+		private void ButtonTurnosVer(object sender, RoutedEventArgs e)
         {
             this.NavegarA<TurnosVer>();
         }
@@ -48,17 +48,7 @@ namespace ClinicaMedica {
 
         private void ButtonHome(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<PantallaPrincipal>();
-
-        }
-
-        private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ButtonTurnosEliminar(object sender, RoutedEventArgs e)
-        {
+            this.NavegarA<MainWindow>();
 
         }
     }

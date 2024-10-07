@@ -123,30 +123,32 @@ namespace ClinicaMedica {
 		public MainWindow() {
 			InitializeComponent();
 		}
-		
-		
-		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			string usuario = ""; //"mariela";
-			string contraseña = ""; // "123";
-			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
-				this.NavegarA<PantallaPrincipal>();
-			}
-			else {
-				MessageBox.Show("Contraseña o usuario incorrecta");
-			}
+		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
+			this.NavegarA<Login>();
 		}
 
-        public void MetodoBotonSalir(object sender, RoutedEventArgs e){
-			Application.Current.Shutdown ();
-        }
-		
-        public void MetodoBotonTestearJsonLeer(object sender, RoutedEventArgs e){
+
+		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+		}
+
+        private void MetodoBotonMedicos(object sender, RoutedEventArgs e){
+			this.NavegarA<Medicos>();
+		}
+
+		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
+			this.NavegarA<Turnos>();
+		}
+
+		private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
+			this.NavegarA<Pacientes>();
+		}
+
+		public void MetodoBotonTestearJsonLeer(object sender, RoutedEventArgs e) {
 			BaseDeDatos.TestLeer();
 		}
-        public void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e){
+		public void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e) {
 			BaseDeDatos.TestGuardar();
 		}
-		
-		
 	}
 }

@@ -45,7 +45,7 @@ namespace ClinicaMedica {
 		}
 
 		private void ButtonHome(object sender, RoutedEventArgs e) {
-			this.NavegarA<PantallaPrincipal>();
+			this.NavegarA<MainWindow>();
 
 		}
 	}
