@@ -18,7 +18,48 @@ namespace ClinicaMedica {
 	/// </summary>
 	public partial class Turnos : Window {
 		public Turnos() {
-			InitializeComponent();
-		}
-	}
+            InitializeComponent();
+        }
+
+        private void ButtonTurnosModificar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<TurnosModificar>();
+        }
+
+        private void ButtonTurnosAgregar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<TurnosAgregar>();
+        }
+
+        private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<TurnosEliminar>();
+        }
+
+        private void ButtonTurnosVer(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<TurnosVer>();
+        }
+
+        public void ButtonSalir(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ButtonHome(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<PantallaPrincipal>();
+
+        }
+
+        private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonTurnosEliminar(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
