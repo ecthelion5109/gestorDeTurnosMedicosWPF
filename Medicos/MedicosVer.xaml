@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MedicosVer" Height="450" Width="800">
     <Grid>
-        
+        <Image Margin="-10,0,0,0" Source="/MedicosFondo.jpg" Stretch="Fill"/>
+        <Label Content="Personal Médico" HorizontalAlignment="Left" Margin="462,10,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+
     </Grid>
 </Window>

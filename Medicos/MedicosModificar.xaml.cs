@@ -27,6 +27,35 @@ namespace ClinicaMedica
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
-		
+
+        private void ButtonAgregar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ButtonCancelar(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonSalir(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

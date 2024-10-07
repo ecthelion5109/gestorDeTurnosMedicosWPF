@@ -69,11 +69,18 @@
 
 			<Label Content="Dia de Atención" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Margin="68,5,0,5" Width="95"/>
 			<StackPanel Grid.Row="10" Grid.Column="1" Width="Auto" >
-				<DatePicker x:Name="datePickerDiasAtencion" Margin="0,0,0,10"/>
-				<Button Content="Agregar Día de Atención" Click="AgregarDiaAtencion_Click" Margin="0,0,0,10"/>
-				<Button Content="Eliminar Día Seleccionado" Click="EliminarDiaAtencion_Click" Margin="0,0,0,10"/>
-				<TextBlock Text="Días de atención seleccionados:" Margin="0,0,0,10"/>
-				<ListBox x:Name="listBoxDiasAtencion" Margin="0,0,0,10" Height="100"/>
+			
+				<Label Content="Lunes" HorizontalAlignment="Center" Margin="0,5,0,5" Width="92"/>
+				<CheckBox HorizontalAlignment="Center" Margin="5,5,5,5" Width="16"/>
+
+			
+				<Label Content="Martes" HorizontalAlignment="Center" Margin="0,5,0,5" Width="92"/>
+				<CheckBox HorizontalAlignment="Center" Margin="5,5,5,5" Width="16"/>
+				<!-- <DatePicker x:Name="datePickerDiasAtencion" Margin="0,0,0,10"/> -->
+				<!-- <Button Content="Agregar Día de Atención" Click="AgregarDiaAtencion_Click" Margin="0,0,0,10"/> -->
+				<!-- <Button Content="Eliminar Día Seleccionado" Click="EliminarDiaAtencion_Click" Margin="0,0,0,10"/> -->
+				<!-- <TextBlock Text="Días de atención seleccionados:" Margin="0,0,0,10"/> -->
+				<!-- <ListBox x:Name="listBoxDiasAtencion" Margin="0,0,0,10" Height="100"/> -->
 			</StackPanel>
 		</Grid>
 
