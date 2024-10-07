@@ -20,8 +20,9 @@ namespace ClinicaMedica
 	
     public partial class MedicosAgregar : Window
     {
+		/*
 		private List<DateTime> diasAtencion = new List<DateTime>();
-		
+		*/
         public MedicosAgregar()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace ClinicaMedica
 
 		}
 
-
+	/*
 		// Método para agregar una fecha seleccionada a la lista
 		private void AgregarDiaAtencion_Click(object sender, RoutedEventArgs e)
 		{
@@ -69,7 +70,7 @@ namespace ClinicaMedica
 				MessageBox.Show("Por favor, seleccione una fecha.");
 			}
 		}
-
+	
 		// Método para eliminar una fecha seleccionada de la lista
 		private void EliminarDiaAtencion_Click(object sender, RoutedEventArgs e)
 		{
@@ -93,5 +94,6 @@ namespace ClinicaMedica
 		{
 			return diasAtencion;
 		}
+	*/
 	}
 }
