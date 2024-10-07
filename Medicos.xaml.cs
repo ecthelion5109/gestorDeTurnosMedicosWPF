@@ -21,22 +21,22 @@ namespace ClinicaMedica {
 			InitializeComponent();
 		}
 
-        private void ButtonMedicosModificar(object sender, RoutedEventArgs e)
+        private void ButtonModificar(object sender, RoutedEventArgs e)
         {
 			this.NavegarA<MedicosModificar>();
         }
 
-        private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
+        private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
 			this.NavegarA<MedicosAgregar>();
         }
 
-        private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
+        private void ButtonEliminar(object sender, RoutedEventArgs e)
         {
 			this.NavegarA<MedicosEliminar>();
         }
 
-        private void ButtonMedicosVer(object sender, RoutedEventArgs e) {
+        private void ButtonVer(object sender, RoutedEventArgs e) {
 			this.NavegarA<MedicosVer>();
 		}
 		

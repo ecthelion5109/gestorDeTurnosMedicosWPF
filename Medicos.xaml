@@ -7,21 +7,20 @@
         mc:Ignorable="d"
         Title="Medicos" Height="450" Width="800">
 
+    <Window.Background>
+        <ImageBrush ImageSource="MedicosFondo.jpg" />
+    </Window.Background>
 
-	<Grid>
-		<Grid.Background>
-			<ImageBrush ImageSource="MedicosFondo.jpg"/>
-			<!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
-			<!-- <ImageBrush ImageSource="pack://application:,,,/medicosfondo.jpg"/> -->
-		</Grid.Background>
 
-		<Label Content="Gestor de Personal Medico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="55" Width="507" FontFamily="Segoe UI Black"/>
-		<Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar"/>
-		<Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosModificar"/>
-		<Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosEliminar"/>
-		<Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosVer"/>
-		<Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="629,275,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
-		<Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="629,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
+    <Grid>
+        <Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonAgregar" FontFamily="Modern No. 20"/>
+        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonModificar" FontFamily="Modern No. 20"/>
+        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" FontFamily="Modern No. 20" Click="ButtonEliminar"/>
+        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" FontFamily="Modern No.20" Click="ButtonVer"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="61" Margin="651,344,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="61" Margin="651,259,0,0" VerticalAlignment="Top" Width="109" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+
 
 	</Grid>
 </Window>

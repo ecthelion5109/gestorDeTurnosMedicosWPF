@@ -24,13 +24,18 @@ namespace ClinicaMedica
             InitializeComponent();
         }
 		
-		public void MetodoBotonVolverAMedicos(object sender, RoutedEventArgs e) {
-			this.NavegarA<Medicos>();
-		}
-		
-		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+		public void ButtonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
+		
+		public void ButtonAgregar(object sender, RoutedEventArgs e) {
+		}
+		
+		public void ButtonCancelar(object sender, RoutedEventArgs e) {
+			this.NavegarA<Medicos>();
+		}
+
+		
 
 		private void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e) {
 
