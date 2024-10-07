@@ -45,7 +45,9 @@ namespace ClinicaMedica {
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
 		public string[] DiasDeAtencion { get; set; }
-	}
+
+        //public Dictionary<string, List<string>> DiasDeAtencion { get; set; }
+    }
 	public class Turno{
 		public int MedicoPk { get; set; }
 		public int PacientePk { get; set; }
@@ -68,7 +70,12 @@ namespace ClinicaMedica {
 			Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
 
 			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}\nSe ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}\nSe ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
-		}
+        }
+        public static void LeerMedico()
+        {
+            // Leer desde JSON
+
+        }
         public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia){
 			// Crear instancias de ejemplo
 			var paciente = new Paciente{

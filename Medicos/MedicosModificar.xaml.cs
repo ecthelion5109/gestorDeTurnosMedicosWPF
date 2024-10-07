@@ -30,6 +30,20 @@ namespace ClinicaMedica
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
+            
+            Medico medicoLeido = BaseDeDatos.LeerDesdeJson<Medico>("medico.json");
+            txtNombre.Text = medicoLeido.Name;
+            
+                txtApellido.Text = medicoLeido.Lastname;
+                txtDNI.Text = medicoLeido.Dni.ToString(); ;
+            txtProvincia.Text = medicoLeido.Provincia;
+            txtDomicilio.Text = medicoLeido.Domicilio;
+            txtLocalidad.Text = medicoLeido.Localidad;
+            txtEspecialidad.Text = medicoLeido.Specialidad;
+            txtFechaIngreso.SelectedDate= medicoLeido.FechaIngreso;
+            txtSueldoMinGarant.Text = medicoLeido.SueldoMinimoGarantizado.ToString();
+            txtRealizaGuardia.IsChecked = medicoLeido.Guardia;
+           
 
         }
 

@@ -6,9 +6,18 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="MedicosVer" Height="450" Width="800">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/images/MedicosFondo.jpg" />
+    </Window.Background>
+
     <Grid>
+        <!-- Fondo de imagen -->
         <Image Margin="-10,0,0,0" Source="/MedicosFondo.jpg" Stretch="Fill"/>
+
+        <!-- Título -->
         <Label Content="Personal Médico" HorizontalAlignment="Left" Margin="462,10,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
 
+        <!-- DataGrid insertado aquí -->
     </Grid>
 </Window>

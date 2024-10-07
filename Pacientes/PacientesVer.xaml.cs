@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace ClinicaMedica
 {
+
     /// <summary>
     /// Lógica de interacción para PacientesVer.xaml
     /// </summary>
