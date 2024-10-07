@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,5 +40,21 @@ namespace ClinicaMedica
         {
             Application.Current.Shutdown();
         }
+
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+			// dni, string name, string lastname, DateTime fechaIngreso, string email, string telefono, string cobertura, DateTime fechaNacimiento
+			BaseDeDatos.PacienteGuardar(
+				dni : int.Parse(txtdni.Text),
+				name : txtnombre.Text,
+				lastname : txtapellido.Text,
+				fechaingreso : DateTime.Now,
+				email : txtemail.Text,
+				telefono : txttelefono.Text,
+				fechanacimiento : (DateTime) txtfechanacimiento.SelectedDate,
+				direccion : txtdireccion.Text,
+				localidad : txtlocalidad.Text,
+				provincia : txtprovincia.Text
+			);
+		}
     }
 }

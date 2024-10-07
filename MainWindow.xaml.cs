@@ -19,6 +19,38 @@ namespace ClinicaMedica {
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	//---------------------------------Clases-------------------------------//
+	
+	public class Paciente{
+		public int Dni { get; set; }
+		public string Name { get; set; }
+		public string Lastname { get; set; }
+		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
+		public string Email { get; set; }
+		public string Telefono { get; set; }
+		public DateTime FechaNacimiento { get; set; }
+		public string Direccion { get; set; }
+		public string Localidad { get; set; }
+		public string Provincia { get; set; }
+	}
+	public class Medico{
+		public int Dni { get; set; }
+		public string Name { get; set; }  // 50 caracteres máximo
+		public string Lastname { get; set; }  // 50 caracteres máximo
+		public string Provincia { get; set; }  // 40 caracteres máximo
+		public string Domicilio { get; set; }  // 50 caracteres máximo
+		public string Localidad { get; set; }  // 50 caracteres máximo
+		public string Specialidad { get; set; }  // 20 caracteres máximo
+		public string Telefono { get; set; }
+		public string[] DiasDeAtencion { get; set; }
+		public bool Guardia { get; set; }
+		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
+		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
+	}
+	public class Turno{
+		public int MedicoPk { get; set; }
+		public int PacientePk { get; set; }
+		public DateTime FechaYHoraAsignada { get; set; }
+	}
 	public class BaseDeDatos{
 		public static void GuardarComoJson<T>(T objeto, string archivo){
 			var opciones = new JsonSerializerOptions { WriteIndented = true };
@@ -37,6 +69,29 @@ namespace ClinicaMedica {
 
 			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}\nSe ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}\nSe ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
 		}
+        public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia){
+			// Crear instancias de ejemplo
+			var paciente = new Paciente{
+				Dni = dni,
+				Name = name,
+				Lastname = lastname,
+				FechaIngreso = fechaingreso,
+				Email = email,
+				Telefono = telefono,
+				FechaNacimiento = fechanacimiento,
+				Direccion = direccion,
+				Localidad = localidad,
+				Provincia = provincia
+			};
+			// Guardar como JSON
+			BaseDeDatos.GuardarComoJson(paciente, "paciente.json");
+
+			MessageBox.Show($"Se ha instanciado y guardado a Paciente: {paciente.Name} {paciente.Lastname}");
+		}
+		
+		
+		
+		
         public static void TestGuardar(){
 			// Crear instancias de ejemplo
 			var paciente = new Paciente{
@@ -46,7 +101,6 @@ namespace ClinicaMedica {
 				FechaIngreso = DateTime.Now,
 				Email = "juan.perez@example.com",
 				Telefono = "123456789",
-				CoberturaMedica = "Cobertura X",
 				FechaNacimiento = new DateTime(1980, 5, 15)
 			};
 
@@ -78,35 +132,6 @@ namespace ClinicaMedica {
 
 			MessageBox.Show($"Se ha instanciado y guardado a Paciente: {paciente.Name} {paciente.Lastname}\nSe ha instanciado y guardado a Medico: {medico.Name} {medico.Lastname}\nSe ha instanciado y guardado a Turno Asignado: {turno.FechaYHoraAsignada}");
 		}
-	}
-	public class Paciente{
-		public int Dni { get; set; }
-		public string Name { get; set; }
-		public string Lastname { get; set; }
-		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
-		public string Email { get; set; }
-		public string Telefono { get; set; }
-		public string CoberturaMedica { get; set; }
-		public DateTime FechaNacimiento { get; set; }
-	}
-	public class Medico{
-		public int Dni { get; set; }
-		public string Name { get; set; }  // 50 caracteres máximo
-		public string Lastname { get; set; }  // 50 caracteres máximo
-		public string Provincia { get; set; }  // 40 caracteres máximo
-		public string Domicilio { get; set; }  // 50 caracteres máximo
-		public string Localidad { get; set; }  // 50 caracteres máximo
-		public string Specialidad { get; set; }  // 20 caracteres máximo
-		public string Telefono { get; set; }
-		public string[] DiasDeAtencion { get; set; }
-		public bool Guardia { get; set; }
-		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
-		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
-	}
-	public class Turno{
-		public int MedicoPk { get; set; }
-		public int PacientePk { get; set; }
-		public DateTime FechaYHoraAsignada { get; set; }
 	}
 	
 	public static class WindowExtensions{
