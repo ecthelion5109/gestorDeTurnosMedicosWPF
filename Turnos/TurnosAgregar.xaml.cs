@@ -22,7 +22,17 @@ namespace ClinicaMedica
         public TurnosAgregar()
         {
             InitializeComponent();
-        }
+
+			// Leer la instancia desde el archivo JSON
+			Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
+
+			// Asignar el DNI al ComboBox
+			txtpaciente.Items.Add(turnoLeido.PacientePk);
+
+			// Opcionalmente, puedes seleccionar automáticamente el primer valor:
+			txtpaciente.SelectedIndex = 0;
+
+		}
 
         private void ButtonSalir(object sender, RoutedEventArgs e)
         {
@@ -36,7 +46,11 @@ namespace ClinicaMedica
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<TurnosVer>();
+            BaseDeDatos.GuardarTurno(
+                int.Parse(txtpaciente.SelectedItem?.ToString()), 
+                int.Parse(txtmedico.Text), 
+                (DateTime) txtfecha.SelectedDate
+            );
         }
     }
 }

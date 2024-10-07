@@ -12,6 +12,8 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.IO;
+using System.Net;
+using System.Xml.Linq;
 
 
 namespace ClinicaMedica {
@@ -71,8 +73,18 @@ namespace ClinicaMedica {
 
 			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}\nSe ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}\nSe ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
         }
-        public static void GuardarTurno()
-        {
+        public static void GuardarTurno(int dniPaciente, int dniMedico, DateTime fecha) {
+			var turno = new Turno {
+				MedicoPk = dniPaciente,
+				PacientePk = dniMedico,
+				FechaYHoraAsignada = fecha,
+			};
+			// Guardar como JSON
+			BaseDeDatos.GuardarComoJson(turno, "turno.json");
+
+			MessageBox.Show($"Se ha guardado el turno para la fecha: {turno.FechaYHoraAsignada}");
+
+
 			/*
 			var turnos = new List<Turno>();
 

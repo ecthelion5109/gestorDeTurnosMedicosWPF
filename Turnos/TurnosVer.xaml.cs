@@ -38,7 +38,6 @@ namespace ClinicaMedica
         // Método para cargar los turnos del día
         private void CargarTurnos(DateTime fecha)
         {
-			BaseDeDatos.GuardarTurno();
         }
     }
 }
