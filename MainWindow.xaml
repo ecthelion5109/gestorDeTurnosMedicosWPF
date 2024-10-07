@@ -8,7 +8,7 @@
         Title="Window1" Height="450" Width="800">
 	<Grid Margin="0,0,-28,0">
 		<Grid.Background>
-			<ImageBrush ImageSource="/bv.jpg"/>
+			<ImageBrush ImageSource="/images/bv.jpg"/>
 		</Grid.Background>
 
 		<Label Content="Clínica Clandestina " Margin="0,1,0,0" FontSize="36" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="324" VerticalAlignment="Top" Foreground="White"/>

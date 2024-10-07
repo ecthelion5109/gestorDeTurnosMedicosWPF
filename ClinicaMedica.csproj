@@ -9,31 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="20191115_172516.jpg" />
-    <None Remove="bienvenida.jpg" />
-    <None Remove="blur-hospital.jpg" />
-    <None Remove="bv.jpg" />
-    <None Remove="doctor.jpg" />
-    <None Remove="gestion.jpg" />
-    <None Remove="GestorPacientes.jpg" />
-    <None Remove="icono.png" />
-    <None Remove="medicodibase-690x440.jpg" />
-    <None Remove="MedicosFondo.jpg" />
-    <None Remove="turnos.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="20191115_172516.jpg" />
-    <Resource Include="bienvenida.jpg" />
-    <Resource Include="blur-hospital.jpg" />
-    <Resource Include="bv.jpg" />
-    <Resource Include="doctor.jpg" />
-    <Resource Include="gestion.jpg" />
-    <Resource Include="GestorPacientes.jpg" />
-    <Resource Include="icono.png" />
-    <Resource Include="medicodibase-690x440.jpg" />
-    <Resource Include="MedicosFondo.jpg" />
-    <Resource Include="turnos.png" />
+    <Resource Include="images\**\*" />
   </ItemGroup>
 
 </Project>

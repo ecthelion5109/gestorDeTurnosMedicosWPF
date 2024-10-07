@@ -9,7 +9,7 @@
 	<Grid>
 
 		<Grid.Background>
-			<ImageBrush ImageSource="GestorPacientes.jpg"/>
+			<ImageBrush ImageSource="/images/GestorPacientes.jpg"/>
 		</Grid.Background>
 
 		<Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                      Gestor de Pacientes" FontFamily="Georgia">
