@@ -15,21 +15,17 @@ using System.Windows.Shapes;
 namespace ClinicaMedica
 {
     /// <summary>
-    /// Lógica de interacción para MedicosModificar.xaml
+    /// Lógica de interacción para MedicosEliminar.xaml
     /// </summary>
-    public partial class MedicosModificar : Window
+    public partial class MedicosEliminar : Window
     {
-        public MedicosModificar()
+        public MedicosEliminar()
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
-=======
 		
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
-		
->>>>>>> 5b651e9bbb542a47cdd9a5d52cb06332815238b1
     }
 }

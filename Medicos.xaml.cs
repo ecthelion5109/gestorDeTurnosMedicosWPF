@@ -21,19 +21,32 @@ namespace ClinicaMedica {
 			InitializeComponent();
 		}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonMedicosModificar(object sender, RoutedEventArgs e)
         {
-
+			this.NavegarA<MedicosModificar>();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
         {
-            MedicosAgregar medicoAgregarWindow = new MedicosAgregar();
-            Application.Current.MainWindow = medicoAgregarWindow;
-            medicoAgregarWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
+			this.NavegarA<MedicosAgregar>();
         }
-    }
+
+        private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
+        {
+			this.NavegarA<MedicosEliminar>();
+        }
+
+        private void ButtonMedicosVer(object sender, RoutedEventArgs e) {
+			this.NavegarA<MedicosVer>();
+		}
+		
+		public void ButtonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+		}
+
+		private void ButtonHome(object sender, RoutedEventArgs e) {
+			this.NavegarA<MainWindow>();
+
+		}
+	}
 }

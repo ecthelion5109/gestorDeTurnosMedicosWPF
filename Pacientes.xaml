@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="Pacientes" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	<Grid>
+
+		<Grid.Background>
+			<ImageBrush ImageSource="GestorPacientes.jpg"/>
+		</Grid.Background>
+
+		<Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                      Gestor de Pacientes" FontFamily="Georgia">
+
+		</Label>
+		<Button Content="Modificar" HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesModificar" Background="#FFFCFCFC" BorderBrush="#FF111010"/>
+		<Button Content="Eliminar" HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesEliminar" Background="White" BorderBrush="#FF030303"/>
+		<Button Content="Agregar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="168" FontSize="18" Click="ButtonPacientesAgregar" Background="#FFF7F7F7" BorderBrush="#FF000311"/>
+		<Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesVer" Background="#FFFAFAFA" BorderBrush="Black"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="61" Margin="651,344,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="61" Margin="651,259,0,0" VerticalAlignment="Top" Width="109" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+
+
+	</Grid>
 </Window>

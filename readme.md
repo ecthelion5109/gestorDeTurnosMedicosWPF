@@ -1,4 +1,4 @@
-# Trabajo Práctico Nº2: Interfez Grafica con C# WPF
+# Trabajo Práctico Nº2: Interfaz Grafica con C# WPF
 
 holis
 

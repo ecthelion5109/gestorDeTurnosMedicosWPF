@@ -13,12 +13,46 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace ClinicaMedica {
-	/// <summary>
-	/// Lógica de interacción para Pacientes.xaml
-	/// </summary>
-	public partial class Pacientes : Window {
-		public Pacientes() {
-			InitializeComponent();
+    /// <summary>
+    /// Lógica de interacción para Pacientes.xaml
+    /// </summary>
+    public partial class Pacientes : Window {
+        public Pacientes() {
+            InitializeComponent();
+        }
+
+        private void ButtonPacientesVer(object sender, RoutedEventArgs e)
+        {
+			this.NavegarA<PacientesVer>();
+        }
+
+
+		private void ButtonVolver(object sender, RoutedEventArgs e) {
+			this.NavegarA<MainWindow>();
+		}
+
+		private void ButtonPacientesAgregar(object sender, RoutedEventArgs e) {
+			this.NavegarA<PacientesAgregar>();
+		}
+
+        private void ButtonPacientesModificar(object sender, RoutedEventArgs e)
+        {
+			this.NavegarA<PacientesModificar>();
+        }
+
+        private void ButtonPacientesEliminar(object sender, RoutedEventArgs e)
+        {
+			this.NavegarA<PacientesEliminar>();
+        }
+
+		private void ButtonHome(object sender, RoutedEventArgs e) {
+			this.NavegarA<MainWindow>();
+
+		}
+
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
+
 		}
 	}
 }
