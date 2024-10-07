@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="TurnosAgregar" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="10,-8,0,2" Opacity="0.86">
+        <Label Content="INGRESAR TURNOS" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Black"/>
+        <Label Content="DNI Paciente" HorizontalAlignment="Left" Margin="180,98,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="330,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+        <Label Content="DNI Médico" HorizontalAlignment="Left" Margin="180,145,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="330,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+        <Label Content="Fecha" HorizontalAlignment="Left" Margin="180,186,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="330,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+        <Label Content="Turno" HorizontalAlignment="Left" Margin="180,233,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="330,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="10,364,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="10,278,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+        <Button FontSize="24" Content="Agregar" HorizontalAlignment="Left" Height="62" Margin="10,204,0,0" VerticalAlignment="Top" Width="109" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
     </Grid>
 </Window>

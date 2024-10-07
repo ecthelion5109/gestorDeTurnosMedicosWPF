@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="turnos.png"/>
+            <ImageBrush ImageSource="/turnos.png"/>
             <!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
             <!-- <ImageBrush ImageSource="pack://application:,,,/medicosfondo.jpg"/> -->
         </Grid.Background>

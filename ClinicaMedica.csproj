@@ -19,6 +19,7 @@
     <None Remove="icono.png" />
     <None Remove="medicodibase-690x440.jpg" />
     <None Remove="MedicosFondo.jpg" />
+    <None Remove="turnos.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +33,7 @@
     <Resource Include="icono.png" />
     <Resource Include="medicodibase-690x440.jpg" />
     <Resource Include="MedicosFondo.jpg" />
+    <Resource Include="turnos.png" />
   </ItemGroup>
 
 </Project>
