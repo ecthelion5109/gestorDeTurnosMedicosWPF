@@ -5,34 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="MedicosAgregar" Height="450" Width="800">
+        Title="MedicosAgregar" Height="600" Width="1024">
 
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg" />
 	</Window.Background>
 
 
-	<Grid Margin="10,-8,0,2" Opacity="0.86">
-		<Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Black"/>
-		<Label Content="Nombre y Apellido" HorizontalAlignment="Left" Margin="180,98,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
-		<Label Content="Provincia" HorizontalAlignment="Left" Margin="180,145,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
-		<Label Content="Domicilio" HorizontalAlignment="Left" Margin="180,186,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
-		<Label Content="Localidad" HorizontalAlignment="Left" Margin="180,233,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
-		<Label Content="Especialidad" HorizontalAlignment="Left" Margin="180,276,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
-		<Label Content="Dia de atención" HorizontalAlignment="Left" Margin="180,323,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<TextBox HorizontalAlignment="Left" Margin="330,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Height="25"/>
-		<Label Content="Realiza Guardia" HorizontalAlignment="Left" Margin="551,327,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14"/>
-		<ComboBox HorizontalAlignment="Left" Margin="662,331,0,0" VerticalAlignment="Top" Width="73" />
-		<ComboBoxItem Content="SI" Margin="660,384,55,25" />
-		<ComboBoxItem Content="NO" Margin="652,358,92,61"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="10,364,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="10,278,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-		<Button FontSize="24" Content="Agregar" HorizontalAlignment="Left" Height="62" Margin="10,204,0,0" VerticalAlignment="Top" Width="109" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Opacity="0.86">
+		<Label Content="Agregar nuevo Medico" HorizontalAlignment="Left" Margin="57,22,0,0" VerticalAlignment="Top" FontSize="32" FontFamily="Segoe UI Black" Height="120" Width="428"/>
+
+		<Grid Margin="415,22,0,13">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<!-- Columna para los Labels -->
+				<ColumnDefinition Width="*"/>
+				<!-- Columna para los TextBox -->
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<Label Content="Nombre" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="109,5,0,5" Width="54"/>
+			<TextBox Grid.Row="0" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Apellido" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="109,5,0,5" Width="54"/>
+			<TextBox Grid.Row="1" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="DNI" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="132,5,0,5" Width="31"/>
+			<TextBox Grid.Row="2" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Provincia" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="105,5,0,5" Width="58"/>
+			<TextBox Grid.Row="3" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Domicilio" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Margin="103,5,0,5" Width="60"/>
+			<TextBox Grid.Row="4" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Localidad" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" Margin="102,5,0,5" Width="61"/>
+			<TextBox Grid.Row="5" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Especialidad" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" Margin="88,5,0,5" Width="75"/>
+			<TextBox Grid.Row="6" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Sueldo Minimo Garantizado" Grid.Row="7" HorizontalAlignment="Center" Margin="0,5,0,5" Width="158"/>
+			<TextBox Grid.Row="7" Grid.Column="1" Width="Auto" Margin="5,5,5,5"/>
+
+			<Label Content="Fecha de Ingreso" Grid.Row="8" HorizontalAlignment="Center" Margin="0,5,0,5" Width="158"/>
+			<DatePicker Grid.Row="8" Grid.Column="1" x:Name="datePickerFechaIngreso" Margin="5,5,5,5"/>
+
+			<Label Content="Realiza Guardia" Grid.Row="9" HorizontalAlignment="Center" Margin="0,5,0,5" Width="92"/>
+			<CheckBox Grid.Row="9" Grid.Column="1" HorizontalAlignment="Center" Margin="5,5,5,5" Width="16"/>
+
+			<Label Content="Dia de Atención" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Margin="68,5,0,5" Width="95"/>
+			<StackPanel Grid.Row="10" Grid.Column="1" Width="Auto" >
+				<DatePicker x:Name="datePickerDiasAtencion" Margin="0,0,0,10"/>
+				<Button Content="Agregar Día de Atención" Click="AgregarDiaAtencion_Click" Margin="0,0,0,10"/>
+				<Button Content="Eliminar Día Seleccionado" Click="EliminarDiaAtencion_Click" Margin="0,0,0,10"/>
+				<TextBlock Text="Días de atención seleccionados:" Margin="0,0,0,10"/>
+				<ListBox x:Name="listBoxDiasAtencion" Margin="0,0,0,10" Height="100"/>
+			</StackPanel>
+		</Grid>
+
+
+
+		<!-- <StackPanel Margin="172,89,398,16"> -->
+		<!-- <TextBox TextWrapping="Wrap" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- <TextBox Margin="2.5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto"/> -->
+		<!-- </StackPanel> -->
+		<!-- <ComboBox HorizontalAlignment="Left" Margin="662,331,0,0" VerticalAlignment="Top" Width="73" /> -->
+		<!-- <ComboBoxItem Content="SI" Margin="660,384,55,25" /> -->
+		<!-- <ComboBoxItem Content="NO" Margin="652,358,92,61"/> -->
+		<!-- <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="10,364,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/> -->
+		<!-- <Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="10,278,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/> -->
+		<!-- <Button FontSize="24" Content="Agregar" HorizontalAlignment="Left" Height="62" Margin="10,204,0,0" VerticalAlignment="Top" Width="109" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/> -->
 	</Grid>
 
 </Window>

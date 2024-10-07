@@ -33,18 +33,18 @@ namespace ClinicaMedica {
 		public string Provincia { get; set; }
 	}
 	public class Medico{
-		public int Dni { get; set; }
 		public string Name { get; set; }  // 50 caracteres máximo
 		public string Lastname { get; set; }  // 50 caracteres máximo
+		public int Dni { get; set; }
 		public string Provincia { get; set; }  // 40 caracteres máximo
 		public string Domicilio { get; set; }  // 50 caracteres máximo
 		public string Localidad { get; set; }  // 50 caracteres máximo
 		public string Specialidad { get; set; }  // 20 caracteres máximo
 		public string Telefono { get; set; }
-		public string[] DiasDeAtencion { get; set; }
 		public bool Guardia { get; set; }
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
+		public string[] DiasDeAtencion { get; set; }
 	}
 	public class Turno{
 		public int MedicoPk { get; set; }
