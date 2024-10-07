@@ -10,17 +10,15 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="MedicosFondo.jpg"/>
+            <ImageBrush ImageSource="turnos.png"/>
             <!-- <ImageBrush ImageSource="images/MedicosFondo.jpg"/> -->
             <!-- <ImageBrush ImageSource="pack://application:,,,/medicosfondo.jpg"/> -->
         </Grid.Background>
-
-        <Label Content="Gestor de Turnos Medicos" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="55" Width="507" FontFamily="Segoe UI Black"/>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
-        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosEliminar"/>
-        <Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
-        <Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="629,275,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
+        <Button Content="Agregar " HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
+        <Button Content="Modificar " HorizontalAlignment="Left" Margin="220,299,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
+        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="220,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosEliminar"/>
+        <Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="30,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
+        <Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="496,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
         <Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="629,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
 
     </Grid>
