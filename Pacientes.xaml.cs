@@ -45,7 +45,13 @@ namespace ClinicaMedica {
 			this.NavegarA<PacientesEliminar>();
         }
 
-		private void Button_Click(object sender, RoutedEventArgs e) {
+		private void ButtonHome(object sender, RoutedEventArgs e) {
+			this.NavegarA<PantallaPrincipal>();
+
+		}
+
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			Application.Current.Shutdown();
 
 		}
 	}
