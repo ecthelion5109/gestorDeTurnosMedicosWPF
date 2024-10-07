@@ -24,12 +24,19 @@ namespace ClinicaMedica
             InitializeComponent();
         }
 
-		private void ButtonCancelar(object sender, RoutedEventArgs e) {
-
+        private void ButtonSalir(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
-		private void ButtonSalir(object sender, RoutedEventArgs e) {
+        private void ButtonCancelar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<Turnos>();
+        }
 
-		}
-	}
+        private void ButtonAgregar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<TurnosVer>();
+        }
+    }
 }

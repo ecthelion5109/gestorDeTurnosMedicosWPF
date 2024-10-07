@@ -26,7 +26,7 @@ namespace ClinicaMedica
 
         private void ButtonSalir(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
 
         private void ButtonCancelar(object sender, RoutedEventArgs e)
@@ -36,6 +36,7 @@ namespace ClinicaMedica
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
-		}
+            this.NavegarA<TurnosVer>();
+        }
     }
 }
