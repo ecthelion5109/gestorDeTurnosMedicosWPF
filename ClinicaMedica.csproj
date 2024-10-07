@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Resource Include="images\**\*" />
+    <Resource Include="fonts\**\*" />
   </ItemGroup>
 
 </Project>

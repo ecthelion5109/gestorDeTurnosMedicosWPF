@@ -23,5 +23,13 @@ namespace ClinicaMedica
         {
             InitializeComponent();
         }
-    }
+
+		private void ButtonCancelar(object sender, RoutedEventArgs e) {
+
+        }
+
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+
+		}
+	}
 }

@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="TurnosModificar" Height="450" Width="800">
-    <Grid>
-        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="473,338,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-        <Button FontSize="24" Content="Modificar" HorizontalAlignment="Left" Height="62" Margin="198,336,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-        <Label Content="MODIFICAR TURNOS" HorizontalAlignment="Center" Margin="0,8,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Segoe UI Black"/>
-        <Button FontSize="24" Content="Turno" HorizontalAlignment="Center" Height="62" Margin="0,217,0,0" VerticalAlignment="Top" Width="108" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-    </Grid>
-    <Window.Background>
-        <ImageBrush ImageSource="/images/turnos - agregar.png" />
-    </Window.Background>
+	<Grid>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="473,338,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Button FontSize="24" Content="Modificar" HorizontalAlignment="Left" Height="62" Margin="198,336,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Label Content="MODIFICAR TURNOS" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="25" FontFamily="Matura MT Script Capitals" Height="138" Width="449"/>
+		<Button FontSize="24" Content="Turno" HorizontalAlignment="Center" Height="62" Margin="0,217,0,0" VerticalAlignment="Top" Width="108" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Center" Height="62" Margin="0,306,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+	</Grid>
+	<Window.Background>
+		<ImageBrush ImageSource="/images/turnos - agregar.png" />
+	</Window.Background>
 </Window>

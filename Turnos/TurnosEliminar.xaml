@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="TurnosEliminar" Height="450" Width="800">
     <Grid>
-        
-    </Grid>
+		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="10,278,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+
+	</Grid>
 </Window>
