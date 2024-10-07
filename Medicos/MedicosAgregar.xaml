@@ -69,11 +69,11 @@
 
 			<Label Content="Dia de Atención" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Left" Margin="68,5,0,5" Width="95"/>
 			<StackPanel Grid.Row="10" Grid.Column="1" Width="Auto" >
-			
+
 				<Label Content="Lunes" HorizontalAlignment="Center" Margin="0,5,0,5" Width="92"/>
 				<CheckBox HorizontalAlignment="Center" Margin="5,5,5,5" Width="16"/>
 
-			
+
 				<Label Content="Martes" HorizontalAlignment="Center" Margin="0,5,0,5" Width="92"/>
 				<CheckBox HorizontalAlignment="Center" Margin="5,5,5,5" Width="16"/>
 				<!-- <DatePicker x:Name="datePickerDiasAtencion" Margin="0,0,0,10"/> -->
@@ -83,6 +83,9 @@
 				<!-- <ListBox x:Name="listBoxDiasAtencion" Margin="0,0,0,10" Height="100"/> -->
 			</StackPanel>
 		</Grid>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="237,464,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="62" Margin="237,396,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Agregar" HorizontalAlignment="Left" Height="62" Margin="236,326,0,0" VerticalAlignment="Top" Width="110" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 
 
