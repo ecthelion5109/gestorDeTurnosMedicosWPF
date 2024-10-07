@@ -149,6 +149,10 @@ namespace ClinicaMedica {
 			nuevaVentana.Show();  // Mostrar la nueva ventana
 			ventanaActual.Close();  // Cerrar la ventana actual
 		}
+		public static void Salir(this Window ventanaActual)
+		{
+			Application.Current.Shutdown();  // Apagar la aplicación
+		}
 	}
 	
 	public partial class MainWindow : Window {

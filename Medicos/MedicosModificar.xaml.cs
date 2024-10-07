@@ -54,12 +54,12 @@ namespace ClinicaMedica
 
         private void ButtonCancelar(object sender, RoutedEventArgs e)
         {
-
+            this.NavegarA<Medicos>();
         }
 
         private void ButtonSalir(object sender, RoutedEventArgs e)
         {
-
+            this.Salir();
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
