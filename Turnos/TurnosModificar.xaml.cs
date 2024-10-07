@@ -29,14 +29,19 @@ namespace ClinicaMedica
             Application.Current.Shutdown();
         }
 
-        private void ButtonCancelar(object sender, RoutedEventArgs e)
+        private void ButtonTurnos(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<Turnos>();
+            this.NavegarA<TurnosVer>();
         }
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
             this.NavegarA<TurnosVer>();
+        }
+
+        private void ButtonCancelar(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<Turnos>();
         }
     }
 }
