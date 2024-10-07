@@ -29,6 +29,6 @@
                 <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <Calendar HorizontalAlignment="Left" Margin="67,35,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="67,35,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

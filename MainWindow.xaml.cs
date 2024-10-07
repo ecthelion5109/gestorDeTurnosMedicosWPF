@@ -71,11 +71,29 @@ namespace ClinicaMedica {
 
 			MessageBox.Show($"Se ha leido a Paciente: {pacienteLeido.Name} {pacienteLeido.Lastname}\nSe ha leido a Medico: {medicoLeido.Name} {medicoLeido.Lastname}\nSe ha leido a Turno Asignado: {turnoLeido.FechaYHoraAsignada}");
         }
-        public static void LeerMedico()
+        public static void GuardarTurno()
         {
-            // Leer desde JSON
+			/*
+			var turnos = new List<Turno>();
 
-        }
+			// Generar 10 turnos por cada hora de 8 a 17
+			for (int hora = 8; hora <= 17; hora++) {
+				for (int turno = 1; turno <= 10; turno++) {
+					turnos.Add(new Turno {
+						Hora = $"{hora:00}:00",
+						NumeroTurno = turno,
+						Estado = "Disponible" // Puedes modificar esto según el estado real
+					});
+				}
+			}
+
+			// Asignar la lista de turnos al DataGrid
+			DataGridTurnos.ItemsSource = turnos;
+			*/
+		}
+
+
+
         public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia){
 			// Crear instancias de ejemplo
 			var paciente = new Paciente{

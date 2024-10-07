@@ -38,32 +38,7 @@ namespace ClinicaMedica
         // Método para cargar los turnos del día
         private void CargarTurnos(DateTime fecha)
         {
-            var turnos = new List<Turno>();
-
-            // Generar 10 turnos por cada hora de 8 a 17
-            for (int hora = 8; hora <= 17; hora++)
-            {
-                for (int turno = 1; turno <= 10; turno++)
-                {
-                    turnos.Add(new Turno
-                    {
-                        Hora = $"{hora:00}:00",
-                        NumeroTurno = turno,
-                        Estado = "Disponible" // Puedes modificar esto según el estado real
-                    });
-                }
-            }
-
-            // Asignar la lista de turnos al DataGrid
-            DataGridTurnos.ItemsSource = turnos;
+			BaseDeDatos.GuardarTurno();
         }
-    }
-
-    // Clase Turno para representar los turnos
-    public class Turno
-    {
-        public string Hora { get; set; }
-        public int NumeroTurno { get; set; }
-        public string Estado { get; set; }
     }
 }
