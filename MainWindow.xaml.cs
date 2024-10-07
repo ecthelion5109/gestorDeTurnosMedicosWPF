@@ -92,9 +92,34 @@ namespace ClinicaMedica {
 			*/
 		}
 
+		// public static void MedicosGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string domicilio, string localidad, string provincia, string specialidad, bool guardia, decimal sueldominimogarantizado) {
+		public static void MedicosGuardar(int dni, string name, string lastname, DateTime fechaingreso, string domicilio, string localidad, string provincia, string specialidad, bool guardia, decimal sueldominimogarantizado) {
+			// Crear instancia de Medico
+			var medico = new Medico {
+				Name = name,
+				Lastname = lastname,
+				Dni = dni,
+				Provincia = provincia,
+				Domicilio = domicilio,
+				Localidad = localidad,
+				Specialidad = specialidad,
+				// Telefono = telefono,
+				Guardia = guardia,
+				FechaIngreso = fechaingreso,
+				SueldoMinimoGarantizado = (double) sueldominimogarantizado,
+				//DiasDeAtencion = diasdeatencion,
+			};
+			// Guardar como JSON
+			BaseDeDatos.GuardarComoJson(medico, "medico.json");
+
+			MessageBox.Show($"Se han guardado los cambios de Paciente: {medico.Name} {medico.Lastname}");
+		}
 
 
-        public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia){
+
+
+
+		public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia){
 			// Crear instancias de ejemplo
 			var paciente = new Paciente{
 				Dni = dni,
