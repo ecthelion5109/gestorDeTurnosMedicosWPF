@@ -27,18 +27,12 @@ namespace ClinicaMedica
 
         public void MetodoBotonVolverAPacientes(object sender, RoutedEventArgs e)
         {
-            Pacientes pacientesWindow = new Pacientes();
-            Application.Current.MainWindow = pacientesWindow;
-            pacientesWindow.Show();
-            this.Close();
+			this.NavegarA<Pacientes>();
         }
 
         public void MetodoBotonPaginaPrincipal(object sender, RoutedEventArgs e)
         {
-            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
-            Application.Current.MainWindow = pantallaPrincipalWindow;
-            pantallaPrincipalWindow.Show();
-            this.Close();
+			this.NavegarA<PantallaPrincipal>();
         }
 
         public void MetodoBotonSalir(object sender, RoutedEventArgs e)

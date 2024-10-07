@@ -109,6 +109,16 @@ namespace ClinicaMedica {
 		public DateTime FechaYHoraAsignada { get; set; }
 	}
 	
+	public static class WindowExtensions{
+		public static void NavegarA<T>(this Window ventanaActual) where T : Window, new()
+		{
+			T nuevaVentana = new T();
+			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
+			nuevaVentana.Show();  // Mostrar la nueva ventana
+			ventanaActual.Close();  // Cerrar la ventana actual
+		}
+	}
+	
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();
@@ -119,10 +129,7 @@ namespace ClinicaMedica {
 			string usuario = ""; //"mariela";
 			string contraseña = ""; // "123";
 			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
-				PantallaPrincipal inicio = new PantallaPrincipal();
-				Application.Current.MainWindow = inicio;
-				inicio.Show();
-				this.Close();
+				this.NavegarA<PantallaPrincipal>();
 			}
 			else {
 				MessageBox.Show("Contraseña o usuario incorrecta");
@@ -132,7 +139,6 @@ namespace ClinicaMedica {
         public void MetodoBotonSalir(object sender, RoutedEventArgs e){
 			Application.Current.Shutdown ();
         }
-		
 		
         public void MetodoBotonTestearJsonLeer(object sender, RoutedEventArgs e){
 			BaseDeDatos.TestLeer();

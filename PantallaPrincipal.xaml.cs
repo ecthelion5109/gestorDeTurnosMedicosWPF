@@ -27,30 +27,15 @@ namespace ClinicaMedica {
 
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e)
         {
-            Medicos medicoWindow = new Medicos();
-            Application.Current.MainWindow = medicoWindow;
-			medicoWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
+			this.NavegarA<Medicos>();
 		}
 
 		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
-			Turnos turnoWindow = new Turnos();
-			Application.Current.MainWindow = turnoWindow;
-			turnoWindow.Show();
-
-			//cierro la anterior.
-			this.Close();
+			this.NavegarA<Turnos>();
 		}
 
 		private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
-			Pacientes pacienteWindow = new Pacientes();
-			Application.Current.MainWindow = pacienteWindow;
-			pacienteWindow.Show();
-
-			//cierro la anterior.
-			this.Close();
+			this.NavegarA<Pacientes>();
 		}
 	}
 }

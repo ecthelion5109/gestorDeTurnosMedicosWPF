@@ -23,46 +23,30 @@ namespace ClinicaMedica {
 
         private void ButtonMedicosModificar(object sender, RoutedEventArgs e)
         {
-            MedicosModificar medicoModificarWindow = new MedicosModificar();
-            Application.Current.MainWindow = medicoModificarWindow;
-            medicoModificarWindow.Show();
-            this.Close();
+			this.NavegarA<MedicosModificar>();
         }
 
         private void ButtonMedicosAgregar(object sender, RoutedEventArgs e)
         {
-            MedicosAgregar medicoAgregarWindow = new MedicosAgregar();
-            Application.Current.MainWindow = medicoAgregarWindow;
-            medicoAgregarWindow.Show();
-            this.Close();
+			this.NavegarA<MedicosAgregar>();
         }
 
         private void ButtonMedicosEliminar(object sender, RoutedEventArgs e)
         {
-            MedicosEliminar medicoEliminarWindow = new MedicosEliminar();
-            Application.Current.MainWindow = medicoEliminarWindow;
-            medicoEliminarWindow.Show();
-            this.Close();
+			this.NavegarA<MedicosEliminar>();
         }
 
-        private void ButtonMedicosVer(object sender, RoutedEventArgs e)
-        {
-            MedicosVer medicoVerWindow = new MedicosVer();
-            Application.Current.MainWindow = medicoVerWindow;
-            medicoVerWindow.Show();
+        private void ButtonMedicosVer(object sender, RoutedEventArgs e) {
+			this.NavegarA<MedicosVer>();
 		}
-
-        private void ButtonVolver(object sender, RoutedEventArgs e)
-        {
-            PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
-            Application.Current.MainWindow = pantallaPrincipalWindow;
-            pantallaPrincipalWindow.Show();
-            this.Close();
-        }
 		
-		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
+		public void ButtonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown();
 		}
-		
-    }
+
+		private void ButtonHome(object sender, RoutedEventArgs e) {
+			this.NavegarA<PantallaPrincipal>();
+
+		}
+	}
 }

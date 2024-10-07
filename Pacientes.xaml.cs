@@ -23,53 +23,26 @@ namespace ClinicaMedica {
 
         private void ButtonPacientesVer(object sender, RoutedEventArgs e)
         {
-            PacientesVer pacientesVerWindow = new PacientesVer();
-            Application.Current.MainWindow = pacientesVerWindow;
-            pacientesVerWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
+			this.NavegarA<PacientesVer>();
         }
 
 
 		private void ButtonVolver(object sender, RoutedEventArgs e) {
-
-			PantallaPrincipal pantallaPrincipalWindow = new PantallaPrincipal();
-			Application.Current.MainWindow = pantallaPrincipalWindow;
-			pantallaPrincipalWindow.Show();
-
-			//cierro la anterior.
-			this.Close();
+			this.NavegarA<PantallaPrincipal>();
 		}
 
 		private void ButtonPacientesAgregar(object sender, RoutedEventArgs e) {
-
-			PacientesAgregar pacientesAgregarWindow = new PacientesAgregar();
-			Application.Current.MainWindow = pacientesAgregarWindow;
-			pacientesAgregarWindow.Show();
-
-			//cierro la anterior.
-			this.Close();
+			this.NavegarA<PacientesAgregar>();
 		}
 
         private void ButtonPacientesModificar(object sender, RoutedEventArgs e)
         {
-            PacientesModificar pacientesModificarWindow = new PacientesModificar();
-            Application.Current.MainWindow = pacientesModificarWindow;
-            pacientesModificarWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
+			this.NavegarA<PacientesModificar>();
         }
 
         private void ButtonPacientesEliminar(object sender, RoutedEventArgs e)
         {
-            PacientesEliminar pacientesEliminarWindow = new PacientesEliminar();
-            Application.Current.MainWindow = pacientesEliminarWindow;
-            pacientesEliminarWindow.Show();
-
-            //cierro la anterior.
-            this.Close();
+			this.NavegarA<PacientesEliminar>();
         }
 
 		private void Button_Click(object sender, RoutedEventArgs e) {

@@ -18,11 +18,12 @@
 		</Grid.Background>
 
 		<Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar"/>
-        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosModificar"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosEliminar"/>
-        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosVer"/>
-        <Button Content="Volver" HorizontalAlignment="Left" Margin="631,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonVolver"/>
+		<Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosAgregar"/>
+		<Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosModificar"/>
+		<Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosEliminar"/>
+		<Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonMedicosVer"/>
+		<Button Content="Home" HorizontalAlignment="Left" Margin="629,277,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
+		<Button Content="Salir" HorizontalAlignment="Left" Margin="629,351,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
 
-    </Grid>
+	</Grid>
 </Window>
