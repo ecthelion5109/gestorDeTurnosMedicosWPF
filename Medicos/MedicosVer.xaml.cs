@@ -35,17 +35,16 @@ namespace ClinicaMedica {
 			// Establecer el DataContext
 			DataContext = this;
 		}
-		
-		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
-			Application.Current.Shutdown();
+
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+
 		}
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+		private void ButtonModificar(object sender, RoutedEventArgs e) {
 
-        }
+		}
 
-		private void ButtonLeerInstancia(object sender, RoutedEventArgs e) {
+		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 
 		}
 

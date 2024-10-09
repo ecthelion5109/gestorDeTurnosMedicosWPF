@@ -40,9 +40,11 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<Button FontSize="24" Content="Leer instancia" HorizontalAlignment="Left" Height="38" Margin="48,213,0,0" VerticalAlignment="Top" Width="146" Click="ButtonLeerInstancia" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Modificar seleccionado" HorizontalAlignment="Left" Height="38" Margin="48,127,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
 		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="48,314,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
 		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="48,266,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Eliminar seleccionado" HorizontalAlignment="Left" Height="38" Margin="48,170,0,0" VerticalAlignment="Top" Width="209" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,58,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
 		<!-- DataGrid insertado aquí -->
 	</Grid>
 </Window>
