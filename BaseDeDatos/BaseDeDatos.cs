@@ -103,7 +103,20 @@ namespace ClinicaMedica {
 	}
 	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
+		private static Dictionary<string, Dictionary<string, object>> ?_database;
 
+		public static Dictionary<string, Dictionary<string, object>> Database
+		{
+			get
+			{
+				if (_database == null || _database.Count == 0)
+				{
+					_database = LeerDatabaseComoDiccionario();
+				}
+				return _database;
+			}
+		}
+		
 		public static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
 		{
 			string filePath = "database.json";

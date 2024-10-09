@@ -18,24 +18,22 @@ namespace ClinicaMedica {
 	/// </summary>
 	public partial class MedicosVer : Window {
 		public List<Medico> Medicos { get; set; }
+		
+		
 		public MedicosVer() {
 			InitializeComponent();
+			// Medicos = new List<Medico>{
+				// new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
+				// new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
+			// };
+			Medicos = BaseDeDatos.Database["medicos"]
+						 .Values
+						 .Cast<Medico>()   // Casting the object values to Medico
+						 .ToList();
 
-
-			Medicos = new List<Medico>{
-				new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
-				new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
-			};
 
 			// Establecer el DataContext
 			DataContext = this;
-
-
-
-
-
-
-
 		}
 		
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
