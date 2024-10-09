@@ -6,7 +6,8 @@ using System.IO;
 namespace ClinicaMedica {
 	//---------------------------------Tablas-------------------------------//
 	public class Paciente {
-		public int Dni { get; set; }
+		// public int Dni { get; set; }
+		public string Dni { get; set; }
 		public string Name { get; set; }
 		public string Lastname { get; set; }
 		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
@@ -16,11 +17,31 @@ namespace ClinicaMedica {
 		public string Direccion { get; set; }
 		public string Localidad { get; set; }
 		public string Provincia { get; set; }
+			
+		// Factory method to convert a JsonElement to a Paciente instance
+		public static Paciente FromJson(JsonElement json)
+		{
+			return new Paciente
+			{
+				Dni = json.GetProperty("Dni").GetString(), //.GetInt32(),
+				Name = json.GetProperty("Name").GetString(),
+				Lastname = json.GetProperty("Lastname").GetString(),
+				FechaIngreso = json.GetProperty("FechaIngreso").GetDateTime(),
+				Email = json.GetProperty("Email").GetString(),
+				Telefono = json.GetProperty("Telefono").GetString(),
+				FechaNacimiento = json.GetProperty("FechaNacimiento").GetDateTime(),
+				Direccion = json.GetProperty("Direccion").GetString(),
+				Localidad = json.GetProperty("Localidad").GetString(),
+				Provincia = json.GetProperty("Provincia").GetString()
+			};
+		}
 	}
+	
 	public class Medico {
 		public string Name { get; set; }  // 50 caracteres máximo
 		public string Lastname { get; set; }  // 50 caracteres máximo
-		public int Dni { get; set; }
+		// public int Dni { get; set; }
+		public string Dni { get; set; }
 		public string Provincia { get; set; }  // 40 caracteres máximo
 		public string Domicilio { get; set; }  // 50 caracteres máximo
 		public string Localidad { get; set; }  // 50 caracteres máximo
@@ -29,40 +50,145 @@ namespace ClinicaMedica {
 		public bool Guardia { get; set; }
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
-		public string[] DiasDeAtencion { get; set; }
+		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		
+		// Factory method for instantiating from JSON
+		public static Medico FromJson(JsonElement jsonElement)
+		{
+			var medico = new Medico
+			{
+				Name = jsonElement.GetProperty("Name").GetString(),
+				Lastname = jsonElement.GetProperty("Lastname").GetString(),
+				Dni = jsonElement.GetProperty("Dni").GetString(), //.GetInt32(),
+				Provincia = jsonElement.GetProperty("Provincia").GetString(),
+				Domicilio = jsonElement.GetProperty("Domicilio").GetString(),
+				Localidad = jsonElement.GetProperty("Localidad").GetString(),
+				Specialidad = jsonElement.GetProperty("Specialidad").GetString(),
+				Telefono = jsonElement.GetProperty("Telefono").GetString(),
+				Guardia = jsonElement.GetProperty("Guardia").GetBoolean(),
+				FechaIngreso = DateTime.Parse(jsonElement.GetProperty("FechaIngreso").GetString()),
+				SueldoMinimoGarantizado = jsonElement.GetProperty("SueldoMinimoGarantizado").GetDouble()
+			};
 
-		//public Dictionary<string, List<string>> DiasDeAtencion { get; set; }
+			// Read days of attention
+			if (jsonElement.TryGetProperty("DiasDeAtencion", out var diasDeAtencionElement))
+			{
+				foreach (var dia in diasDeAtencionElement.EnumerateObject())
+				{
+					var diaKey = dia.Name;
+					var start = dia.Value.GetProperty("start").GetString();
+					var end = dia.Value.GetProperty("end").GetString();
+					medico.DiasDeAtencion[diaKey] = (start, end);
+				}
+			}
+
+			return medico;
+		}
 	}
 	public class Turno {
 		public int MedicoPk { get; set; }
 		public int PacientePk { get; set; }
 		public DateTime FechaYHoraAsignada { get; set; }
+		
+		// Factory method for instantiating from JSON
+		public static Turno FromJson(JsonElement jsonElement)
+		{
+			return new Turno
+			{
+				MedicoPk = jsonElement.GetProperty("MedicoPk").GetInt32(),
+				PacientePk = jsonElement.GetProperty("PacientePk").GetInt32(),
+				FechaYHoraAsignada = DateTime.Parse(jsonElement.GetProperty("FechaYHoraAsignada").GetString())
+			};
+		}
 	}
 	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
-		
-		
-		
-		
 
-
-
-
-		//---------------------------------funciones-------------------------------//
-		// Method to read JSON file and return it as a Dictionary
-		public static Dictionary<string, JsonElement> LeerDatabaseComoDiccionario(string filePath)
+		public static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
 		{
+			string filePath = "database.json";
 			if (!File.Exists(filePath))
 			{
 				throw new FileNotFoundException("El archivo no existe.");
 			}
 
 			string jsonString = File.ReadAllText(filePath);
-
-			// Deserialize the JSON into a Dictionary<string, JsonElement>
 			var database = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString);
+
+			// Prepare a dictionary to hold the objects
+			var result = new Dictionary<string, Dictionary<string, object>>();
+
+			// Check and populate "pacientes"
+			if (database.ContainsKey("pacientes"))
+			{
+				var pacientes = new Dictionary<string, object>();
+				var pacientesElement = database["pacientes"];
+				foreach (var pacienteElement in pacientesElement.EnumerateObject())
+				{
+					var paciente = Paciente.FromJson(pacienteElement.Value); // Convert JsonElement to Paciente object
+																			 // int dni = int.Parse(pacienteElement.Name); // The DNI is used as the key
+					string dni = pacienteElement.Name; // The DNI is used as the key
+					pacientes[dni] = paciente;
+				}
+				result["pacientes"] = pacientes;
+			}
+
+			// Check and populate "medicos"
+			if (database.ContainsKey("medicos"))
+			{
+				var medicos = new Dictionary<string, object>();
+				var medicosElement = database["medicos"];
+				foreach (var medicoElement in medicosElement.EnumerateObject())
+				{
+					var medico = Medico.FromJson(medicoElement.Value); // Convert JsonElement to Medico object
+					// int dni = int.Parse(medicoElement.Name); // The DNI is used as the key
+					string dni = medicoElement.Name; // The DNI is used as the key
+					medicos[dni] = medico;
+				}
+				result["medicos"] = medicos;
+			}
+
+			// Check and populate "turnos"
+			if (database.ContainsKey("turnos"))
+			{
+				var turnos = new Dictionary<string, object>();
+				var turnosElement = database["turnos"];
+				foreach (var turnoElement in turnosElement.EnumerateObject())
+				{
+					var turno = Turno.FromJson(turnoElement.Value); // Convert JsonElement to Turno object
+					string key = turnoElement.Name; // Combine MedicoPk and PacientePk as the key
+					turnos[key] = turno;
+				}
+				result["turnos"] = turnos;
+			}
+
+			return result;
+		}
+
+		
+		
+		public static void TestLeer2() {
+			var database = LeerDatabaseComoDiccionario();
+
+			if (database.ContainsKey("pacientes") && database["pacientes"].ContainsKey("40350997"))
+			{
+				Paciente paciente = (Paciente)database["pacientes"]["40350997"];
+				MessageBox.Show($"Se ha leido a Paciente: {paciente.Name} {paciente.Lastname}");
+			}
+
+			if (database.ContainsKey("medicos") && database["medicos"].ContainsKey("87654321"))
+			{
+				Medico medico = (Medico)database["medicos"]["87654321"];
+				MessageBox.Show($"Se ha leido a Medico: {medico.Name} {medico.Lastname}");
+			}
+
+			if (database.ContainsKey("turnos") && database["turnos"].ContainsKey("87654321_10350123"))
+			{
+				Turno turno = (Turno)database["turnos"]["87654321_10350123"];
+				MessageBox.Show($"Turno asignado: {turno.FechaYHoraAsignada}");
+			}
 			
-			return database ?? new Dictionary<string, JsonElement>();
+			// MessageBox.Show($"Se ha leido a Paciente: {database['pacientes'][0].Name} {database['pacientes'][0].Lastname}}");
 		}
 		
 		
@@ -125,8 +251,8 @@ namespace ClinicaMedica {
 			*/
 		}
 
-		// public static void MedicosGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string domicilio, string localidad, string provincia, string specialidad, bool guardia, decimal sueldominimogarantizado) {
 		public static void MedicosGuardar(int dni, string name, string lastname, DateTime fechaingreso, string domicilio, string localidad, string provincia, string specialidad, bool guardia, decimal sueldominimogarantizado) {
+			/*
 			// Crear instancia de Medico
 			var medico = new Medico {
 				Name = name,
@@ -146,6 +272,7 @@ namespace ClinicaMedica {
 			BaseDeDatos.GuardarComoJson(medico, "medico.json");
 
 			MessageBox.Show($"Se han guardado los cambios de Paciente: {medico.Name} {medico.Lastname}");
+			*/
 		}
 
 
@@ -153,6 +280,7 @@ namespace ClinicaMedica {
 
 
 		public static void PacienteGuardar(int dni, string name, string lastname, DateTime fechaingreso, string email, string telefono, DateTime fechanacimiento, string direccion, string localidad, string provincia) {
+			/*
 			// Crear instancias de ejemplo
 			var paciente = new Paciente {
 				Dni = dni,
@@ -170,6 +298,7 @@ namespace ClinicaMedica {
 			BaseDeDatos.GuardarComoJson(paciente, "paciente.json");
 
 			MessageBox.Show($"Se ha instanciado y guardado a Paciente: {paciente.Name} {paciente.Lastname}");
+			*/
 		}
 
 
@@ -178,7 +307,7 @@ namespace ClinicaMedica {
 		public static void TestGuardar() {
 			// Crear instancias de ejemplo
 			var paciente = new Paciente {
-				Dni = 12345678,
+				Dni = "12345678",
 				Name = "Juan",
 				Lastname = "Pérez",
 				FechaIngreso = DateTime.Now,
@@ -188,7 +317,7 @@ namespace ClinicaMedica {
 			};
 
 			var medico = new Medico {
-				Dni = 87654321,
+				Dni = "87654321",
 				Name = "Dr. Ana",
 				Lastname = "Gómez",
 				Provincia = "Buenos Aires",
@@ -196,7 +325,7 @@ namespace ClinicaMedica {
 				Localidad = "Ciudad X",
 				Specialidad = "Cardiología",
 				Telefono = "987654321",
-				DiasDeAtencion = new[] { "Lunes", "Miércoles", "Viernes" },
+				//DiasDeAtencion = new[] { "Lunes", "Miércoles", "Viernes" },
 				Guardia = true,
 				FechaIngreso = DateTime.Now,
 				SueldoMinimoGarantizado = 150000

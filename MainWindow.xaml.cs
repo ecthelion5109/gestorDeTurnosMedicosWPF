@@ -47,7 +47,8 @@ namespace ClinicaMedica
 		}
 
 		public void MetodoBotonTestearJsonLeer(object sender, RoutedEventArgs e) {
-			BaseDeDatos.TestLeer();
+			// BaseDeDatos.TestLeer1();
+			BaseDeDatos.TestLeer2();
 		}
 		public void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e) {
 			BaseDeDatos.TestGuardar();

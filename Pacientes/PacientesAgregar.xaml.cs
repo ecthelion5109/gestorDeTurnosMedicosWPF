@@ -42,6 +42,7 @@ namespace ClinicaMedica
         }
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+			/*
 			// dni, string name, string lastname, DateTime fechaIngreso, string email, string telefono, string cobertura, DateTime fechaNacimiento
 			BaseDeDatos.PacienteGuardar(
 				dni : int.Parse(txtdni.Text),
@@ -55,6 +56,7 @@ namespace ClinicaMedica
 				localidad : txtlocalidad.Text,
 				provincia : txtprovincia.Text
 			);
+			*/
 		}
     }
 }

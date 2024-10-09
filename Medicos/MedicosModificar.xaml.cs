@@ -29,6 +29,9 @@ namespace ClinicaMedica
 		}
 
         private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
+			/*
+			
+			
 			// dni, string name, string lastname, DateTime fechaIngreso, string email, string telefono, string cobertura, DateTime fechaNacimiento
 			BaseDeDatos.MedicosGuardar(
 				name: txtNombre.Text,
@@ -44,6 +47,8 @@ namespace ClinicaMedica
 				sueldominimogarantizado: decimal.Parse(txtSueldoMinGarant.Text)
 				// DiasDeAtencion: txtSueldoMinGarant.Text,
 			);
+			
+			*/
 		}
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

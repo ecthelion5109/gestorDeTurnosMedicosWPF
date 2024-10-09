@@ -1,47 +1,47 @@
 {
-	"pacientes": [
-		{
-			"Dni": 10350123,
+	"pacientes": {
+		"40350997": {
 			"Name": "Alexander",
+			"Dni": "40350997",
 			"Lastname": "Seling",
 			"FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
-			"Email": "xanxderet@semgila.com",
+			"Email": "xanderseling@gmail.com",
+			"Telefono": "11 3883 0130",
+			"FechaNacimiento": "2023-11-01T00:00:00",
+			"Direccion": "italia 555",
+			"Localidad": "G. Catan",
+			"Provincia": "Bs Asires"
+		},
+		"10350997": {
+			"Name": "Enrique",
+			"Dni": "10350997",
+			"Lastname": "Pereyra",
+			"FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
+			"Email": "vivalaviolencia@sevilla.com",
 			"Telefono": "23434554",
 			"FechaNacimiento": "2023-11-01T00:00:00",
 			"Direccion": "titaltia 545",
-			"Localidad": "Gonzcatan",
-			"Provincia": "Bs Asires"
-		},
-		{
-			"Dni": 10350997,
-			"Name": "Alexander",
-			"Lastname": "Seling",
-			"FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
-			"Email": "xanxderet@semgila.com",
-			"Telefono": "23434554",
-			"FechaNacimiento": "2023-11-01T00:00:00",
-			"Direccion": "titaltia 545",
-			"Localidad": "Gonzcatan",
+			"Localidad": "Moron",
 			"Provincia": "Bs Asires"
 		}
-	],
-	"turnos": [
-		{
-			"MedicoPk": 87654321,
-			"PacientePk": 10350123,
-			"FechaYHoraAsignada": "2024-10-05T00:00:00"
+	},
+	"turnos": {
+		"25654321_40350997": {
+		  "MedicoPk": 25654321,
+		  "PacientePk": 40350997,
+		  "FechaYHoraAsignada": "2024-11-03T00:00:00"
 		},
-		{
-			"MedicoPk": 25654321,
-			"PacientePk": 40350997,
-			"FechaYHoraAsignada": "2024-11-03T00:00:00"
+		"87654321_10350123": {
+		  "MedicoPk": 87654321,
+		  "PacientePk": 10350123,
+		  "FechaYHoraAsignada": "2024-10-05T00:00:00"
 		}
-	],
-	"medicos": [
-		{
+	},
+	"medicos": {
+		"87654321": {
 			"Name": "Dr. Roxana",
+			"Dni": "87654321",
 			"Lastname": "G\u00F3mez",
-			"Dni": 87654321,
 			"Provincia": "Buenos Aires",
 			"Domicilio": "Calle Falsa 123",
 			"Localidad": "Ciudad X",
@@ -55,10 +55,10 @@
 				"miercoles": {"start": "12:00", "end": "15:00"}
 			}
 		},
-		{
+		"25654321": {
 			"Name": "Dr. Carlos",
+			"Dni": "25654321",
 			"Lastname": "Merkier",
-			"Dni": 25654321,
 			"Provincia": "Buenos Aires",
 			"Domicilio": "Avenida Violenta 123",
 			"Localidad": "Ciudad Gotica",
@@ -73,5 +73,5 @@
 				"viernes": {"start": "12:00", "end": "17:00"}
 			}
 		}
-	]
+	}
 }
