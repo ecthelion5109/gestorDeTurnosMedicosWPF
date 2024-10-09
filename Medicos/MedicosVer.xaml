@@ -7,17 +7,42 @@
         mc:Ignorable="d"
         Title="MedicosVer" Height="450" Width="800">
 
-    <Window.Background>
-        <ImageBrush ImageSource="/images/MedicosFondo.jpg" />
-    </Window.Background>
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 
-    <Grid>
-        <!-- Fondo de imagen -->
-        <Image Margin="-10,0,0,0" Source="/MedicosFondo.jpg" Stretch="Fill"/>
 
-        <!-- Título -->
-        <Label Content="Personal Médico" HorizontalAlignment="Left" Margin="462,10,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
+		</Grid.Background>
 
-        <!-- DataGrid insertado aquí -->
-    </Grid>
+
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32*"/>
+			<RowDefinition Height="263*"/>
+		</Grid.RowDefinitions>
+		<!-- Título -->
+		<Label Content="Personal Médico" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+		<ListView Name="MedicoListView" 
+                  ItemsSource="{Binding Medicos}" 
+                 Width="Auto"
+				 Height="Auto" Margin="354,58,30,102" Grid.Row="1"
+				 >
+			<ListView.View>
+				<GridView>
+					<!-- Dni Column -->
+					<GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+					<!-- Name Column -->
+					<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+					<!-- Lastname Column -->
+					<GridViewColumn Header="Lastname" DisplayMemberBinding="{Binding Lastname}" Width="auto"/>
+					<!-- Specialidad Column -->
+					<GridViewColumn Header="Specialidad" DisplayMemberBinding="{Binding Specialidad}" Width="auto"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<Button FontSize="24" Content="Leer instancia" HorizontalAlignment="Left" Height="38" Margin="48,213,0,0" VerticalAlignment="Top" Width="146" Click="ButtonLeerInstancia" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="48,314,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="48,266,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<!-- DataGrid insertado aquí -->
+	</Grid>
 </Window>

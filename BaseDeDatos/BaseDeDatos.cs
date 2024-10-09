@@ -167,6 +167,31 @@ namespace ClinicaMedica {
 
 		
 		
+		public static void Guardar() {
+			var database = LeerDatabaseComoDiccionario();
+
+			if (database.ContainsKey("pacientes") && database["pacientes"].ContainsKey("40350997"))
+			{
+				Paciente paciente = (Paciente)database["pacientes"]["40350997"];
+				MessageBox.Show($"Se ha leido a Paciente: {paciente.Name} {paciente.Lastname}");
+			}
+
+			if (database.ContainsKey("medicos") && database["medicos"].ContainsKey("87654321"))
+			{
+				Medico medico = (Medico)database["medicos"]["87654321"];
+				MessageBox.Show($"Se ha leido a Medico: {medico.Name} {medico.Lastname}");
+			}
+
+			if (database.ContainsKey("turnos") && database["turnos"].ContainsKey("87654321_10350123"))
+			{
+				Turno turno = (Turno)database["turnos"]["87654321_10350123"];
+				MessageBox.Show($"Turno asignado: {turno.FechaYHoraAsignada}");
+			}
+			
+			// MessageBox.Show($"Se ha leido a Paciente: {database['pacientes'][0].Name} {database['pacientes'][0].Lastname}}");
+		}
+		
+		
 		public static void TestLeer2() {
 			var database = LeerDatabaseComoDiccionario();
 

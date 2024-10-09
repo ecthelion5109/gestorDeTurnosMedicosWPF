@@ -46,6 +46,12 @@ namespace ClinicaMedica
 		}
 		
 		public void ButtonAgregar(object sender, RoutedEventArgs e) {
+            //BaseDeDatos.Agregar();
+
+
+
+
+
 		}
 		
 		public void ButtonCancelar(object sender, RoutedEventArgs e) {

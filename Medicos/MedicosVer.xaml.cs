@@ -17,8 +17,25 @@ namespace ClinicaMedica {
 	/// Lógica de interacción para MedicosVer.xaml
 	/// </summary>
 	public partial class MedicosVer : Window {
+		public List<Medico> Medicos { get; set; }
 		public MedicosVer() {
 			InitializeComponent();
+
+
+			Medicos = new List<Medico>{
+				new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
+				new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
+			};
+
+			// Establecer el DataContext
+			DataContext = this;
+
+
+
+
+
+
+
 		}
 		
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
@@ -29,5 +46,17 @@ namespace ClinicaMedica {
         {
 
         }
-    }
+
+		private void ButtonLeerInstancia(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void ButtonCancelar(object sender, RoutedEventArgs e) {
+			this.NavegarA<Medicos>();
+		}
+
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			this.Salir();
+		}
+	}
 }
