@@ -4,12 +4,7 @@ using System.Text.Json.Serialization;
 using System.IO;
 
 namespace ClinicaMedica {
-
-	//---------------------------------Clases-------------------------------//
-
-
-
-
+	//---------------------------------Tablas-------------------------------//
 	public class Paciente {
 		public int Dni { get; set; }
 		public string Name { get; set; }
@@ -43,7 +38,45 @@ namespace ClinicaMedica {
 		public int PacientePk { get; set; }
 		public DateTime FechaYHoraAsignada { get; set; }
 	}
+	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
+		
+		
+		
+		
+
+
+
+
+		//---------------------------------funciones-------------------------------//
+		// Method to read JSON file and return it as a Dictionary
+		public static Dictionary<string, JsonElement> LeerDatabaseComoDiccionario(string filePath)
+		{
+			if (!File.Exists(filePath))
+			{
+				throw new FileNotFoundException("El archivo no existe.");
+			}
+
+			string jsonString = File.ReadAllText(filePath);
+
+			// Deserialize the JSON into a Dictionary<string, JsonElement>
+			var database = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString);
+			
+			return database ?? new Dictionary<string, JsonElement>();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//---------------------------------methodsOld-------------------------------//
 		public static void GuardarComoJson<T>(T objeto, string archivo) {
 			var opciones = new JsonSerializerOptions { WriteIndented = true };
 			string jsonString = JsonSerializer.Serialize(objeto, opciones);

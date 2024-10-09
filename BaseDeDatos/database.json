@@ -1,0 +1,77 @@
+{
+	"pacientes": [
+		{
+			"Dni": 10350123,
+			"Name": "Alexander",
+			"Lastname": "Seling",
+			"FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
+			"Email": "xanxderet@semgila.com",
+			"Telefono": "23434554",
+			"FechaNacimiento": "2023-11-01T00:00:00",
+			"Direccion": "titaltia 545",
+			"Localidad": "Gonzcatan",
+			"Provincia": "Bs Asires"
+		},
+		{
+			"Dni": 10350997,
+			"Name": "Alexander",
+			"Lastname": "Seling",
+			"FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
+			"Email": "xanxderet@semgila.com",
+			"Telefono": "23434554",
+			"FechaNacimiento": "2023-11-01T00:00:00",
+			"Direccion": "titaltia 545",
+			"Localidad": "Gonzcatan",
+			"Provincia": "Bs Asires"
+		}
+	],
+	"turnos": [
+		{
+			"MedicoPk": 87654321,
+			"PacientePk": 10350123,
+			"FechaYHoraAsignada": "2024-10-05T00:00:00"
+		},
+		{
+			"MedicoPk": 25654321,
+			"PacientePk": 40350997,
+			"FechaYHoraAsignada": "2024-11-03T00:00:00"
+		}
+	],
+	"medicos": [
+		{
+			"Name": "Dr. Roxana",
+			"Lastname": "G\u00F3mez",
+			"Dni": 87654321,
+			"Provincia": "Buenos Aires",
+			"Domicilio": "Calle Falsa 123",
+			"Localidad": "Ciudad X",
+			"Specialidad": "Cardiolog\u00EDa",
+			"Telefono": "+31544223",
+			"Guardia": true,
+			"FechaIngreso": "2014-10-07T20:54:19.1470587-03:00",
+			"SueldoMinimoGarantizado": 200000,
+			"DiasDeAtencion": {
+				"lunes": {"start": "12:00", "end": "15:00"},
+				"miercoles": {"start": "12:00", "end": "15:00"}
+			}
+		},
+		{
+			"Name": "Dr. Carlos",
+			"Lastname": "Merkier",
+			"Dni": 25654321,
+			"Provincia": "Buenos Aires",
+			"Domicilio": "Avenida Violenta 123",
+			"Localidad": "Ciudad Gotica",
+			"Specialidad": "Gastroenterologia",
+			"Telefono": "+91544223",
+			"Guardia": false,
+			"FechaIngreso": "2004-10-07T20:54:19.1470587-03:00",
+			"SueldoMinimoGarantizado": 300000,
+			"DiasDeAtencion": {
+				"lunes": {"start": "10:00", "end": "14:00"},
+				"miercoles": {"start": "10:00", "end": "14:00"},
+				"viernes": {"start": "12:00", "end": "17:00"}
+			}
+		}
+	]
+}

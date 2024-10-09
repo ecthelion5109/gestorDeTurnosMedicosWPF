@@ -1,12 +1,13 @@
 ﻿using System.Windows;
 
 
-namespace ClinicaMedica {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	
-	public static class WindowExtensions{
+namespace ClinicaMedica
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+
+    public static class WindowExtensions{
 		public static void NavegarA<T>(this Window ventanaActual) where T : Window, new()
 		{
 			T nuevaVentana = new T();
