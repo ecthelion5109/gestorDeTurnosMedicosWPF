@@ -7,20 +7,44 @@
         mc:Ignorable="d"
         Title="Medicos" Height="450" Width="800">
 
-    <Window.Background>
-        <ImageBrush ImageSource="/images/MedicosFondo.jpg" />
-    </Window.Background>
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 
 
-    <Grid>
-        <Label Content="Personal Médico" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonAgregar" FontFamily="Modern No. 20"/>
-        <Button Content="Modificar " HorizontalAlignment="Left" Margin="305,199,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonModificar" FontFamily="Modern No. 20"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="305,275,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" FontFamily="Modern No. 20" Click="ButtonEliminar"/>
-        <Button Content="Ver Médicos" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" FontFamily="Modern No.20" Click="ButtonVer"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="61" Margin="651,344,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="61" Margin="651,259,0,0" VerticalAlignment="Top" Width="109" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
+		</Grid.Background>
 
 
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32*"/>
+			<RowDefinition Height="263*"/>
+		</Grid.RowDefinitions>
+		<!-- Título -->
+		<Label Content="Personal Médico" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Height="59" Width="338" FontFamily="Segoe UI Black"/>
+		<ListView Name="MedicoListView" 
+                  ItemsSource="{Binding MedicosList}" 
+                 Width="Auto"
+				 Height="Auto" Margin="354,58,30,102" Grid.Row="1"
+				 >
+			<ListView.View>
+				<GridView>
+					<!-- Dni Column -->
+					<GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+					<!-- Name Column -->
+					<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+					<!-- Lastname Column -->
+					<GridViewColumn Header="Lastname" DisplayMemberBinding="{Binding Lastname}" Width="auto"/>
+					<!-- Specialidad Column -->
+					<GridViewColumn Header="Specialidad" DisplayMemberBinding="{Binding Specialidad}" Width="auto"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<Button FontSize="24" Content="Modificar seleccionado" HorizontalAlignment="Left" Height="38" Margin="48,127,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="48,314,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="48,266,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Eliminar seleccionado" HorizontalAlignment="Left" Height="38" Margin="48,170,0,0" VerticalAlignment="Top" Width="209" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,58,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<!-- DataGrid insertado aquí -->
 	</Grid>
 </Window>

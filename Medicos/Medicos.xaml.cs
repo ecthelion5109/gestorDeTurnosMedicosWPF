@@ -17,36 +17,59 @@ namespace ClinicaMedica {
 	/// Lógica de interacción para Medicos.xaml
 	/// </summary>
 	public partial class Medicos : Window {
+		public List<Medico> MedicosList { get; set; }
+
+
 		public Medicos() {
 			InitializeComponent();
+			// Medicos = new List<Medico>{
+			// new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
+			// new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
+			// };
+			MedicosList = BaseDeDatos.Database["medicos"]
+						 .Values
+						 .Cast<Medico>()   // Casting the object values to Medico
+						 .ToList();
+
+
+			// Establecer el DataContext
+			DataContext = this;
 		}
 
-        private void ButtonModificar(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<MedicosModificar>();
-        }
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
 
-        private void ButtonAgregar(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<MedicosAgregar>();
-        }
-
-        private void ButtonEliminar(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<MedicosEliminar>();
-        }
-
-        private void ButtonVer(object sender, RoutedEventArgs e) {
-			this.NavegarA<MedicosVer>();
 		}
-		
-		public void ButtonSalir(object sender, RoutedEventArgs e) {
-			Application.Current.Shutdown();
+
+		private void ButtonModificar(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void ButtonEliminar(object sender, RoutedEventArgs e) {
+			// Muestra el MessageBox con botones de Aceptar y Cancelar
+			MessageBoxResult result = MessageBox.Show(
+				"¿Está seguro que desea eliminar este médico?",   // Mensaje
+				"Confirmar Eliminación",                         // Título del cuadro
+				MessageBoxButton.OKCancel,                       // Botones (OK y Cancelar)
+				MessageBoxImage.Warning                          // Tipo de icono (opcional)
+			);
+
+			// Verifica qué botón fue presionado
+			if (result == MessageBoxResult.OK) {
+				// Eliminar el médico o realizar la acción deseada
+				MessageBox.Show("El médico ha sido eliminado.");
+			}
+			else {
+				// Cancelar la acción
+				MessageBox.Show("Operación cancelada.");
+			}
 		}
 
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.NavegarA<MainWindow>();
+		}
 
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			this.Salir();
 		}
 	}
 }
