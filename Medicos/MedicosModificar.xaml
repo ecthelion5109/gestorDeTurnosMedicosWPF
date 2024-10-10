@@ -135,7 +135,7 @@
 		
 		
 		<Button FontSize="24" Content="Guardar cambios" HorizontalAlignment="Left" Height="38" Margin="393,361,0,0" VerticalAlignment="Top" Width="146" Click="ButtonGuardarCambios" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="394,407,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Volver" HorizontalAlignment="Left" Height="38" Margin="394,407,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 	</Grid>
 </Window>

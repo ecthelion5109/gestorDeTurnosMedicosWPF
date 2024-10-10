@@ -37,21 +37,5 @@ namespace ClinicaMedica
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e){
 			this.NavegarA<Medicos>();
 		}
-
-		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
-			this.NavegarA<Turnos>();
-		}
-
-		private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
-			this.NavegarA<Pacientes>();
-		}
-
-		public void MetodoBotonTestearJsonLeer(object sender, RoutedEventArgs e) {
-			// BaseDeDatos.TestLeer1();
-			BaseDeDatos.TestLeer2();
-		}
-		public void MetodoBotonTestearJsonGuardar(object sender, RoutedEventArgs e) {
-			BaseDeDatos.TestGuardar();
-		}
 	}
 }
