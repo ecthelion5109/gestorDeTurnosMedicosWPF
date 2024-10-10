@@ -16,22 +16,11 @@ namespace ClinicaMedica {
 	/// <summary>
 	/// Lógica de interacción para MedicosModificar.xaml
 	/// </summary>
-	public class HorarioMedico {
-		public string DiaSemana { get; set; }
-		public string InicioHorario { get; set; }
-		public string FinHorario { get; set; }
-		public bool Trabaja { get; set; }
-
-		public List<string> Horarios { get; } = new List<string> {
-		"08:00", "09:00", "10:00", "11:00", "12:00",
-		"13:00", "14:00", "15:00", "16:00", "17:00",
-		"18:00", "19:00", "20:00"
-		};
-	}
 
 	public partial class MedicosModificar : Window {
 		public MedicosModificar() {
 			InitializeComponent();
+
 		}
 		public MedicosModificar(string selectedMedicoDni) {
 			InitializeComponent();
@@ -48,6 +37,13 @@ namespace ClinicaMedica {
 			this.txtFechaIngreso.SelectedDate = medicoLeido.FechaIngreso;
 			this.txtSueldoMinGarant.Text = medicoLeido.SueldoMinimoGarantizado.ToString();
 			this.txtRealizaGuardia.IsChecked = medicoLeido.Guardia;
+
+
+
+			// Bind the list of HorarioMedico to the DataGrid
+			this.txtDiasDeAtencion.ItemsSource = medicoLeido.GetDiasDeAtencionList();
+
+
 		}
 
 		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
@@ -59,5 +55,8 @@ namespace ClinicaMedica {
 			this.NavegarA<Medicos>();
 		}
 
+		private void txtDiasDeAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+		}
 	}
 }

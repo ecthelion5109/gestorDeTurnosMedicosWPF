@@ -10,6 +10,12 @@ namespace ClinicaMedica {
 	}
 	
 	
+	public class HorarioMedico {
+		public string DiaSemana { get; set; }
+		public string InicioHorario { get; set; }
+		public string FinHorario { get; set; }
+		public bool Trabaja { get; set; }
+	}
 	
 	public class Paciente: TablaEntidad {
 		public const string TableName = "pacientes";
@@ -86,7 +92,47 @@ namespace ClinicaMedica {
 		public bool Guardia { get; set; }
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
-		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; }
+		
+		
+		
+		public List<HorarioMedico> GetDiasDeAtencionList()
+		{
+			var dias = new List<HorarioMedico>
+			{
+				new HorarioMedico { DiaSemana = "lunes" },
+				new HorarioMedico { DiaSemana = "martes" },
+				new HorarioMedico { DiaSemana = "miercoles" },
+				new HorarioMedico { DiaSemana = "jueves" },
+				new HorarioMedico { DiaSemana = "viernes" },
+				new HorarioMedico { DiaSemana = "sabado" },
+				new HorarioMedico { DiaSemana = "domingo" }
+			};
+
+			foreach (var dia in dias)
+			{
+				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios))
+				{
+					dia.InicioHorario = horarios.start;
+					dia.FinHorario = horarios.end;
+					dia.Trabaja = true; // Assuming the doctor works on this day if there are horarios.
+				}
+				else
+				{
+					dia.Trabaja = false; // If no horarios exist for the day, the doctor doesn't work.
+				}
+			}
+
+			return dias;
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		public Medico() { }
 		

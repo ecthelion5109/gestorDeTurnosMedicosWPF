@@ -92,59 +92,48 @@
 				<DatePicker/>
 			</CheckBox>
 		</Grid>
-		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="348" Height="202" Margin="10,155,0,0">
-			<DataGrid.Columns>
-				<!-- Columna Días de la semana -->
-				<DataGridTextColumn Header="Día de la Semana" Width="*" Binding="{Binding DiaSemana}" />
+		
+		
+		
+		
+<DataGrid x:Name="txtDiasDeAtencion"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top"
+          Width="348"
+          Height="202"
+          Margin="10,155,0,0"
+          ItemsSource="{Binding DiasDeAtencionList}" SelectionChanged="txtDiasDeAtencion_SelectionChanged">
+    <DataGrid.Columns>
+        <!-- Columna Días de la semana -->
+        <DataGridTextColumn Header="Día de la Semana"
+                            Width="*"
+                            Binding="{Binding DiaSemana}"/>
 
-				<!-- Columna Inicio de Horario -->
-				<DataGridTemplateColumn Header="Inicio Horario" Width="*" >
-					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<ComboBox SelectedItem="{Binding InicioHorario}" Width="100">
-								<!-- Agrega más horarios según sea necesario -->
-								<ComboBoxItem Content="08:00" />
-								<ComboBoxItem Content="08:30" />
-								<ComboBoxItem Content="09:00" />
-								<ComboBoxItem Content="09:30" />
-								<ComboBoxItem Content="10:00" />
-							</ComboBox>
-						</DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
+        <!-- Columna Inicio de Horario -->
+        <DataGridTextColumn Header="Inicio Horario"
+                            Width="*"
+                            Binding="{Binding InicioHorario}"/>
 
-				<!-- Columna Fin de Horario -->
-				<DataGridTemplateColumn Header="Fin Horario" Width="*" >
-					<DataGridTemplateColumn.CellTemplate>
-						<DataTemplate>
-							<ComboBox SelectedItem="{Binding FinHorario}" Width="100">
-								<!-- Agrega más horarios según sea necesario -->
-								<ComboBoxItem Content="09:00" />
-								<ComboBoxItem Content="09:30" />
-								<ComboBoxItem Content="10:00" />
-								<ComboBoxItem Content="10:30" />
-								<ComboBoxItem Content="11:00" />
-							</ComboBox>
-						</DataTemplate>
-					</DataGridTemplateColumn.CellTemplate>
-				</DataGridTemplateColumn>
+        <!-- Columna Fin de Horario -->
+        <DataGridTextColumn Header="Fin Horario"
+                            Width="*"
+                            Binding="{Binding FinHorario}"/>
 
-				<!-- Columna Trabaja (CheckBox) -->
-				<DataGridCheckBoxColumn Header="Trabaja" Binding="{Binding Trabaja}" Width="*" />
-			</DataGrid.Columns>
+        <!-- Columna Trabaja (CheckBox) -->
+        <DataGridCheckBoxColumn Header="Trabaja"
+                                Binding="{Binding Trabaja}"
+                                Width="*"/>
+    </DataGrid.Columns>
+</DataGrid>
 
-			<DataGrid.ItemsSource>
-				<x:Array Type="{x:Type local:HorarioMedico}">
-					<local:HorarioMedico DiaSemana="Lunes" />
-					<local:HorarioMedico DiaSemana="Martes" />
-					<local:HorarioMedico DiaSemana="Miércoles" />
-					<local:HorarioMedico DiaSemana="Jueves" />
-					<local:HorarioMedico DiaSemana="Viernes" />
-					<local:HorarioMedico DiaSemana="Sábado" />
-					<local:HorarioMedico DiaSemana="Domingo" />
-				</x:Array>
-			</DataGrid.ItemsSource>
-		</DataGrid>
+		
+		
+		
+		
+		
+		
 		<Button FontSize="24" Content="Guardar cambios" HorizontalAlignment="Left" Height="38" Margin="393,361,0,0" VerticalAlignment="Top" Width="146" Click="ButtonGuardarCambios" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="394,407,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
