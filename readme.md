@@ -46,7 +46,9 @@
 * `git log`  Para ver el historial de commits en un formato básico (de arriba para abajo).
 * `git log --reverse --oneline`  Ver el historial de commits de abajo hacia arriba en una sola línea.
 * `git log --reverse --pretty=format:"%h %an - %ar: %s"` Ver el historial de commits en un formato más legible y compacto.
-	
+* `git remote set-url origin https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF.git` Para cambiar el link del repo.
+
+
 #### Comandos DotNet:
 * `dotnet publish -c Release -r win-x64 --self-contained`
 * `dotnet publish -c Release -r win-x64 --self-contained /p:PublishSingleFile=true`
