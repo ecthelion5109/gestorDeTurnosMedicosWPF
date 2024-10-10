@@ -85,24 +85,39 @@ namespace ClinicaMedica {
 
 			AsignarValoresAMedico();
 
+			//MessageBox.Show($"Selected medico: {SelectedMedico.Name} {SelectedMedico.Lastname} {SelectedMedico.Dni}");
 			if (originalDni == SelectedMedico.Dni) {
-				//BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-			} 
-			else {
-				if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
-					MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
-					return; // Exit if the new DNI already exists
-				}
-				BaseDeDatos.Database["medicos"].Remove(originalDni);
-
-				// SelectedMedico.Dni = this.txtDNI.Text;
-
+				// Caso de actualizar un médico sin cambiar el DNI
+				//MessageBox.Show("Caso de actualizar un médico sin cambiar el DNI");
 				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-				MessageBox.Show($"Se ha actualizado el DNI del Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
 			}
+			else {
+				// Caso de cambiar el DNI
+				if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
+					//MessageBox.Show(" Caso de cambiar el DNI");
+					MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
+					return; // Salir si el nuevo DNI ya existe
+				}
+				else if (originalDni != null && BaseDeDatos.Database["medicos"].ContainsKey(originalDni)) {
+					// Eliminar el médico con el DNI original y agregar el nuevo
+					//MessageBox.Show("Eliminar el médico con el DNI original y agregar el nuevo");
+					BaseDeDatos.Database["medicos"].Remove(originalDni);
+					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
+					MessageBox.Show($"Se ha actualizado el DNI(clave primaria) del Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				}
+				else {
+					// Crear un nuevo médico si no existe con el DNI original ni el nuevo
+					//MessageBox.Show("Crear un nuevo médico si no existe con el DNI original ni el nuevo");
+					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
+					MessageBox.Show($"Se ha agregado el nuevo Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				}
+			}
+
+			// Guardar los cambios en el archivo JSON
 			BaseDeDatos.UpdateJsonFile();
 		}
+
 
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
 			this.NavegarA<Medicos>();

@@ -48,7 +48,7 @@ namespace ClinicaMedica {
 					{
 						// Use the custom constructor for Medico that takes JsonElement
 						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoElement.Value.ToString()).RootElement;
-						var medico = new Medico(medicoJsonElement);
+						var medico = new Medico(medicoElement.Key, medicoJsonElement);
 						medicos[medicoElement.Key] = medico;
 					}
 					result["medicos"] = medicos;

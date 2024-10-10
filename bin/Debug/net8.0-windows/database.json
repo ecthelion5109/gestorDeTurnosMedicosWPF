@@ -28,12 +28,12 @@
   "medicos": {
     "876543": {
       "Name": "Dr. Roxana",
-      "Lastname": "Gómez",
+      "Lastname": "Gomez",
       "Dni": "876543",
       "Provincia": "Buenos Aires",
       "Domicilio": "Calle Falsa 123",
       "Localidad": "Ciudad X",
-      "Specialidad": "Cardiología",
+      "Specialidad": "Cardiologia",
       "Telefono": "+31544223",
       "Guardia": true,
       "FechaIngreso": "2014-10-07T00:00:00",
@@ -96,6 +96,25 @@
         "Viernes": {
           "Start": "9:00",
           "End": "11:00"
+        }
+      }
+    },
+    "1321453": {
+      "Name": "Armando",
+      "Lastname": "Castillos",
+      "Dni": "1321453",
+      "Provincia": "Corrientes",
+      "Domicilio": "Pium 12342",
+      "Localidad": "Merlo",
+      "Specialidad": "Ginecologo",
+      "Telefono": null,
+      "Guardia": false,
+      "FechaIngreso": "2021-10-03T00:00:00",
+      "SueldoMinimoGarantizado": 1153400.0,
+      "DiasDeAtencion": {
+        "Martes": {
+          "Start": "11:00",
+          "End": "15:00"
         }
       }
     }

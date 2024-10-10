@@ -85,11 +85,13 @@ namespace ClinicaMedica {
 		
 		public Medico() { }
 		
-		public Medico(JsonElement jsonElement)
+		public Medico(string jsonElementKey, JsonElement jsonElement)
 		{
+	
 			Name = jsonElement.GetProperty("Name").GetString();
 			Lastname = jsonElement.GetProperty("Lastname").GetString();
-			Dni = jsonElement.GetProperty("Dni").GetString();
+			// Dni = jsonElement.GetProperty("Dni").GetString();
+			Dni = jsonElementKey;
 			Provincia = jsonElement.GetProperty("Provincia").GetString();
 			Domicilio = jsonElement.GetProperty("Domicilio").GetString();
 			Localidad = jsonElement.GetProperty("Localidad").GetString();
