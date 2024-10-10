@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Turnos" Height="450" Width="800">
+        Title="Clinica Medica - Turnos" Height="450" Width="800" Icon="../images/icono.png">
 
 
     <Grid>
@@ -14,8 +14,7 @@
         </Grid.Background>
         <Button Content="Agregar " HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
         <Button Content="Modificar " HorizontalAlignment="Left" Margin="220,299,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
-        <Button Content="Eliminar " HorizontalAlignment="Left" Margin="220,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosEliminar"/>
-        <Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="30,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
+		<Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="30,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
         <Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="496,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
         <Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="629,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
 

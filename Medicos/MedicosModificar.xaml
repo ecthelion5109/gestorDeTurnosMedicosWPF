@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="MedicosModificar" Height="600" Width="1024">
+        Title="Clinica Medica - Medicos Modificar" Height="600" Width="1024" Icon="../images/icono.png" >
 
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg" />

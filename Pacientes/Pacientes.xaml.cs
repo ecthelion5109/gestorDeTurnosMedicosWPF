@@ -35,16 +35,6 @@ namespace ClinicaMedica {
 			this.NavegarA<PacientesAgregar>();
 		}
 
-        private void ButtonPacientesModificar(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<PacientesModificar>();
-        }
-
-        private void ButtonPacientesEliminar(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<PacientesEliminar>();
-        }
-
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.NavegarA<MainWindow>();
 

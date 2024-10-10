@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="TurnosVer" Height="450" Width="800">
+        Title="Clinica Medica - Turnos Ver" Height="450" Width="800" Icon="../images/icono.png">
     <Grid>
         <!-- Definimos dos columnas, una para el almanaque y otra para la grilla de turnos -->
         <Grid.ColumnDefinitions>
