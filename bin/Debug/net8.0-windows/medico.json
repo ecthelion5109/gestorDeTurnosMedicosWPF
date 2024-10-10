@@ -1,0 +1,14 @@
+{
+  "Name": "Dr. Ana",
+  "Lastname": "G\u00F3mez",
+  "Dni": 87654321,
+  "Provincia": "Buenos Aires",
+  "Domicilio": "Calle Falsa 123",
+  "Localidad": "Ciudad X",
+  "Specialidad": "Cardiolog\u00EDa",
+  "Telefono": null,
+  "Guardia": true,
+  "FechaIngreso": "2024-10-01T00:00:00",
+  "SueldoMinimoGarantizado": 150000,
+  "DiasDeAtencion": null
+}

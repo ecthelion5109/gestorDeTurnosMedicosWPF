@@ -9,7 +9,12 @@
 
 
 # Archivos generados por la compilación
-bin/
+/bin/debug/net8.0-windows/*
+!/bin/debug/net8.0-windows/database.json
+!/bin/debug/net8.0-windows/medico.json
+!/bin/debug/net8.0-windows/turno.json
+!/bin/debug/net8.0-windows/paciente.json
+
 obj/
 
 # Información de usuario específica de Visual Studio

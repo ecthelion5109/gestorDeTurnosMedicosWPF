@@ -1,0 +1,12 @@
+{
+  "Dni": 12345678,
+  "Name": "Juan",
+  "Lastname": "P\u00E9rez",
+  "FechaIngreso": "2024-10-09T15:08:45.5596581-03:00",
+  "Email": "juan.perez@example.com",
+  "Telefono": "123456789",
+  "FechaNacimiento": "1980-05-15T00:00:00",
+  "Direccion": null,
+  "Localidad": null,
+  "Provincia": null
+}
