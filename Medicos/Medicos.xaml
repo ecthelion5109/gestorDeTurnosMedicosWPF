@@ -25,7 +25,7 @@
 		<ListView Name="MedicoListView" 
                   ItemsSource="{Binding MedicosList}" 
                  Width="Auto"
-				 Height="Auto" Margin="354,58,30,102" Grid.Row="1"
+				 Height="Auto" Margin="354,58,30,102" Grid.Row="1" SelectionChanged="MedicoListView_SelectionChanged"
 				 >
 			<ListView.View>
 				<GridView>

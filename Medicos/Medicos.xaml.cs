@@ -17,6 +17,7 @@ namespace ClinicaMedica {
 	/// Lógica de interacción para Medicos.xaml
 	/// </summary>
 	public partial class Medicos : Window {
+		public static Medico SelectedMedico;
 		public List<Medico> MedicosList { get; set; }
 
 
@@ -37,17 +38,30 @@ namespace ClinicaMedica {
 		}
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+			this.NavegarA<MedicosModificar>();
 
 		}
 
-		private void ButtonModificar(object sender, RoutedEventArgs e) {
+		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (MedicoListView.SelectedItem != null) {
+				SelectedMedico = (Medico) MedicoListView.SelectedItem;
+				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
+			}
+		}
 
+		private void ButtonModificar(object sender, RoutedEventArgs e) {
+			//this.NavegarA<MedicosModificar>();
+
+			MedicosModificar nuevaVentana = new MedicosModificar(SelectedMedico.Dni);
+			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
+			nuevaVentana.Show();  // Mostrar la nueva ventana
+								  // this.Close();  // Cerrar la ventana actual
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			// Muestra el MessageBox con botones de Aceptar y Cancelar
 			MessageBoxResult result = MessageBox.Show(
-				"¿Está seguro que desea eliminar este médico?",   // Mensaje
+				$"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}",   // Mensaje
 				"Confirmar Eliminación",                         // Título del cuadro
 				MessageBoxButton.OKCancel,                       // Botones (OK y Cancelar)
 				MessageBoxImage.Warning                          // Tipo de icono (opcional)
@@ -58,10 +72,10 @@ namespace ClinicaMedica {
 				// Eliminar el médico o realizar la acción deseada
 				MessageBox.Show("El médico ha sido eliminado.");
 			}
-			else {
+			//else {
 				// Cancelar la acción
-				MessageBox.Show("Operación cancelada.");
-			}
+				//MessageBox.Show("Operación cancelada.");
+			//}
 		}
 
 		private void ButtonHome(object sender, RoutedEventArgs e) {
