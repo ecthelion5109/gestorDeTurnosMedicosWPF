@@ -17,13 +17,21 @@
 8. Esperon Denise
 9. Soberon Daira
 
-### Falta hacer:
+### Planeado hacer:
 1. Terminar el CRUD para Pacientes y Turnos.
 2. Encapsular y parametrizar base de datos Json, abriendo posibilidad de usar base SQL.
 3. Implementar base de datos relacional con MySQL.
 4. Usar objetos Paginas dentro de la misma ventana para consistencia en tamaño y optimizacion.
 5. Agregar bindings para integridad de datos (caracteres maximos, solo numeros, ingresos obligatorios, etc)
 6. Pedir iniciar sesión una sola vez para poder utilizar los botones de Crear, Modificar y Eliminar.
+7. Mejorar diseño a nivel practico y estetico. Utilizar styles.
+
+### Como correr:
+1. Ir a releases: https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF/releases
+2. Bajar a la seccion de assets y descargar "TP2_GrupoC_2024-10-10_compiladoPara-win64.rar" para ejecutar en cualquier sistema operativo win-x64.
+3. Alternativamente, "Source code(zip)" para descargar el codigo del repositorio al momento de la entrega.
+
+
 
 #### Comandos Git:
 * `git clone "link del repo tipo HTTPS"` Para descargar el repositorio en mi computadora
@@ -39,3 +47,8 @@
 * `git log --reverse --oneline`  Ver el historial de commits de abajo hacia arriba en una sola línea.
 * `git log --reverse --pretty=format:"%h %an - %ar: %s"` Ver el historial de commits en un formato más legible y compacto.
 	
+#### Comandos DotNet:
+* `dotnet publish -c Release -r win-x64 --self-contained`
+* `dotnet publish -c Release -r win-x64 --self-contained /p:PublishSingleFile=true`
+* `dotnet publish -c Release -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:IncludeAllContentForSelfExtract=true --self-contained`
+* `dotnet run`

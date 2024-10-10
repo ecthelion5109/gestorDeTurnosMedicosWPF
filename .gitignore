@@ -10,6 +10,7 @@
 
 # Archivos generados por la compilación
 /bin/debug/net8.0-windows/*
+/bin/release/*
 !/bin/debug/net8.0-windows/database.json
 !/bin/debug/net8.0-windows/medico.json
 !/bin/debug/net8.0-windows/turno.json
@@ -55,5 +56,4 @@ packages/
 *.log
 *.ide
 
-# Archivos de la publicación
-publish/
+*.lnk

@@ -26,22 +26,22 @@
     }
   },
   "medicos": {
-    "87654321": {
+    "876543": {
       "Name": "Dr. Roxana",
-      "Lastname": "Gómez",
-      "Dni": "87654321",
+      "Lastname": "Gomez",
+      "Dni": "876543",
       "Provincia": "Buenos Aires",
       "Domicilio": "Calle Falsa 123",
       "Localidad": "Ciudad X",
-      "Specialidad": "Cardiología",
+      "Specialidad": "Podologia",
       "Telefono": "+31544223",
       "Guardia": true,
-      "FechaIngreso": "2014-10-07T20:54:19.1470587-03:00",
+      "FechaIngreso": "2014-10-07T00:00:00",
       "SueldoMinimoGarantizado": 200000.0,
       "DiasDeAtencion": {
         "Lunes": {
           "Start": "12:00",
-          "End": "15:00"
+          "End": "25:00"
         },
         "Miercoles": {
           "Start": "12:00",
@@ -49,10 +49,10 @@
         }
       }
     },
-    "25654321": {
+    "256543": {
       "Name": "Dr. Carlos",
       "Lastname": "Merkier",
-      "Dni": "25654321",
+      "Dni": "256543",
       "Provincia": "Buenos Aires",
       "Domicilio": "Avenida Violenta 123",
       "Localidad": "Ciudad Gotica",
@@ -73,10 +73,48 @@
         "Viernes": {
           "Start": "12:00",
           "End": "17:00"
+        }
+      }
+    },
+    "324564": {
+      "Name": "Ricardo",
+      "Lastname": "Arjona",
+      "Dni": "324564",
+      "Provincia": "Chaco",
+      "Domicilio": "Falopa Mercantil 5623",
+      "Localidad": "Chicaporra",
+      "Specialidad": "Cardiologo",
+      "Telefono": null,
+      "Guardia": false,
+      "FechaIngreso": "2022-10-08T00:00:00",
+      "SueldoMinimoGarantizado": 320000.0,
+      "DiasDeAtencion": {
+        "Lunes": {
+          "Start": "8:00",
+          "End": "12:00"
         },
-        "Domingo": {
-          "Start": "07:25",
-          "End": "13:00"
+        "Viernes": {
+          "Start": "9:00",
+          "End": "11:00"
+        }
+      }
+    },
+    "132145": {
+      "Name": "Armando",
+      "Lastname": "Castillos",
+      "Dni": "132145",
+      "Provincia": "Corrientes",
+      "Domicilio": "Pium 12342",
+      "Localidad": "Merlo",
+      "Specialidad": "Ginecologo",
+      "Telefono": null,
+      "Guardia": false,
+      "FechaIngreso": "2021-10-03T00:00:00",
+      "SueldoMinimoGarantizado": 1153400.0,
+      "DiasDeAtencion": {
+        "Martes": {
+          "Start": "11:00",
+          "End": "15:00"
         }
       }
     }
