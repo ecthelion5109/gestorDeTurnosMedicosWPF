@@ -12,8 +12,7 @@ namespace ClinicaMedica {
 		
 		//------------------------Properties------------------//
 		private static Dictionary<string, Dictionary<string, object>> _database;
-		public static Dictionary<string, Dictionary<string, object>> Database 
-			=> _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
+		public static Dictionary<string, Dictionary<string, object>> Database => _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
 		
 		
 		//------------------------Private----------------------//
@@ -144,63 +143,13 @@ namespace ClinicaMedica {
 		}
 
 		
-		private static void UpdateJsonFile()
+		public static void UpdateJsonFile()
 		{
 			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}
-
-		private static void AsignarValoresAMedico(Medico medico, MedicosModificar ventana) {
-			medico.Name = ventana.txtNombre.Text;
-			medico.Lastname = ventana.txtApellido.Text;
-			medico.Dni = ventana.txtDNI.Text;
-			medico.Provincia = ventana.txtProvincia.Text;
-			medico.Domicilio = ventana.txtDomicilio.Text;
-			medico.Localidad = ventana.txtLocalidad.Text;
-			medico.Specialidad = ventana.txtEspecialidad.Text;
-			medico.Guardia = (bool) ventana.txtRealizaGuardia.IsChecked;
-			medico.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
-			medico.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
-
-			var diasDeAtencion = new Dictionary<string, Horario>();
-
-			foreach (var item in ventana.txtDiasDeAtencion.ItemsSource)
-			{
-				var diaAtencion = item as HorarioMedico;
-				if (diaAtencion != null)
-				{
-					var dia = diaAtencion.DiaSemana;
-					var start = diaAtencion.InicioHorario;
-					var end = diaAtencion.FinHorario;
-
-					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end))
-					{
-						diasDeAtencion[dia] = new Horario(start, end);
-					}
-				}
-			}
-
-			medico.DiasDeAtencion = diasDeAtencion;
-		}
 		
 		//------------------------Publico----------------------//
-		public static void AplicarYGuardarMedico(MedicosModificar ventana) {
-			Medico medicoModificado;
-
-			if (Database["medicos"].ContainsKey(ventana.txtDNI.Text)) {
-				medicoModificado = (Medico) Database["medicos"][ventana.txtDNI.Text];
-				MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
-			} else {
-				medicoModificado = new Medico();
-				Database["medicos"][medicoModificado.Dni] = medicoModificado;
-				MessageBox.Show($"Se ha creado un nuevo Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
-			}
-
-			AsignarValoresAMedico(medicoModificado, ventana);
-
-			// Save changes to the database
-			BaseDeDatos.UpdateJsonFile();
-		}
 		
 		public static void Guardar() {
 			var database = LeerDatabaseComoDiccionario();
