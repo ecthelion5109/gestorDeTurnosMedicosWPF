@@ -41,7 +41,7 @@ namespace ClinicaMedica {
 				var pacientesElement = database["pacientes"];
 				foreach (var pacienteElement in pacientesElement.EnumerateObject())
 				{
-					var paciente = Paciente.FromJson(pacienteElement.Value); // Convert JsonElement to Paciente object
+					var paciente = new Paciente(pacienteElement.Value); // Convert JsonElement to Paciente object
 																			 // int dni = int.Parse(pacienteElement.Name); // The DNI is used as the key
 					string dni = pacienteElement.Name; // The DNI is used as the key
 					pacientes[dni] = paciente;
@@ -56,7 +56,7 @@ namespace ClinicaMedica {
 				var medicosElement = database["medicos"];
 				foreach (var medicoElement in medicosElement.EnumerateObject())
 				{
-					var medico = Medico.FromJson(medicoElement.Value); // Convert JsonElement to Medico object
+					var medico = new Medico(medicoElement.Value); // Convert JsonElement to Medico object
 					// int dni = int.Parse(medicoElement.Name); // The DNI is used as the key
 					string dni = medicoElement.Name; // The DNI is used as the key
 					medicos[dni] = medico;
@@ -71,7 +71,7 @@ namespace ClinicaMedica {
 				var turnosElement = database["turnos"];
 				foreach (var turnoElement in turnosElement.EnumerateObject())
 				{
-					var turno = Turno.FromJson(turnoElement.Value); // Convert JsonElement to Turno object
+					var turno = new Turno(turnoElement.Value); // Convert JsonElement to Turno object
 					string key = turnoElement.Name; // Combine MedicoPk and PacientePk as the key
 					turnos[key] = turno;
 				}
