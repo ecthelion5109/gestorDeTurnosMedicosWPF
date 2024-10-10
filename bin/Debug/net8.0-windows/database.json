@@ -26,10 +26,10 @@
     }
   },
   "medicos": {
-    "87654321": {
+    "876543": {
       "Name": "Dr. Roxana",
       "Lastname": "Gómez",
-      "Dni": "87654321",
+      "Dni": "876543",
       "Provincia": "Buenos Aires",
       "Domicilio": "Calle Falsa 123",
       "Localidad": "Ciudad X",
@@ -49,10 +49,10 @@
         }
       }
     },
-    "25654321": {
+    "256543": {
       "Name": "Dr. Carlos",
       "Lastname": "Merkier",
-      "Dni": "25654321",
+      "Dni": "256543",
       "Provincia": "Buenos Aires",
       "Domicilio": "Avenida Violenta 123",
       "Localidad": "Ciudad Gotica",
@@ -76,29 +76,10 @@
         }
       }
     },
-    "HGFHGF": {
+    "324564": {
       "Name": "Ricardo",
       "Lastname": "Arjona",
-      "Dni": "3245641",
-      "Provincia": "Chaco",
-      "Domicilio": "Falopa Mercantil 5623",
-      "Localidad": "Chicaporra",
-      "Specialidad": "Atendedor de Boludos",
-      "Telefono": null,
-      "Guardia": false,
-      "FechaIngreso": "2022-10-08T00:00:00",
-      "SueldoMinimoGarantizado": 320000.0,
-      "DiasDeAtencion": {
-        "Lunes": {
-          "Start": "8:00",
-          "End": "12:00"
-        }
-      }
-    },
-    "3245641": {
-      "Name": "Ricardo",
-      "Lastname": "Arjona",
-      "Dni": "3245641",
+      "Dni": "324564",
       "Provincia": "Chaco",
       "Domicilio": "Falopa Mercantil 5623",
       "Localidad": "Chicaporra",

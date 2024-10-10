@@ -50,21 +50,21 @@ namespace ClinicaMedica {
 
 
 
-		private static void AsignarValoresAMedico(Medico medico, MedicosModificar ventana) {
-			medico.Name = ventana.txtNombre.Text;
-			medico.Lastname = ventana.txtApellido.Text;
-			medico.Dni = ventana.txtDNI.Text;
-			medico.Provincia = ventana.txtProvincia.Text;
-			medico.Domicilio = ventana.txtDomicilio.Text;
-			medico.Localidad = ventana.txtLocalidad.Text;
-			medico.Specialidad = ventana.txtEspecialidad.Text;
-			medico.Guardia = (bool)ventana.txtRealizaGuardia.IsChecked;
-			medico.FechaIngreso = (DateTime)ventana.txtFechaIngreso.SelectedDate;
-			medico.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
+		private void AsignarValoresAMedico() {
+			SelectedMedico.Name = this.txtNombre.Text;
+			SelectedMedico.Lastname = this.txtApellido.Text;
+			SelectedMedico.Dni = this.txtDNI.Text;
+			SelectedMedico.Provincia = this.txtProvincia.Text;
+			SelectedMedico.Domicilio = this.txtDomicilio.Text;
+			SelectedMedico.Localidad = this.txtLocalidad.Text;
+			SelectedMedico.Specialidad = this.txtEspecialidad.Text;
+			SelectedMedico.Guardia = (bool)this.txtRealizaGuardia.IsChecked;
+			SelectedMedico.FechaIngreso = (DateTime)this.txtFechaIngreso.SelectedDate;
+			SelectedMedico.SueldoMinimoGarantizado = double.Parse(this.txtSueldoMinGarant.Text);
 
 			var diasDeAtencion = new Dictionary<string, Horario>();
 
-			foreach (var item in ventana.txtDiasDeAtencion.ItemsSource) {
+			foreach (var item in txtDiasDeAtencion.ItemsSource) {
 				var diaAtencion = item as HorarioMedico;
 				if (diaAtencion != null) {
 					var dia = diaAtencion.DiaSemana;
@@ -77,32 +77,30 @@ namespace ClinicaMedica {
 				}
 			}
 
-			medico.DiasDeAtencion = diasDeAtencion;
+			SelectedMedico.DiasDeAtencion = diasDeAtencion;
 		}
 
 		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
-			// Medico medicoModificado;
+			string originalDni = SelectedMedico.Dni;
 
-			// AsignarValoresAMedico(medicoModificado, this);
-			AsignarValoresAMedico(SelectedMedico, this);
+			AsignarValoresAMedico();
 
-
-			// if (BaseDeDatos.Database["medicos"].ContainsKey(this.txtDNI.Text)) {
-			if (BaseDeDatos.Database["medicos"].ContainsKey(this.txtDNI.Text)) {
-				// medicoModificado = (Medico) BaseDeDatos.Database["medicos"][this.txtDNI.Text];
-				// MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
+			if (originalDni == SelectedMedico.Dni) {
+				//BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
 				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-			}
+			} 
 			else {
-				// medicoModificado = new Medico();
-				// BaseDeDatos.Database["medicos"][medicoModificado.Dni] = medicoModificado;
+				if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
+					MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
+					return; // Exit if the new DNI already exists
+				}
+				BaseDeDatos.Database["medicos"].Remove(originalDni);
+
+				// SelectedMedico.Dni = this.txtDNI.Text;
+
 				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-				// MessageBox.Show($"Se ha creado un nuevo Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
-				MessageBox.Show($"Se ha creado un nuevo Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				MessageBox.Show($"Se ha actualizado el DNI del Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
 			}
-
-
-			// Save changes to the database
 			BaseDeDatos.UpdateJsonFile();
 		}
 
