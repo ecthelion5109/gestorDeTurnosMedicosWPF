@@ -54,7 +54,7 @@ namespace ClinicaMedica {
 			MedicosModificar nuevaVentana = new MedicosModificar(SelectedMedico.Dni);
 			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 			nuevaVentana.Show();  // Mostrar la nueva ventana
-								  // this.Close();  // Cerrar la ventana actual
+			this.Close();  // Cerrar la ventana actual
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {

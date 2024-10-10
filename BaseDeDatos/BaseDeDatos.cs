@@ -143,26 +143,37 @@ namespace ClinicaMedica {
 			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}
+
+		private static void AsignarValoresAMedico(Medico medico, MedicosModificar ventana) {
+			medico.Name = ventana.txtNombre.Text;
+			medico.Lastname = ventana.txtApellido.Text;
+			medico.Dni = ventana.txtDNI.Text;
+			medico.Provincia = ventana.txtProvincia.Text;
+			medico.Domicilio = ventana.txtDomicilio.Text;
+			medico.Localidad = ventana.txtLocalidad.Text;
+			medico.Specialidad = ventana.txtEspecialidad.Text;
+			medico.Guardia = (bool) ventana.txtRealizaGuardia.IsChecked;
+			medico.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
+			medico.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
+		}
 		
 		//------------------------Publico----------------------//
 		public static void AplicarYGuardarMedico(MedicosModificar ventana) {
-			Medico medicoModificado = (Medico) Database["medicos"][ventana.txtDNI.Text];
-			
-			medicoModificado.Name = ventana.txtNombre.Text;
-			medicoModificado.Lastname = ventana.txtApellido.Text;
-			medicoModificado.Dni = ventana.txtDNI.Text;
-			medicoModificado.Provincia = ventana.txtProvincia.Text;
-			medicoModificado.Domicilio = ventana.txtDomicilio.Text;
-			medicoModificado.Localidad = ventana.txtLocalidad.Text;
-			medicoModificado.Specialidad = ventana.txtEspecialidad.Text;
-			medicoModificado.Guardia = (bool) ventana.txtRealizaGuardia.IsChecked;
-			medicoModificado.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
-			medicoModificado.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
-			
-			BaseDeDatos.UpdateJsonFile();
+			Medico medicoModificado;
 
-			MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
-			// */
+			if (Database["medicos"].ContainsKey(ventana.txtDNI.Text)) {
+				medicoModificado = (Medico) Database["medicos"][ventana.txtDNI.Text];
+				MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
+			} else {
+				medicoModificado = new Medico();
+				Database["medicos"][medicoModificado.Dni] = medicoModificado;
+				MessageBox.Show($"Se ha creado un nuevo Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
+			}
+
+			AsignarValoresAMedico(medicoModificado, ventana);
+
+			// Save changes to the database
+			BaseDeDatos.UpdateJsonFile();
 		}
 		
 		public static void Guardar() {
