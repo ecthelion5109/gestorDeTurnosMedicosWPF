@@ -175,7 +175,7 @@ namespace ClinicaMedica {
 
 					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end))
 					{
-						diasDeAtencion[dia] = new Horario { Start = start, End = end };
+						diasDeAtencion[dia] = new Horario(start, end);
 					}
 				}
 			}

@@ -12,6 +12,10 @@ namespace ClinicaMedica {
 	{
 		public string Start { get; set; }
 		public string End { get; set; }
+		public Horario(string Start, string End) {
+			this.Start = Start;
+			this.End = End;
+		}
 	}
 	
 	public class HorarioMedico {
@@ -20,8 +24,8 @@ namespace ClinicaMedica {
 		public string FinHorario { get; set; }
 		public bool Trabaja { get; set; }
 	}
-	
-	public class Medico: TablaEntidad {
+
+	public class Medico : TablaEntidad {
 		public const string TableName = "medicos";
 		public string Name { get; set; }  // 50 caracteres máximo
 		public string Lastname { get; set; }  // 50 caracteres máximo
@@ -107,39 +111,7 @@ namespace ClinicaMedica {
 					{
 						var start = startElement.GetString();
 						var end = endElement.GetString();
-						DiasDeAtencion[diaKey] = Horario(start, end);
-					}
-				}
-			}
-		}
-
-		// Constructor that takes a Dictionary<string, string>
-		public Medico(Dictionary<string, string> dict)
-		{
-			Name = dict.GetValueOrDefault("Name");
-			Lastname = dict.GetValueOrDefault("Lastname");
-			Dni = dict.GetValueOrDefault("Dni");
-			Provincia = dict.GetValueOrDefault("Provincia");
-			Domicilio = dict.GetValueOrDefault("Domicilio");
-			Localidad = dict.GetValueOrDefault("Localidad");
-			Specialidad = dict.GetValueOrDefault("Specialidad");
-			Telefono = dict.GetValueOrDefault("Telefono");
-			Guardia = bool.Parse(dict.GetValueOrDefault("Guardia", "false"));
-			FechaIngreso = DateTime.Parse(dict.GetValueOrDefault("FechaIngreso"));
-			SueldoMinimoGarantizado = double.Parse(dict.GetValueOrDefault("SueldoMinimoGarantizado", "0"));
-
-			// Days of attention (as a dictionary, you can decide how you want to structure this)
-			if (dict.ContainsKey("DiasDeAtencion"))
-			{
-				var diasDeAtencion = dict["DiasDeAtencion"];
-				// Example for handling the dictionary structure of "DiasDeAtencion" (expand as necessary)
-				var diasList = diasDeAtencion.Split(';');
-				foreach (var dia in diasList)
-				{
-					var parts = dia.Split(':'); // Assuming key-value like "Monday:09:00-17:00"
-					if (parts.Length == 2)
-					{
-						DiasDeAtencion[parts[0]] = (parts[1].Split('-')[0], parts[1].Split('-')[1]);
+						DiasDeAtencion[diaKey] = new Horario(start, end);
 					}
 				}
 			}
