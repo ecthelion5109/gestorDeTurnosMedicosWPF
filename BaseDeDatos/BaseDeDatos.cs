@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using System.Windows;
-using System.Text.Json.Serialization;
+﻿using System.Windows;
 using System.IO;
 
 namespace ClinicaMedica {
@@ -29,7 +27,7 @@ namespace ClinicaMedica {
 			}
 
 			string jsonString = File.ReadAllText(filePath);
-			var database = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString);
+			var database = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, System.Text.Json.JsonElement>>(jsonString);
 
 			// Prepare a dictionary to hold the objects
 			var result = new Dictionary<string, Dictionary<string, object>>();
@@ -145,13 +143,13 @@ namespace ClinicaMedica {
 		
 		//---------------------------------methodsOld-------------------------------//
 		public static void GuardarComoJson<T>(T objeto, string archivo) {
-			var opciones = new JsonSerializerOptions { WriteIndented = true };
-			string jsonString = JsonSerializer.Serialize(objeto, opciones);
+			var opciones = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
+			string jsonString = System.Text.Json.JsonSerializer.Serialize(objeto, opciones);
 			File.WriteAllText(archivo, jsonString);
 		}
 		public static T LeerDesdeJson<T>(string archivo) {
 			string jsonString = File.ReadAllText(archivo);
-			return JsonSerializer.Deserialize<T>(jsonString);
+			return System.Text.Json.JsonSerializer.Deserialize<T>(jsonString);
 		}
 		public static void TestLeer() {
 			// Leer desde JSON

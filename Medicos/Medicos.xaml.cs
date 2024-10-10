@@ -32,6 +32,7 @@ namespace ClinicaMedica {
 						 .Cast<Medico>()   // Casting the object values to Medico
 						 .ToList();
 
+			// MedicosList = BaseDeDatos.DatabaseOBJ["medicos"].Values.ToList();
 
 			// Establecer el DataContext
 			DataContext = this;
