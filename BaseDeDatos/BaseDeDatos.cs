@@ -1,21 +1,79 @@
 ﻿using System.Windows;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
-		private static Dictionary<string, Dictionary<string, object>> ?_database;
-
-		public static Dictionary<string, Dictionary<string, object>> Database
+		public static string archivoPath = "database.json";
+		
+		
+		
+		//------------------------Properties------------------//
+		private static Dictionary<string, Dictionary<string, object>> _database;
+		public static Dictionary<string, Dictionary<string, object>> Database 
+			=> _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
+		
+		
+		//------------------------Private----------------------//
+		private static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionarioNewtonsoft()
 		{
-			get
+			// Prepara un diccionario para almacenar los objetos
+			var result = new Dictionary<string, Dictionary<string, object>>();
+
+			// Check if the file exists
+			if (File.Exists(archivoPath))
 			{
-				if (_database == null || _database.Count == 0)
+				string jsonString = File.ReadAllText(archivoPath);
+
+				// Deserialize as Dictionary of objects (the object type is the key difference)
+				var database = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(jsonString);
+
+				// Check and convert "pacientes"
+				if (database.ContainsKey("pacientes"))
 				{
-					_database = LeerDatabaseComoDiccionario();
+					var pacientes = new Dictionary<string, object>();
+					foreach (var pacienteElement in database["pacientes"])
+					{
+						// Deserialize each entry as a Paciente object
+						var paciente = JsonConvert.DeserializeObject<Paciente>(pacienteElement.Value.ToString());
+						pacientes[pacienteElement.Key] = paciente;
+					}
+					result["pacientes"] = pacientes;
 				}
-				return _database;
+
+				// Check and convert "medicos"
+				if (database.ContainsKey("medicos"))
+				{
+					var medicos = new Dictionary<string, object>();
+					foreach (var medicoElement in database["medicos"])
+					{
+						// Deserialize each entry as a Medico object
+						var medico = JsonConvert.DeserializeObject<Medico>(medicoElement.Value.ToString());
+						medicos[medicoElement.Key] = medico;
+					}
+					result["medicos"] = medicos;
+				}
+
+				// Check and convert "turnos"
+				if (database.ContainsKey("turnos"))
+				{
+					var turnos = new Dictionary<string, object>();
+					foreach (var turnoElement in database["turnos"])
+					{
+						// Deserialize each entry as a Turno object
+						var turno = JsonConvert.DeserializeObject<Turno>(turnoElement.Value.ToString());
+						turnos[turnoElement.Key] = turno;
+					}
+					result["turnos"] = turnos;
+				}
 			}
+			else
+			{
+				MessageBox.Show("Error: File not found.");
+			}
+
+			return result;
 		}
 		
 		public static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
@@ -146,6 +204,11 @@ namespace ClinicaMedica {
 			var opciones = new System.Text.Json.JsonSerializerOptions { WriteIndented = true };
 			string jsonString = System.Text.Json.JsonSerializer.Serialize(objeto, opciones);
 			File.WriteAllText(archivo, jsonString);
+		}
+		public static void GuardarComoJsonNewtonsoft<T>(T objeto, string archivo) {
+			// Serializa el objeto usando Newtonsoft.Json y la opción de indentación
+			string jsonString = JsonConvert.SerializeObject(objeto, Formatting.Indented);
+			File.WriteAllText(archivo, jsonString);  // Guarda el archivo
 		}
 		public static T LeerDesdeJson<T>(string archivo) {
 			string jsonString = File.ReadAllText(archivo);

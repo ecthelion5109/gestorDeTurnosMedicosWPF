@@ -27,12 +27,10 @@ namespace ClinicaMedica {
 			// new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
 			// new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
 			// };
-			MedicosList = BaseDeDatos.Database["medicos"]
-						 .Values
-						 .Cast<Medico>()   // Casting the object values to Medico
-						 .ToList();
-
-			// MedicosList = BaseDeDatos.DatabaseOBJ["medicos"].Values.ToList();
+			 MedicosList = BaseDeDatos.Database["medicos"]
+						  .Values
+						  .Cast<Medico>()   // Casting the object values to Medico
+						  .ToList();
 
 			// Establecer el DataContext
 			DataContext = this;
