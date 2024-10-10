@@ -106,8 +106,7 @@ namespace ClinicaMedica {
 				{
 					var diaKey = dia.Name;
 
-					// Check if both "start" and "end" properties exist before accessing them
-					if (dia.Value.TryGetProperty("start", out var startElement) && dia.Value.TryGetProperty("end", out var endElement))
+					if (dia.Value.TryGetProperty("Start", out var startElement) && dia.Value.TryGetProperty("End", out var endElement))
 					{
 						var start = startElement.GetString();
 						var end = endElement.GetString();
