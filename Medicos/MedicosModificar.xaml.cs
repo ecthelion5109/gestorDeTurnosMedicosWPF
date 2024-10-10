@@ -52,7 +52,7 @@ namespace ClinicaMedica {
 
 		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
 			// BaseDeDatos.MedicosGuardar(this);
-			//BaseDeDatos.AplicarYGuardarMedico(this);
+			BaseDeDatos.AplicarYGuardarMedico(this);
 		}
 
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {

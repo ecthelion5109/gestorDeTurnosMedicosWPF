@@ -76,7 +76,7 @@ namespace ClinicaMedica {
 			return result;
 		}
 		
-		public static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
+		private static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
 		{
 			string filePath = "database.json";
 			if (!File.Exists(filePath))
@@ -138,6 +138,27 @@ namespace ClinicaMedica {
 		}
 
 		
+		
+		//------------------------Publico----------------------//
+		public static void AplicarYGuardarMedico(MedicosModificar ventana) {
+			Medico medicoModificado = (Medico) Database["medicos"][ventana.txtDNI.Text];
+			
+			medicoModificado.Name = ventana.txtNombre.Text;
+			medicoModificado.Lastname = ventana.txtApellido.Text;
+			medicoModificado.Dni = ventana.txtDNI.Text;
+			medicoModificado.Provincia = ventana.txtProvincia.Text;
+			medicoModificado.Domicilio = ventana.txtDomicilio.Text;
+			medicoModificado.Localidad = ventana.txtLocalidad.Text;
+			medicoModificado.Specialidad = ventana.txtEspecialidad.Text;
+			medicoModificado.Guardia = (bool) ventana.txtRealizaGuardia.IsChecked;
+			medicoModificado.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
+			medicoModificado.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
+			
+			// BaseDeDatos.UpdateJsonFile();
+
+			MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
+			// */
+		}
 		
 		public static void Guardar() {
 			var database = LeerDatabaseComoDiccionario();
