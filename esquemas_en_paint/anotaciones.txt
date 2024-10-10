@@ -1,0 +1,32 @@
+What do you think of this idea i just had?
+	1: Leer el archivo json y crear una instancia de dictionario as BaseDeDatos property, con todos los campos como dicts y strings. O cualquier formato que sea hasheable pero facil de volver a guardar cambios en database.json. Podemos llamarlo BaseDeDatos.DatabaseSTR.
+		
+	2: A partir de ese diccionario, crear otro, tambien como property de clase, pero con objetos de tipo Paciente/Turno/Medico (como el que ya hicimos). Lo podemos llamar BaseDeDatos.DatabaseOBJ.
+	
+	3: Que cuando mi aplicacion WPF tenga que modificar una instancia o crear una, que acceda a los objetos de DatabaseOBJ, los modifique o agregue nuevas instancias donde corresponda. 
+	
+	4: Que las clases Pacientes/Turnos/Medicos tengan una funcion para devolver su representacion en string(o lo que sea mas conveniente), lista para cargar directamente sobre BaseDeDatos.DatabaseSTR. Y que esa representacion haga un upsert sobre el dictionario BaseDeDatos.DatabaseSTR, que puede ser un parametro.
+	
+	5: Y que la clase BaseDeDatos tenga un metodo estatico para escribir el archivo "database.json" con su dictionario DatabaseSTR.
+	
+	De esta manera solo realizamos conversiones de objetos en str cuando una instancia especifica cambia, reutilizando los datos leidos originalmente BaseDeDatos.DatabaseSTR. Crees que pueda llevar a cabo todo en el mismo diccionario? 
+
+
+para pacientes:
+
+
+			// dni, string name, string lastname, DateTime fechaIngreso, string email, string telefono, string cobertura, DateTime fechaNacimiento
+			BaseDeDatos.AplicarYGuardarMedico(
+				dni : int.Parse(txtdni.Text),
+				name : txtnombre.Text,
+				lastname : txtapellido.Text,
+				fechaingreso : DateTime.Now,
+				email : txtemail.Text,
+				telefono : txttelefono.Text,
+				fechanacimiento : (DateTime) txtfechanacimiento.SelectedDate,
+				direccion : txtdireccion.Text,
+				localidad : txtlocalidad.Text,
+				provincia : txtprovincia.Text
+			);
+
+
