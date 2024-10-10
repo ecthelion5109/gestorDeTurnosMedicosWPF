@@ -8,7 +8,11 @@ namespace ClinicaMedica {
 	
 	public class TablaEntidad {
 	}
-	
+	public class Horario
+	{
+		public string Start { get; set; }
+		public string End { get; set; }
+	}
 	
 	public class HorarioMedico {
 		public string DiaSemana { get; set; }
@@ -31,7 +35,9 @@ namespace ClinicaMedica {
 		public bool Guardia { get; set; }
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
-		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
+
 		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; }
 		
 		
@@ -40,21 +46,21 @@ namespace ClinicaMedica {
 		{
 			var dias = new List<HorarioMedico>
 			{
-				new HorarioMedico { DiaSemana = "lunes" },
-				new HorarioMedico { DiaSemana = "martes" },
-				new HorarioMedico { DiaSemana = "miercoles" },
-				new HorarioMedico { DiaSemana = "jueves" },
-				new HorarioMedico { DiaSemana = "viernes" },
-				new HorarioMedico { DiaSemana = "sabado" },
-				new HorarioMedico { DiaSemana = "domingo" }
+				new HorarioMedico { DiaSemana = "Lunes" },
+				new HorarioMedico { DiaSemana = "Martes" },
+				new HorarioMedico { DiaSemana = "Miercoles" },
+				new HorarioMedico { DiaSemana = "Jueves" },
+				new HorarioMedico { DiaSemana = "Viernes" },
+				new HorarioMedico { DiaSemana = "Sabado" },
+				new HorarioMedico { DiaSemana = "Domingo" }
 			};
 
 			foreach (var dia in dias)
 			{
 				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios))
 				{
-					dia.InicioHorario = horarios.start;
-					dia.FinHorario = horarios.end;
+					dia.InicioHorario = horarios.Start;
+					dia.FinHorario = horarios.End;
 					dia.Trabaja = true; // Assuming the doctor works on this day if there are horarios.
 				}
 				else
@@ -101,7 +107,7 @@ namespace ClinicaMedica {
 					{
 						var start = startElement.GetString();
 						var end = endElement.GetString();
-						DiasDeAtencion[diaKey] = (start, end);
+						DiasDeAtencion[diaKey] = Horario(start, end);
 					}
 				}
 			}

@@ -162,24 +162,24 @@ namespace ClinicaMedica {
 			medico.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
 			medico.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
 
-			var diasDeAtencion = new Dictionary<string, (string start, string end)>();
+			var diasDeAtencion = new Dictionary<string, Horario>();
 
-			// Iterate over the DataGrid's ItemsSource, which is DiasDeAtencionList
-			foreach (var item in ventana.txtDiasDeAtencion.ItemsSource) {
+			foreach (var item in ventana.txtDiasDeAtencion.ItemsSource)
+			{
 				var diaAtencion = item as HorarioMedico;
-				if (diaAtencion != null) {
+				if (diaAtencion != null)
+				{
 					var dia = diaAtencion.DiaSemana;
 					var start = diaAtencion.InicioHorario;
 					var end = diaAtencion.FinHorario;
 
-					// Add to the dictionary if all values are present
-					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end)) {
-						diasDeAtencion[dia] = (start, end);
+					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end))
+					{
+						diasDeAtencion[dia] = new Horario { Start = start, End = end };
 					}
 				}
 			}
 
-			// Now assign the dictionary to the medico object
 			medico.DiasDeAtencion = diasDeAtencion;
 		}
 		
