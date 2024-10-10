@@ -138,6 +138,11 @@ namespace ClinicaMedica {
 		}
 
 		
+		private static void UpdateJsonFile()
+		{
+			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
+			File.WriteAllText(archivoPath, jsonString);
+		}
 		
 		//------------------------Publico----------------------//
 		public static void AplicarYGuardarMedico(MedicosModificar ventana) {
@@ -154,7 +159,7 @@ namespace ClinicaMedica {
 			medicoModificado.FechaIngreso = (DateTime) ventana.txtFechaIngreso.SelectedDate;
 			medicoModificado.SueldoMinimoGarantizado = double.Parse(ventana.txtSueldoMinGarant.Text);
 			
-			// BaseDeDatos.UpdateJsonFile();
+			BaseDeDatos.UpdateJsonFile();
 
 			MessageBox.Show($"Se han guardado los cambios de Medico: {medicoModificado.Name} {medicoModificado.Lastname}");
 			// */
