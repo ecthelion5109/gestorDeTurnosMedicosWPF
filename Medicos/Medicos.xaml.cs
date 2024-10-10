@@ -44,7 +44,12 @@ namespace ClinicaMedica {
 		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (MedicoListView.SelectedItem != null) {
 				SelectedMedico = (Medico) MedicoListView.SelectedItem;
+				buttonModificar.IsEnabled = true;
+				buttonEliminar.IsEnabled = true;
 				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
+			} else {
+				buttonModificar.IsEnabled = false;
+				buttonEliminar.IsEnabled = false;
 			}
 		}
 
