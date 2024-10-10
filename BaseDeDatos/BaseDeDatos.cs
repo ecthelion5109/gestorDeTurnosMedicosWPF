@@ -42,18 +42,22 @@ namespace ClinicaMedica {
 					result["pacientes"] = pacientes;
 				}
 
+				// MessageBox.Show("11, testing");
 				// Check and convert "medicos"
 				if (database.ContainsKey("medicos"))
 				{
 					var medicos = new Dictionary<string, object>();
 					foreach (var medicoElement in database["medicos"])
 					{
-						// Deserialize each entry as a Medico object
-						var medico = JsonConvert.DeserializeObject<Medico>(medicoElement.Value.ToString());
+						// Use the custom constructor for Medico that takes JsonElement
+						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoElement.Value.ToString()).RootElement;
+						var medico = new Medico(medicoJsonElement);
 						medicos[medicoElement.Key] = medico;
 					}
 					result["medicos"] = medicos;
 				}
+
+				// MessageBox.Show("22, testing");
 
 				// Check and convert "turnos"
 				if (database.ContainsKey("turnos"))
@@ -75,6 +79,7 @@ namespace ClinicaMedica {
 
 			return result;
 		}
+
 		
 		private static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionario()
 		{

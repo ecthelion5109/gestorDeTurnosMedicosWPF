@@ -17,67 +17,6 @@ namespace ClinicaMedica {
 		public bool Trabaja { get; set; }
 	}
 	
-	public class Paciente: TablaEntidad {
-		public const string TableName = "pacientes";
-		// public int Dni { get; set; }
-		public string Dni { get; set; }
-		public string Name { get; set; }
-		public string Lastname { get; set; }
-		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
-		public string Email { get; set; }
-		public string Telefono { get; set; }
-		public DateTime FechaNacimiento { get; set; }
-		public string Direccion { get; set; }
-		public string Localidad { get; set; }
-		public string Provincia { get; set; }
-			
-
-
-		public Paciente() { }
-		
-		// Constructor that takes a JsonElement
-		public Paciente(JsonElement json)
-		{
-			Dni = json.GetProperty("Dni").GetString();
-			Name = json.GetProperty("Name").GetString();
-			Lastname = json.GetProperty("Lastname").GetString();
-			FechaIngreso = json.GetProperty("FechaIngreso").GetDateTime();
-			Email = json.GetProperty("Email").GetString();
-			Telefono = json.GetProperty("Telefono").GetString();
-			FechaNacimiento = json.GetProperty("FechaNacimiento").GetDateTime();
-			Direccion = json.GetProperty("Direccion").GetString();
-			Localidad = json.GetProperty("Localidad").GetString();
-			Provincia = json.GetProperty("Provincia").GetString();
-		}
-
-		// Constructor that takes a Dictionary<string, string>
-		public Paciente(Dictionary<string, string> dict)
-		{
-			Dni = dict.GetValueOrDefault("Dni");
-			Name = dict.GetValueOrDefault("Name");
-			Lastname = dict.GetValueOrDefault("Lastname");
-			FechaIngreso = DateTime.Parse(dict.GetValueOrDefault("FechaIngreso"));
-			Email = dict.GetValueOrDefault("Email");
-			Telefono = dict.GetValueOrDefault("Telefono");
-			FechaNacimiento = DateTime.Parse(dict.GetValueOrDefault("FechaNacimiento"));
-			Direccion = dict.GetValueOrDefault("Direccion");
-			Localidad = dict.GetValueOrDefault("Localidad");
-			Provincia = dict.GetValueOrDefault("Provincia");
-		}
-
-		public void UpsertToDatabaseStr(Dictionary<string, Dictionary<string, Dictionary<string, string>>> databaseStr){
-			databaseStr[TableName][Dni]["Name"] = Name;
-			databaseStr[TableName][Dni]["Lastname"] = Lastname;
-			databaseStr[TableName][Dni]["FechaIngreso"] = FechaIngreso.ToString();
-			databaseStr[TableName][Dni]["Email"] = Email;
-			databaseStr[TableName][Dni]["Telefono"] = Telefono;
-			databaseStr[TableName][Dni]["FechaNacimiento"] = FechaNacimiento.ToString();
-			databaseStr[TableName][Dni]["Direccion"] = Direccion;
-			databaseStr[TableName][Dni]["Localidad"] = Localidad;
-			databaseStr[TableName][Dni]["Provincia"] = Provincia;
-		}
-	}
-	
 	public class Medico: TablaEntidad {
 		public const string TableName = "medicos";
 		public string Name { get; set; }  // 50 caracteres máximo
@@ -92,8 +31,8 @@ namespace ClinicaMedica {
 		public bool Guardia { get; set; }
 		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
 		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
-		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
-		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; }
+		public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
+		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; }
 		
 		
 		
@@ -156,9 +95,14 @@ namespace ClinicaMedica {
 				foreach (var dia in diasDeAtencionElement.EnumerateObject())
 				{
 					var diaKey = dia.Name;
-					var start = dia.Value.GetProperty("start").GetString();
-					var end = dia.Value.GetProperty("end").GetString();
-					DiasDeAtencion[diaKey] = (start, end);
+
+					// Check if both "start" and "end" properties exist before accessing them
+					if (dia.Value.TryGetProperty("start", out var startElement) && dia.Value.TryGetProperty("end", out var endElement))
+					{
+						var start = startElement.GetString();
+						var end = endElement.GetString();
+						DiasDeAtencion[diaKey] = (start, end);
+					}
 				}
 			}
 		}
@@ -193,6 +137,67 @@ namespace ClinicaMedica {
 					}
 				}
 			}
+		}
+	}
+	
+	public class Paciente: TablaEntidad {
+		public const string TableName = "pacientes";
+		// public int Dni { get; set; }
+		public string Dni { get; set; }
+		public string Name { get; set; }
+		public string Lastname { get; set; }
+		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
+		public string Email { get; set; }
+		public string Telefono { get; set; }
+		public DateTime FechaNacimiento { get; set; }
+		public string Direccion { get; set; }
+		public string Localidad { get; set; }
+		public string Provincia { get; set; }
+			
+
+
+		public Paciente() { }
+		
+		// Constructor that takes a JsonElement
+		public Paciente(JsonElement json)
+		{
+			Dni = json.GetProperty("Dni").GetString();
+			Name = json.GetProperty("Name").GetString();
+			Lastname = json.GetProperty("Lastname").GetString();
+			FechaIngreso = json.GetProperty("FechaIngreso").GetDateTime();
+			Email = json.GetProperty("Email").GetString();
+			Telefono = json.GetProperty("Telefono").GetString();
+			FechaNacimiento = json.GetProperty("FechaNacimiento").GetDateTime();
+			Direccion = json.GetProperty("Direccion").GetString();
+			Localidad = json.GetProperty("Localidad").GetString();
+			Provincia = json.GetProperty("Provincia").GetString();
+		}
+
+		// Constructor that takes a Dictionary<string, string>
+		public Paciente(Dictionary<string, string> dict)
+		{
+			Dni = dict.GetValueOrDefault("Dni");
+			Name = dict.GetValueOrDefault("Name");
+			Lastname = dict.GetValueOrDefault("Lastname");
+			FechaIngreso = DateTime.Parse(dict.GetValueOrDefault("FechaIngreso"));
+			Email = dict.GetValueOrDefault("Email");
+			Telefono = dict.GetValueOrDefault("Telefono");
+			FechaNacimiento = DateTime.Parse(dict.GetValueOrDefault("FechaNacimiento"));
+			Direccion = dict.GetValueOrDefault("Direccion");
+			Localidad = dict.GetValueOrDefault("Localidad");
+			Provincia = dict.GetValueOrDefault("Provincia");
+		}
+
+		public void UpsertToDatabaseStr(Dictionary<string, Dictionary<string, Dictionary<string, string>>> databaseStr){
+			databaseStr[TableName][Dni]["Name"] = Name;
+			databaseStr[TableName][Dni]["Lastname"] = Lastname;
+			databaseStr[TableName][Dni]["FechaIngreso"] = FechaIngreso.ToString();
+			databaseStr[TableName][Dni]["Email"] = Email;
+			databaseStr[TableName][Dni]["Telefono"] = Telefono;
+			databaseStr[TableName][Dni]["FechaNacimiento"] = FechaNacimiento.ToString();
+			databaseStr[TableName][Dni]["Direccion"] = Direccion;
+			databaseStr[TableName][Dni]["Localidad"] = Localidad;
+			databaseStr[TableName][Dni]["Provincia"] = Provincia;
 		}
 	}
 	

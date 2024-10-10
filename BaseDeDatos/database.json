@@ -1,4 +1,41 @@
 {
+	"medicos": {
+		"87654321": {
+			"Name": "Dr. Roxana",
+			"Dni": "87654321",
+			"Lastname": "G\u00F3mez",
+			"Provincia": "Buenos Aires",
+			"Domicilio": "Calle Falsa 123",
+			"Localidad": "Ciudad X",
+			"Specialidad": "Cardiolog\u00EDa",
+			"Telefono": "+31544223",
+			"Guardia": true,
+			"FechaIngreso": "2014-10-07T20:54:19.1470587-03:00",
+			"SueldoMinimoGarantizado": 200000,
+			"DiasDeAtencion": {
+				"lunes": {"start": "12:00", "end": "15:00"},
+				"miercoles": {"start": "12:00", "end": "15:00"}
+			}
+		},
+		"25654321": {
+			"Name": "Dr. Carlos",
+			"Dni": "25654321",
+			"Lastname": "Merkier",
+			"Provincia": "Buenos Aires",
+			"Domicilio": "Avenida Violenta 123",
+			"Localidad": "Ciudad Gotica",
+			"Specialidad": "Gastroenterologia",
+			"Telefono": "+91544223",
+			"Guardia": false,
+			"FechaIngreso": "2004-10-07T20:54:19.1470587-03:00",
+			"SueldoMinimoGarantizado": 300000,
+			"DiasDeAtencion": {
+				"lunes": {"start": "10:00", "end": "14:00"},
+				"miercoles": {"start": "10:00", "end": "14:00"},
+				"viernes": {"start": "12:00", "end": "17:00"}
+			}
+		}
+	},
 	"pacientes": {
 		"40350997": {
 			"Name": "Alexander",
@@ -35,43 +72,6 @@
 		  "MedicoPk": 87654321,
 		  "PacientePk": 10350123,
 		  "FechaYHoraAsignada": "2024-10-05T00:00:00"
-		}
-	},
-	"medicos": {
-		"87654321": {
-			"Name": "Dr. Roxana",
-			"Dni": "87654321",
-			"Lastname": "G\u00F3mez",
-			"Provincia": "Buenos Aires",
-			"Domicilio": "Calle Falsa 123",
-			"Localidad": "Ciudad X",
-			"Specialidad": "Cardiolog\u00EDa",
-			"Telefono": "+31544223",
-			"Guardia": true,
-			"FechaIngreso": "2014-10-07T20:54:19.1470587-03:00",
-			"SueldoMinimoGarantizado": 200000,
-			"DiasDeAtencion": {
-				"lunes": {"start": "12:00", "end": "15:00"},
-				"miercoles": {"start": "12:00", "end": "15:00"}
-			}
-		},
-		"25654321": {
-			"Name": "Dr. Carlos",
-			"Dni": "25654321",
-			"Lastname": "Merkier",
-			"Provincia": "Buenos Aires",
-			"Domicilio": "Avenida Violenta 123",
-			"Localidad": "Ciudad Gotica",
-			"Specialidad": "Gastroenterologia",
-			"Telefono": "+91544223",
-			"Guardia": false,
-			"FechaIngreso": "2004-10-07T20:54:19.1470587-03:00",
-			"SueldoMinimoGarantizado": 300000,
-			"DiasDeAtencion": {
-				"lunes": {"start": "10:00", "end": "14:00"},
-				"miercoles": {"start": "10:00", "end": "14:00"},
-				"viernes": {"start": "12:00", "end": "17:00"}
-			}
 		}
 	}
 }
