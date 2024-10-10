@@ -8,14 +8,14 @@ namespace ClinicaMedica
     /// </summary>
 
     public static class WindowExtensions{
-		public static void NavegarA<T>(this Window ventanaActual) where T : Window, new()
+		public static void NavegarA<T>(this Window previousWindow) where T : Window, new()
 		{
 			T nuevaVentana = new T();
 			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 			nuevaVentana.Show();  // Mostrar la nueva ventana
-			ventanaActual.Close();  // Cerrar la ventana actual
+			previousWindow.Close();  // Cerrar la ventana actual
 		}
-		public static void Salir(this Window ventanaActual)
+		public static void Salir(this Window previousWindow)
 		{
 			Application.Current.Shutdown();  // Apagar la aplicación
 		}

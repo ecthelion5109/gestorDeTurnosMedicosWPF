@@ -12,11 +12,11 @@
 		</Grid.Background>
 
 		<Label Content="Clínica Clandestina " Margin="0,1,0,0" FontSize="36" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="324" VerticalAlignment="Top" Foreground="White"/>
-		<Button Content="SALIR" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" Height="29" Width="104" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonSalir" RenderTransformOrigin="-0.324,0.588"/>
-		<Button Content="TURNOS" HorizontalAlignment="Left" Margin="95,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/>
-		<Button Content="PACIENTES" HorizontalAlignment="Left" Margin="558,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonPacientes"/>
-		<Button Content="MÉDICOS" HorizontalAlignment="Center" Margin="0,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonMedicos"/>
-		<Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="544,217,0,0" VerticalAlignment="Top" Height="53" Width="137" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
+		<Button Content="SALIR" HorizontalAlignment="Left" Margin="576,336,0,0" VerticalAlignment="Top" Height="28" Width="104" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonSalir" RenderTransformOrigin="-0.324,0.588"/>
+		<Button Visibility="Hidden"  IsEnabled="False" Content="TURNOS" HorizontalAlignment="Left" Margin="95,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/>
+		<Button Content="PACIENTES" HorizontalAlignment="Left" Margin="560,286,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonPacientes"/>
+		<Button Content="MÉDICOS" HorizontalAlignment="Left" Margin="560,239,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonMedicos"/>
+		<Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="560,175,0,0" VerticalAlignment="Top" Height="53" Width="136" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
 		<Label Content="Bienvenido Usuario" Margin="274,80,0,0" FontSize="26" HorizontalAlignment="Left" FontFamily="Palatino Linotype" Background="{x:Null}" Width="324" VerticalAlignment="Top" Foreground="Black"/>
 		<Button x:Name="iniciarSesionButton_Copiar" Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/>
 		<Button x:Name="iniciarSesionButton_Copiar1" Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/>

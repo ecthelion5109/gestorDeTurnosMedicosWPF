@@ -15,10 +15,6 @@
 			<RowDefinition Height="169*"/>
 			<RowDefinition Height="48*"/>
 		</Grid.RowDefinitions>
-
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="57,64,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="57,16,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-		<Button FontSize="24" Content="Leer instancia" HorizontalAlignment="Left" Height="38" Margin="56,374,0,0" VerticalAlignment="Top" Width="146" Click="ButtonLeerInstancia" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<Grid Margin="273,3,33,75" Grid.RowSpan="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -41,8 +37,8 @@
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 		</Grid>
-		<Label Content="Modificar Médico" HorizontalAlignment="Left" Margin="35,22,0,0" VerticalAlignment="Top" FontSize="32" FontFamily="Segoe UI Black" Height="81" Width="339"/>
-		<Grid Margin="393,22,33,32" Grid.RowSpan="2">
+		<Label Content="Modificar o Agregar Médico" HorizontalAlignment="Left" Margin="35,22,0,0" VerticalAlignment="Top" FontSize="26" FontFamily="Segoe UI Black" Height="65" Width="391"/>
+		<Grid Margin="393,22,33,102" Grid.RowSpan="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<!-- Columna para los TextBox -->
@@ -96,7 +92,7 @@
 				<DatePicker/>
 			</CheckBox>
 		</Grid>
-		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="500" Height="202" Margin="491,350,0,0" Grid.RowSpan="2">
+		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="348" Height="202" Margin="10,155,0,0">
 			<DataGrid.Columns>
 				<!-- Columna Días de la semana -->
 				<DataGridTextColumn Header="Día de la Semana" Width="*" Binding="{Binding DiaSemana}" />
@@ -149,8 +145,8 @@
 				</x:Array>
 			</DataGrid.ItemsSource>
 		</DataGrid>
-		<Button FontSize="24" Content="Guardar cambios" HorizontalAlignment="Left" Height="38" Margin="56,417,0,0" VerticalAlignment="Top" Width="146" Click="ButtonGuardarCambios" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.RowSpan="2"/>
-		<DatePicker HorizontalAlignment="Left" Margin="388,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+		<Button FontSize="24" Content="Guardar cambios" HorizontalAlignment="Left" Height="38" Margin="393,361,0,0" VerticalAlignment="Top" Width="146" Click="ButtonGuardarCambios" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Cancelar" HorizontalAlignment="Left" Height="38" Margin="394,407,0,0" VerticalAlignment="Top" Width="145" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 	</Grid>
 </Window>

@@ -17,81 +17,47 @@ namespace ClinicaMedica
     /// <summary>
     /// Lógica de interacción para MedicosModificar.xaml
     /// </summary>
-    public partial class MedicosModificar : Window
-    {
-        public MedicosModificar()
-        {
-            InitializeComponent();
-        }
-		
-		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
-			Application.Current.Shutdown();
+    public class HorarioMedico {
+        public string DiaSemana { get; set; }
+        public string InicioHorario { get; set; }
+        public string FinHorario { get; set; }
+        public bool Trabaja { get; set; }
+
+        public List<string> Horarios { get; } = new List<string> {
+        "08:00", "09:00", "10:00", "11:00", "12:00",
+        "13:00", "14:00", "15:00", "16:00", "17:00",
+        "18:00", "19:00", "20:00"
+        };
+    }
+
+	public partial class MedicosModificar : Window {
+		public MedicosModificar() {
+			InitializeComponent();
+		}
+		public MedicosModificar(Medicos previousWindow) {
+			InitializeComponent();
+			// Medico medicoLeido = BaseDeDatos.LeerDesdeJson<Medico>("medico.json");
+			//Medico medicoLeido = (Medico)BaseDeDatos.DatabaseOBJ["medicos"][previousWindow.SelectedMedicoDni];
+			//this.txtNombre.Text = medicoLeido.Name;
+			//this.txtApellido.Text = medicoLeido.Lastname;
+			//this.txtDNI.Text = medicoLeido.Dni.ToString(); ;
+			//this.txtProvincia.Text = medicoLeido.Provincia;
+			//this.txtDomicilio.Text = medicoLeido.Domicilio;
+			//this.txtLocalidad.Text = medicoLeido.Localidad;
+			//this.txtEspecialidad.Text = medicoLeido.Specialidad;
+			//this.txtFechaIngreso.SelectedDate = medicoLeido.FechaIngreso;
+			//this.txtSueldoMinGarant.Text = medicoLeido.SueldoMinimoGarantizado.ToString();
+			//this.txtRealizaGuardia.IsChecked = medicoLeido.Guardia;
 		}
 
-        private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
-			/*
-			
-			
-			// dni, string name, string lastname, DateTime fechaIngreso, string email, string telefono, string cobertura, DateTime fechaNacimiento
-			BaseDeDatos.MedicosGuardar(
-				name: txtNombre.Text,
-				lastname: txtApellido.Text,
-				dni: int.Parse(txtDNI.Text),
-				provincia: txtProvincia.Text,
-				domicilio: txtDomicilio.Text,
-				localidad: txtLocalidad.Text,
-				specialidad: txtEspecialidad.Text,
-				//telefono: txttelefono.Text,
-				guardia: (bool) txtRealizaGuardia.IsChecked,
-				fechaingreso: (DateTime) txtFechaIngreso.SelectedDate,
-				sueldominimogarantizado: decimal.Parse(txtSueldoMinGarant.Text)
-				// DiasDeAtencion: txtSueldoMinGarant.Text,
-			);
-			
-			*/
+		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
+			// BaseDeDatos.MedicosGuardar(this);
+			//BaseDeDatos.AplicarYGuardarMedico(this);
 		}
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ButtonCancelar(object sender, RoutedEventArgs e)
-        {
-            this.NavegarA<Medicos>();
-        }
-
-        private void ButtonSalir(object sender, RoutedEventArgs e)
-        {
-            this.Salir();
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-		private void ButtonLeerInstancia(object sender, RoutedEventArgs e) {
-
-
-			Medico medicoLeido = BaseDeDatos.LeerDesdeJson<Medico>("medico.json");
-			txtNombre.Text = medicoLeido.Name;
-
-			txtApellido.Text = medicoLeido.Lastname;
-			txtDNI.Text = medicoLeido.Dni.ToString(); ;
-			txtProvincia.Text = medicoLeido.Provincia;
-			txtDomicilio.Text = medicoLeido.Domicilio;
-			txtLocalidad.Text = medicoLeido.Localidad;
-			txtEspecialidad.Text = medicoLeido.Specialidad;
-			txtFechaIngreso.SelectedDate = medicoLeido.FechaIngreso;
-			txtSueldoMinGarant.Text = medicoLeido.SueldoMinimoGarantizado.ToString();
-			txtRealizaGuardia.IsChecked = medicoLeido.Guardia;
-
+		private void ButtonCancelar(object sender, RoutedEventArgs e) {
+			this.NavegarA<Medicos>();
 		}
+
 	}
 }
