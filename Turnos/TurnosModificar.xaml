@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Turnos Modificar" Height="450" Width="800" Icon="../images/icono.png">
+        Title="Clinica Medica - Turnos Modificar" Height="450" Width="800" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="60" Margin="589,337,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
         <Button FontSize="24" Content="Modificar" HorizontalAlignment="Left" Height="62" Margin="107,327,0,0" VerticalAlignment="Top" Width="109" Click="ButtonCancelar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Turnos Agregar" Height="450" Width="800" Icon="../images/icono.png">
+        Title="Clinica Medica - Turnos Agregar" Height="450" Width="800" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
     <Grid Margin="10,-8,0,2" Opacity="0.86">
         <Label Content="Ingresar Turnos" HorizontalAlignment="Left" Margin="227,8,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Matura MT Script Capitals" Foreground="#FF7C92EA"/>
         <Label Content="DNI Paciente" HorizontalAlignment="Left" Margin="180,98,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>

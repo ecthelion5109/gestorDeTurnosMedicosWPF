@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
         Title="Clinica Medica - Home" Height="450" Width="800"
-		 Icon="images/icono.png" >
+		 Icon="images/icono.png" WindowStartupLocation="CenterScreen">
 	<Grid Margin="0,0,-28,0">
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/bv.jpg"/>

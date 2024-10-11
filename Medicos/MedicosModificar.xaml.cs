@@ -50,7 +50,7 @@ namespace ClinicaMedica {
 		}
 
 		private void AsignarValoresAMedico(Medico SelectedMedico) {
-			MessageBox.Show(SelectedMedico.Name);
+			// MessageBox.Show(SelectedMedico.Name);
 			
 			SelectedMedico.Name = this.txtNombre.Text;
 			SelectedMedico.Lastname = this.txtApellido.Text;

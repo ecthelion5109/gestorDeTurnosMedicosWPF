@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Pacientes Agregar" Height="450" Width="800" Icon="../images/icono.png"  >
+        Title="Clinica Medica - Pacientes Agregar" Height="450" Width="800" Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/doctor.jpg"/>

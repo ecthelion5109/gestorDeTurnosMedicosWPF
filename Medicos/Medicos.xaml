@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Medicos" Height="650" Width="1000"  Icon="../images/icono.png" >
+        Title="Clinica Medica - Medicos" Height="650" Width="1000"  Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 
 	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 

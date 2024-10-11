@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Medicos Modificar" Height="600" Width="1024" Icon="../images/icono.png" >
+        Title="Clinica Medica - Medicos Modificar" Height="600" Width="1024" Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 
+        <!-- xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" -->
+		
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg" />
 	</Window.Background>
@@ -127,6 +129,7 @@
     </DataGrid.Columns>
 </DataGrid>
 
+        <!-- <xctk:TimePicker Value="13:45:00" Format="Custom" FormatString="HH:mm" Margin="142,195,798,228" /> -->
 		
 		
 		
