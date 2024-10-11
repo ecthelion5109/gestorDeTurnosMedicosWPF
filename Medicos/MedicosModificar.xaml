@@ -103,8 +103,7 @@
           VerticalAlignment="Top"
           Width="348"
           Height="202"
-          Margin="10,155,0,0"
-          ItemsSource="{Binding DiasDeAtencionList}" SelectionChanged="txtDiasDeAtencion_SelectionChanged">
+          Margin="10,155,0,0" >
     <DataGrid.Columns>
         <!-- Columna Días de la semana -->
         <DataGridTextColumn Header="Día de la Semana"
@@ -122,9 +121,9 @@
                             Binding="{Binding FinHorario}"/>
 
         <!-- Columna Trabaja (CheckBox) -->
-        <DataGridCheckBoxColumn Header="Trabaja"
-                                Binding="{Binding Trabaja}"
-                                Width="*"/>
+        <!-- <DataGridCheckBoxColumn Header="Trabaja" -->
+                                <!-- Binding="{Binding Trabaja}" -->
+                                <!-- Width="*"/> -->
     </DataGrid.Columns>
 </DataGrid>
 

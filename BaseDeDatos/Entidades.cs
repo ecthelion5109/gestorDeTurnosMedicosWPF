@@ -22,7 +22,7 @@ namespace ClinicaMedica {
 		public string DiaSemana { get; set; }
 		public string InicioHorario { get; set; }
 		public string FinHorario { get; set; }
-		public bool Trabaja { get; set; }
+		// public bool Trabaja { get; set; }
 	}
 
 	public class Medico : TablaEntidad {
@@ -65,12 +65,12 @@ namespace ClinicaMedica {
 				{
 					dia.InicioHorario = horarios.Start;
 					dia.FinHorario = horarios.End;
-					dia.Trabaja = true; // Assuming the doctor works on this day if there are horarios.
+					// dia.Trabaja = true; // Assuming the doctor works on this day if there are horarios.
 				}
-				else
-				{
-					dia.Trabaja = false; // If no horarios exist for the day, the doctor doesn't work.
-				}
+				// else
+				// {
+					// dia.Trabaja = false; // If no horarios exist for the day, the doctor doesn't work.
+				// }
 			}
 
 			return dias;
