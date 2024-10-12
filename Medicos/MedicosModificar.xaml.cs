@@ -69,8 +69,6 @@ namespace ClinicaMedica {
 				SelectedMedico.SueldoMinimoGarantizado = sueldo;
 			}
 
-			var diasDeAtencion = new Dictionary<string, Horario>();
-
 			foreach (var item in txtDiasDeAtencion.ItemsSource) {
 				if (item is HorarioMedico diaAtencion) {
 					var dia = diaAtencion.DiaSemana;
@@ -78,12 +76,11 @@ namespace ClinicaMedica {
 					var end = diaAtencion.FinHorario;
 
 					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end)) {
-						diasDeAtencion[dia] = new Horario(start, end);
+						// Add or update the existing entry in the dictionary
+						SelectedMedico.DiasDeAtencion[dia] = new Horario(start, end);
 					}
 				}
 			}
-
-			SelectedMedico.DiasDeAtencion = diasDeAtencion;
 		}
 
 		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {

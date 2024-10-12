@@ -18,20 +18,13 @@ namespace ClinicaMedica {
 	/// Lógica de interacción para Medicos.xaml
 	/// </summary>
 	public partial class Medicos : Window {
-		public static Medico SelectedMedico;
-		public List<Medico> MedicosList { get; set; }
+		private static Medico ?SelectedMedico;
 
 
 		public Medicos() {
 			InitializeComponent();
-			// Medicos = new List<Medico>{
-			// new Medico { Dni = "87654321", Name = "Dr. Roxana", Lastname = "Gómez", Specialidad = "Cardiología" },
-			// new Medico { Dni = "25654321", Name = "Dr. Carlos", Lastname = "Merkier", Specialidad = "Gastroenterología" }
-			// };
-			MedicosList = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
-
-			// Establecer el DataContext
-			DataContext = this;
+			// generar
+			MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
 		}
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
@@ -53,34 +46,34 @@ namespace ClinicaMedica {
 
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			//this.NavegarA<MedicosModificar>();
-
-			MedicosModificar nuevaVentana = new MedicosModificar(SelectedMedico);
-			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
-			nuevaVentana.Show();  // Mostrar la nueva ventana
-			this.Close();  // Cerrar la ventana actual
+			if (SelectedMedico != null) {
+				MedicosModificar nuevaVentana = new MedicosModificar(SelectedMedico);
+				Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
+				nuevaVentana.Show();  // Mostrar la nueva ventana
+				this.Close();  // Cerrar la ventana actual
+			}
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			// Muestra el MessageBox con botones de Aceptar y Cancelar
-			MessageBoxResult result = MessageBox.Show(
-				$"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}",   // Mensaje
-				"Confirmar Eliminación",                         // Título del cuadro
-				MessageBoxButton.OKCancel,                       // Botones (OK y Cancelar)
-				MessageBoxImage.Warning                          // Tipo de icono (opcional)
-			);
+			if (SelectedMedico != null) {
+				MessageBoxResult result = MessageBox.Show(
+					$"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}",   // Mensaje
+					"Confirmar Eliminación",                         // Título del cuadro
+					MessageBoxButton.OKCancel,                       // Botones (OK y Cancelar)
+					MessageBoxImage.Warning                          // Tipo de icono (opcional)
+				);
 
-			if (result == MessageBoxResult.OK) {
-				BaseDeDatos.Database["medicos"].Remove(SelectedMedico.Dni);
-				//regenerate the list
-				MedicosList = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
-				
-				// refrescar
-				MedicoListView.ItemsSource = null; // Clear the existing ItemsSource
-				MedicoListView.ItemsSource = MedicosList; // Reassign to refresh the ListView
-				// MessageBox.Show("El médico ha sido eliminado.");
-				
-				// Save changes to the database
-				BaseDeDatos.UpdateJsonFile();
+				if (result == MessageBoxResult.OK) {
+					BaseDeDatos.Database["medicos"].Remove(SelectedMedico.Dni);
+
+					// regenerar
+					MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList(); // Reassign to refresh the ListView
+																												 // MessageBox.Show("El médico ha sido eliminado.");
+
+					// Save changes to the database
+					BaseDeDatos.UpdateJsonFile();
+				}
 			}
 		}
 

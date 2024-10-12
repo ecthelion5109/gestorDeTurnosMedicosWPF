@@ -33,7 +33,7 @@
       "Provincia": "Buenos Aires",
       "Domicilio": "Calle Falsa 123",
       "Localidad": "Ciudad X",
-      "Specialidad": "Podologia",
+      "Specialidad": "Masajista de genitales",
       "Telefono": "+31544223",
       "Guardia": true,
       "FechaIngreso": "2014-10-07T00:00:00",
@@ -41,11 +41,11 @@
       "DiasDeAtencion": {
         "Lunes": {
           "Start": "12:00",
-          "End": "25:00"
+          "End": "15:00"
         },
         "Miercoles": {
           "Start": "12:00",
-          "End": "15:00"
+          "End": "19:00"
         }
       }
     },
