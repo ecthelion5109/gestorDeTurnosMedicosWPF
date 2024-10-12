@@ -72,31 +72,22 @@
         }
       }
     },
-    "324564": {
-      "Name": "Ricardo",
-      "Lastname": "Arjona",
-      "Dni": "324564",
-      "Provincia": "Chaco",
-      "Domicilio": "Falopa Mercantil 5623",
-      "Localidad": "Chicaporra",
-      "Specialidad": "Cardiologo",
+    "5769537": {
+      "Name": "Dr. Miguel",
+      "Lastname": "Dedo Gordo",
+      "Dni": "5769537",
+      "Provincia": "Buenos Aires",
+      "Domicilio": "Uruguay 5434",
+      "Localidad": "Merlo",
+      "Specialidad": "Proctologia",
       "Telefono": null,
       "Guardia": false,
-      "FechaIngreso": "2022-10-08T00:00:00",
-      "SueldoMinimoGarantizado": 320000.0,
-      "DiasDeAtencion": {
-        "Lunes": {
-          "Start": "8:00",
-          "End": "12:00"
-        },
-        "Viernes": {
-          "Start": "9:00",
-          "End": "11:00"
-        }
-      }
+      "FechaIngreso": "2021-05-05T00:00:00",
+      "SueldoMinimoGarantizado": 900000.0,
+      "DiasDeAtencion": {}
     },
     "132145": {
-      "Name": "Armando",
+      "Name": "Dr. Armando",
       "Lastname": "Castillos",
       "Dni": "132145",
       "Provincia": "Corrientes",
@@ -115,6 +106,29 @@
         "Sabado": {
           "Start": "07:00",
           "End": "16:00"
+        }
+      }
+    },
+    "7354854": {
+      "Name": "Dr. Mabel",
+      "Lastname": "Falopa",
+      "Dni": "7354854",
+      "Provincia": "Buenos Aires",
+      "Domicilio": "Equiza 6654",
+      "Localidad": "Gonzalez Catan",
+      "Specialidad": "Sanadora de empachos",
+      "Telefono": null,
+      "Guardia": true,
+      "FechaIngreso": "2014-10-18T00:00:00",
+      "SueldoMinimoGarantizado": 7000.0,
+      "DiasDeAtencion": {
+        "Lunes": {
+          "Start": "15:00",
+          "End": "21:00"
+        },
+        "Jueves": {
+          "Start": "19:00",
+          "End": "23:00"
         }
       }
     }

@@ -88,7 +88,7 @@ namespace ClinicaMedica {
 
 		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
 			if (SelectedMedico == null){
-				return;
+				SelectedMedico = new Medico();
 			}
 			string originalDni = SelectedMedico.Dni;
 
@@ -114,12 +114,12 @@ namespace ClinicaMedica {
 					//MessageBox.Show("Eliminar el médico con el DNI original y agregar el nuevo");
 					BaseDeDatos.Database["medicos"].Remove(originalDni);
 					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-					MessageBox.Show($"Se ha actualizado el DNI(clave primaria) del Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+					MessageBox.Show($"Se ha actualizado el DNI(clave primaria) de: {SelectedMedico.Name} {SelectedMedico.Lastname}");
 				}
 				else {
 					//MessageBox.Show("Crear un nuevo médico si no existe con el DNI original ni el nuevo");
 					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-					MessageBox.Show($"Se ha agregado el nuevo Medico a: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+					MessageBox.Show($"Se ha agregado el Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
 				}
 			}
 
