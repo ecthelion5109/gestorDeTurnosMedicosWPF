@@ -10,37 +10,41 @@ namespace ClinicaMedica {
 	}
 	public class Horario
 	{
-		public string Start { get; set; }
-		public string End { get; set; }
+		public string ?Start { get; set; }
+		public string ?End { get; set; }
 		public Horario(string Start, string End) {
 			this.Start = Start;
 			this.End = End;
 		}
+		public Horario(JsonElement Start, JsonElement End) {
+			this.Start = Start.GetString();
+			this.End = End.GetString();
+		}
 	}
 	
 	public class HorarioMedico {
-		public string DiaSemana { get; set; }
-		public string InicioHorario { get; set; }
-		public string FinHorario { get; set; }
+		public required string DiaSemana { get; set; }
+		public string ?InicioHorario { get; set; }
+		public string ?FinHorario { get; set; }
 		// public bool Trabaja { get; set; }
 	}
 
 	public class Medico : TablaEntidad {
 		public const string TableName = "medicos";
-		public string Name { get; set; }  // 50 caracteres máximo
-		public string Lastname { get; set; }  // 50 caracteres máximo
+		public string ?Name { get; set; }  // 50 caracteres máximo
+		public string ?Lastname { get; set; }  // 50 caracteres máximo
 		// public int Dni { get; set; }
-		public string Dni { get; set; }
-		public string Provincia { get; set; }  // 40 caracteres máximo
-		public string Domicilio { get; set; }  // 50 caracteres máximo
-		public string Localidad { get; set; }  // 50 caracteres máximo
-		public string Specialidad { get; set; }  // 20 caracteres máximo
-		public string Telefono { get; set; }
-		public bool Guardia { get; set; }
-		public DateTime FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
-		public double SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
+		public string ?Dni { get; set; }
+		public string ?Provincia { get; set; }  // 40 caracteres máximo
+		public string ?Domicilio { get; set; }  // 50 caracteres máximo
+		public string ?Localidad { get; set; }  // 50 caracteres máximo
+		public string ?Specialidad { get; set; }  // 20 caracteres máximo
+		public string ?Telefono { get; set; }
+		public bool ?Guardia { get; set; }
+		public DateTime ?FechaIngreso { get; set; }  //delimator. No puede haber ingresado hace 100 años ni haber ingresado en el futuro
+		public double ?SueldoMinimoGarantizado { get; set; } //no puede tener cero ni numeros negativos
 		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; } = new Dictionary<string, (string start, string end)>();
-		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
+		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = [];
 
 		// public Dictionary<string, (string start, string end)> DiasDeAtencion { get; set; }
 		
@@ -50,13 +54,13 @@ namespace ClinicaMedica {
 		{
 			var dias = new List<HorarioMedico>
 			{
-				new HorarioMedico { DiaSemana = "Lunes" },
-				new HorarioMedico { DiaSemana = "Martes" },
-				new HorarioMedico { DiaSemana = "Miercoles" },
-				new HorarioMedico { DiaSemana = "Jueves" },
-				new HorarioMedico { DiaSemana = "Viernes" },
-				new HorarioMedico { DiaSemana = "Sabado" },
-				new HorarioMedico { DiaSemana = "Domingo" }
+				new() { DiaSemana = "Lunes" },
+				new() { DiaSemana = "Martes" },
+				new() { DiaSemana = "Miercoles" },
+				new() { DiaSemana = "Jueves" },
+				new() { DiaSemana = "Viernes" },
+				new() { DiaSemana = "Sabado" },
+				new() { DiaSemana = "Domingo" }
 			};
 
 			foreach (var dia in dias)
@@ -88,31 +92,31 @@ namespace ClinicaMedica {
 		public Medico(string jsonElementKey, JsonElement jsonElement)
 		{
 	
-			Name = jsonElement.GetProperty("Name").GetString();
-			Lastname = jsonElement.GetProperty("Lastname").GetString();
+			Name = jsonElement.GetProperty(nameof(Name)).GetString();
+			Lastname = jsonElement.GetProperty(nameof(Lastname)).GetString();
 			// Dni = jsonElement.GetProperty("Dni").GetString();
 			Dni = jsonElementKey;
-			Provincia = jsonElement.GetProperty("Provincia").GetString();
-			Domicilio = jsonElement.GetProperty("Domicilio").GetString();
-			Localidad = jsonElement.GetProperty("Localidad").GetString();
-			Specialidad = jsonElement.GetProperty("Specialidad").GetString();
-			Telefono = jsonElement.GetProperty("Telefono").GetString();
-			Guardia = jsonElement.GetProperty("Guardia").GetBoolean();
-			FechaIngreso = DateTime.Parse(jsonElement.GetProperty("FechaIngreso").GetString());
-			SueldoMinimoGarantizado = jsonElement.GetProperty("SueldoMinimoGarantizado").GetDouble();
+			Provincia = jsonElement.GetProperty(nameof(Provincia)).GetString();
+			Domicilio = jsonElement.GetProperty(nameof(Domicilio)).GetString();
+			Localidad = jsonElement.GetProperty(nameof(Localidad)).GetString();
+			Specialidad = jsonElement.GetProperty(nameof(Specialidad)).GetString();
+			Telefono = jsonElement.GetProperty(nameof(Telefono)).GetString();
+			Guardia = jsonElement.GetProperty(nameof(Guardia)).GetBoolean();
+			//FechaIngreso = DateTime.Parse(jsonElement.GetProperty(nameof(FechaIngreso)).GetString());
+			FechaIngreso = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaIngreso)).GetString(), out var fecha) ? fecha : (DateTime?)null;
+
+			SueldoMinimoGarantizado = jsonElement.GetProperty(nameof(SueldoMinimoGarantizado)).GetDouble();
 
 			// Read days of attention
-			if (jsonElement.TryGetProperty("DiasDeAtencion", out var diasDeAtencionElement))
+			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out JsonElement diasDeAtencionElement))
 			{
 				foreach (var dia in diasDeAtencionElement.EnumerateObject())
 				{
 					var diaKey = dia.Name;
 
-					if (dia.Value.TryGetProperty("Start", out var startElement) && dia.Value.TryGetProperty("End", out var endElement))
+					if (dia.Value.TryGetProperty("Start", out JsonElement startElement) && dia.Value.TryGetProperty("End", out var endElement))
 					{
-						var start = startElement.GetString();
-						var end = endElement.GetString();
-						DiasDeAtencion[diaKey] = new Horario(start, end);
+						DiasDeAtencion[diaKey] = new Horario(startElement, endElement);
 					}
 				}
 			}
@@ -120,18 +124,17 @@ namespace ClinicaMedica {
 	}
 	
 	public class Paciente: TablaEntidad {
-		public const string TableName = "pacientes";
 		// public int Dni { get; set; }
-		public string Dni { get; set; }
-		public string Name { get; set; }
-		public string Lastname { get; set; }
-		public DateTime FechaIngreso { get; set; }  // Corrige a DateTime
-		public string Email { get; set; }
-		public string Telefono { get; set; }
-		public DateTime FechaNacimiento { get; set; }
-		public string Direccion { get; set; }
-		public string Localidad { get; set; }
-		public string Provincia { get; set; }
+		public string ?Dni { get; set; }
+		public string ?Name { get; set; }
+		public string ?Lastname { get; set; }
+		public DateTime ?FechaIngreso { get; set; }  // Corrige a DateTime
+		public string ?Email { get; set; }
+		public string ?Telefono { get; set; }
+		public DateTime ?FechaNacimiento { get; set; }
+		public string ?Direccion { get; set; }
+		public string ?Localidad { get; set; }
+		public string ?Provincia { get; set; }
 			
 
 
@@ -140,66 +143,33 @@ namespace ClinicaMedica {
 		// Constructor that takes a JsonElement
 		public Paciente(JsonElement json)
 		{
-			Dni = json.GetProperty("Dni").GetString();
-			Name = json.GetProperty("Name").GetString();
-			Lastname = json.GetProperty("Lastname").GetString();
-			FechaIngreso = json.GetProperty("FechaIngreso").GetDateTime();
-			Email = json.GetProperty("Email").GetString();
-			Telefono = json.GetProperty("Telefono").GetString();
-			FechaNacimiento = json.GetProperty("FechaNacimiento").GetDateTime();
-			Direccion = json.GetProperty("Direccion").GetString();
-			Localidad = json.GetProperty("Localidad").GetString();
-			Provincia = json.GetProperty("Provincia").GetString();
-		}
-
-		// Constructor that takes a Dictionary<string, string>
-		public Paciente(Dictionary<string, string> dict)
-		{
-			Dni = dict.GetValueOrDefault("Dni");
-			Name = dict.GetValueOrDefault("Name");
-			Lastname = dict.GetValueOrDefault("Lastname");
-			FechaIngreso = DateTime.Parse(dict.GetValueOrDefault("FechaIngreso"));
-			Email = dict.GetValueOrDefault("Email");
-			Telefono = dict.GetValueOrDefault("Telefono");
-			FechaNacimiento = DateTime.Parse(dict.GetValueOrDefault("FechaNacimiento"));
-			Direccion = dict.GetValueOrDefault("Direccion");
-			Localidad = dict.GetValueOrDefault("Localidad");
-			Provincia = dict.GetValueOrDefault("Provincia");
-		}
-
-		public void UpsertToDatabaseStr(Dictionary<string, Dictionary<string, Dictionary<string, string>>> databaseStr){
-			databaseStr[TableName][Dni]["Name"] = Name;
-			databaseStr[TableName][Dni]["Lastname"] = Lastname;
-			databaseStr[TableName][Dni]["FechaIngreso"] = FechaIngreso.ToString();
-			databaseStr[TableName][Dni]["Email"] = Email;
-			databaseStr[TableName][Dni]["Telefono"] = Telefono;
-			databaseStr[TableName][Dni]["FechaNacimiento"] = FechaNacimiento.ToString();
-			databaseStr[TableName][Dni]["Direccion"] = Direccion;
-			databaseStr[TableName][Dni]["Localidad"] = Localidad;
-			databaseStr[TableName][Dni]["Provincia"] = Provincia;
+			Dni = json.GetProperty(nameof(Dni)).GetString();
+			Name = json.GetProperty(nameof(Name)).GetString();
+			Lastname = json.GetProperty(nameof(Lastname)).GetString();
+			FechaIngreso = json.GetProperty(nameof(FechaIngreso)).GetDateTime();
+			Email = json.GetProperty(nameof(Email)).GetString();
+			Telefono = json.GetProperty(nameof(Telefono)).GetString();
+			FechaNacimiento = json.GetProperty(nameof(FechaNacimiento)).GetDateTime();
+			Direccion = json.GetProperty(nameof(Direccion)).GetString();
+			Localidad = json.GetProperty(nameof(Localidad)).GetString();
+			Provincia = json.GetProperty(nameof(Provincia)).GetString();
 		}
 	}
 	
 	public class Turno: TablaEntidad {
-		public const string TableName = "turnos";
-		public int MedicoPk { get; set; }
-		public int PacientePk { get; set; }
-		public DateTime FechaYHoraAsignada { get; set; }
+		public int ?MedicoPk { get; set; }
+		public int ?PacientePk { get; set; }
+		public DateTime ?FechaYHoraAsignada { get; set; }
 			
 		// Parameterless constructor
 		public Turno() { }
 	
 		public Turno(JsonElement jsonElement)
 		{
-			MedicoPk = jsonElement.GetProperty("MedicoPk").GetInt32();
-			PacientePk = jsonElement.GetProperty("PacientePk").GetInt32();
-			FechaYHoraAsignada = DateTime.Parse(jsonElement.GetProperty("FechaYHoraAsignada").GetString());
-		}
-		public Turno(Dictionary<string, string> dict)
-		{
-			MedicoPk = int.Parse(dict.GetValueOrDefault("MedicoPk", "0"));
-			PacientePk = int.Parse(dict.GetValueOrDefault("PacientePk", "0"));
-			FechaYHoraAsignada = DateTime.Parse(dict.GetValueOrDefault("FechaYHoraAsignada"));
+			MedicoPk = jsonElement.GetProperty(nameof(MedicoPk)).GetInt32();
+			PacientePk = jsonElement.GetProperty(nameof(PacientePk)).GetInt32();
+			FechaYHoraAsignada = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaYHoraAsignada)).GetString(), out var fecha) ? fecha : (DateTime?)null;
+
 		}
 	}
 }

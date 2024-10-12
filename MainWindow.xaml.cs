@@ -10,7 +10,7 @@ namespace ClinicaMedica
     public static class WindowExtensions{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new()
 		{
-			T nuevaVentana = new T();
+			T nuevaVentana = new();
 			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 			nuevaVentana.Show();  // Mostrar la nueva ventana
 			previousWindow.Close();  // Cerrar la ventana actual

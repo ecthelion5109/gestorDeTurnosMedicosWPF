@@ -47,7 +47,7 @@ namespace ClinicaMedica {
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			//this.NavegarA<MedicosModificar>();
 			if (SelectedMedico != null) {
-				MedicosModificar nuevaVentana = new MedicosModificar(SelectedMedico);
+				MedicosModificar nuevaVentana = new(SelectedMedico);
 				Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 				nuevaVentana.Show();  // Mostrar la nueva ventana
 				this.Close();  // Cerrar la ventana actual
