@@ -56,7 +56,7 @@ namespace ClinicaMedica {
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			// Muestra el MessageBox con botones de Aceptar y Cancelar
-			if (SelectedMedico != null) {
+			if (SelectedMedico != null && SelectedMedico.Dni != null) {
 				MessageBoxResult result = MessageBox.Show(
 					$"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}",   // Mensaje
 					"Confirmar Eliminación",                         // Título del cuadro

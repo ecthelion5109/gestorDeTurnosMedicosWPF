@@ -206,29 +206,28 @@
 			</ListView>
 		</Grid>
 		<Button FontSize="24"
-				Content="Guardar cambios"
-				HorizontalAlignment="Left"
-				Height="38"
-				VerticalAlignment="Top"
-				Width="146"
-				Click="ButtonGuardarCambios"
-				RenderTransformOrigin="0.546,3.469"
-				BorderBrush="Black"
-				Background="White"
-				FontFamily="Agency FB"
-				Margin="69,407,0,0"/>
-		<Button FontSize="24"
 				Content="Volver"
 				HorizontalAlignment="Left"
 				Height="38"
 				VerticalAlignment="Top"
 				Width="144"
-				Click="ButtonCancelar"
 				RenderTransformOrigin="0.546,3.469"
 				BorderBrush="Black"
 				Background="White"
+				Click="ButtonVolver"
 				FontFamily="Agency FB"
 				Margin="69,450,0,0"/>
+		<Button x:Name="botonMultiUso" FontSize="24"
+	  Content=""
+	  HorizontalAlignment="Left"
+	  Height="38"
+	  VerticalAlignment="Top"
+	  Width="146"
+	  RenderTransformOrigin="0.546,3.469"
+	  BorderBrush="Black"
+	  Background="White"
+	  FontFamily="Agency FB"
+	  Margin="69,407,0,0"/>
 
 
 		<!-- 

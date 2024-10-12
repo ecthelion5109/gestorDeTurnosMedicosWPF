@@ -20,25 +20,26 @@ namespace ClinicaMedica {
 	public partial class MedicosModificar : Window {
 		private static Medico ?SelectedMedico;
 		
-		public MedicosModificar() {
+		//---------------------public.constructors-------------------//
+		public MedicosModificar() //Crear medico
+		{
 			InitializeComponent();
+			
 			txtDiasDeAtencion.ItemsSource = (new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }).Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
 			
-			
+			botonMultiUso.Click += ButtonCrearMedico;
+			botonMultiUso.Content = "Crear";
 		}
 		
-		
-		
-		public MedicosModificar(Medico selectedMedico) {
+		public MedicosModificar(Medico selectedMedico) //Modificar medico
+		{
 			InitializeComponent();
-			//Medico SelectedMedico = BaseDeDatos.LeerDesdeJson<Medico>("medico.json");
-			//Medico SelectedMedico = (Medico)BaseDeDatos.DatabaseOBJ["medicos"][previousWindow.SelectedMedico.Dni];
-			// Medico SelectedMedico = (Medico)BaseDeDatos.Database["medicos"][selectedMedico.Dni];
 			SelectedMedico = selectedMedico;
 			
+			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionList();
 			this.txtNombre.Text = SelectedMedico.Name;
 			this.txtApellido.Text = SelectedMedico.Lastname;
-			this.txtDNI.Text = SelectedMedico.Dni.ToString(); ;
+			this.txtDNI.Text = SelectedMedico.Dni;
 			this.txtProvincia.Text = SelectedMedico.Provincia;
 			this.txtDomicilio.Text = SelectedMedico.Domicilio;
 			this.txtLocalidad.Text = SelectedMedico.Localidad;
@@ -46,12 +47,18 @@ namespace ClinicaMedica {
 			this.txtFechaIngreso.SelectedDate = SelectedMedico.FechaIngreso;
 			this.txtSueldoMinGarant.Text = SelectedMedico.SueldoMinimoGarantizado.ToString();
 			this.txtRealizaGuardia.IsChecked = SelectedMedico.Guardia;
-			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionList();
+			
+			botonMultiUso.Click += ButtonModificarMedico;
+			botonMultiUso.Content = "Modificar";
 		}
 
-		private void AsignarValoresAMedico(Medico SelectedMedico) {
+		//---------------------private.Procedures-------------------//
+		private bool TryAsignarValoresAMedico(Medico SelectedMedico) {
 			// MessageBox.Show(SelectedMedico.Name);
-			
+			if (string.IsNullOrEmpty(this.txtDNI.Text)) {
+				return false; 
+			}
+
 			SelectedMedico.Name = this.txtNombre.Text;
 			SelectedMedico.Lastname = this.txtApellido.Text;
 			SelectedMedico.Dni = this.txtDNI.Text;
@@ -76,56 +83,71 @@ namespace ClinicaMedica {
 					var end = diaAtencion.FinHorario;
 
 					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end)) {
-						// Add or update the existing entry in the dictionary
 						SelectedMedico.DiasDeAtencion[dia] = new Horario(start, end);
 					}
 				}
 			}
+			return true;
 		}
 
-		private void ButtonGuardarCambios(object sender, RoutedEventArgs e) {
-			if (SelectedMedico == null){
-				SelectedMedico = new Medico();
-			}
-			string originalDni = SelectedMedico.Dni;
 
-			AsignarValoresAMedico(SelectedMedico);
-			
-			if (SelectedMedico.Dni == null) {
+
+		//---------------------botones.Crear-------------------//
+		private void ButtonCrearMedico(object sender, RoutedEventArgs e) {
+			SelectedMedico = new Medico();
+			if (!TryAsignarValoresAMedico(SelectedMedico)){
+				return;
+			};
+			if ( string.IsNullOrEmpty(SelectedMedico.Dni) ) {
+				MessageBox.Show($"Campo DNI es mandatorio.");
 				return;
 			}
-
-			//MessageBox.Show($"Selected medico: {SelectedMedico.Name} {SelectedMedico.Lastname} {SelectedMedico.Dni}");
-			if (originalDni == SelectedMedico.Dni) {
-				//MessageBox.Show("Caso de actualizar un médico sin cambiar el DNI");
-				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+			else if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
+				MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
+				return;
 			}
 			else {
-				if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
-					//MessageBox.Show(" Caso de cambiar el DNI");
-					MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
-					return; // Salir si el nuevo DNI ya existe
-				}
-				else if (originalDni != null && BaseDeDatos.Database["medicos"].ContainsKey(originalDni)) {
-					//MessageBox.Show("Eliminar el médico con el DNI original y agregar el nuevo");
-					BaseDeDatos.Database["medicos"].Remove(originalDni);
-					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-					MessageBox.Show($"Se ha actualizado el DNI(clave primaria) de: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-				}
-				else {
-					//MessageBox.Show("Crear un nuevo médico si no existe con el DNI original ni el nuevo");
-					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-					MessageBox.Show($"Se ha agregado el Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-				}
+				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
+				MessageBox.Show($"Se ha agregado el Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
 			}
-
+			
 			// Guardar los cambios en el archivo JSON
 			BaseDeDatos.UpdateJsonFile();
 		}
 
-		private void ButtonCancelar(object sender, RoutedEventArgs e) {
+
+		//---------------------botones.Modificar-------------------//
+		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
+			if (SelectedMedico == null || SelectedMedico.Dni == null){
+				MessageBox.Show($"Escenario imposible. No se seleccionó ningun medico.");
+				return;
+			}
+			string originalDni = SelectedMedico.Dni;
+			if (!TryAsignarValoresAMedico(SelectedMedico)){
+				return;
+			};
+			
+			if (string.IsNullOrEmpty(SelectedMedico.Dni)) {
+				MessageBox.Show($"El DNI es obligatorio.");
+				return;
+			} 
+			else if (originalDni == SelectedMedico.Dni) {
+				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+			}
+			else {
+				BaseDeDatos.Database["medicos"].Remove(originalDni);
+				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
+				MessageBox.Show($"Se ha actualizado el DNI(clave primaria) de: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+			}
+			
+			// Guardar los cambios en el archivo JSON
+			BaseDeDatos.UpdateJsonFile();
+		}
+
+		//---------------------botones.VolverAtras-------------------//
+		private void ButtonVolver(object sender, RoutedEventArgs e) {
 			this.NavegarA<Medicos>();
 		}
+
 	}
 }
