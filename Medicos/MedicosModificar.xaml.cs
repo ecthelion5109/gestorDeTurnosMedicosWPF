@@ -36,7 +36,8 @@ namespace ClinicaMedica {
 			InitializeComponent();
 			SelectedMedico = selectedMedico;
 			
-			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionList();
+			// this.txtDiasDeAtencion.ItemsSource = SelectedMedico.DiasDeAtencion;
+			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionListForUI();
 			this.txtNombre.Text = SelectedMedico.Name;
 			this.txtApellido.Text = SelectedMedico.Lastname;
 			this.txtDNI.Text = SelectedMedico.Dni;
@@ -76,17 +77,18 @@ namespace ClinicaMedica {
 				SelectedMedico.SueldoMinimoGarantizado = sueldo;
 			}
 
-			foreach (var item in txtDiasDeAtencion.ItemsSource) {
-				if (item is HorarioMedico diaAtencion) {
-					var dia = diaAtencion.DiaSemana;
-					var start = diaAtencion.InicioHorario;
-					var end = diaAtencion.FinHorario;
-
-					if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end)) {
-						SelectedMedico.DiasDeAtencion[dia] = new Horario(start, end);
-					}
-				}
-			}
+			//SelectedMedico.DiasDeAtencion = (List<HorarioMedico>) this.txtDiasDeAtencion.ItemsSource;
+			SelectedMedico.UpdateDiasDeAtencionFromUI( (List<HorarioMedico>) this.txtDiasDeAtencion.ItemsSource);
+			// foreach (var item in txtDiasDeAtencion.ItemsSource) {
+				// if (item is HorarioMedico diaAtencion) {
+					// var dia = diaAtencion.DiaSemana;
+					// var start = diaAtencion.InicioHorario;
+					// var end = diaAtencion.FinHorario;
+					// if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end)) {
+						// SelectedMedico.DiasDeAtencion[dia] = new Horario(start, end);
+					// }
+				// }
+			// }
 			return true;
 		}
 
