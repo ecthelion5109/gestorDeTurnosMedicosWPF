@@ -39,6 +39,19 @@ namespace ClinicaMedica {
 		
 		
 		private string? _name;
+		private string? _lastname;
+		private string? _dni;
+		private string? _domicilio;
+		private string? _localidad;
+		private string? _specialidad;
+		private string? _telefono;
+		private bool? _guardia;
+		private DateTime? _fechaIngreso;
+		private double? _sueldoMinimoGarantizado;
+		private string? _provincia;
+		
+		
+		
 		public string? Name {
 			get => _name;
 			set {
@@ -50,7 +63,6 @@ namespace ClinicaMedica {
 		}
 
 
-		private string? _lastname;
 		public string? Lastname {
 			get => _lastname;
 			set {
@@ -62,7 +74,6 @@ namespace ClinicaMedica {
 		}
 		
 		
-		private string? _dni;
 		public string? Dni {
 			get => _dni;
 			set {
@@ -74,7 +85,6 @@ namespace ClinicaMedica {
 		}
 
 		
-		private string? _provincia;
 		public string? Provincia {
 			get => _provincia;
 			set {
@@ -86,7 +96,6 @@ namespace ClinicaMedica {
 		}
 
 		
-		private string? _domicilio;
 		public string? Domicilio {
 			get => _domicilio;
 			set {
@@ -98,7 +107,6 @@ namespace ClinicaMedica {
 		}
 
 		
-		private string? _localidad;
 		public string? Localidad {
 			get => _localidad;
 			set {
@@ -110,7 +118,6 @@ namespace ClinicaMedica {
 		}
 
 		
-		private string? _specialidad;
 		public string? Specialidad {
 			get => _specialidad;
 			set {
@@ -122,7 +129,6 @@ namespace ClinicaMedica {
 		}
 		
 		
-		private string? _telefono;
 		public string? Telefono {
 			get => _telefono;
 			set {
@@ -133,8 +139,6 @@ namespace ClinicaMedica {
 			}
 		}
 		
-		
-		private bool? _guardia;
 		public bool? Guardia {
 			get => _guardia;
 			set {
@@ -146,7 +150,6 @@ namespace ClinicaMedica {
 		}
 		
 		
-		private DateTime? _fechaIngreso;
 		public DateTime? FechaIngreso {
 			get => _fechaIngreso;
 			set {
@@ -158,7 +161,6 @@ namespace ClinicaMedica {
 		}
 		
 		
-		private double? _sueldoMinimoGarantizado;
 		public double? SueldoMinimoGarantizado {
 			get => _sueldoMinimoGarantizado;
 			set {

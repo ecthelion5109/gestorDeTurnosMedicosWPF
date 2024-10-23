@@ -24,7 +24,15 @@ namespace ClinicaMedica {
 		public Medicos() {
 			InitializeComponent();
 			// generar
-			MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
+
+
+			if (BaseDeDatos.TIPO == DatabaseType.JSON) {
+				MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
+			} else {
+				//averiguar como mierda conectar esto. "comomireda se chupa la columnas de medico"
+				MedicoListView.ItemsSource = null;
+			}
+
 		}
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {

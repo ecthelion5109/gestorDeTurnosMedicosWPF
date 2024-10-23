@@ -4,8 +4,18 @@ using Newtonsoft.Json;
 using System.Windows.Controls;
 
 namespace ClinicaMedica {
+	public enum DatabaseType {
+		JSON,
+		SQL
+	}
 	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
+		public static DatabaseType TIPO = DatabaseType.JSON;
+
+
+
+
+
 		//------------------------Properties------------------//
 		public static string archivoPath = "database.json";
 		private static Dictionary<string, Dictionary<string, object>> _database;
@@ -103,25 +113,6 @@ namespace ClinicaMedica {
 			BaseDeDatos.GuardarComoJson(turno, "turno.json");
 
 			MessageBox.Show($"Se ha guardado el turno para la fecha: {turno.FechaYHoraAsignada}");
-
-
-			/*
-			var turnos = new List<Turno>();
-
-			// Generar 10 turnos por cada hora de 8 a 17
-			for (int hora = 8; hora <= 17; hora++) {
-				for (int turno = 1; turno <= 10; turno++) {
-					turnos.Add(new Turno {
-						Hora = $"{hora:00}:00",
-						NumeroTurno = turno,
-						Estado = "Disponible" // Puedes modificar esto según el estado real
-					});
-				}
-			}
-
-			// Asignar la lista de turnos al DataGrid
-			DataGridTurnos.ItemsSource = turnos;
-			*/
 		}
 
 

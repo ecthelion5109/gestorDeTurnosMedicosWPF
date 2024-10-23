@@ -24,6 +24,19 @@ namespace ClinicaMedica
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();
+			BaseDeDatos.TIPO = DatabaseType.SQL;
+
+
+
+
+
+
+
+
+
+
+
+
 		}
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.NavegarA<Login>();
