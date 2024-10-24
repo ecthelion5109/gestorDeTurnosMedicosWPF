@@ -65,5 +65,10 @@ namespace ClinicaMedica
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e){
 			this.NavegarA<Medicos>();
 		}
-	}
+
+        private void MetodoBotonPacientes(object sender, RoutedEventArgs e)
+        {
+            this.NavegarA<Pacientes>();
+        }
+    }
 }
