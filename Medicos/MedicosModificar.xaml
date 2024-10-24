@@ -218,7 +218,7 @@
 				FontFamily="Agency FB"
 				Margin="69,450,0,0"/>
 		<Button x:Name="botonMultiUso" FontSize="24"
-	  Content=""
+	  Content="Guardar cambios"
 	  HorizontalAlignment="Left"
 	  Height="38"
 	  VerticalAlignment="Top"
@@ -227,7 +227,8 @@
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
-	  Margin="69,407,0,0"/>
+	  Margin="69,407,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="242,407,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 
 		<!-- 

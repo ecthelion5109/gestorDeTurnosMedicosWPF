@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ClinicaMedica
 {
     /// <summary>
-    /// Lógica de interacción para PacientesAgregar.xaml
+    /// Lógica de interacción para PacientesModificar.xaml
     /// </summary>
-    public partial class PacientesAgregar : Window
+    public partial class PacientesModificar : Window
     {
-        public PacientesAgregar()
+        public PacientesModificar()
         {
             InitializeComponent();
         }

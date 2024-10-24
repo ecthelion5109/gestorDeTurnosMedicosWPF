@@ -230,7 +230,7 @@ namespace ClinicaMedica {
 		}
 		
 		// Lista a --> Dictionary de DiasDeAtencion
-		public void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
+		private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
 			DiasDeAtencion.Clear();
 			foreach (var dia in diasFromUI) {
 				if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
@@ -239,9 +239,32 @@ namespace ClinicaMedica {
 			}
 		}
 		
+		public bool TryAsignarDatos(MedicosModificar window){ 
+			if (window.txtFechaIngreso.SelectedDate == null || window.txtSueldoMinGarant.Text is null || window.txtDNI.Text is null) {
+				return false;
+			}
 		
-		
-		
+			this.Name = window.txtNombre.Text;
+			this.Lastname = window.txtApellido.Text;
+			this.Dni = window.txtDNI.Text;
+			this.Provincia = window.txtProvincia.Text;
+			this.Domicilio = window.txtDomicilio.Text;
+			this.Localidad = window.txtLocalidad.Text;
+			this.Specialidad = window.txtEspecialidad.Text;
+			if (window.txtRealizaGuardia.IsChecked != null) {
+				this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
+			}
+			if (window.txtFechaIngreso.SelectedDate != null){ 
+				this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate; 
+			}
+			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)) {
+				this.SueldoMinimoGarantizado = sueldo;
+			}
+
+			this.UpdateDiasDeAtencionFromUI( (List<HorarioMedico>) window.txtDiasDeAtencion.ItemsSource);
+			
+			return true;
+		}
 		
 		
 		
@@ -284,6 +307,12 @@ namespace ClinicaMedica {
 			Localidad = json.GetProperty(nameof(Localidad)).GetString();
 			Provincia = json.GetProperty(nameof(Provincia)).GetString();
 		}
+		
+		
+		public void AsignarDatos(PacientesModificar window){
+			// LLENAR ESTO
+			// this.Dni = window.dni;
+		}
 	}
 	
 	public class Turno: TablaEntidad {
@@ -300,6 +329,13 @@ namespace ClinicaMedica {
 			PacientePk = jsonElement.GetProperty(nameof(PacientePk)).GetInt32();
 			FechaYHoraAsignada = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaYHoraAsignada)).GetString(), out var fecha) ? fecha : (DateTime?)null;
 
+		}
+		
+		
+		public void AsignarDatos(TurnosModificar window){
+            this.PacientePk = int.Parse( window.txtpaciente.SelectedItem?.ToString() );
+			this.MedicoPk = int.Parse(window.txtmedico.Text);
+			this.FechaYHoraAsignada =  (DateTime) window.txtfecha.SelectedDate;
 		}
 	}
 }

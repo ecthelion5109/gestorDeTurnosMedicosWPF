@@ -12,7 +12,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/images/turnos.png"/>
         </Grid.Background>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="30,300,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
+        <Button Content="Agregar " HorizontalAlignment="Left" Margin="230,357,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
         <Button Content="Modificar " HorizontalAlignment="Left" Margin="220,299,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
 		<Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="30,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
         <Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="496,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>

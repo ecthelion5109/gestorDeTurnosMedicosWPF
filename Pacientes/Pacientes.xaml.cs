@@ -31,8 +31,8 @@ namespace ClinicaMedica {
 			this.NavegarA<MainWindow>();
 		}
 
-		private void ButtonPacientesAgregar(object sender, RoutedEventArgs e) {
-			this.NavegarA<PacientesAgregar>();
+		private void ButtonPacientesModificar(object sender, RoutedEventArgs e) {
+			this.NavegarA<PacientesModificar>();
 		}
 
 		private void ButtonHome(object sender, RoutedEventArgs e) {
@@ -44,5 +44,9 @@ namespace ClinicaMedica {
 			Application.Current.Shutdown();
 
 		}
-	}
+
+		private void ButtonPacientesAgregar(object sender, RoutedEventArgs e) {
+
+        }
+    }
 }

@@ -22,26 +22,30 @@ namespace ClinicaMedica
         public TurnosModificar()
         {
             InitializeComponent();
-        }
+
+			// Leer la instancia desde el archivo JSON
+			// Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
+
+			// Asignar el DNI al ComboBox
+			// txtpaciente.Items.Add(turnoLeido.PacientePk);
+
+			// Opcionalmente, puedes seleccionar automáticamente el primer valor:
+			// txtpaciente.SelectedIndex = 0;
+
+		}
 
         private void ButtonSalir(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        private void ButtonTurnos(object sender, RoutedEventArgs e)
+        private void ButtonCancelar(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<TurnosVer>();
+            this.NavegarA<Turnos>();
         }
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<TurnosVer>();
-        }
-
-        private void ButtonCancelar(object sender, RoutedEventArgs e)
-        {
-            this.NavegarA<Turnos>();
         }
     }
 }

@@ -10,6 +10,26 @@ namespace ClinicaMedica
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+	public enum SqlOperationType {
+		CREATE,
+		READ,
+		UPDATE,
+		DELETE
+	}
+	public enum OperationCode {
+		YA_EXISTE,
+		CREATE_SUCCESS,
+		UPDATE_SUCCESS,
+		DELETE_SUCCESS,
+		MISSING_DNI,
+		MISSING_FIELDS,
+		ERROR,
+		DATOS_LEIDOS
+	}
+	public enum DatabaseType {
+		JSON,
+		SQL
+	}
 
     public static class WindowExtensions{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new()
@@ -27,9 +47,11 @@ namespace ClinicaMedica
 	
 	public partial class MainWindow : Window {
 		//SQL.SqlConnection.SqlClientPermission miConexionSql;
+		public static DatabaseType TIPO = DatabaseType.JSON;
 		public MainWindow() {
 			InitializeComponent();
-			BaseDeDatos.TIPO = DatabaseType.SQL;
+			MainWindow.TIPO = DatabaseType.SQL;
+			MainWindow.TIPO = DatabaseType.JSON;
 
 			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 
