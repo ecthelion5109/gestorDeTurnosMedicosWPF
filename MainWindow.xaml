@@ -7,21 +7,21 @@
         mc:Ignorable="d"
         Title="Clinica Medica - Home" Height="450" Width="800"
 		 Icon="images/icono.png" WindowStartupLocation="CenterScreen">
-	<Grid Margin="0,0,-28,0">
-		<Grid.Background>
-			<ImageBrush ImageSource="/images/bv.jpg"/>
-		</Grid.Background>
+    <Grid Margin="0,0,-28,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/bv.jpg"/>
+        </Grid.Background>
 
-		<Label Content="Clinica Medica `Mala Praxis SXXI´" Margin="0,1,0,0" FontSize="24" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="716" VerticalAlignment="Top" Foreground="DarkBlue" Height="79" />
-		<Button Content="SALIR" HorizontalAlignment="Left" Margin="576,336,0,0" VerticalAlignment="Top" Height="38" Width="104" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonSalir" RenderTransformOrigin="-0.324,0.588"/>
-		<!-- <Button Content="TURNOS" HorizontalAlignment="Left" Margin="95,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/> -->
-		<!-- <Button Content="PACIENTES" HorizontalAlignment="Left" Margin="560,286,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonPacientes"/> -->
-		<Button Content="Medicos" HorizontalAlignment="Left" Margin="552,254,0,0" VerticalAlignment="Top" Height="40" Width="128" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonMedicos"/>
-		<Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="560,175,0,0" VerticalAlignment="Top" Height="42" Width="120" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
-		<Label Content="Bienvenido Señor Gestor" Margin="0,85,0,0" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="324" VerticalAlignment="Top" Foreground="Black"/>
-		<!-- <Button Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
-		<!-- <Button Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
+        <Label Content="Clinica Medica `Mala Praxis SXXI´" Margin="0,1,0,0" FontSize="24" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="716" VerticalAlignment="Top" Foreground="DarkBlue" Height="79" />
+        <Button Content="SALIR" HorizontalAlignment="Left" Margin="560,336,0,0" VerticalAlignment="Top" Height="38" Width="124" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonSalir" RenderTransformOrigin="-0.324,0.588"/>
+        <!-- <Button Content="TURNOS" HorizontalAlignment="Left" Margin="95,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/> -->
+        <Button Content="PACIENTES" HorizontalAlignment="Left" Margin="556,289,0,0" VerticalAlignment="Top" Height="37" Width="128" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonPacientes"/>
+        <Button Content="Medicos" HorizontalAlignment="Left" Margin="556,232,0,0" VerticalAlignment="Top" Height="40" Width="128" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonMedicos"/>
+        <Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="560,175,0,0" VerticalAlignment="Top" Height="42" Width="120" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
+        <Label Content="Bienvenido Señor Gestor" Margin="0,85,0,0" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="324" VerticalAlignment="Top" Foreground="Black"/>
+        <!-- <Button Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
+        <!-- <Button Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 
-	</Grid>
+    </Grid>
 
 </Window>
