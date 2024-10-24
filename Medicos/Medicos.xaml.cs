@@ -62,7 +62,14 @@ namespace ClinicaMedica {
 							Dni = reader["dni"]?.ToString(),
 							Name = reader["nombre"]?.ToString(),
 							Lastname = reader["apellido"]?.ToString(),
+							Provincia = reader["provincia"]?.ToString(),
+							Domicilio = reader["domicilio"]?.ToString(),
+							Localidad = reader["localidad"]?.ToString(),
 							Specialidad = reader["especialidad"]?.ToString(),
+							Telefono = reader["telefono"]?.ToString(),
+							Guardia = reader["guardia"] != DBNull.Value ? Convert.ToBoolean(reader["guardia"]) : false,
+							FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
+							SueldoMinimoGarantizado = reader["sueldo_minimo_garantizado"] != DBNull.Value ? Convert.ToDouble(reader["sueldo_minimo_garantizado"]) : 0.0
 						};
 						medicoList.Add(medico);
 					}
