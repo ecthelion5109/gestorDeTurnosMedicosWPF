@@ -44,51 +44,71 @@ namespace ClinicaMedica {
 			//botonMultiUso.Click += ButtonModificarMedico;
 			//botonMultiUso.Content = "Modificar";
 		}
+		
+		private bool CorroborarUserInputEsSeguro(){
+			return !(string.IsNullOrEmpty(this.txtSueldoMinGarant.Text) ||
+					 string.IsNullOrEmpty(this.txtDNI.Text) ||
+					 this.txtFechaIngreso.SelectedDate is null ||
+					 this.txtRealizaGuardia.IsChecked is null);
+		}
 
-
-
-
+		
+		private bool CorroborarQueNoExistaDNI(){
+			//if (MainWindow.DB_MODO == DatabaseType.JSON){
+				return BaseDeDatosJSON.Database["medicos"].ContainsKey(this.txtDNI.Text);
+			//}
+		}
 		//---------------------botones.GuardarCambios-------------------//
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			OperationCode operacion;
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
-				SelectedMedico = new Medico();
-				if (!SelectedMedico.TryAsignarDatos(this)) {
-					operacion = OperationCode.MISSING_FIELDS;
-				}
-				else if (MainWindow.TIPO == DatabaseType.JSON) {
-					operacion = BaseDeDatosJSON.CreateMedico(SelectedMedico);
+				if (CorroborarUserInputEsSeguro()) {
+					if (CorroborarQueNoExistaDNI()){
+						operacion = OperationCode.YA_EXISTE;
+					}
+					else if (MainWindow.DB_MODO == DatabaseType.JSON) {
+						SelectedMedico = new Medico(this);
+						operacion = BaseDeDatosJSON.CreateMedico(SelectedMedico);
+					}
+					else {
+						SelectedMedico = new Medico(this);
+						operacion = BaseDeDatosSQL.CreateMedico(SelectedMedico);
+					}
 				}
 				else {
-					operacion = BaseDeDatosSQL.CreateMedico(SelectedMedico);
+					operacion = OperationCode.MISSING_FIELDS;
 				}
 			}
 			//---------Modificar-----------//
 			else {
-				// MessageBox.Show($"{SelectedMedico.Name} esta selecionado {SelectedMedico.Dni} ");
 				string originalDni = SelectedMedico.Dni;
-				if (!SelectedMedico.TryAsignarDatos(this)) {
-					operacion = OperationCode.MISSING_FIELDS;
-					if (MainWindow.TIPO == DatabaseType.JSON) {
+				if (CorroborarUserInputEsSeguro()) {
+					SelectedMedico.AsignarDatosFromWindow(this);
+					if (MainWindow.DB_MODO == DatabaseType.JSON) {
 						operacion = BaseDeDatosJSON.UpdateMedico(SelectedMedico, originalDni);
 					}
 					else {
 						operacion = BaseDeDatosSQL.UpdateMedico(SelectedMedico, originalDni);
 					}
 				}
+				else {
+					operacion = OperationCode.MISSING_FIELDS;
+				}
 			}
+
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
 				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han updateado los datos de: {SelectedMedico.Name} {SelectedMedico.Lastname}",
-				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.Lastname} de la base de Datos",
-				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}",
+				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedMedico.Name} {SelectedMedico.Lastname}",
+				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.Lastname} de la base de Datos",
+				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDNI.Text}",
 				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
 				_ => "Error: Sin definir"
 			});
 		}
+
 
 		//---------------------botones.Eliminar-------------------//
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
@@ -107,7 +127,7 @@ namespace ClinicaMedica {
 			}
 			//---------Eliminar-----------//
 			OperationCode operacion;
-			if (MainWindow.TIPO == DatabaseType.JSON) {
+			if (MainWindow.DB_MODO == DatabaseType.JSON) {
 				operacion = BaseDeDatosJSON.DeleteMedico(SelectedMedico.Dni); //MODO JSON
 			}
 			else {
@@ -115,11 +135,7 @@ namespace ClinicaMedica {
 			}
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
-				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han updateado los datos de: {SelectedMedico.Name} {SelectedMedico.Lastname}",
 				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.Lastname} de la base de Datos",
-				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}",
-				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				_ => "Error: Sin definir"
 			});
 		}

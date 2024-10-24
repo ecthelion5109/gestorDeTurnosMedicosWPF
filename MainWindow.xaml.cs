@@ -18,6 +18,7 @@ namespace ClinicaMedica
 	}
 	public enum OperationCode {
 		YA_EXISTE,
+		SUCCESS,
 		CREATE_SUCCESS,
 		UPDATE_SUCCESS,
 		DELETE_SUCCESS,
@@ -47,11 +48,11 @@ namespace ClinicaMedica
 	
 	public partial class MainWindow : Window {
 		//SQL.SqlConnection.SqlClientPermission miConexionSql;
-		public static DatabaseType TIPO = DatabaseType.JSON;
+		public static DatabaseType DB_MODO = DatabaseType.JSON;
 		public MainWindow() {
 			InitializeComponent();
-			MainWindow.TIPO = DatabaseType.SQL;
-			MainWindow.TIPO = DatabaseType.JSON;
+			MainWindow.DB_MODO = DatabaseType.SQL;
+			// MainWindow.DB_MODO = DatabaseType.JSON;
 
 			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 

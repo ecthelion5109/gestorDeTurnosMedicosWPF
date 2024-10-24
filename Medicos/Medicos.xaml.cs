@@ -10,7 +10,7 @@ namespace ClinicaMedica {
 		public Medicos() {
 			InitializeComponent();
 			
-			if (MainWindow.TIPO == DatabaseType.JSON) //MODO JSON
+			if (MainWindow.DB_MODO == DatabaseType.JSON) //MODO JSON
 			{
 				MedicoListView.ItemsSource = BaseDeDatosJSON.ReadMedicos();
 			}

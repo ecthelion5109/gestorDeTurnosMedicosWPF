@@ -8,29 +8,31 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------CREATE----------------------//
-		public static OperationCode CreateMedico(Medico medico){
+		public static OperationCode CreateMedico(Medico medico) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
-			string insertQuery = "INSERT INTO Medico (nombre, apellido, especialidad, dni, ...) VALUES (@nombre, @apellido, @especialidad, @dni, ...)";
-			using (SqlConnection connection = new SqlConnection(connectionString)){
+			string insertQuery = "INSERT INTO Medico (nombre, apellido, especialidad, sueldo_minimo_garantizado, fecha_ingreso, dni) VALUES (@nombre, @apellido, @especialidad, @sueldo_minimo_garantizado, @fecha_ingreso, @dni)";
+			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
 				checkCommand.Parameters.AddWithValue("@dni", medico.Dni);
 				connection.Open();
-				if ((int)checkCommand.ExecuteScalar() > 0){
+				if ((int)checkCommand.ExecuteScalar() > 0) {
 					return OperationCode.YA_EXISTE;
 				}
-				SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
-				insertCommand.Parameters.AddWithValue("@nombre", medico.Name);
-				insertCommand.Parameters.AddWithValue("@apellido", medico.Lastname);
-				insertCommand.Parameters.AddWithValue("@especialidad", medico.Specialidad);
-				insertCommand.Parameters.AddWithValue("@dni", medico.Dni);
+				SqlCommand sqlComando = new SqlCommand(insertQuery, connection);
+				sqlComando.Parameters.AddWithValue("@nombre", medico.Name);
+				sqlComando.Parameters.AddWithValue("@apellido", medico.Lastname);
+				sqlComando.Parameters.AddWithValue("@especialidad", medico.Specialidad);
+				sqlComando.Parameters.AddWithValue("@sueldo_minimo_garantizado", medico.SueldoMinimoGarantizado);
+				sqlComando.Parameters.AddWithValue("@fecha_ingreso", medico.FechaIngreso);
+				sqlComando.Parameters.AddWithValue("@dni", medico.Dni);
 				// Add parameters for all other fields you want to insert
-				insertCommand.ExecuteNonQuery();
+				sqlComando.ExecuteNonQuery();
 			}
 			return OperationCode.CREATE_SUCCESS;
 		}
 
-		
-		
+
+
 		//------------------------READ----------------------//
 		public static List<Medico> ReadMedicos() {
 			List<Medico> medicoList = new List<Medico>();
@@ -67,38 +69,38 @@ namespace ClinicaMedica {
 
 
 		//------------------------UPDATE----------------------//
+
+		//public CorroborororarDNIIntegrigrty(){
+
+
+
+
+		//}
+
+
 		public static OperationCode UpdateMedico(Medico medico, string originalDni) {
-			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni AND id != @id";
-			string updateQuery = "UPDATE Medico SET nombre = @nombre, apellido = @apellido, especialidad = @especialidad, ... WHERE id = @id";
+			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
+			string updateQuery = "UPDATE Medico SET nombre = @nombre, apellido = @apellido, especialidad = @especialidad, sueldo_minimo_garantizado = @sueldo_minimo_garantizado,  fecha_ingreso = @fecha_ingreso, dni = @dni WHERE dni = @originalDni";
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				try {
+				// try {
 					connection.Open();
 
-					// Check if another Medico with the same DNI exists
-					using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection)) {
-						checkCommand.Parameters.AddWithValue("@dni", medico.Dni);
-						//checkCommand.Parameters.AddWithValue("@id", medico.Id);
-
-						int count = (int)checkCommand.ExecuteScalar();
-						if (count > 0) {
-							return OperationCode.MISSING_DNI;
-						}
-					}
-
 					// Proceed with the update if no conflicts are found
-					using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection)) {
-						updateCommand.Parameters.AddWithValue("@nombre", medico.Name);
-						updateCommand.Parameters.AddWithValue("@apellido", medico.Lastname);
-						updateCommand.Parameters.AddWithValue("@especialidad", medico.Specialidad);
-						// Add parameters for other fields you want to update
-
-						updateCommand.ExecuteNonQuery();
+					using (SqlCommand sqlComando = new SqlCommand(updateQuery, connection)) {
+						sqlComando.Parameters.AddWithValue("@nombre", medico.Name);
+						sqlComando.Parameters.AddWithValue("@apellido", medico.Lastname);
+						sqlComando.Parameters.AddWithValue("@especialidad", medico.Specialidad);
+						sqlComando.Parameters.AddWithValue("@sueldo_minimo_garantizado", medico.SueldoMinimoGarantizado);
+						sqlComando.Parameters.AddWithValue("@fecha_ingreso", medico.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@dni", medico.Dni);
+						sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
+						sqlComando.ExecuteNonQuery();
 					}
-				}
-				catch (SqlException) {
+				//}
+				// catch (SqlException) {
 					// Handle SQL-related exceptions if needed
-					return OperationCode.ERROR;
-				}
+					// return OperationCode.ERROR;
+				// }
 			}
 
 			return OperationCode.UPDATE_SUCCESS;
@@ -107,14 +109,12 @@ namespace ClinicaMedica {
 
 
 		//------------------------DELETE----------------------//
-		public static OperationCode DeleteMedico(string medicoId)
-		{
-			string query = "DELETE FROM Medico WHERE id = @id";
+		public static OperationCode DeleteMedico(string medicoDni) {
+			string query = "DELETE FROM Medico WHERE dni = @dni";
 
-			using (SqlConnection connection = new SqlConnection(connectionString))
-			{
+			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				SqlCommand command = new SqlCommand(query, connection);
-				command.Parameters.AddWithValue("@id", medicoId);
+				command.Parameters.AddWithValue("@dni", medicoDni);
 
 				connection.Open();
 				command.ExecuteNonQuery();

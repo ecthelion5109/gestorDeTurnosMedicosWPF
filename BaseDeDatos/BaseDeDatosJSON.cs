@@ -12,12 +12,6 @@ namespace ClinicaMedica {
 		
 		//------------------------public.CREATE----------------------//
 		public static OperationCode CreateMedico(Medico medico){
-			// if (string.IsNullOrEmpty(medico.Dni)) {
-				// return OperationCode.MISSING_DNI;
-			// }
-			if (BaseDeDatosJSON.Database["medicos"].ContainsKey(medico.Dni)) {
-				return OperationCode.YA_EXISTE;
-			}
 			BaseDeDatosJSON.Database["medicos"][medico.Dni] = medico;
 			BaseDeDatosJSON.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.CREATE_SUCCESS;

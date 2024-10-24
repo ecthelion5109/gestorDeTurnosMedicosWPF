@@ -182,7 +182,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-		// Constructor para declarar vacio
+	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }
 
 		// Constructor para jsons
@@ -207,6 +207,24 @@ namespace ClinicaMedica {
 					}
 				}
 			}
+		}
+
+		public Medico(MedicosModificar window){
+			this.Name = window.txtNombre.Text;
+			this.Lastname = window.txtApellido.Text;
+			this.Dni = window.txtDNI.Text;
+			this.Provincia = window.txtProvincia.Text;
+			this.Domicilio = window.txtDomicilio.Text;
+			this.Localidad = window.txtLocalidad.Text;
+			this.Specialidad = window.txtEspecialidad.Text;
+			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
+			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)){
+				this.SueldoMinimoGarantizado = sueldo;
+			} else {
+				this.SueldoMinimoGarantizado = 0; // Set a default value if parsing fails
+			}
+			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
 		}
 
 		// Dictionario de DiasDeAtencion --> a Lista
@@ -239,11 +257,7 @@ namespace ClinicaMedica {
 			}
 		}
 		
-		public bool TryAsignarDatos(MedicosModificar window){ 
-			if (window.txtFechaIngreso.SelectedDate == null || window.txtSueldoMinGarant.Text is null || window.txtDNI.Text is null) {
-				return false;
-			}
-		
+		public Medico AsignarDatosFromWindow(MedicosModificar window){ 
 			this.Name = window.txtNombre.Text;
 			this.Lastname = window.txtApellido.Text;
 			this.Dni = window.txtDNI.Text;
@@ -251,22 +265,15 @@ namespace ClinicaMedica {
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
 			this.Specialidad = window.txtEspecialidad.Text;
-			if (window.txtRealizaGuardia.IsChecked != null) {
-				this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
-			}
-			if (window.txtFechaIngreso.SelectedDate != null){ 
-				this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate; 
-			}
+			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
+			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate; 
 			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)) {
 				this.SueldoMinimoGarantizado = sueldo;
 			}
-
 			this.UpdateDiasDeAtencionFromUI( (List<HorarioMedico>) window.txtDiasDeAtencion.ItemsSource);
 			
-			return true;
+			return this;
 		}
-		
-		
 		
 		
 		
