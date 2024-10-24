@@ -1,26 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ClinicaMedica {
 	/// <summary>
 	/// Lógica de interacción para Medicos.xaml
 	/// </summary>
 	public partial class Medicos : Window {
-		private static Medico ?SelectedMedico;
+		private static Medico? SelectedMedico;
 
 
 		public Medicos() {
@@ -28,63 +15,16 @@ namespace ClinicaMedica {
 			// generar
 
 
-			if (BaseDeDatos.TIPO == DatabaseType.JSON) {
-				MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
-			} else {
-				//averiguar como mierda conectar esto. "comomireda se chupa la columnas de medico"
-				MedicoListView.ItemsSource = LoadMedicoData();
+			if (BaseDeDatos.TIPO == DatabaseType.JSON) //MODO JSON
+			{
+				MedicoListView.ItemsSource = BaseDeDatos.JsonLoadMedicoData();
+			}
+			else //MODO SQL
+			{
+				MedicoListView.ItemsSource = BaseDeDatos.SQL_ReadMedicos();
 			}
 
 		}
-
-
-
-
-		private List<Medico> LoadMedicoData() {
-			// Get the connection string from the config file
-			string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
-
-			// List to store Medico instances
-			List<Medico> medicoList = new List<Medico>();
-
-			// SQL query to retrieve data from Medico table
-			string query = "SELECT * FROM Medico";
-
-			try {
-				using (SqlConnection connection = new SqlConnection(miConexion)) {
-					SqlCommand command = new SqlCommand(query, connection);
-					connection.Open();
-
-					SqlDataReader reader = command.ExecuteReader();
-
-					while (reader.Read()) {
-						Medico medico = new Medico {
-							Dni = reader["dni"]?.ToString(),
-							Name = reader["nombre"]?.ToString(),
-							Lastname = reader["apellido"]?.ToString(),
-							Provincia = reader["provincia"]?.ToString(),
-							Domicilio = reader["domicilio"]?.ToString(),
-							Localidad = reader["localidad"]?.ToString(),
-							Specialidad = reader["especialidad"]?.ToString(),
-							Telefono = reader["telefono"]?.ToString(),
-							Guardia = reader["guardia"] != DBNull.Value ? Convert.ToBoolean(reader["guardia"]) : false,
-							FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
-							SueldoMinimoGarantizado = reader["sueldo_minimo_garantizado"] != DBNull.Value ? Convert.ToDouble(reader["sueldo_minimo_garantizado"]) : 0.0
-						};
-						medicoList.Add(medico);
-					}
-					reader.Close();
-				}
-			}
-			catch (Exception ex) {
-				MessageBox.Show("Error retrieving data: " + ex.Message);
-			}
-
-			return medicoList;
-		}
-
-
-
 
 
 
@@ -95,11 +35,12 @@ namespace ClinicaMedica {
 
 		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (MedicoListView.SelectedItem != null) {
-				SelectedMedico = (Medico) MedicoListView.SelectedItem;
+				SelectedMedico = (Medico)MedicoListView.SelectedItem;
 				buttonModificar.IsEnabled = true;
 				buttonEliminar.IsEnabled = true;
 				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
-			} else {
+			}
+			else {
 				buttonModificar.IsEnabled = false;
 				buttonEliminar.IsEnabled = false;
 			}
@@ -126,14 +67,17 @@ namespace ClinicaMedica {
 				);
 
 				if (result == MessageBoxResult.OK) {
-					BaseDeDatos.Database["medicos"].Remove(SelectedMedico.Dni);
-
-					// regenerar
-					MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList(); // Reassign to refresh the ListView
-																												 // MessageBox.Show("El médico ha sido eliminado.");
-
-					// Save changes to the database
-					BaseDeDatos.UpdateJsonFile();
+					if (BaseDeDatos.TIPO == DatabaseType.JSON) //MODO JSON
+					{
+						BaseDeDatos.Database["medicos"].Remove(SelectedMedico.Dni);
+						MedicoListView.ItemsSource = BaseDeDatos.JsonLoadMedicoData();	//refresh shit
+						BaseDeDatos.UpdateJsonFile(); // Save changes to the database
+					}
+					else  //MODO SQL
+					{
+						BaseDeDatos.SQL_DeleteMedico(SelectedMedico.Dni);
+						MedicoListView.ItemsSource = BaseDeDatos.SQL_ReadMedicos();
+					}
 				}
 			}
 		}

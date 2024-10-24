@@ -104,17 +104,18 @@ namespace ClinicaMedica {
 				MessageBox.Show($"Campo DNI es mandatorio.");
 				return;
 			}
-			else if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
+			if (BaseDeDatos.Database["medicos"].ContainsKey(SelectedMedico.Dni)) {
 				MessageBox.Show($"Error: Ya existe un médico con DNI: {SelectedMedico.Dni}");
 				return;
 			}
-			else {
+			if (BaseDeDatos.TIPO == DatabaseType.JSON) //MODO JSON
+			{
 				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
 				MessageBox.Show($"Se ha agregado el Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				BaseDeDatos.UpdateJsonFile(); // Guardar los cambios en el archivo JSON
+			} else {
+				BaseDeDatos.SQL_UpdateMedico(SelectedMedico);
 			}
-			
-			// Guardar los cambios en el archivo JSON
-			BaseDeDatos.UpdateJsonFile();
 		}
 
 
@@ -133,17 +134,27 @@ namespace ClinicaMedica {
 				MessageBox.Show($"El DNI es obligatorio.");
 				return;
 			} 
-			else if (originalDni == SelectedMedico.Dni) {
-				MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-			}
-			else {
-				BaseDeDatos.Database["medicos"].Remove(originalDni);
-				BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
-				MessageBox.Show($"Se ha actualizado el DNI(clave primaria) de: {SelectedMedico.Name} {SelectedMedico.Lastname}");
-			}
 			
-			// Guardar los cambios en el archivo JSON
-			BaseDeDatos.UpdateJsonFile();
+			
+			
+			if (BaseDeDatos.TIPO == DatabaseType.JSON) //MODO JSON
+			{
+				if (originalDni == SelectedMedico.Dni) {
+					MessageBox.Show($"Se han guardado los cambios de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				}
+				else {
+					BaseDeDatos.Database["medicos"].Remove(originalDni);
+					BaseDeDatos.Database["medicos"][SelectedMedico.Dni] = SelectedMedico;
+					MessageBox.Show($"Se ha actualizado el DNI(clave primaria) de: {SelectedMedico.Name} {SelectedMedico.Lastname}");
+				}
+				
+				// Guardar los cambios en el archivo JSON
+				BaseDeDatos.UpdateJsonFile();
+			} else //MODO SQL
+			{
+				BaseDeDatos.SQL_CreateMedico(SelectedMedico);
+				
+			}
 		}
 
 		//---------------------botones.VolverAtras-------------------//

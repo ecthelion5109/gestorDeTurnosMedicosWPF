@@ -1,7 +1,21 @@
 ﻿using System.Windows;
 using System.IO;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace ClinicaMedica {
 	public enum DatabaseType {
@@ -11,6 +25,7 @@ namespace ClinicaMedica {
 	//---------------------------------Funciones-------------------------------//
 	public class BaseDeDatos {
 		public static DatabaseType TIPO = DatabaseType.JSON;
+		public static string connectionString = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 
 
 
@@ -88,8 +103,7 @@ namespace ClinicaMedica {
 		}
 
 		//------------------------Publico----------------------//
-		public static void UpdateJsonFile()
-		{
+		public static void UpdateJsonFile(){ 
 			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}
@@ -115,7 +129,103 @@ namespace ClinicaMedica {
 			MessageBox.Show($"Se ha guardado el turno para la fecha: {turno.FechaYHoraAsignada}");
 		}
 
+		public static List<Medico> JsonLoadMedicoData() {
+			return BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
+		}
 
+
+		//------------------------ModoSQL----------------------//
+		public static void SQL_CreateMedico(Medico medico)
+		{
+			string query = "INSERT INTO Medico (nombre, apellido, especialidad, ...) VALUES (@nombre, @apellido, @especialidad, ...)";
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				SqlCommand command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@nombre", medico.Name);
+				command.Parameters.AddWithValue("@apellido", medico.Lastname);
+				command.Parameters.AddWithValue("@especialidad", medico.Specialidad);
+				// Add parameters for all other fields you want to insert
+
+				connection.Open();
+				command.ExecuteNonQuery();
+			}
+		}
+
+		
+		
+		
+		
+		public static List<Medico> SQL_ReadMedicos() {
+			// List to store Medico instances
+			List<Medico> medicoList = new List<Medico>();
+
+			// SQL query to retrieve data from Medico table
+			string query = "SELECT * FROM Medico";
+
+			try {
+				using (SqlConnection connection = new SqlConnection(connectionString)) {
+					SqlCommand command = new SqlCommand(query, connection);
+					connection.Open();
+
+					SqlDataReader reader = command.ExecuteReader();
+
+					while (reader.Read()) {
+						Medico medico = new Medico {
+							Dni = reader["dni"]?.ToString(),
+							Name = reader["nombre"]?.ToString(),
+							Lastname = reader["apellido"]?.ToString(),
+							Provincia = reader["provincia"]?.ToString(),
+							Domicilio = reader["domicilio"]?.ToString(),
+							Localidad = reader["localidad"]?.ToString(),
+							Specialidad = reader["especialidad"]?.ToString(),
+							Telefono = reader["telefono"]?.ToString(),
+							Guardia = reader["guardia"] != DBNull.Value ? Convert.ToBoolean(reader["guardia"]) : false,
+							FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
+							SueldoMinimoGarantizado = reader["sueldo_minimo_garantizado"] != DBNull.Value ? Convert.ToDouble(reader["sueldo_minimo_garantizado"]) : 0.0
+						};
+						medicoList.Add(medico);
+					}
+					reader.Close();
+				}
+			}
+			catch (Exception ex) {
+				MessageBox.Show("Error retrieving data: " + ex.Message);
+			}
+
+			return medicoList;
+		}
+
+
+		public static void SQL_UpdateMedico(Medico medico)
+		{
+			string query = "UPDATE Medico SET nombre = @nombre, apellido = @apellido, especialidad = @especialidad, ... WHERE id = @id";
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				SqlCommand command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@nombre", medico.Name);
+				command.Parameters.AddWithValue("@apellido", medico.Lastname);
+				command.Parameters.AddWithValue("@especialidad", medico.Specialidad);
+
+				connection.Open();
+				command.ExecuteNonQuery();
+			}
+		}
+
+		public static void SQL_DeleteMedico(string medicoId)
+		{
+			string query = "DELETE FROM Medico WHERE id = @id";
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				SqlCommand command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@id", medicoId);
+
+				connection.Open();
+				command.ExecuteNonQuery();
+			}
+		}
 
 	}
 }
