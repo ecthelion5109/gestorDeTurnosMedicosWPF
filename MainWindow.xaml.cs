@@ -1,5 +1,9 @@
-﻿using System.Windows;
-
+﻿using System;
+using System.Windows;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace ClinicaMedica
 {
@@ -22,12 +26,14 @@ namespace ClinicaMedica
 	}
 	
 	public partial class MainWindow : Window {
+		//SQL.SqlConnection.SqlClientPermission miConexionSql;
 		public MainWindow() {
 			InitializeComponent();
 			BaseDeDatos.TIPO = DatabaseType.SQL;
 
+			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 
-
+			//miConexionSql = new SqlConnection(miConexion);
 
 
 
@@ -38,6 +44,15 @@ namespace ClinicaMedica
 
 
 		}
+
+
+
+
+
+
+
+
+
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.NavegarA<Login>();
 		}

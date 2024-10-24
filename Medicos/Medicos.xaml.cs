@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -30,10 +32,54 @@ namespace ClinicaMedica {
 				MedicoListView.ItemsSource = BaseDeDatos.Database["medicos"].Values.Cast<Medico>().ToList();
 			} else {
 				//averiguar como mierda conectar esto. "comomireda se chupa la columnas de medico"
-				MedicoListView.ItemsSource = null;
+				MedicoListView.ItemsSource = LoadMedicoData();
 			}
 
 		}
+
+
+
+
+		private List<Medico> LoadMedicoData() {
+			// Get the connection string from the config file
+			string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
+
+			// List to store Medico instances
+			List<Medico> medicoList = new List<Medico>();
+
+			// SQL query to retrieve data from Medico table
+			string query = "SELECT * FROM Medico";
+
+			try {
+				using (SqlConnection connection = new SqlConnection(miConexion)) {
+					SqlCommand command = new SqlCommand(query, connection);
+					connection.Open();
+
+					SqlDataReader reader = command.ExecuteReader();
+
+					while (reader.Read()) {
+						Medico medico = new Medico {
+							Dni = reader["dni"]?.ToString(),
+							Name = reader["nombre"]?.ToString(),
+							Lastname = reader["apellido"]?.ToString(),
+							Specialidad = reader["especialidad"]?.ToString(),
+						};
+						medicoList.Add(medico);
+					}
+					reader.Close();
+				}
+			}
+			catch (Exception ex) {
+				MessageBox.Show("Error retrieving data: " + ex.Message);
+			}
+
+			return medicoList;
+		}
+
+
+
+
+
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
 			this.NavegarA<MedicosModificar>();

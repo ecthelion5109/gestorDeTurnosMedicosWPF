@@ -52,7 +52,6 @@ packages/
 # Archivos temporales de Visual Studio y del sistema
 *.tmp
 *.cache
-*.config
 *.log
 *.ide
 
