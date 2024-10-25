@@ -33,11 +33,11 @@ namespace ClinicaMedica
 
 			if (MainWindow.DB_MODO == DatabaseType.JSON) //MODO JSON
 			{
-				PacientesListView.ItemsSource = BaseDeDatosJSON.ReadMedicos();
+				PacientesListView.ItemsSource = BaseDeDatosJSON.ReadPacientes();
 			}
 			else //MODO SQL
 			{
-				PacientesListView.ItemsSource = BaseDeDatosSQL.ReadMedicos();
+				PacientesListView.ItemsSource = BaseDeDatosSQL.ReadPacientes();
 			}
 
 		}

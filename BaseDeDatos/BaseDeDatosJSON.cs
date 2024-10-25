@@ -21,9 +21,12 @@ namespace ClinicaMedica {
 		public static List<Medico> ReadMedicos() {
 			return BaseDeDatosJSON.Database["medicos"].Values.Cast<Medico>().ToList();
 		}
-		
-		//------------------------public.UPDATE----------------------//
-		public static OperationCode UpdateMedico(Medico medico, string originalDni){
+        public static List<Paciente> ReadPacientes()
+        {
+            return BaseDeDatosJSON.Database["pacientes"].Values.Cast<Paciente>().ToList();
+        }
+        //------------------------public.UPDATE----------------------//
+        public static OperationCode UpdateMedico(Medico medico, string originalDni){
 			if (string.IsNullOrEmpty(medico.Dni)) {
 				return OperationCode.MISSING_DNI;
 			} 

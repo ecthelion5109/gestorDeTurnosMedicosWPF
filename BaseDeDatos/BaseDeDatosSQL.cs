@@ -67,18 +67,55 @@ namespace ClinicaMedica {
 			return medicoList;
 		}
 
+        public static List<Paciente> ReadPacientes()
+        {
+            List<Paciente> pacienteList = new List<Paciente>();
+            string query = "SELECT * FROM Paciente";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Paciente paciente = new Paciente
+                        {
+                            Dni = reader["dni"]?.ToString(),
+                            Name = reader["nombre"]?.ToString(),
+                            Lastname = reader["apellido"]?.ToString(),
+							FechaNacimiento = reader["nacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
+                            Direccion = reader["direccion"]?.ToString(),
+                            Email = reader["email"]?.ToString(),
+                            Provincia = reader["provincia"]?.ToString(),                          
+                            Localidad = reader["localidad"]?.ToString(),                            
+                            Telefono = reader["telefono"]?.ToString(),                            
+                            FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
+                           
+                        };
+                        pacienteList.Add(paciente);
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving data: " + ex.Message);
+            }
+            return pacienteList;
+        }
+        //------------------------UPDATE----------------------//
 
-		//------------------------UPDATE----------------------//
-
-		//public CorroborororarDNIIntegrigrty(){
+        //public CorroborororarDNIIntegrigrty(){
 
 
 
 
-		//}
+        //}
 
 
-		public static OperationCode UpdateMedico(Medico medico, string originalDni) {
+        public static OperationCode UpdateMedico(Medico medico, string originalDni) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
 			string updateQuery = "UPDATE Medico SET nombre = @nombre, apellido = @apellido, especialidad = @especialidad, sueldo_minimo_garantizado = @sueldo_minimo_garantizado,  fecha_ingreso = @fecha_ingreso, dni = @dni WHERE dni = @originalDni";
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
