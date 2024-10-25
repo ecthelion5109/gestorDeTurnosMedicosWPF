@@ -1,25 +1,50 @@
-﻿<Window x:Class="ClinicaMedica.Pacientes"
+﻿<Window x:Class="ClinicaMedica.Medicos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Pacientes" Height="450" Width="800" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
-	<Grid>
+        Title="Clinica Medica - Pacientes" Height="650" Width="1000"  Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 
-		<Grid.Background>
-			<ImageBrush ImageSource="/images/GestorPacientes.jpg"/>
-		</Grid.Background>
-
-		<Label HorizontalAlignment="Center" Height="63" VerticalAlignment="Top" Width="800" FontSize="40" Content="                      Gestor de Pacientes" FontFamily="Georgia">
-
-		</Label>
-		<Button Content="AgregarModificar" HorizontalAlignment="Left" Margin="305,123,0,0" VerticalAlignment="Top" Height="49" Width="168" FontSize="18" Click="ButtonPacientesAgregar" Background="#FFF7F7F7" BorderBrush="#FF000311"/>
-		<Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="305,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonPacientesVer" Background="#FFFAFAFA" BorderBrush="Black"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="61" Margin="651,344,0,0" VerticalAlignment="Top" Width="109" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
-		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="61" Margin="651,259,0,0" VerticalAlignment="Top" Width="109" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 
 
-	</Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/fondopacienteagregar.jpg"/>
+        </Grid.Background>
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="263*"/>
+        </Grid.RowDefinitions>
+        <!-- Título -->
+        <Label Content="Pacientes" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Segoe UI Black" Margin="475,24,0,0" Grid.RowSpan="2"/>
+        <ListView Name="PacienteListView" 
+                  ItemsSource="{Binding PacientesList}" 
+                 Width="Auto"
+				 Height="Auto" Margin="354,58,30,102" Grid.Row="1" SelectionChanged="PacienteListView_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}"
+				 >
+            <ListView.View>
+                <GridView>
+                    <!-- Dni Column -->
+                    <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+                    <!-- Name Column -->
+                    <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                    <!-- Lastname Column -->
+                    <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding Lastname}" Width="auto"/>
+                    <!-- Specialidad Column -->
+                    <GridViewColumn Header="Specialidad" DisplayMemberBinding="{Binding Specialidad}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar paciente" HorizontalAlignment="Left" Height="38" Margin="48,244,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,439,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+        <Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,375,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+        <Button x:Name="Eliminar_paciente" IsEnabled="false" FontSize="24" Content="Eliminar paciente" HorizontalAlignment="Left" Height="38" Margin="48,308,0,0" VerticalAlignment="Top" Width="209" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+        <Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,180,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+        <!-- DataGrid insertado aquí -->
+    </Grid>
 </Window>
