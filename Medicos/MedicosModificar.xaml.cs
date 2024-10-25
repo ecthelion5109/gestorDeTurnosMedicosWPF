@@ -32,12 +32,12 @@ namespace ClinicaMedica {
 			SelectedMedico = selectedMedico;
 			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionListForUI();
 			this.txtNombre.Text = SelectedMedico.Name;
-			this.txtApellido.Text = SelectedMedico.Lastname;
+			this.txtApellido.Text = SelectedMedico.LastName;
 			this.txtDNI.Text = SelectedMedico.Dni;
 			this.txtProvincia.Text = SelectedMedico.Provincia;
 			this.txtDomicilio.Text = SelectedMedico.Domicilio;
 			this.txtLocalidad.Text = SelectedMedico.Localidad;
-			this.txtEspecialidad.Text = SelectedMedico.Specialidad;
+			this.txtEspecialidad.Text = SelectedMedico.Especialidad;
 			this.txtFechaIngreso.SelectedDate = SelectedMedico.FechaIngreso;
 			this.txtSueldoMinGarant.Text = SelectedMedico.SueldoMinimoGarantizado.ToString();
 			this.txtRealizaGuardia.IsChecked = SelectedMedico.Guardia;
@@ -99,9 +99,9 @@ namespace ClinicaMedica {
 
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
-				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.Lastname}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedMedico.Name} {SelectedMedico.Lastname}",
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.Lastname} de la base de Datos",
+				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.LastName}",
+				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedMedico.Name} {SelectedMedico.LastName}",
+				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
 				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDNI.Text}",
 				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
@@ -135,7 +135,7 @@ namespace ClinicaMedica {
 			}
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.Lastname} de la base de Datos",
+				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
 				_ => "Error: Sin definir"
 			});
 		}

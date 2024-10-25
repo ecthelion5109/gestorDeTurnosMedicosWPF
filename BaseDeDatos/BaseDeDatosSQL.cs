@@ -9,22 +9,22 @@ namespace ClinicaMedica {
 		
 		//------------------------CREATE----------------------//
 		public static OperationCode CreateMedico(Medico medico) {
-			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
-			string insertQuery = "INSERT INTO Medico (nombre, apellido, especialidad, sueldo_minimo_garantizado, fecha_ingreso, dni) VALUES (@nombre, @apellido, @especialidad, @sueldo_minimo_garantizado, @fecha_ingreso, @dni)";
+			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE Dni = @Dni";
+			string insertQuery = "INSERT INTO Medico (Name, LastName, Especialidad, SueldoMinimoGarantizado, FechaIngreso, Dni) VALUES (@Name, @LastName, @Especialidad, @SueldoMinimoGarantizado, @FechaIngreso, @Dni)";
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
-				checkCommand.Parameters.AddWithValue("@dni", medico.Dni);
+				checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
 				connection.Open();
 				if ((int)checkCommand.ExecuteScalar() > 0) {
 					return OperationCode.YA_EXISTE;
 				}
 				SqlCommand sqlComando = new SqlCommand(insertQuery, connection);
-				sqlComando.Parameters.AddWithValue("@nombre", medico.Name);
-				sqlComando.Parameters.AddWithValue("@apellido", medico.Lastname);
-				sqlComando.Parameters.AddWithValue("@especialidad", medico.Specialidad);
-				sqlComando.Parameters.AddWithValue("@sueldo_minimo_garantizado", medico.SueldoMinimoGarantizado);
-				sqlComando.Parameters.AddWithValue("@fecha_ingreso", medico.FechaIngreso);
-				sqlComando.Parameters.AddWithValue("@dni", medico.Dni);
+				sqlComando.Parameters.AddWithValue("@Name", medico.Name);
+				sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
+				sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
+				sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", medico.SueldoMinimoGarantizado);
+				sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
+				sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
 				// Add parameters for all other fields you want to insert
 				sqlComando.ExecuteNonQuery();
 			}
@@ -44,17 +44,17 @@ namespace ClinicaMedica {
 					SqlDataReader reader = command.ExecuteReader();
 					while (reader.Read()) {
 						Medico medico = new Medico {
-							Dni = reader["dni"]?.ToString(),
-							Name = reader["nombre"]?.ToString(),
-							Lastname = reader["apellido"]?.ToString(),
-							Provincia = reader["provincia"]?.ToString(),
-							Domicilio = reader["domicilio"]?.ToString(),
-							Localidad = reader["localidad"]?.ToString(),
-							Specialidad = reader["especialidad"]?.ToString(),
-							Telefono = reader["telefono"]?.ToString(),
-							Guardia = reader["guardia"] != DBNull.Value ? Convert.ToBoolean(reader["guardia"]) : false,
-							FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
-							SueldoMinimoGarantizado = reader["sueldo_minimo_garantizado"] != DBNull.Value ? Convert.ToDouble(reader["sueldo_minimo_garantizado"]) : 0.0
+							Dni = reader["Dni"]?.ToString(),
+							Name = reader["Name"]?.ToString(),
+							LastName = reader["LastName"]?.ToString(),
+							Provincia = reader["Provincia"]?.ToString(),
+							Domicilio = reader["Domicilio"]?.ToString(),
+							Localidad = reader["Localidad"]?.ToString(),
+							Especialidad = reader["Especialidad"]?.ToString(),
+							Telefono = reader["Telefono"]?.ToString(),
+							Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
+							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+							SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
 						};
 						medicoList.Add(medico);
 					}
@@ -82,16 +82,16 @@ namespace ClinicaMedica {
                     {
                         Paciente paciente = new Paciente
                         {
-                            Dni = reader["dni"]?.ToString(),
-                            Name = reader["nombre"]?.ToString(),
-                            Lastname = reader["apellido"]?.ToString(),
-							FechaNacimiento = reader["nacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
-                            Direccion = reader["direccion"]?.ToString(),
-                            Email = reader["email"]?.ToString(),
-                            Provincia = reader["provincia"]?.ToString(),                          
-                            Localidad = reader["localidad"]?.ToString(),                            
-                            Telefono = reader["telefono"]?.ToString(),                            
-                            FechaIngreso = reader["fecha_ingreso"] != DBNull.Value ? Convert.ToDateTime(reader["fecha_ingreso"]) : (DateTime?)null,
+                            Dni = reader["Dni"]?.ToString(),
+                            Name = reader["Name"]?.ToString(),
+                            LastName = reader["LastName"]?.ToString(),
+							FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+                            Domicilio = reader["Domicilio"]?.ToString(),
+                            Email = reader["Email"]?.ToString(),
+                            Provincia = reader["Provincia"]?.ToString(),                          
+                            Localidad = reader["Localidad"]?.ToString(),                            
+                            Telefono = reader["Telefono"]?.ToString(),                            
+                            FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
                            
                         };
                         pacienteList.Add(paciente);
@@ -117,21 +117,21 @@ namespace ClinicaMedica {
 
         public static OperationCode UpdateMedico(Medico medico, string originalDni) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
-			string updateQuery = "UPDATE Medico SET nombre = @nombre, apellido = @apellido, especialidad = @especialidad, sueldo_minimo_garantizado = @sueldo_minimo_garantizado,  fecha_ingreso = @fecha_ingreso, dni = @dni WHERE dni = @originalDni";
+			string updateQuery = "UPDATE Medico SET Name = @Name, LastName = @LastName, Especialidad = @Especialidad, SueldoMinimoGarantizado = @SueldoMinimoGarantizado,  FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				// try {
 					connection.Open();
 
 					// Proceed with the update if no conflicts are found
 					using (SqlCommand sqlComando = new SqlCommand(updateQuery, connection)) {
-						sqlComando.Parameters.AddWithValue("@nombre", medico.Name);
-						sqlComando.Parameters.AddWithValue("@apellido", medico.Lastname);
-						sqlComando.Parameters.AddWithValue("@especialidad", medico.Specialidad);
-						sqlComando.Parameters.AddWithValue("@sueldo_minimo_garantizado", medico.SueldoMinimoGarantizado);
-						sqlComando.Parameters.AddWithValue("@fecha_ingreso", medico.FechaIngreso);
-						sqlComando.Parameters.AddWithValue("@dni", medico.Dni);
+						sqlComando.Parameters.AddWithValue("@Name", medico.Name);
+						sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
+						sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
+						sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", medico.SueldoMinimoGarantizado);
+						sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
 						sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
-						sqlComando.ExecuteNonQuery();
+					sqlComando.ExecuteNonQuery();
 					}
 				//}
 				// catch (SqlException) {
@@ -147,11 +147,11 @@ namespace ClinicaMedica {
 
 		//------------------------DELETE----------------------//
 		public static OperationCode DeleteMedico(string medicoDni) {
-			string query = "DELETE FROM Medico WHERE dni = @dni";
+			string query = "DELETE FROM Medico WHERE Dni = @Dni";
 
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				SqlCommand command = new SqlCommand(query, connection);
-				command.Parameters.AddWithValue("@dni", medicoDni);
+				command.Parameters.AddWithValue("@Dni", medicoDni);
 
 				connection.Open();
 				command.ExecuteNonQuery();
