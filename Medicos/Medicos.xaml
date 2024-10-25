@@ -35,8 +35,8 @@
 					<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
 					<!-- Lastname Column -->
 					<GridViewColumn Header="LastName" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
-					<!-- Specialidad Column -->
-					<GridViewColumn Header="Specialidad" DisplayMemberBinding="{Binding Especialidad}" Width="auto"/>
+					<!-- Especialidad Column -->
+					<GridViewColumn Header="Especialidad" DisplayMemberBinding="{Binding Especialidad}" Width="auto"/>
 				</GridView>
 			</ListView.View>
 		</ListView>

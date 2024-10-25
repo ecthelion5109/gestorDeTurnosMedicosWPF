@@ -116,7 +116,6 @@ namespace ClinicaMedica {
 
 
         public static OperationCode UpdateMedico(Medico medico, string originalDni) {
-			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE dni = @dni";
 			string updateQuery = "UPDATE Medico SET Name = @Name, LastName = @LastName, Especialidad = @Especialidad, SueldoMinimoGarantizado = @SueldoMinimoGarantizado,  FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
 			using (SqlConnection connection = new SqlConnection(connectionString)) {
 				// try {

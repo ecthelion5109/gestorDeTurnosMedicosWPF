@@ -4,7 +4,7 @@
 
 
 
-
+App.config
 
 
 
@@ -56,3 +56,4 @@ packages/
 *.ide
 
 *.lnk
+/App.config
