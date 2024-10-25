@@ -1,4 +1,4 @@
-﻿<Window x:Class="ClinicaMedica.Medicos"
+﻿<Window x:Class="ClinicaMedica.Pacientes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <!-- Título -->
         <Label Content="Pacientes" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Segoe UI Black" Margin="475,24,0,0" Grid.RowSpan="2"/>
-        <ListView Name="PacienteListView" 
+		<ListView Name="PacientesListView" 
                   ItemsSource="{Binding PacientesList}" 
                  Width="Auto"
 				 Height="Auto" Margin="354,58,30,102" Grid.Row="1" SelectionChanged="PacienteListView_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}"
@@ -43,8 +43,7 @@
         <Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar paciente" HorizontalAlignment="Left" Height="38" Margin="48,244,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
         <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,439,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
         <Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,375,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-        <Button x:Name="Eliminar_paciente" IsEnabled="false" FontSize="24" Content="Eliminar paciente" HorizontalAlignment="Left" Height="38" Margin="48,308,0,0" VerticalAlignment="Top" Width="209" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-        <Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,180,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,180,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
         <!-- DataGrid insertado aquí -->
     </Grid>
 </Window>
