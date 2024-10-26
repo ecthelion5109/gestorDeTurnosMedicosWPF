@@ -12,48 +12,66 @@
 		</Grid.Background>
 		<Label Content="REGISTRAR NUEVO PACIENTE" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Height="39" Width="300" FontSize="15"/>
 		<Label Content="DNI" HorizontalAlignment="Left" Margin="16,48,0,0" VerticalAlignment="Top" Height="30" Width="41"/>
-		<TextBox x:Name="txtdni" HorizontalAlignment="Left" Margin="168,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
+		<TextBox x:Name="txtDNI" HorizontalAlignment="Left" Margin="168,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
 
 
 
 		<Label Content="NOMBRE" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="79"/>
-		<TextBox x:Name="txtnombre" HorizontalAlignment="Left" Margin="168,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
+		<TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="168,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
 
 
 		<Label Content="APELLIDO" HorizontalAlignment="Left" Margin="16,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="84"/>
-		<TextBox x:Name="txtapellido" HorizontalAlignment="Left" Margin="168,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
+		<TextBox x:Name="txtApellido" HorizontalAlignment="Left" Margin="168,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
 
 
 
 		<Label Content="TELÉFONO" HorizontalAlignment="Left" Margin="16,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="30" Width="90"/>
-		<TextBox x:Name="txttelefono" HorizontalAlignment="Left" Margin="168,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="22"/>
+		<TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Margin="168,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="22"/>
 
 
 
-		<Label Content="DIRECCIÓN " HorizontalAlignment="Left" Margin="16,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="100"/>
-		<TextBox x:Name="txtdireccion" HorizontalAlignment="Left" Margin="168,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
+		<Label Content="Domicilio " HorizontalAlignment="Left" Margin="16,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="100"/>
+		<TextBox x:Name="txtDomicilio" HorizontalAlignment="Left" Margin="168,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
 
 
 		<Label Content="LOCALIDAD" HorizontalAlignment="Left" Margin="16,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="98"/>
-		<TextBox x:Name="txtlocalidad" HorizontalAlignment="Left" Margin="168,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
+		<TextBox x:Name="txtLocalidad" HorizontalAlignment="Left" Margin="168,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
 
 
 		<Label Content="PROVINCIA" HorizontalAlignment="Left" Margin="16,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="95"/>
-		<TextBox x:Name="txtprovincia" HorizontalAlignment="Left" Margin="168,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
+		<TextBox x:Name="txtProvincia" HorizontalAlignment="Left" Margin="168,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
 
 
 		<Label Content="E MAIL" HorizontalAlignment="Left" Margin="16,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="63"/>
 		<TextBox x:Name="txtemail" HorizontalAlignment="Left" Margin="168,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="22" />
 		<Label
 		Width="131" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Margin="15,223,0,0" Height="31" HorizontalAlignment="Left" Content="FECHA NACIMIENTO"/>
-		<DatePicker x:Name="txtfechanacimiento" HorizontalAlignment="Left" Margin="151,229,0,160" Width="249" />
-
-
-
-		<Button Content="Volver a Pacientes" HorizontalAlignment="Left" Margin="40,347,0,0" VerticalAlignment="Top" Width="107" Click="MetodoBotonVolverAPacientes" Background="#FFD4CECE"/>
-		<Button Content="Volver a Home" HorizontalAlignment="Left" Margin="169,347,0,0" VerticalAlignment="Top" Width="97" Click="MetodoBotonPaginaPrincipal" Background="#FFD7D3D3"/>
-		<Button Content="Salir" HorizontalAlignment="Left" Margin="290,347,0,0" VerticalAlignment="Top" Width="110" Click="MetodoBotonSalir" Background="#FFE2E2E2"/>
-		<Button FontSize="24" Content="Agregar" HorizontalAlignment="Left" Height="40" Margin="141,279,0,0" VerticalAlignment="Top" Width="125" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White"/>
+		<DatePicker x:Name="txtFechaNacimiento" HorizontalAlignment="Left" Margin="151,229,0,160" Width="249" />
+		<Button FontSize="24"
+	  Content="Volver"
+	  HorizontalAlignment="Left"
+	  Height="38"
+	  VerticalAlignment="Top"
+	  Width="144"
+	  RenderTransformOrigin="0.546,3.469"
+	  BorderBrush="Black"
+	  Background="White"
+	  Click="ButtonVolver"
+	  FontFamily="Agency FB"
+	  Margin="63,340,0,0"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="329,361,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button x:Name="botonMultiUso" FontSize="24"
+	  Content="Guardar cambios"
+	  HorizontalAlignment="Left"
+	  Height="38"
+	  VerticalAlignment="Top"
+	  Width="146"
+	  RenderTransformOrigin="0.546,3.469"
+	  BorderBrush="Black"
+	  Background="White"
+	  FontFamily="Agency FB"
+	  Margin="278,264,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="450,264,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 	</Grid>
 </Window>

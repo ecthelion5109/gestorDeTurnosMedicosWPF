@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 namespace ClinicaMedica {
 	public partial class MedicosModificar : Window {
 		private static Medico? SelectedMedico;
-
 		//---------------------public.constructors-------------------//
 		public MedicosModificar() //Crear medico
 		{
@@ -45,35 +44,24 @@ namespace ClinicaMedica {
 			//botonMultiUso.Content = "Modificar";
 		}
 		
-		private bool CorroborarUserInputEsSeguro(){
+
+		//---------------------botones.GuardarCambios-------------------//
+		bool CorroborarUserInputEsSeguro(){
 			return !(string.IsNullOrEmpty(this.txtSueldoMinGarant.Text) ||
 					 string.IsNullOrEmpty(this.txtDNI.Text) ||
 					 this.txtFechaIngreso.SelectedDate is null ||
 					 this.txtRealizaGuardia.IsChecked is null);
 		}
-
-		
-		private bool CorroborarQueNoExistaDNI(){
-			//if (MainWindow.DB_MODO == DatabaseType.JSON){
-				return BaseDeDatosJSON.Database["medicos"].ContainsKey(this.txtDNI.Text);
-			//}
-		}
-		//---------------------botones.GuardarCambios-------------------//
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			OperationCode operacion;
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
 				if (CorroborarUserInputEsSeguro()) {
-					if (CorroborarQueNoExistaDNI()){
+					if (MainWindow.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDNI.Text)){
 						operacion = OperationCode.YA_EXISTE;
-					}
-					else if (MainWindow.DB_MODO == DatabaseType.JSON) {
+					} else {
 						SelectedMedico = new Medico(this);
-						operacion = BaseDeDatosJSON.CreateMedico(SelectedMedico);
-					}
-					else {
-						SelectedMedico = new Medico(this);
-						operacion = BaseDeDatosSQL.CreateMedico(SelectedMedico);
+						operacion = MainWindow.BaseDeDatos.CreateMedico(SelectedMedico);
 					}
 				}
 				else {
@@ -85,12 +73,7 @@ namespace ClinicaMedica {
 				string originalDni = SelectedMedico.Dni;
 				if (CorroborarUserInputEsSeguro()) {
 					SelectedMedico.AsignarDatosFromWindow(this);
-					if (MainWindow.DB_MODO == DatabaseType.JSON) {
-						operacion = BaseDeDatosJSON.UpdateMedico(SelectedMedico, originalDni);
-					}
-					else {
-						operacion = BaseDeDatosSQL.UpdateMedico(SelectedMedico, originalDni);
-					}
+					operacion = MainWindow.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
 				}
 				else {
 					operacion = OperationCode.MISSING_FIELDS;
@@ -126,13 +109,8 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion;
-			if (MainWindow.DB_MODO == DatabaseType.JSON) {
-				operacion = BaseDeDatosJSON.DeleteMedico(SelectedMedico.Dni); //MODO JSON
-			}
-			else {
-				operacion = BaseDeDatosSQL.DeleteMedico(SelectedMedico.Dni);//MODO SQL
-			}
+			OperationCode operacion = MainWindow.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
+
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
 				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
@@ -144,6 +122,10 @@ namespace ClinicaMedica {
 			this.NavegarA<Medicos>();
 		}
 
-		//------------------------Fin.BaseDeDatosJSON----------------------//
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			this.Salir();
+		}
+
+		//------------------------Fin----------------------//
 	}
 }

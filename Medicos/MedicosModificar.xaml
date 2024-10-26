@@ -229,6 +229,7 @@
 	  FontFamily="Agency FB"
 	  Margin="69,407,0,0" Click="ButtonGuardar"/>
 		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="242,407,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="335,471,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.ColumnSpan="2"/>
 
 
 		<!-- 

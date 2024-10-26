@@ -4,53 +4,108 @@ using Newtonsoft.Json;
 
 
 namespace ClinicaMedica {
-	public class BaseDeDatosJSON {
 
+
+	public class BaseDeDatosJSON : IBaseDeDatos{
 		//------------------------public----------------------//
-		public static string archivoPath = "database.json";
-		public static Dictionary<string, Dictionary<string, object>> Database => _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
+		public string archivoPath = "database.json";
+		public Dictionary<string, Dictionary<string, object>> Database => _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
+		
+		
+		
+		
+		//------------------------public.CHECKERS----------------------//
+		public bool CorroborarQueNoExistaMedico(string key){
+			return this.Database["medicos"].ContainsKey(key);
+		}
+		public bool CorroborarQueNoExistaPaciente(string key){
+			return this.Database["pacientes"].ContainsKey(key);
+		}
+		public bool CorroborarQueNoExistaTurno(string key){
+			return this.Database["turnos"].ContainsKey(key);
+		}
+		
+		
+		
 		
 		//------------------------public.CREATE----------------------//
-		public static OperationCode CreateMedico(Medico medico){
-			BaseDeDatosJSON.Database["medicos"][medico.Dni] = medico;
-			BaseDeDatosJSON.GuardarJson(); // Guardar los cambios en el archivo JSON
+		public OperationCode CreateMedico(Medico medico){
+			
+			
+			this.Database["medicos"][medico.Dni] = medico;
+			this.GuardarJson(); // Guardar los cambios en el archivo JSON
+			return OperationCode.CREATE_SUCCESS;
+		}
+		public OperationCode CreatePaciente(Paciente paciente){
+			this.Database["pacientes"][paciente.Dni] = paciente;
+			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.CREATE_SUCCESS;
 		}
 
-		//------------------------public.READ----------------------//
-		public static List<Medico> ReadMedicos() {
-			return BaseDeDatosJSON.Database["medicos"].Values.Cast<Medico>().ToList();
+		public  OperationCode CreateTurno(Turno turno) {
+			return OperationCode.SIN_DEFINIR;
 		}
-        public static List<Paciente> ReadPacientes()
-        {
-            return BaseDeDatosJSON.Database["pacientes"].Values.Cast<Paciente>().ToList();
+
+		//------------------------public.READ----------------------//
+		public List<Medico> ReadMedicos() {
+			return this.Database["medicos"].Values.Cast<Medico>().ToList();
+		}
+        public List<Paciente> ReadPacientes() {
+            return this.Database["pacientes"].Values.Cast<Paciente>().ToList();
+        }
+        public List<Turno> ReadTurnos() {
+            return this.Database["turnos"].Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
-        public static OperationCode UpdateMedico(Medico medico, string originalDni){
+        public OperationCode UpdateMedico(Medico medico, string originalDni){
 			if (string.IsNullOrEmpty(medico.Dni)) {
 				return OperationCode.MISSING_DNI;
 			} 
 				
 			if (originalDni != medico.Dni) {
-				BaseDeDatosJSON.Database["medicos"].Remove(originalDni);
-				BaseDeDatosJSON.Database["medicos"][medico.Dni] = medico;
+				this.Database["medicos"].Remove(originalDni);
+				this.Database["medicos"][medico.Dni] = medico;
 			}
-			BaseDeDatosJSON.GuardarJson(); // Guardar los cambios en el archivo JSON
+			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.UPDATE_SUCCESS;
+		}
+        public OperationCode UpdatePaciente(Paciente paciente, string originalDni){
+			if (string.IsNullOrEmpty(paciente.Dni)) {
+				return OperationCode.MISSING_DNI;
+			} 
+				
+			if (originalDni != paciente.Dni) {
+				this.Database["pacientes"].Remove(originalDni);
+				this.Database["pacientes"][paciente.Dni] = paciente;
+			}
+			this.GuardarJson(); // Guardar los cambios en el archivo JSON
+			return OperationCode.UPDATE_SUCCESS;
+		}
+        public OperationCode UpdateTurno(Turno turno) {
+			return OperationCode.SIN_DEFINIR;
 		}
 		//------------------------public.DELETE----------------------//
 		
-		public static OperationCode DeleteMedico(string medicoId){
-			BaseDeDatosJSON.Database["medicos"].Remove(medicoId);
-			BaseDeDatosJSON.GuardarJson(); // Save changes to the database
+		public OperationCode DeleteMedico(string medicoId){
+			this.Database["medicos"].Remove(medicoId);
+			this.GuardarJson(); // Save changes to the database
 			return OperationCode.DELETE_SUCCESS;
+		}
+		public OperationCode DeletePaciente(string pacienteId){
+			this.Database["pacientes"].Remove(pacienteId);
+			this.GuardarJson(); // Save changes to the database
+			return OperationCode.DELETE_SUCCESS;
+		}
+
+        public OperationCode DeleteTurno(string turnoId) {
+			return OperationCode.SIN_DEFINIR;
 		}
 		
 		
 		
 		//------------------------Private----------------------//
-		private static Dictionary<string, Dictionary<string, object>> _database;
-		private static Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionarioNewtonsoft(){
+		private Dictionary<string, Dictionary<string, object>> _database;
+		private Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionarioNewtonsoft(){
 			// Prepara un diccionario para almacenar los objetos
 			var result = new Dictionary<string, Dictionary<string, object>>();
 
@@ -75,13 +130,11 @@ namespace ClinicaMedica {
 				}
 
 				// MessageBox.Show("11, testing");
-				// Check and convert "medicos"
 				if (database.ContainsKey("medicos"))
 				{
 					var medicos = new Dictionary<string, object>();
 					foreach (var medicoElement in database["medicos"])
 					{
-						// Use the custom constructor for Medico that takes JsonElement
 						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoElement.Value.ToString()).RootElement;
 						var medico = new Medico(medicoElement.Key, medicoJsonElement);
 						medicos[medicoElement.Key] = medico;
@@ -112,7 +165,7 @@ namespace ClinicaMedica {
 			return result;
 		}
 		
-		private static void GuardarJson(){ 
+		private void GuardarJson(){ 
 			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}

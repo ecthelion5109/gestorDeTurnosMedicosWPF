@@ -271,7 +271,6 @@ namespace ClinicaMedica {
 				this.SueldoMinimoGarantizado = sueldo;
 			}
 			this.UpdateDiasDeAtencionFromUI( (List<HorarioMedico>) window.txtDiasDeAtencion.ItemsSource);
-			
 			return this;
 		}
 		
@@ -301,8 +300,7 @@ namespace ClinicaMedica {
 		public Paciente() { }
 		
 		// Constructor that takes a JsonElement
-		public Paciente(JsonElement json)
-		{
+		public Paciente(JsonElement json){
 			Dni = json.GetProperty(nameof(Dni)).GetString();
 			Name = json.GetProperty(nameof(Name)).GetString();
 			LastName = json.GetProperty(nameof(LastName)).GetString();
@@ -314,11 +312,29 @@ namespace ClinicaMedica {
 			Localidad = json.GetProperty(nameof(Localidad)).GetString();
 			Provincia = json.GetProperty(nameof(Provincia)).GetString();
 		}
+
+		public Paciente(PacientesModificar window){
+			this.Name = window.txtNombre.Text;
+			this.LastName = window.txtApellido.Text;
+			this.Dni = window.txtDNI.Text;
+			this.Provincia = window.txtProvincia.Text;
+			this.Domicilio = window.txtDomicilio.Text;
+			this.Localidad = window.txtLocalidad.Text;
+			//this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
+		}
 		
 		
-		public void AsignarDatos(PacientesModificar window){
-			// LLENAR ESTO
-			// this.Dni = window.dni;
+		public Paciente AsignarDatosFromWindow(PacientesModificar window){ 
+			this.Name = window.txtNombre.Text;
+			this.LastName = window.txtApellido.Text;
+			this.Dni = window.txtDNI.Text;
+			this.Provincia = window.txtProvincia.Text;
+			this.Domicilio = window.txtDomicilio.Text;
+			this.Localidad = window.txtLocalidad.Text;
+			//this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
+			return this;
 		}
 	}
 	

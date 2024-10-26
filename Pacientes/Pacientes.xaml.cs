@@ -29,16 +29,7 @@ namespace ClinicaMedica
         {
             InitializeComponent();
 			// generar
-
-
-			if (MainWindow.DB_MODO == DatabaseType.JSON) //MODO JSON
-			{
-				PacientesListView.ItemsSource = BaseDeDatosJSON.ReadPacientes();
-			}
-			else //MODO SQL
-			{
-				PacientesListView.ItemsSource = BaseDeDatosSQL.ReadPacientes();
-			}
+			PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes();
 
 		}
 
@@ -54,6 +45,14 @@ namespace ClinicaMedica
 		}
 
 		private void PacienteListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (PacientesListView.SelectedItem != null) {
+				SelectedPaciente = (Paciente)PacientesListView.SelectedItem;
+				buttonModificar.IsEnabled = true;
+				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
+			}
+			else {
+				buttonModificar.IsEnabled = false;
+			}
 
 		}
 

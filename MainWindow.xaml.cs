@@ -20,6 +20,7 @@ namespace ClinicaMedica
 		YA_EXISTE,
 		SUCCESS,
 		CREATE_SUCCESS,
+		SIN_DEFINIR,
 		UPDATE_SUCCESS,
 		DELETE_SUCCESS,
 		MISSING_DNI,
@@ -27,9 +28,32 @@ namespace ClinicaMedica
 		ERROR,
 		DATOS_LEIDOS
 	}
-	public enum DatabaseType {
-		JSON,
-		SQL
+	
+	public interface IBaseDeDatos{
+		// Read methods
+		List<Medico> ReadMedicos();
+		List<Paciente> ReadPacientes();
+		List<Turno> ReadTurnos();
+
+		// checkers
+		bool CorroborarQueNoExistaMedico(string key);
+		bool CorroborarQueNoExistaPaciente(string key);
+		bool CorroborarQueNoExistaTurno(string key);
+
+		// Create methods
+		OperationCode CreateMedico(Medico medico);
+		OperationCode CreatePaciente(Paciente paciente);
+		OperationCode CreateTurno(Turno turno);
+
+		// Update methods
+		OperationCode UpdateMedico(Medico medico, string originalDni);
+		OperationCode UpdatePaciente(Paciente paciente, string originalDni);
+		OperationCode UpdateTurno(Turno turno);
+
+		// Delete methods
+		OperationCode DeleteMedico(string medicoId);
+		OperationCode DeletePaciente(string pacienteId);
+		OperationCode DeleteTurno(string turnoId);
 	}
 
     public static class WindowExtensions{
@@ -48,11 +72,15 @@ namespace ClinicaMedica
 	
 	public partial class MainWindow : Window {
 		//SQL.SqlConnection.SqlClientPermission miConexionSql;
-		public static DatabaseType DB_MODO = DatabaseType.JSON;
+		public static IBaseDeDatos BaseDeDatos;
+		
+		
 		public MainWindow() {
 			InitializeComponent();
-			MainWindow.DB_MODO = DatabaseType.SQL;
-			// MainWindow.DB_MODO = DatabaseType.JSON;
+			
+			// BaseDeDatos = new BaseDeDatosJSON();
+			BaseDeDatos = new BaseDeDatosSQL();
+			
 
 			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 
