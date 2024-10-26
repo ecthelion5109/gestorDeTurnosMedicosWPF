@@ -1,6 +1,8 @@
 using System.Windows;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : IBaseDeDatos{
@@ -32,43 +34,50 @@ namespace ClinicaMedica {
 		public OperationCode CreateMedico(Medico medico) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE Dni = @Dni";
 			string insertQuery = "INSERT INTO Medico (Name, LastName, Especialidad, SueldoMinimoGarantizado, FechaIngreso, Dni) VALUES (@Name, @LastName, @Especialidad, @SueldoMinimoGarantizado, @FechaIngreso, @Dni)";
-			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
-				SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion);
-				checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
-				// MiConexion.Open();
-				if ((int)checkCommand.ExecuteScalar() > 0) {
-					return OperationCode.YA_EXISTE;
-				}
-				SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
-				sqlComando.Parameters.AddWithValue("@Name", medico.Name);
-				sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
-				sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
-				sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", medico.SueldoMinimoGarantizado);
-				sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
-				sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
-				sqlComando.ExecuteNonQuery();
-			// }
+			SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion);
+			checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
+			if ((int)checkCommand.ExecuteScalar() > 0) {
+				return OperationCode.YA_EXISTE;
+			}
+			SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
+			sqlComando.Parameters.AddWithValue("@Name", medico.Name);
+			sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
+			sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
+			sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", medico.SueldoMinimoGarantizado);
+			sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
+			sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
+			sqlComando.ExecuteNonQuery();
 			return OperationCode.CREATE_SUCCESS;
 		}
-		public  OperationCode CreatePaciente(Paciente medico) {
+		public OperationCode CreatePaciente(Paciente paciente) {
 			string checkQuery = "SELECT COUNT(1) FROM Paciente WHERE Dni = @Dni";
-			string insertQuery = "INSERT INTO Paciente (Name, LastName, FechaIngreso, Dni) VALUES (@Name, @LastName, @FechaIngreso, @Dni)";
-			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
-				SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion);
-				checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
-				// MiConexion.Open();
+			string insertQuery = @"INSERT INTO Paciente (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)";
+
+			using (SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion)) {
+				checkCommand.Parameters.AddWithValue("@Dni", paciente.Dni);
 				if ((int)checkCommand.ExecuteScalar() > 0) {
 					return OperationCode.YA_EXISTE;
 				}
-				SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
-				sqlComando.Parameters.AddWithValue("@Name", medico.Name);
-				sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
-				sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
-				sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
+			}
+			using (SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion)) {
+				sqlComando.Parameters.AddWithValue("@Dni", paciente.Dni);
+				sqlComando.Parameters.AddWithValue("@Name", paciente.Name);
+				sqlComando.Parameters.AddWithValue("@LastName", paciente.LastName);
+				sqlComando.Parameters.AddWithValue("@FechaIngreso", paciente.FechaIngreso ?? (object)DBNull.Value);
+				sqlComando.Parameters.AddWithValue("@Email", paciente.Email);
+				sqlComando.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+				sqlComando.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento ?? (object)DBNull.Value);
+				sqlComando.Parameters.AddWithValue("@Domicilio", paciente.Domicilio);
+				sqlComando.Parameters.AddWithValue("@Localidad", paciente.Localidad);
+				sqlComando.Parameters.AddWithValue("@Provincia", paciente.Provincia);
 				sqlComando.ExecuteNonQuery();
-			// }
+			}
+
 			return OperationCode.CREATE_SUCCESS;
 		}
+
+		
+		
 		public  OperationCode CreateTurno(Turno turno) {
 			return OperationCode.SIN_DEFINIR;
 		}
@@ -85,9 +94,9 @@ namespace ClinicaMedica {
 					SqlDataReader reader = command.ExecuteReader();
 					while (reader.Read()) {
 						Medico medico = new Medico {
-							Dni = reader["Dni"]?.ToString(),
 							Name = reader["Name"]?.ToString(),
 							LastName = reader["LastName"]?.ToString(),
+							Dni = reader["Dni"]?.ToString(),
 							Provincia = reader["Provincia"]?.ToString(),
 							Domicilio = reader["Domicilio"]?.ToString(),
 							Localidad = reader["Localidad"]?.ToString(),
@@ -96,6 +105,7 @@ namespace ClinicaMedica {
 							Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
 							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
 							SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
+							//DiasDeAtencion = TODAVIA NO SE
 						};
 						medicoList.Add(medico);
 					}
@@ -117,20 +127,18 @@ namespace ClinicaMedica {
                     SqlCommand command = new SqlCommand(query, MiConexion);
                     // MiConexion.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Paciente paciente = new Paciente
-                        {
+                    while (reader.Read()){
+                        Paciente paciente = new Paciente{
                             Dni = reader["Dni"]?.ToString(),
                             Name = reader["Name"]?.ToString(),
                             LastName = reader["LastName"]?.ToString(),
+							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+							Email = reader["Email"]?.ToString(),
+							Telefono = reader["Telefono"]?.ToString(),
 							FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
-                            Domicilio = reader["Domicilio"]?.ToString(),
-                            Email = reader["Email"]?.ToString(),
-                            Provincia = reader["Provincia"]?.ToString(),                          
-                            Localidad = reader["Localidad"]?.ToString(),                            
-                            Telefono = reader["Telefono"]?.ToString(),                            
-                            FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+							Domicilio = reader["Domicilio"]?.ToString(),
+							Localidad = reader["Localidad"]?.ToString(),
+							Provincia = reader["Provincia"]?.ToString()
                            
                         };
                         pacienteList.Add(paciente);
@@ -169,15 +177,20 @@ namespace ClinicaMedica {
 			return OperationCode.UPDATE_SUCCESS;
 		}
         public OperationCode UpdatePaciente(Paciente paciente, string originalDni) {
-			string updateQuery = "UPDATE Paciente SET Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
+			string updateQuery = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Dni = @originalDni";
 			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
 				// MiConexion.Open();
 				using (SqlCommand sqlComando = new SqlCommand(updateQuery, MiConexion)) {
+					sqlComando.Parameters.AddWithValue("@Dni", paciente.Dni);
 					sqlComando.Parameters.AddWithValue("@Name", paciente.Name);
 					sqlComando.Parameters.AddWithValue("@LastName", paciente.LastName);
 					sqlComando.Parameters.AddWithValue("@FechaIngreso", paciente.FechaIngreso);
-					sqlComando.Parameters.AddWithValue("@Dni", paciente.Dni);
-					sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
+					sqlComando.Parameters.AddWithValue("@Email", paciente.Email);
+					sqlComando.Parameters.AddWithValue("@Telefono", paciente.Telefono);
+					sqlComando.Parameters.AddWithValue("@FechaNacimiento", paciente.FechaNacimiento);
+					sqlComando.Parameters.AddWithValue("@Domicilio", paciente.Domicilio);
+					sqlComando.Parameters.AddWithValue("@Localidad", paciente.Localidad);
+					sqlComando.Parameters.AddWithValue("@Provincia", paciente.Provincia);
 				sqlComando.ExecuteNonQuery();
 				}
 			// }

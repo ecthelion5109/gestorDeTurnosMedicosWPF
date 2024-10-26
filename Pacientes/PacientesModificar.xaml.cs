@@ -26,16 +26,17 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedPaciente = selectedPaciente;
+
+			this.txtDni.Text = SelectedPaciente.Dni;
 			this.txtNombre.Text = SelectedPaciente.Name;
 			this.txtApellido.Text = SelectedPaciente.LastName;
-			this.txtDNI.Text = SelectedPaciente.Dni;
-			this.txtProvincia.Text = SelectedPaciente.Provincia;
+			this.txtFechaIngreso.SelectedDate = SelectedPaciente.FechaIngreso;
+			this.txtEmail.Text = SelectedPaciente.Email;
+			this.txtTelefono.Text = SelectedPaciente.Telefono;
+			this.txtFechaNacimiento.SelectedDate = SelectedPaciente.FechaNacimiento;
 			this.txtDomicilio.Text = SelectedPaciente.Domicilio;
 			this.txtLocalidad.Text = SelectedPaciente.Localidad;
-			//this.txtFechaIngreso.SelectedDate = SelectedPaciente.FechaIngreso;
-			this.txtFechaNacimiento.SelectedDate = SelectedPaciente.FechaNacimiento;
-			//botonMultiUso.Click += ButtonModificarPaciente;
-			//botonMultiUso.Content = "Modificar";
+			this.txtProvincia.Text = SelectedPaciente.Provincia;
 		}
 		
 
@@ -43,7 +44,7 @@ namespace ClinicaMedica {
 		//---------------------botones.GuardarCambios-------------------//
 		bool CorroborarUserInputEsSeguro(){
 			return !(
-					 string.IsNullOrEmpty(this.txtDNI.Text)
+					 string.IsNullOrEmpty(this.txtDni.Text)
 					 );
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
@@ -51,7 +52,7 @@ namespace ClinicaMedica {
 			//---------Crear-----------//
 			if (SelectedPaciente is null) {
 				if (CorroborarUserInputEsSeguro()) {
-					if (MainWindow.BaseDeDatos.CorroborarQueNoExistaPaciente(this.txtDNI.Text)){
+					if (MainWindow.BaseDeDatos.CorroborarQueNoExistaPaciente(this.txtDni.Text)){
 						operacion = OperationCode.YA_EXISTE;
 					} else {
 						SelectedPaciente = new Paciente(this);
@@ -79,7 +80,7 @@ namespace ClinicaMedica {
 				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Paciente: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
 				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
 				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedPaciente.Name} {SelectedPaciente.LastName} de la base de Datos",
-				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDNI.Text}",
+				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDni.Text}",
 				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
 				_ => "Error: Sin definir"
@@ -119,6 +120,7 @@ namespace ClinicaMedica {
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
+
 
 
 		//------------------------Fin----------------------//

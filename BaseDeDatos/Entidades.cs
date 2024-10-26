@@ -318,7 +318,7 @@ namespace ClinicaMedica {
 		public Paciente(PacientesModificar window){
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDNI.Text;
+			this.Dni = window.txtDni.Text;
 			this.Provincia = window.txtProvincia.Text;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
@@ -330,7 +330,7 @@ namespace ClinicaMedica {
 		public Paciente AsignarDatosFromWindow(PacientesModificar window){ 
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDNI.Text;
+			this.Dni = window.txtDni.Text;
 			this.Provincia = window.txtProvincia.Text;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;

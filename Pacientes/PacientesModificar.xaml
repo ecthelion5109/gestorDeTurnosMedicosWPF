@@ -5,48 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Pacientes Agregar" Height="450" Width="800" Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
+        Title="Clinica Medica - Pacientes Agregar" Height="600" Width="1024" Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/doctor.jpg"/>
 		</Grid.Background>
-		<Label Content="REGISTRAR NUEVO PACIENTE" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Height="39" Width="300" FontSize="15"/>
-		<Label Content="DNI" HorizontalAlignment="Left" Margin="16,48,0,0" VerticalAlignment="Top" Height="30" Width="41"/>
-		<TextBox x:Name="txtDNI" HorizontalAlignment="Left" Margin="168,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
-
-
-
-		<Label Content="NOMBRE" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="79"/>
-		<TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="168,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
-
-
-		<Label Content="APELLIDO" HorizontalAlignment="Left" Margin="16,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="84"/>
-		<TextBox x:Name="txtApellido" HorizontalAlignment="Left" Margin="168,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
-
-
-
-		<Label Content="TELÉFONO" HorizontalAlignment="Left" Margin="16,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="30" Width="90"/>
-		<TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Margin="168,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="22"/>
-
-
-
-		<Label Content="Domicilio " HorizontalAlignment="Left" Margin="16,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="100"/>
-		<TextBox x:Name="txtDomicilio" HorizontalAlignment="Left" Margin="168,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
-
-
-		<Label Content="LOCALIDAD" HorizontalAlignment="Left" Margin="16,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="98"/>
-		<TextBox x:Name="txtLocalidad" HorizontalAlignment="Left" Margin="168,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21" />
-
-
-		<Label Content="PROVINCIA" HorizontalAlignment="Left" Margin="16,176,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="95"/>
-		<TextBox x:Name="txtProvincia" HorizontalAlignment="Left" Margin="168,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="21"/>
-
-
-		<Label Content="E MAIL" HorizontalAlignment="Left" Margin="16,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Height="31" Width="63"/>
-		<TextBox x:Name="txtemail" HorizontalAlignment="Left" Margin="168,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="22" />
-		<Label
-		Width="131" VerticalAlignment="Top" RenderTransformOrigin="0.49,2.589" Margin="15,223,0,0" Height="31" HorizontalAlignment="Left" Content="FECHA NACIMIENTO"/>
-		<DatePicker x:Name="txtFechaNacimiento" HorizontalAlignment="Left" Margin="151,229,0,160" Width="249" />
+		<Label Content="PACIENTE:" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Height="39" Width="300" FontSize="15"/>
 		<Button FontSize="24"
 	  Content="Volver"
 	  HorizontalAlignment="Left"
@@ -58,8 +22,8 @@
 	  Background="White"
 	  Click="ButtonVolver"
 	  FontFamily="Agency FB"
-	  Margin="63,340,0,0"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="329,361,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+	  Margin="548,484,0,0"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="739,489,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<Button x:Name="botonMultiUso" FontSize="24"
 	  Content="Guardar cambios"
 	  HorizontalAlignment="Left"
@@ -70,8 +34,142 @@
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
-	  Margin="278,264,0,0" Click="ButtonGuardar"/>
-		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="450,264,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+	  Margin="548,421,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="730,421,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Grid Margin="56,78,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="515">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<!-- Columna para los TextBox -->
+				<!-- Columna para los Labels -->
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+
+			</Grid.RowDefinitions>
+
+			<Label Content="Nombre"
+		  Grid.Row="0"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtNombre"
+		  Grid.Row="0"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="Apellido"
+		  Grid.Row="1"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtApellido"
+		  Grid.Row="1"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="DNI"
+		  Grid.Row="2"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtDni"
+		  Grid.Row="2"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="Teléfono"
+		  Grid.Row="3"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtTelefono"
+		  Grid.Row="3"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5" />
+
+			<Label Content="Provincia"
+		  Grid.Row="4"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtProvincia"
+		  Grid.Row="4"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="Domicilio"
+		  Grid.Row="5"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtDomicilio"
+		  Grid.Row="5"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="Localidad"
+		  Grid.Row="6"
+		  Grid.Column="0"
+		  HorizontalAlignment="Right"
+		  Width="Auto" VerticalAlignment="Center"/>
+			<TextBox x:Name="txtLocalidad"
+		  Grid.Row="6"
+		  Grid.Column="1"
+		  Width="Auto"
+		  Margin="5,5,5,5"/>
+
+			<Label Content="Fecha de Nacimiento"
+		  Grid.Row="9"
+		  Grid.Column="0"
+		  Width="Auto" 
+		  Height="Auto"
+		  HorizontalAlignment="Right" VerticalAlignment="Center" />
+			<DatePicker Grid.Row="9"
+		  Grid.Column="1"
+		  x:Name="txtFechaNacimiento"
+		  Margin="5,5,5,5"
+		  Grid.ColumnSpan="2"/>
+			<Label Content="Fecha de Ingreso"
+	   Grid.Row="12"
+	   Width="Auto" 
+	   Height="Auto"
+	   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,1,0,0" />
+			<DatePicker Grid.Row="12"
+	   Grid.Column="1"
+	   x:Name="txtFechaIngreso"
+	   Margin="5,0,5,0"
+	/>
+			<Label Content="Email"
+	   Grid.Row="13"
+	   HorizontalAlignment="Left"
+	   Width="Auto" VerticalAlignment="Center" Margin="56,0,0,0"/>
+			<TextBox x:Name="txtEmail"
+	   Grid.Row="13"
+	   Grid.Column="1"
+	   Width="Auto"
+	   Margin="5,0,5,0" Grid.RowSpan="2"/>
+		</Grid>
 
 	</Grid>
 </Window>
