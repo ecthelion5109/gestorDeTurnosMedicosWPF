@@ -78,7 +78,7 @@ namespace ClinicaMedica
 		public MainWindow() {
 			InitializeComponent();
 			
-			 BaseDeDatos = new BaseDeDatosJSON();
+			 //BaseDeDatos = new BaseDeDatosJSON();
 			BaseDeDatos = new BaseDeDatosSQL();
 
 
