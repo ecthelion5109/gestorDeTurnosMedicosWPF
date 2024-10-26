@@ -2,42 +2,40 @@
 using System.IO;
 using Newtonsoft.Json;
 
-
 namespace ClinicaMedica {
-
-
 	public class BaseDeDatosJSON : IBaseDeDatos{
-		//------------------------public----------------------//
 		public string archivoPath = "database.json";
-		public Dictionary<string, Dictionary<string, object>> Database => _database ??= LeerDatabaseComoDiccionarioNewtonsoft();
+		public Dictionary<string, Dictionary<string, object>> MiDiccionario;
+		
+		
+		public BaseDeDatosJSON() {
+			this.LLenarMiDiccionarioConNewtonsoftJson();
+		}
 		
 		
 		
-		
-		//------------------------public.CHECKERS----------------------//
+		//------------------------CHECKERS----------------------//
 		public bool CorroborarQueNoExistaMedico(string key){
-			return this.Database["medicos"].ContainsKey(key);
+			return this.MiDiccionario["medicos"].ContainsKey(key);
 		}
 		public bool CorroborarQueNoExistaPaciente(string key){
-			return this.Database["pacientes"].ContainsKey(key);
+			return this.MiDiccionario["pacientes"].ContainsKey(key);
 		}
 		public bool CorroborarQueNoExistaTurno(string key){
-			return this.Database["turnos"].ContainsKey(key);
+			return this.MiDiccionario["turnos"].ContainsKey(key);
 		}
 		
 		
 		
 		
-		//------------------------public.CREATE----------------------//
-		public OperationCode CreateMedico(Medico medico){
-			
-			
-			this.Database["medicos"][medico.Dni] = medico;
+		//------------------------CREATE----------------------//
+		public OperationCode CreateMedico(Medico medico) {
+			this.MiDiccionario["medicos"][medico.Dni] = medico;
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.CREATE_SUCCESS;
 		}
 		public OperationCode CreatePaciente(Paciente paciente){
-			this.Database["pacientes"][paciente.Dni] = paciente;
+			this.MiDiccionario["pacientes"][paciente.Dni] = paciente;
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.CREATE_SUCCESS;
 		}
@@ -48,13 +46,13 @@ namespace ClinicaMedica {
 
 		//------------------------public.READ----------------------//
 		public List<Medico> ReadMedicos() {
-			return this.Database["medicos"].Values.Cast<Medico>().ToList();
+			return this.MiDiccionario["medicos"].Values.Cast<Medico>().ToList();
 		}
         public List<Paciente> ReadPacientes() {
-            return this.Database["pacientes"].Values.Cast<Paciente>().ToList();
+            return this.MiDiccionario["pacientes"].Values.Cast<Paciente>().ToList();
         }
         public List<Turno> ReadTurnos() {
-            return this.Database["turnos"].Values.Cast<Turno>().ToList();
+            return this.MiDiccionario["turnos"].Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
         public OperationCode UpdateMedico(Medico medico, string originalDni){
@@ -63,8 +61,8 @@ namespace ClinicaMedica {
 			} 
 				
 			if (originalDni != medico.Dni) {
-				this.Database["medicos"].Remove(originalDni);
-				this.Database["medicos"][medico.Dni] = medico;
+				this.MiDiccionario["medicos"].Remove(originalDni);
+				this.MiDiccionario["medicos"][medico.Dni] = medico;
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.UPDATE_SUCCESS;
@@ -75,8 +73,8 @@ namespace ClinicaMedica {
 			} 
 				
 			if (originalDni != paciente.Dni) {
-				this.Database["pacientes"].Remove(originalDni);
-				this.Database["pacientes"][paciente.Dni] = paciente;
+				this.MiDiccionario["pacientes"].Remove(originalDni);
+				this.MiDiccionario["pacientes"][paciente.Dni] = paciente;
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			return OperationCode.UPDATE_SUCCESS;
@@ -87,12 +85,12 @@ namespace ClinicaMedica {
 		//------------------------public.DELETE----------------------//
 		
 		public OperationCode DeleteMedico(string medicoId){
-			this.Database["medicos"].Remove(medicoId);
+			this.MiDiccionario["medicos"].Remove(medicoId);
 			this.GuardarJson(); // Save changes to the database
 			return OperationCode.DELETE_SUCCESS;
 		}
 		public OperationCode DeletePaciente(string pacienteId){
-			this.Database["pacientes"].Remove(pacienteId);
+			this.MiDiccionario["pacientes"].Remove(pacienteId);
 			this.GuardarJson(); // Save changes to the database
 			return OperationCode.DELETE_SUCCESS;
 		}
@@ -104,29 +102,19 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------Private----------------------//
-		private Dictionary<string, Dictionary<string, object>> _database;
-		private Dictionary<string, Dictionary<string, object>> LeerDatabaseComoDiccionarioNewtonsoft(){
-			// Prepara un diccionario para almacenar los objetos
-			var result = new Dictionary<string, Dictionary<string, object>>();
-
-			// Check if the file exists
-			if (File.Exists(archivoPath))
-			{
+		private void LLenarMiDiccionarioConNewtonsoftJson(){
+			MiDiccionario = new Dictionary<string, Dictionary<string, object>>();
+			if (File.Exists(archivoPath)){
 				string jsonString = File.ReadAllText(archivoPath);
-
 				var database = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(jsonString);
-
-				// Check and convert "pacientes"
-				if (database.ContainsKey("pacientes"))
-				{
+				if (database.ContainsKey("pacientes")){
 					var pacientes = new Dictionary<string, object>();
 					foreach (var pacienteElement in database["pacientes"])
 					{
-						// Deserialize each entry as a Paciente object
 						var paciente = JsonConvert.DeserializeObject<Paciente>(pacienteElement.Value.ToString());
 						pacientes[pacienteElement.Key] = paciente;
 					}
-					result["pacientes"] = pacientes;
+					MiDiccionario["pacientes"] = pacientes;
 				}
 
 				// MessageBox.Show("11, testing");
@@ -139,14 +127,13 @@ namespace ClinicaMedica {
 						var medico = new Medico(medicoElement.Key, medicoJsonElement);
 						medicos[medicoElement.Key] = medico;
 					}
-					result["medicos"] = medicos;
+					MiDiccionario["medicos"] = medicos;
 				}
 
 				// MessageBox.Show("22, testing");
 
 				// Check and convert "turnos"
-				if (database.ContainsKey("turnos"))
-				{
+				if (database.ContainsKey("turnos")){
 					var turnos = new Dictionary<string, object>();
 					foreach (var turnoElement in database["turnos"])
 					{
@@ -154,19 +141,17 @@ namespace ClinicaMedica {
 						var turno = JsonConvert.DeserializeObject<Turno>(turnoElement.Value.ToString());
 						turnos[turnoElement.Key] = turno;
 					}
-					result["turnos"] = turnos;
+					MiDiccionario["turnos"] = turnos;
 				}
 			}
 			else
 			{
 				MessageBox.Show("Error: File not found.");
 			}
-
-			return result;
 		}
 		
 		private void GuardarJson(){ 
-			string jsonString = JsonConvert.SerializeObject(Database, Formatting.Indented);
+			string jsonString = JsonConvert.SerializeObject(MiDiccionario, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}
 		//------------------------Fin.BaseDeDatosJSON----------------------//

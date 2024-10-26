@@ -12,8 +12,8 @@
       "Localidad": "G. Catan",
       "Provincia": "Bs Asires"
     },
-    "10350997": {
-      "Dni": "10350997",
+    "10350991": {
+      "Dni": "10350991",
       "Name": "Enrique",
       "LastName": "Pereyra",
       "FechaIngreso": "2024-10-07T21:03:16.3227542-03:00",
@@ -50,7 +50,7 @@
       }
     },
     "256543": {
-      "Name": "Dr. Carlitos",
+      "Name": "Dr. Carl",
       "LastName": "Merkier",
       "Dni": "256543",
       "Provincia": "Buenos Aires",
@@ -86,10 +86,10 @@
       "SueldoMinimoGarantizado": 900000.0,
       "DiasDeAtencion": {}
     },
-    "132145": {
+    "1321452": {
       "Name": "Dr. Tocando",
       "LastName": "Conchitas",
-      "Dni": "132145",
+      "Dni": "1321452",
       "Provincia": "Corrientes",
       "Domicilio": "Pium 12342",
       "Localidad": "Merlo",

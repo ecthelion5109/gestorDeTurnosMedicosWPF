@@ -12,9 +12,7 @@ namespace ClinicaMedica {
 			MiConexion = new SqlConnection(connectionString);
 			MiConexion.Open();
 		}
-		
-		
-		
+
 		
 		//------------------------CHECKERS----------------------//
 		public bool CorroborarQueNoExistaMedico(string key){
@@ -27,8 +25,11 @@ namespace ClinicaMedica {
 			return false;
 		}
 		
+		
+		
+		
 		//------------------------CREATE----------------------//
-		public  OperationCode CreateMedico(Medico medico) {
+		public OperationCode CreateMedico(Medico medico) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE Dni = @Dni";
 			string insertQuery = "INSERT INTO Medico (Name, LastName, Especialidad, SueldoMinimoGarantizado, FechaIngreso, Dni) VALUES (@Name, @LastName, @Especialidad, @SueldoMinimoGarantizado, @FechaIngreso, @Dni)";
 			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
@@ -68,7 +69,6 @@ namespace ClinicaMedica {
 			// }
 			return OperationCode.CREATE_SUCCESS;
 		}
-
 		public  OperationCode CreateTurno(Turno turno) {
 			return OperationCode.SIN_DEFINIR;
 		}
