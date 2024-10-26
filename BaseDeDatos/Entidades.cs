@@ -262,7 +262,8 @@ namespace ClinicaMedica {
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
 			this.Dni = window.txtDNI.Text;
-			this.Provincia = window.txtProvincia.Text;
+            this.Telefono = window.txtTelefono.Text;
+            this.Provincia = window.txtProvincia.Text;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
 			this.Especialidad = window.txtEspecialidad.Text;
