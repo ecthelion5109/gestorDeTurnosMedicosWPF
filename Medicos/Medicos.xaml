@@ -38,7 +38,7 @@
 					<!-- Especialidad Column -->
 					<GridViewColumn Header="Especialidad" DisplayMemberBinding="{Binding Especialidad}" Width="auto"/>
                     <!-- Especialidad Teléfono -->
-                    <GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Teléfono}" Width="auto"/>
+                    <GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Telefono}" Width="auto"/>
                     <!-- Especialidad E-mail-->
                     <GridViewColumn Header="E-mail" DisplayMemberBinding="{Binding E-mail}" Width="auto"/>
                 </GridView>

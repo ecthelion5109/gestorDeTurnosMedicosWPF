@@ -33,7 +33,8 @@ namespace ClinicaMedica {
 			this.txtNombre.Text = SelectedMedico.Name;
 			this.txtApellido.Text = SelectedMedico.LastName;
 			this.txtDNI.Text = SelectedMedico.Dni;
-			this.txtProvincia.Text = SelectedMedico.Provincia;
+            this.txtTelefono.Text = SelectedMedico.Telefono;
+            this.txtProvincia.Text = SelectedMedico.Provincia;
 			this.txtDomicilio.Text = SelectedMedico.Domicilio;
 			this.txtLocalidad.Text = SelectedMedico.Localidad;
 			this.txtEspecialidad.Text = SelectedMedico.Especialidad;

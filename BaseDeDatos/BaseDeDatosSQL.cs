@@ -150,13 +150,14 @@ namespace ClinicaMedica {
 		}
         //------------------------UPDATE----------------------//
         public OperationCode UpdateMedico(Medico medico, string originalDni) {
-			string updateQuery = "UPDATE Medico SET Name = @Name, LastName = @LastName, Especialidad = @Especialidad, SueldoMinimoGarantizado = @SueldoMinimoGarantizado,  FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
+			string updateQuery = "UPDATE Medico SET Name = @Name, LastName = @LastName, Telefono = @Telefono, Especialidad = @Especialidad, SueldoMinimoGarantizado = @SueldoMinimoGarantizado,  FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
 			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
 				// MiConexion.Open();
 				using (SqlCommand sqlComando = new SqlCommand(updateQuery, MiConexion)) {
 					sqlComando.Parameters.AddWithValue("@Name", medico.Name);
 					sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
-					sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
+                sqlComando.Parameters.AddWithValue("@Telefono", medico.Telefono);
+                sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
 					sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", medico.SueldoMinimoGarantizado);
 					sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
 					sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
