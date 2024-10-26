@@ -48,6 +48,9 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
 			</Grid.RowDefinitions>
 
 			<Label Content="Nombre"
@@ -83,77 +86,88 @@
 					Width="Auto"
 					Margin="5,5,5,5"/>
 
-			<Label Content="Provincia"
-					Grid.Row="3"
+            <Label Content="Teléfono"
+		Grid.Row="3"
+		Grid.Column="0"
+		HorizontalAlignment="Right"
+		Width="Auto" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtTelefono"
+		Grid.Row="3"
+		Grid.Column="1"
+		Width="Auto"
+		Margin="5,5,5,5"/>
+
+            <Label Content="Provincia"
+					Grid.Row="4"
 					Grid.Column="0"
 					HorizontalAlignment="Right"
 					Width="Auto" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtProvincia"
-					Grid.Row="3"
+					Grid.Row="4"
 					Grid.Column="1"
 					Width="Auto"
 					Margin="5,5,5,5"/>
 
 			<Label Content="Domicilio"
-					Grid.Row="4"
+					Grid.Row="5"
 					Grid.Column="0"
 					HorizontalAlignment="Right"
 					Width="Auto" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDomicilio"
-					Grid.Row="4"
+					Grid.Row="5"
 					Grid.Column="1"
 					Width="Auto"
 					Margin="5,5,5,5"/>
 
 			<Label Content="Localidad"
-					Grid.Row="5"
+					Grid.Row="6"
 					Grid.Column="0"
 					HorizontalAlignment="Right"
 					Width="Auto" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtLocalidad"
-					Grid.Row="5"
+					Grid.Row="6"
 					Grid.Column="1"
 					Width="Auto"
 					Margin="5,5,5,5"/>
 
 			<Label Content="Especialidad"
-					Grid.Row="6"
+					Grid.Row="7"
 					Grid.Column="0"
 					Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 			<TextBox x:Name="txtEspecialidad"
-					Grid.Row="6"
+					Grid.Row="7"
 					Grid.Column="1"
 					Width="Auto"
 					Margin="5,5,5,5"/>
 
 			<Label Content="Sueldo Minimo Garantizado"
-					Grid.Row="7"
+					Grid.Row="8"
 					Width="Auto" 
 					Grid.Column="0" HorizontalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtSueldoMinGarant"
-					Grid.Row="7"
+					Grid.Row="8"
 					Grid.Column="1" Margin="5,5,5,5"/>
 
 			<Label Content="Fecha de Ingreso"
-					Grid.Row="8"
+					Grid.Row="9"
 					Grid.Column="0"
 					Width="Auto" 
 					Height="Auto"
 					HorizontalAlignment="Right" VerticalAlignment="Center" />
-			<DatePicker Grid.Row="8"
+			<DatePicker Grid.Row="9"
 					Grid.Column="1"
 					x:Name="txtFechaIngreso"
 					Margin="5,5,5,5"
 					Grid.ColumnSpan="2"/>
 
 			<Label Content="Realiza Guardia"
-					Grid.Row="9"
+					Grid.Row="10"
 					Grid.Column="0"
 					Width="Auto" 
 					Height="Auto"
 					HorizontalAlignment="Right" VerticalAlignment="Center"/>
 			<CheckBox x:Name="txtRealizaGuardia"
-					Grid.Row="9"
+					Grid.Row="10"
 					Grid.Column="1"
 					HorizontalAlignment="Center"
 					Margin="5,5,5,5"
@@ -161,7 +175,7 @@
 				<DatePicker/>
 			</CheckBox>
 			<Label Content="Días de atención"
-					Grid.Row="10"
+					Grid.Row="11"
 					Grid.Column="0"
 					HorizontalAlignment="Right"
 					Width="Auto" 
@@ -172,7 +186,7 @@
 					  VerticalAlignment="Center"
 					  Height="auto"
 					Grid.RowSpan="3"
-					Grid.Row="10"
+					Grid.Row="11"
 					Grid.Column="1"
 					Margin="5,5,5,5"
 					HorizontalAlignment="Center"

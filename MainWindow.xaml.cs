@@ -78,9 +78,15 @@ namespace ClinicaMedica
 		public MainWindow() {
 			InitializeComponent();
 			
+<<<<<<< Updated upstream
 			 //BaseDeDatos = new BaseDeDatosJSON();
 			BaseDeDatos = new BaseDeDatosSQL();
 
+=======
+			// BaseDeDatos = new BaseDeDatosJSON();
+			BaseDeDatos = new BaseDeDatosSQL();
+			
+>>>>>>> Stashed changes
 
 			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
 
