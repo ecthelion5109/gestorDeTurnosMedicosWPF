@@ -33,9 +33,15 @@
                     <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
                     <!-- Name Column -->
                     <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Name}" Width="auto"/>
-                    <!-- Lastname Column -->
-                    <GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
-                </GridView>
+
+					<GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
+
+					<GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="auto"/>
+
+					<GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Telefono}" Width="auto"/>
+
+					<GridViewColumn Header="FechaNacim" DisplayMemberBinding="{Binding FechaNacimiento}" Width="auto"/>
+				</GridView>
             </ListView.View>
         </ListView>
         <Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar paciente" HorizontalAlignment="Left" Height="38" Margin="48,244,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
