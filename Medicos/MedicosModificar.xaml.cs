@@ -85,7 +85,6 @@ namespace ClinicaMedica {
 			MessageBox.Show(operacion switch {
 				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.LastName}",
 				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedMedico.Name} {SelectedMedico.LastName}",
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
 				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDNI.Text}",
 				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
@@ -114,9 +113,10 @@ namespace ClinicaMedica {
 
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
+				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
 				_ => "Error: Sin definir"
 			});
+			this.NavegarA<Medicos>();
 		}
 		//---------------------botones.VolverAtras-------------------//
 		private void ButtonVolver(object sender, RoutedEventArgs e) {

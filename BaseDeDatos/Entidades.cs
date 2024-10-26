@@ -228,6 +228,25 @@ namespace ClinicaMedica {
 			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
 		}
 
+		public void AsignarDatosFromWindow(MedicosModificar window) {
+			this.Name = window.txtNombre.Text;
+			this.LastName = window.txtApellido.Text;
+			this.Dni = window.txtDNI.Text;
+            this.Telefono = window.txtTelefono.Text;
+            this.Provincia = window.txtProvincia.Text;
+			this.Domicilio = window.txtDomicilio.Text;
+			this.Localidad = window.txtLocalidad.Text;
+			this.Especialidad = window.txtEspecialidad.Text;
+			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
+			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)){
+				this.SueldoMinimoGarantizado = sueldo;
+			} else {
+				this.SueldoMinimoGarantizado = 0; // Set a default value if parsing fails
+			}
+			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
+		}
+
 		// Dictionario de DiasDeAtencion --> a Lista
 		public List<HorarioMedico> GetDiasDeAtencionListForUI() {
 			var dias = new List<HorarioMedico> {
@@ -256,24 +275,6 @@ namespace ClinicaMedica {
 					DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
 				}
 			}
-		}
-		
-		public Medico AsignarDatosFromWindow(MedicosModificar window){ 
-			this.Name = window.txtNombre.Text;
-			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDNI.Text;
-            this.Telefono = window.txtTelefono.Text;
-            this.Provincia = window.txtProvincia.Text;
-			this.Domicilio = window.txtDomicilio.Text;
-			this.Localidad = window.txtLocalidad.Text;
-			this.Especialidad = window.txtEspecialidad.Text;
-			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
-			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate; 
-			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)) {
-				this.SueldoMinimoGarantizado = sueldo;
-			}
-			this.UpdateDiasDeAtencionFromUI( (List<HorarioMedico>) window.txtDiasDeAtencion.ItemsSource);
-			return this;
 		}
 		
 		
@@ -316,27 +317,30 @@ namespace ClinicaMedica {
 		}
 
 		public Paciente(PacientesModificar window){
+			this.Dni = window.txtDni.Text;
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDni.Text;
-			this.Provincia = window.txtProvincia.Text;
+			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			this.Email = window.txtEmail.Text;
+			this.Telefono = window.txtTelefono.Text;
+			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
-			//this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
-			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
+			this.Provincia = window.txtProvincia.Text;
 		}
 		
 		
-		public Paciente AsignarDatosFromWindow(PacientesModificar window){ 
+		public void AsignarDatosFromWindow(PacientesModificar window) {
+			this.Dni = window.txtDni.Text;
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDni.Text;
-			this.Provincia = window.txtProvincia.Text;
+			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
+			this.Email = window.txtEmail.Text;
+			this.Telefono = window.txtTelefono.Text;
+			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
-			//this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
-			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
-			return this;
+			this.Provincia = window.txtProvincia.Text;
 		}
 	}
 	

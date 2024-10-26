@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Pacientes" Height="650" Width="1000"  Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
+        Title="Clinica Medica - Pacientes" Height="600" Width="1024"  Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 
 
         <Grid.Background>
-            <ImageBrush ImageSource="/images/fondopacienteagregar.jpg"/>
+			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
         </Grid.Background>
 
 

@@ -8,9 +8,8 @@
         Title="Clinica Medica - Pacientes Agregar" Height="600" Width="1024" Icon="../images/icono.png"  WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.Background>
-			<ImageBrush ImageSource="/images/doctor.jpg"/>
+			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
 		</Grid.Background>
-		<Label Content="PACIENTE:" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Height="39" Width="300" FontSize="15"/>
 		<Button FontSize="24"
 	  Content="Volver"
 	  HorizontalAlignment="Left"
@@ -22,8 +21,8 @@
 	  Background="White"
 	  Click="ButtonVolver"
 	  FontFamily="Agency FB"
-	  Margin="548,484,0,0"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="739,489,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+	  Margin="104,476,0,0"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="32" Margin="295,482,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<Button x:Name="botonMultiUso" FontSize="24"
 	  Content="Guardar cambios"
 	  HorizontalAlignment="Left"
@@ -34,9 +33,9 @@
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
-	  Margin="548,421,0,0" Click="ButtonGuardar"/>
-		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="730,421,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-		<Grid Margin="56,78,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="515">
+	  Margin="104,414,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="286,414,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Grid Margin="594,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="515">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<!-- Columna para los TextBox -->
@@ -170,6 +169,14 @@
 	   Width="Auto"
 	   Margin="5,0,5,0" Grid.RowSpan="2"/>
 		</Grid>
+		<Label Content="Modificar o Agregar Paciente"
+	  HorizontalAlignment="Left"
+	  Margin="418,56,0,0"
+	  VerticalAlignment="Top"
+	  FontSize="26"
+	  FontFamily="Ringbearer"
+	  Height="51"
+	  Width="452"/>
 
 	</Grid>
 </Window>

@@ -44,7 +44,24 @@ namespace ClinicaMedica {
 		//---------------------botones.GuardarCambios-------------------//
 		bool CorroborarUserInputEsSeguro(){
 			return !(
-					 string.IsNullOrEmpty(this.txtDni.Text)
+					 string.IsNullOrEmpty(this.txtDni.Text) ||
+					 
+					 
+					 //string.IsNullOrEmpty(this.txtNombre.Text) ||
+					 //string.IsNullOrEmpty(this.txtApellido.Text) ||
+					 //string.IsNullOrEmpty(this.txtEmail.Text) ||
+					 //string.IsNullOrEmpty(this.txtTelefono.Text) ||
+					 //string.IsNullOrEmpty(this.txtDomicilio.Text) ||
+					 //string.IsNullOrEmpty(this.txtLocalidad.Text) ||
+					 //string.IsNullOrEmpty(this.txtProvincia.Text) ||
+					 
+					 
+					 
+					 
+					 
+					 
+					 this.txtFechaIngreso.SelectedDate is null ||
+					 this.txtFechaNacimiento.SelectedDate is null
 					 );
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
@@ -79,7 +96,6 @@ namespace ClinicaMedica {
 			MessageBox.Show(operacion switch {
 				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Paciente: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
 				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedPaciente.Name} {SelectedPaciente.LastName} de la base de Datos",
 				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDni.Text}",
 				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
 				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
@@ -108,9 +124,10 @@ namespace ClinicaMedica {
 
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se han eliminado a: {SelectedPaciente.Name} {SelectedPaciente.LastName} de la base de Datos",
+				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedPaciente.Name} {SelectedPaciente.LastName} de la base de Datos",
 				_ => "Error: Sin definir"
 			});
+			this.NavegarA<Pacientes>();
 		}
 		//---------------------botones.VolverAtras-------------------//
 		private void ButtonVolver(object sender, RoutedEventArgs e) {
