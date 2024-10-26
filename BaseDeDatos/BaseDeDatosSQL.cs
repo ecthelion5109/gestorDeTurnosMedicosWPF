@@ -5,15 +5,18 @@ using System.Configuration;
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : IBaseDeDatos{
 		private string connectionString = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
+		private SqlConnection MiConexion;
+		
+		
+		public BaseDeDatosSQL() {
+			MiConexion = new SqlConnection(connectionString);
+			MiConexion.Open();
+		}
 		
 		
 		
 		
-		
-		
-		
-		
-		//------------------------public.CHECKERS----------------------//
+		//------------------------CHECKERS----------------------//
 		public bool CorroborarQueNoExistaMedico(string key){
 			return false;
 		}
@@ -24,25 +27,18 @@ namespace ClinicaMedica {
 			return false;
 		}
 		
-		
-		
-		
-		
-		
-		
-		
 		//------------------------CREATE----------------------//
 		public  OperationCode CreateMedico(Medico medico) {
 			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE Dni = @Dni";
 			string insertQuery = "INSERT INTO Medico (Name, LastName, Especialidad, SueldoMinimoGarantizado, FechaIngreso, Dni) VALUES (@Name, @LastName, @Especialidad, @SueldoMinimoGarantizado, @FechaIngreso, @Dni)";
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion);
 				checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
-				connection.Open();
+				// MiConexion.Open();
 				if ((int)checkCommand.ExecuteScalar() > 0) {
 					return OperationCode.YA_EXISTE;
 				}
-				SqlCommand sqlComando = new SqlCommand(insertQuery, connection);
+				SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
 				sqlComando.Parameters.AddWithValue("@Name", medico.Name);
 				sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
 				sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
@@ -50,26 +46,26 @@ namespace ClinicaMedica {
 				sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
 				sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
 				sqlComando.ExecuteNonQuery();
-			}
+			// }
 			return OperationCode.CREATE_SUCCESS;
 		}
 		public  OperationCode CreatePaciente(Paciente medico) {
 			string checkQuery = "SELECT COUNT(1) FROM Paciente WHERE Dni = @Dni";
 			string insertQuery = "INSERT INTO Paciente (Name, LastName, FechaIngreso, Dni) VALUES (@Name, @LastName, @FechaIngreso, @Dni)";
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				SqlCommand checkCommand = new SqlCommand(checkQuery, connection);
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				SqlCommand checkCommand = new SqlCommand(checkQuery, MiConexion);
 				checkCommand.Parameters.AddWithValue("@Dni", medico.Dni);
-				connection.Open();
+				// MiConexion.Open();
 				if ((int)checkCommand.ExecuteScalar() > 0) {
 					return OperationCode.YA_EXISTE;
 				}
-				SqlCommand sqlComando = new SqlCommand(insertQuery, connection);
+				SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
 				sqlComando.Parameters.AddWithValue("@Name", medico.Name);
 				sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
 				sqlComando.Parameters.AddWithValue("@FechaIngreso", medico.FechaIngreso);
 				sqlComando.Parameters.AddWithValue("@Dni", medico.Dni);
 				sqlComando.ExecuteNonQuery();
-			}
+			// }
 			return OperationCode.CREATE_SUCCESS;
 		}
 
@@ -83,9 +79,9 @@ namespace ClinicaMedica {
 			List<Medico> medicoList = new List<Medico>();
 			string query = "SELECT * FROM Medico";
 			try {
-				using (SqlConnection connection = new SqlConnection(connectionString)) {
-					SqlCommand command = new SqlCommand(query, connection);
-					connection.Open();
+				// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+					SqlCommand command = new SqlCommand(query, MiConexion);
+					// MiConexion.Open();
 					SqlDataReader reader = command.ExecuteReader();
 					while (reader.Read()) {
 						Medico medico = new Medico {
@@ -104,7 +100,7 @@ namespace ClinicaMedica {
 						medicoList.Add(medico);
 					}
 					reader.Close();
-				}
+				// }
 			}
 			catch (Exception ex) {
 				MessageBox.Show("Error retrieving data: " + ex.Message);
@@ -117,10 +113,9 @@ namespace ClinicaMedica {
             string query = "SELECT * FROM Paciente";
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    connection.Open();
+                // using (SqlConnection MiConexion = new SqlConnection(connectionString)){
+                    SqlCommand command = new SqlCommand(query, MiConexion);
+                    // MiConexion.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -141,7 +136,7 @@ namespace ClinicaMedica {
                         pacienteList.Add(paciente);
                     }
                     reader.Close();
-                }
+                // }
             }
             catch (Exception ex)
             {
@@ -156,9 +151,9 @@ namespace ClinicaMedica {
         //------------------------UPDATE----------------------//
         public OperationCode UpdateMedico(Medico medico, string originalDni) {
 			string updateQuery = "UPDATE Medico SET Name = @Name, LastName = @LastName, Especialidad = @Especialidad, SueldoMinimoGarantizado = @SueldoMinimoGarantizado,  FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				connection.Open();
-				using (SqlCommand sqlComando = new SqlCommand(updateQuery, connection)) {
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				// MiConexion.Open();
+				using (SqlCommand sqlComando = new SqlCommand(updateQuery, MiConexion)) {
 					sqlComando.Parameters.AddWithValue("@Name", medico.Name);
 					sqlComando.Parameters.AddWithValue("@LastName", medico.LastName);
 					sqlComando.Parameters.AddWithValue("@Especialidad", medico.Especialidad);
@@ -168,15 +163,15 @@ namespace ClinicaMedica {
 					sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
 				sqlComando.ExecuteNonQuery();
 				}
-			}
+			// }
 
 			return OperationCode.UPDATE_SUCCESS;
 		}
         public OperationCode UpdatePaciente(Paciente paciente, string originalDni) {
 			string updateQuery = "UPDATE Paciente SET Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Dni = @Dni WHERE Dni = @originalDni";
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				connection.Open();
-				using (SqlCommand sqlComando = new SqlCommand(updateQuery, connection)) {
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				// MiConexion.Open();
+				using (SqlCommand sqlComando = new SqlCommand(updateQuery, MiConexion)) {
 					sqlComando.Parameters.AddWithValue("@Name", paciente.Name);
 					sqlComando.Parameters.AddWithValue("@LastName", paciente.LastName);
 					sqlComando.Parameters.AddWithValue("@FechaIngreso", paciente.FechaIngreso);
@@ -184,7 +179,7 @@ namespace ClinicaMedica {
 					sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
 				sqlComando.ExecuteNonQuery();
 				}
-			}
+			// }
 
 			return OperationCode.UPDATE_SUCCESS;
 		}
@@ -198,25 +193,25 @@ namespace ClinicaMedica {
 		public OperationCode DeleteMedico(string medicoDni) {
 			string query = "DELETE FROM Medico WHERE Dni = @Dni";
 
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				SqlCommand command = new SqlCommand(query, connection);
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				SqlCommand command = new SqlCommand(query, MiConexion);
 				command.Parameters.AddWithValue("@Dni", medicoDni);
 
-				connection.Open();
+				// MiConexion.Open();
 				command.ExecuteNonQuery();
-			}
+			// }
 
 			return OperationCode.DELETE_SUCCESS;
 		}
 		public OperationCode DeletePaciente(string pacienteDni) {
 			string query = "DELETE FROM Paciente WHERE Dni = @Dni";
 
-			using (SqlConnection connection = new SqlConnection(connectionString)) {
-				SqlCommand command = new SqlCommand(query, connection);
+			// using (SqlConnection MiConexion = new SqlConnection(connectionString)) {
+				SqlCommand command = new SqlCommand(query, MiConexion);
 				command.Parameters.AddWithValue("@Dni", pacienteDni);
-				connection.Open();
+				// MiConexion.Open();
 				command.ExecuteNonQuery();
-			}
+			// }
 
 			return OperationCode.DELETE_SUCCESS;
 		}
