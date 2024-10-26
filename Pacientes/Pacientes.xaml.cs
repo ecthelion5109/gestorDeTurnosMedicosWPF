@@ -40,7 +40,13 @@ namespace ClinicaMedica
 		}
 
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
-			this.NavegarA<PacientesModificar>();
+			//this.NavegarA<MedicosModificar>();
+			if (SelectedPaciente != null) {
+				PacientesModificar nuevaVentana = new(SelectedPaciente);
+				Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
+				nuevaVentana.Show();  // Mostrar la nueva ventana
+				this.Close();  // Cerrar la ventana actual
+			}
 
 		}
 
