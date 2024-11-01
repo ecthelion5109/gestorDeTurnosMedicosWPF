@@ -6,7 +6,7 @@ using System.Data;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : IBaseDeDatos{
-		private string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 		private SqlConnection MiConexion;
 		
 		

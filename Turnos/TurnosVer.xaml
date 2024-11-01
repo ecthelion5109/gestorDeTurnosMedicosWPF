@@ -17,18 +17,7 @@
         <!--Calendar Grid.Column="0" Name="CalendarioTurnos" SelectedDateChanged="CalendarioTurnos_SelectedDateChanged" /-->
 
         <!-- DataGrid para los turnos por hora -->
-        <DataGrid Grid.Column="1" Name="DataGridTurnos" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <!-- Columna para mostrar la hora -->
-                <DataGridTextColumn Header="Hora" Binding="{Binding Hora}" Width="*" />
-
-                <!-- Columna para mostrar el número de turno -->
-                <DataGridTextColumn Header="Turno" Binding="{Binding NumeroTurno}" Width="*" />
-
-                <!-- Columna para el estado de la reserva (disponible, reservado, etc.) -->
-                <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="67,35,0,0" VerticalAlignment="Top"/>
-    </Grid>
+		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="67,35,0,0" VerticalAlignment="Top"/>
+		<DataGrid x:Name="datagridcitoFatal" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,38,47,140"/>
+	</Grid>
 </Window>

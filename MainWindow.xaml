@@ -24,6 +24,7 @@
 		<Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="447,296,0,0" VerticalAlignment="Top" Height="48" Width="147" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
 		<Label Content="Bienvenido Señor Gestor" Margin="368,182,0,0" FontSize="26" HorizontalAlignment="Left" FontFamily="Palatino Linotype" Background="{x:Null}" Width="306" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="51"/>
 		<Label Content="`Mala Praxis SXXI´" Margin="333,82,0,0" FontSize="24" HorizontalAlignment="Left" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="380" VerticalAlignment="Top" Foreground="#FF333363" Height="57" />
+		<Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="643,384,0,0" VerticalAlignment="Top" Height="46" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/>
 		<!-- <Button Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 		<!-- <Button Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 

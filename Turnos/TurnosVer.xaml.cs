@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +23,55 @@ namespace ClinicaMedica
         {
             InitializeComponent();
             // Cargar los turnos al iniciar la ventana
-            CargarTurnos(DateTime.Today);
-        }
 
-        // Evento que se dispara al cambiar la fecha en el calendario
-        private void CalendarioTurnos_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+            llenarturnos();
+
+
+
+
+
+
+
+			//CargarTurnos(DateTime.Today);
+		}
+
+
+        private void llenarturnos() {
+
+            
+
+			string consulta = @"
+SELECT 
+    CONCAT(P.Name, ' ', P.LastName) AS Paciente,
+    CONCAT(M.Name, ' ', M.LastName) AS Medico,
+    T.FechaHora
+FROM 
+    Turno T
+JOIN 
+    Paciente P ON T.PacienteID = P.Id
+JOIN 
+    Medico M ON T.MedicoID = M.Id;
+
+            ";
+			SqlDataAdapter adaptador = new SqlDataAdapter(consulta, BaseDeDatosSQL.connectionString);
+			using (adaptador) {
+				DataTable tablita = new DataTable();
+				adaptador.Fill(tablita);
+
+				datagridcitoFatal.ItemsSource = tablita.DefaultView;
+			}
+
+
+
+		}
+
+
+
+
+
+
+		// Evento que se dispara al cambiar la fecha en el calendario
+		private void CalendarioTurnos_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime? fechaSeleccionada = CalendarioTurnos.SelectedDate;
 

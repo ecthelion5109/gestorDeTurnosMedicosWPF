@@ -122,5 +122,10 @@ namespace ClinicaMedica
         {
             this.NavegarA<Pacientes>();
         }
-    }
+
+		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
+			this.NavegarA<Turnos>();
+
+		}
+	}
 }
