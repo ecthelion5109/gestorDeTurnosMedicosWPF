@@ -23,15 +23,12 @@ namespace ClinicaMedica{
         }
 		
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			if (labelUsuario.IsEnabled) //osea, si modo SQL
+			if (labelServidor.IsEnabled) //osea, si modo SQL
 			{
-				string hostName = labelUsuario.Text;  // Usuario de SQL Server
-				string hostPass = labelPassword.Text;  // Contraseña de SQL Server
-				string serverName = labelServidor.Text;  // Nombre del servidor (si es configurable por el usuario)
 				//BaseDeDatosSQL.connectionString = $"Server={hostName};Database=ClinicaMedica;Integrated Security=True
 				//static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 				try {
-					BaseDeDatosSQL.connectionString = $"Server={serverName};Database=ClinicaMedica;User ID={hostName};Password={hostPass};";
+					BaseDeDatosSQL.connectionString = $"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};";
 					MainWindow.BaseDeDatos = new BaseDeDatosSQL();
 					MessageBox.Show($"Conexion SQL establecida extiosamente");
 				}
@@ -45,7 +42,8 @@ namespace ClinicaMedica{
 				
 			}
 
-			App.Logueado = true;
+			App.UsuarioLogueado = true;
+			App.UsuarioName = labelUsuario.Text;
 			// this.NavegarA<MainWindow>();
 			// this.close();
 			this.Close();
@@ -67,13 +65,13 @@ namespace ClinicaMedica{
 
 		private void radioButtonJSONChecked(object sender, RoutedEventArgs e) {
 			labelPassword.IsEnabled = false;
-			labelUsuario.IsEnabled = false;
+			//labelUsuario.IsEnabled = false;
 			labelServidor.IsEnabled = false;
 		}
 
 		private void radioButtonSQLChecked(object sender, RoutedEventArgs e) {
 			labelPassword.IsEnabled = true;
-			labelUsuario.IsEnabled = true;
+			//labelUsuario.IsEnabled = true;
 			labelServidor.IsEnabled = true;
 		}
 	}

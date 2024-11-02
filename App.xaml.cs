@@ -7,7 +7,8 @@ namespace ClinicaMedica {
 	/// Interaction logic for App.xaml
 	/// </summary>
 	public partial class App : Application {
-		public static bool Logueado = false;
+		public static bool UsuarioLogueado = false;
+		public static string UsuarioName = "Señor Gestor";
 	}
 	
 

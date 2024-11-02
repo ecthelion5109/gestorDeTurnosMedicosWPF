@@ -20,7 +20,7 @@ namespace ClinicaMedica{
 
 
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
-			this.NavegarA<Login>();
+			this.AbrirComoDialogo<Login>();
 		}
 
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
@@ -28,38 +28,47 @@ namespace ClinicaMedica{
 		}
 
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e) {
-			if (App.Logueado) {
+			if (App.UsuarioLogueado) {
 				this.NavegarA<Medicos>();
 			} else {
 				this.AbrirComoDialogo<Login>();
-				if (App.Logueado) {
+				if (App.UsuarioLogueado) {
 					this.NavegarA<Medicos>();
 				}
 			}
 		}
 
         private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
-			if (App.Logueado) {
+			if (App.UsuarioLogueado) {
 				this.NavegarA<Pacientes>();
 			}
 			else {
 				this.AbrirComoDialogo<Login>();
-				if (App.Logueado) {
+				if (App.UsuarioLogueado) {
 					this.NavegarA<Pacientes>();
 				}
 			}
 		}
 
 		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
-			if (App.Logueado) {
+			if (App.UsuarioLogueado) {
 				this.NavegarA<Turnos>();
 			}
 			else {
 				this.AbrirComoDialogo<Login>();
-				if (App.Logueado) {
+				if (App.UsuarioLogueado) {
 					this.NavegarA<Turnos>();
 				}
 			}
 		}
+		private void Window_Activated(object sender, EventArgs e) {
+			if (App.UsuarioLogueado) {
+				labelBienvenidoSenor.Content = $"Bienvenido Señor ``{App.UsuarioName}´´";
+			}
+		}
+
+
+
+
 	}
 }
