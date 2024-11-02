@@ -29,19 +29,19 @@ namespace ClinicaMedica
         {
             InitializeComponent();
 			// generar
-			PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes();
+			// PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 
 		}
 
 
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.NavegarA<PacientesModificar>();
+			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
 
 		}
 
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			if (SelectedPaciente != null) {
-				this.NavegarA<PacientesModificar>(SelectedPaciente);
+				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
 			}
 
 		}
@@ -69,5 +69,9 @@ namespace ClinicaMedica
 			this.NavegarA<MainWindow>();
 		}
 
+		private void Window_Activated(object sender, EventArgs e) {
+
+			PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
+		}
 	}
 }

@@ -9,10 +9,12 @@ namespace ClinicaMedica {
 
 		public Medicos() {
 			InitializeComponent();
-			MedicoListView.ItemsSource = MainWindow.BaseDeDatos.ReadMedicos();
 
 		}
+		private void Window_Activated(object sender, EventArgs e) {
 
+			MedicoListView.ItemsSource = MainWindow.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
+		}
 		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (MedicoListView.SelectedItem != null) {
 				SelectedMedico = (Medico) MedicoListView.SelectedItem;
@@ -28,16 +30,15 @@ namespace ClinicaMedica {
 		
 		//---------------------botones.Agregar-------------------//
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.NavegarA<MedicosModificar>();
+			this.AbrirComoDialogo<MedicosModificar>(); // this.NavegarA<MedicosModificar>();
 
 		}
 
 		
 		//---------------------botones.Modificar-------------------//
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
-			//this.NavegarA<MedicosModificar>();
 			if (SelectedMedico != null) {
-				this.NavegarA<MedicosModificar>(SelectedMedico);
+				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico); //this.NavegarA<MedicosModificar>();
 			}
 		}
 

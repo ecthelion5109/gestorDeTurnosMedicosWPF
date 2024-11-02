@@ -59,7 +59,7 @@ namespace ClinicaMedica{
         }
 
 		private void MetodoBotonCancelar(object sender, RoutedEventArgs e) {
-			this.NavegarA<MainWindow>();
+			this.Close(); // this.NavegarA<MainWindow>();
 		}
 
 		private void ComboBoxBaseDeDatos_SelectionChanged(object sender, SelectionChangedEventArgs e) {

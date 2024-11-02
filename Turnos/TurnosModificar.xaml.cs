@@ -41,7 +41,7 @@ namespace ClinicaMedica
 
         private void ButtonCancelar(object sender, RoutedEventArgs e)
         {
-            this.NavegarA<Turnos>();
+            this.Close(); this.NavegarA<Turnos>();
         }
 
         private void ButtonAgregar(object sender, RoutedEventArgs e)

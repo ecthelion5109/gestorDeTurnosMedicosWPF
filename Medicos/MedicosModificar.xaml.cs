@@ -116,11 +116,11 @@ namespace ClinicaMedica {
 				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
 				_ => "Error: Sin definir"
 			});
-			this.NavegarA<Medicos>();
+			this.Close(); // this.NavegarA<Medicos>();
 		}
 		//---------------------botones.VolverAtras-------------------//
 		private void ButtonVolver(object sender, RoutedEventArgs e) {
-			this.NavegarA<Medicos>();
+			this.Close(); // this.NavegarA<Medicos>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {

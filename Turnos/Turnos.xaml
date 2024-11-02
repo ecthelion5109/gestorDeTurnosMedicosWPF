@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Turnos" Height="450" Width="800" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
+        Title="Clinica Medica - Turnos" Height="600" Width="1024" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
 
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/images/turnos.png"/>
-        </Grid.Background>
-        <Button Content="Agregar " HorizontalAlignment="Left" Margin="230,357,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
-        <Button Content="Modificar " HorizontalAlignment="Left" Margin="220,299,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
-		<Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="30,356,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosVer"/>
-        <Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="496,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
-        <Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="629,356,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/turnos.png"/>
+		</Grid.Background>
+		<Button Content="Agregar " HorizontalAlignment="Left" Margin="220,456,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
+		<Button Content="Modificar " HorizontalAlignment="Left" Margin="220,525,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
+		<Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
+		<Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="10,518,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
+		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top"/>
+		<DataGrid x:Name="datagridcitoFatal" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="591,10,10,318"/>
 
-    </Grid>
+	</Grid>
 </Window>
