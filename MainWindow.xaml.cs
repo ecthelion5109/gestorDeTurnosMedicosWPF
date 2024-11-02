@@ -39,11 +39,27 @@ namespace ClinicaMedica{
 		}
 
         private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
-            this.NavegarA<Pacientes>();
-        }
+			if (App.Logueado) {
+				this.NavegarA<Pacientes>();
+			}
+			else {
+				this.AbrirComoDialogo<Login>();
+				if (App.Logueado) {
+					this.NavegarA<Pacientes>();
+				}
+			}
+		}
 
 		private void MetodoBotonTurnos(object sender, RoutedEventArgs e) {
-			this.NavegarA<Turnos>();
+			if (App.Logueado) {
+				this.NavegarA<Turnos>();
+			}
+			else {
+				this.AbrirComoDialogo<Login>();
+				if (App.Logueado) {
+					this.NavegarA<Turnos>();
+				}
+			}
 		}
 	}
 }
