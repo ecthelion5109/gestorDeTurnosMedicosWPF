@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +13,75 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ClinicaMedica
-{
+namespace ClinicaMedica{
     /// <summary>
     /// Lógica de interacción para Login.xaml
     /// </summary>
-    public partial class Login : Window
-    {
-        public Login()
-        {
+    public partial class Login : Window {
+        public Login(){
             InitializeComponent();
         }
 		
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			string usuario = ""; //"mariela";
-			string contraseña = ""; // "123";
-			if (  label_user.Text.Equals(usuario) && label_pass.Text.Equals(contraseña)   ) {
-				this.NavegarA<MainWindow>();
+			
+			
+			if (labelUsuario.IsEnabled){
+				string hostName = labelUsuario.Text;  // Usuario de SQL Server
+				string hostPass = labelPassword.Text;  // Contraseña de SQL Server
+				string serverName = labelServidor.Text;  // Nombre del servidor (si es configurable por el usuario)
+				//BaseDeDatosSQL.connectionString = $"Server={hostName};Database=ClinicaMedica;Integrated Security=True
+				//static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+				try {
+					BaseDeDatosSQL.connectionString = $"Server={serverName};Database=ClinicaMedica;User ID={hostName};Password={hostPass};";
+					MainWindow.BaseDeDatos = new BaseDeDatosSQL();
+					MessageBox.Show($"Conexion SQL establecida extiosamente");
+					//MainWindow.Logueado = true;
+					this.Close();
+					// this.NavegarA<MainWindow>();
+					//this.close();
+				}
+				catch (Exception ex) {
+					MessageBox.Show($"{ex.Message}");
+				}
+			} else {
+				MainWindow.BaseDeDatos = new BaseDeDatosSQL();
+				MessageBox.Show("Conexión establecida con el archivo JSON.");
+				
+				//MainWindow.Logueado = true;
+				this.Close();
 			}
-			else {
-				MessageBox.Show("Contraseña o usuario incorrecta");
-			}
+			
+
+
+
+
+
+
 		}
 
-        public void MetodoBotonSalir(object sender, RoutedEventArgs e){
+        public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
 			Application.Current.Shutdown ();
         }
 
 		private void MetodoBotonCancelar(object sender, RoutedEventArgs e) {
 
 			this.NavegarA<MainWindow>();
+		}
+
+		private void ComboBoxBaseDeDatos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+		private void radioButtonJSONChecked(object sender, RoutedEventArgs e) {
+			labelPassword.IsEnabled = false;
+			labelUsuario.IsEnabled = false;
+			labelServidor.IsEnabled = false;
+		}
+
+		private void radioButtonSQLChecked(object sender, RoutedEventArgs e) {
+			labelPassword.IsEnabled = true;
+			labelUsuario.IsEnabled = true;
+			labelServidor.IsEnabled = true;
 		}
 	}
 }
