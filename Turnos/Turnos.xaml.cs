@@ -33,7 +33,7 @@ namespace ClinicaMedica {
 
         public void ButtonSalir(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Salir();
         }
 
         private void ButtonHome(object sender, RoutedEventArgs e)

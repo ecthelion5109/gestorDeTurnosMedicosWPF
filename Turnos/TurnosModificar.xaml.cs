@@ -36,7 +36,7 @@ namespace ClinicaMedica
 
         private void ButtonSalir(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Salir();
         }
 
         private void ButtonCancelar(object sender, RoutedEventArgs e)

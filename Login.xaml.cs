@@ -23,9 +23,8 @@ namespace ClinicaMedica{
         }
 		
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			
-			
-			if (labelUsuario.IsEnabled){
+			if (labelUsuario.IsEnabled) //osea, si modo SQL
+			{
 				string hostName = labelUsuario.Text;  // Usuario de SQL Server
 				string hostPass = labelPassword.Text;  // Contraseña de SQL Server
 				string serverName = labelServidor.Text;  // Nombre del servidor (si es configurable por el usuario)
@@ -35,41 +34,35 @@ namespace ClinicaMedica{
 					BaseDeDatosSQL.connectionString = $"Server={serverName};Database=ClinicaMedica;User ID={hostName};Password={hostPass};";
 					MainWindow.BaseDeDatos = new BaseDeDatosSQL();
 					MessageBox.Show($"Conexion SQL establecida extiosamente");
-					//MainWindow.Logueado = true;
-					this.Close();
-					// this.NavegarA<MainWindow>();
-					//this.close();
 				}
 				catch (Exception ex) {
 					MessageBox.Show($"{ex.Message}");
+					return;
 				}
 			} else {
 				MainWindow.BaseDeDatos = new BaseDeDatosSQL();
 				MessageBox.Show("Conexión establecida con el archivo JSON.");
 				
-				//MainWindow.Logueado = true;
-				this.Close();
 			}
-			
 
-
-
+			App.Logueado = true;
+			// this.NavegarA<MainWindow>();
+			// this.close();
+			this.Close();
 
 
 
 		}
 
         public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
-			Application.Current.Shutdown ();
+			this.Salir();
         }
 
 		private void MetodoBotonCancelar(object sender, RoutedEventArgs e) {
-
 			this.NavegarA<MainWindow>();
 		}
 
 		private void ComboBoxBaseDeDatos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
         }
 
 		private void radioButtonJSONChecked(object sender, RoutedEventArgs e) {

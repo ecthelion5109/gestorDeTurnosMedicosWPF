@@ -24,11 +24,18 @@ namespace ClinicaMedica{
 		}
 
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
-			Application.Current.Shutdown();
+            this.Salir();
 		}
 
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e) {
-			this.NavegarA<Medicos>();
+			if (App.Logueado) {
+				this.NavegarA<Medicos>();
+			} else {
+				this.AbrirComoDialogo<Login>();
+				if (App.Logueado) {
+					this.NavegarA<Medicos>();
+				}
+			}
 		}
 
         private void MetodoBotonPacientes(object sender, RoutedEventArgs e) {
