@@ -6,7 +6,6 @@ using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class Medicos : Window {
-		string SelectMedicoId;
 		private static Medico? SelectedMedico;
 
 
@@ -16,10 +15,12 @@ namespace ClinicaMedica {
 		}
 
 
+		
+/*
+		// Modo Gallego
 		private void LLenarMedicosGallegoStyle() {
 			var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
 			MiConexion.Open();
-
 			string query = "SELECT * FROM Medico";
 			SqlCommand command = new SqlCommand(query, MiConexion);
 			SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -28,35 +29,38 @@ namespace ClinicaMedica {
 				adapter.Fill(dt);
 			}
 			medicosListView.ItemsSource = dt.DefaultView;
-			//medicosListView.DisplayMemberPath = "Name";
 			medicosListView.SelectedValuePath = "Id";
 		}
-
+		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (medicosListView.SelectedItem != null) {
+				buttonModificar.IsEnabled = true;
+				MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
+			}
+			else {
+				buttonModificar.IsEnabled = false;
+			}
+		}
+*/
 
 
 
 
 
 		private void Window_Activated(object sender, EventArgs e) {
-			LLenarMedicosGallegoStyle();
+			// LLenarMedicosGallegoStyle();
+			medicosListView.ItemsSource = MainWindow.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
 		}
-		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+		
+		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (medicosListView.SelectedItem != null) {
+				SelectedMedico = (Medico) medicosListView.SelectedItem;
 				buttonModificar.IsEnabled = true;
-				MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
-
-
-
-
-				//SelectMedicoId =  ;
-				//SelectedMedico = (Medico) medicosListView.SelectedItem;
-
+				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
 			}
 			else {
 				buttonModificar.IsEnabled = false;
 			}
 		}
-
 
 		
 		//---------------------botones.Agregar-------------------//

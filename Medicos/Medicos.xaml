@@ -1,133 +1,88 @@
-﻿<Window x:Class="ClinicaMedica.Medicos"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:ClinicaMedica"
-		mc:Ignorable="d"
-		Title="Clinica Medica - Medicos"
-		Height="600"
-		Width="1024"
-		Icon="../images/icono.png"
-		Activated="Window_Activated"
-		WindowStartupLocation="CenterScreen">
+﻿<Window 
+	x:Class="ClinicaMedica.Medicos"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	Title="Clinica Medica - Medicos"
+	Height="600"
+	Width="1024"
+	Icon="../images/icono.png"
+	Activated="Window_Activated"
+	WindowStartupLocation="CenterScreen">
 
-	<Grid HorizontalAlignment="Stretch"
-			VerticalAlignment="Stretch">
+	<Window.Background>
+		<RadialGradientBrush>
+			<GradientStop Color="#FFF3E1E1" Offset="0"/>
+			<GradientStop Color="#FFC2CC8A" Offset="1"/>
+		</RadialGradientBrush>
+	</Window.Background>
 
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
 		<Grid.Background>
-			<ImageBrush ImageSource="/images/doctor.jpg"/>
+			<ImageBrush ImageSource="/images/pngwing.com.png"/>
 		</Grid.Background>
 
+		<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<Grid.Background>
+				<ImageBrush/>
+			</Grid.Background>
 
+			<!-- Definicion del grid -->
+			<Grid.RowDefinitions>
+				<RowDefinition Height="32*"/>
+				<RowDefinition Height="263*"/>
+			</Grid.RowDefinitions>
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="32*"/>
-			<RowDefinition Height="263*"/>
-		</Grid.RowDefinitions>
-		<!-- Título -->
-		<Label Content="Personal Médico"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Top"
-				FontSize="36"
-				Height="59"
-				Width="338"
-				FontFamily="Segoe UI Black"/>
-		<ListView Name="medicosListView"
-				  ItemsSource="{Binding MedicosList}"
-				  Width="Auto"
-				  Height="Auto"
-				Margin="10,10,328,140"
-				Grid.Row="1"
-				SelectionChanged="MedicoListView_SelectionChanged">
-			<ListView.View>
-				<GridView>
-					<!-- Dni Column -->
-					<GridViewColumn Header="Dni"
-							DisplayMemberBinding="{Binding Dni}"
-							Width="auto"/>
-					<!-- Name Column -->
-					<GridViewColumn Header="Name"
-							DisplayMemberBinding="{Binding Name}"
-							Width="auto"/>
-					<!-- Lastname Column -->
-					<GridViewColumn Header="LastName"
-							DisplayMemberBinding="{Binding LastName}"
-							Width="auto"/>
-					<!-- Especialidad Column -->
-					<GridViewColumn Header="Especialidad"
-							DisplayMemberBinding="{Binding Especialidad}"
-							Width="auto"/>
-					<!-- Especialidad Teléfono -->
-					<GridViewColumn Header="Teléfono"
-							DisplayMemberBinding="{Binding Telefono}"
-							Width="auto"/>
+			<!-- Tituloi -->
+			<Label Content="Personal Médico"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Top"
+				   FontSize="36"
+				   Height="59"
+				   Width="338"
+				   FontFamily="Segoe UI Black"/>
 
-					<GridViewColumn Header="Hace guardia"
-							DisplayMemberBinding="{Binding Guardia}"
-							Width="auto"/>
+			<!-- ListView -->
+			<ListView Name="medicosListView"
+					  Width="Auto"
+					  Height="Auto"
+					  Margin="10,1,434,149"
+					  Grid.Row="1"
+					  SelectionChanged="medicosListView_SelectionChanged"
+					  Background="#72FFFFFF"
+					  BorderBrush="#72828790">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+						<GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+						<GridViewColumn Header="LastName" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
+						<GridViewColumn Header="Especialidad" DisplayMemberBinding="{Binding Especialidad}" Width="auto"/>
+						<GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Telefono}" Width="auto"/>
+						<GridViewColumn Header="Hace guardia" DisplayMemberBinding="{Binding Guardia}" Width="auto"/>
+						<GridViewColumn Header="Sueldo minimo" DisplayMemberBinding="{Binding SueldoMinimoGarantizado}" Width="auto"/>
+					</GridView>
+				</ListView.View>
+			</ListView>
 
-					<GridViewColumn Header="Sueldo minimo"
-							DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
-							Width="auto"/>
-				</GridView>
-			</ListView.View>
-		</ListView>
-		<Button x:Name="buttonModificar"
-				IsEnabled="false"
-				FontSize="24"
-				Content="Modificar seleccionado"
-				HorizontalAlignment="Left"
-				Height="51"
-				Margin="728,210,0,0"
-				VerticalAlignment="Top"
-				Width="199"
-				Click="ButtonModificar"
-				RenderTransformOrigin="0.546,3.469"
-				BorderBrush="Black"
-				Background="White"
-				FontFamily="Agency FB"
-				Grid.Row="1"/>
-		<Button FontSize="24"
-				Content="Salir"
-				HorizontalAlignment="Left"
-				Height="33"
-				Margin="750,440,0,0"
-				VerticalAlignment="Top"
-				Width="145"
-				Click="ButtonSalir"
-				RenderTransformOrigin="0.546,3.469"
-				BorderBrush="Black"
-				Background="White"
-				FontFamily="Agency FB"
-				Grid.Row="1"/>
-		<Button FontSize="24"
-				Content="Home"
-				HorizontalAlignment="Left"
-				Height="38"
-				Margin="750,397,0,0"
-				VerticalAlignment="Top"
-				Width="145"
-				Click="ButtonHome"
-				RenderTransformOrigin="0.546,3.469"
-				BorderBrush="Black"
-				Background="White"
-				FontFamily="Agency FB"
-				Grid.Row="1"/>
-		<Button FontSize="24"
-				Content="Agregar nuevo"
-				HorizontalAlignment="Left"
-				Height="38"
-				Margin="718,148,0,0"
-				VerticalAlignment="Top"
-				Width="209"
-				Click="ButtonAgregar"
-				RenderTransformOrigin="0.546,3.469"
-				BorderBrush="Black"
-				Background="White"
-				FontFamily="Agency FB"
-				Grid.Row="1"/>
-		<!-- DataGrid insertado aquí -->
+			<!-- Botones -->
+			<Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar seleccionado"
+					HorizontalAlignment="Left" Height="51" Margin="728,210,0,0" VerticalAlignment="Top"
+					Width="199" Click="ButtonModificar" BorderBrush="Black" Background="White" FontFamily="Agency FB"
+					Grid.Row="1"/>
+
+			<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="750,440,0,0"
+					VerticalAlignment="Top" Width="145" Click="ButtonSalir" BorderBrush="Black" Background="White"
+					FontFamily="Agency FB" Grid.Row="1"/>
+
+			<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="750,397,0,0"
+					VerticalAlignment="Top" Width="145" Click="ButtonHome" BorderBrush="Black" Background="White"
+					FontFamily="Agency FB" Grid.Row="1"/>
+
+			<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="718,148,0,0"
+					VerticalAlignment="Top" Width="209" Click="ButtonAgregar" BorderBrush="Black" Background="White"
+					FontFamily="Agency FB" Grid.Row="1"/>
+		</Grid>
 	</Grid>
 </Window>
