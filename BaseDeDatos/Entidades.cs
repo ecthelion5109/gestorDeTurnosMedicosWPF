@@ -350,21 +350,21 @@ namespace ClinicaMedica {
 		public DateTime ?FechaYHoraAsignada { get; set; }
 			
 		// Parameterless constructor
-		public Turno() { }
+		//public Turno() { }
 	
-		public Turno(JsonElement jsonElement)
-		{
-			MedicoPk = jsonElement.GetProperty(nameof(MedicoPk)).GetInt32();
-			PacientePk = jsonElement.GetProperty(nameof(PacientePk)).GetInt32();
-			FechaYHoraAsignada = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaYHoraAsignada)).GetString(), out var fecha) ? fecha : (DateTime?)null;
+		//public Turno(JsonElement jsonElement)
+		//{
+		//	MedicoPk = jsonElement.GetProperty(nameof(MedicoPk)).GetInt32();
+		//	PacientePk = jsonElement.GetProperty(nameof(PacientePk)).GetInt32();
+		//	FechaYHoraAsignada = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaYHoraAsignada)).GetString(), out var fecha) ? fecha : (DateTime?)null;
 
-		}
+		//}
 		
 		
-		public void AsignarDatos(TurnosModificar window){
-            this.PacientePk = int.Parse( window.txtpaciente.SelectedItem?.ToString() );
-			this.MedicoPk = int.Parse(window.txtmedico.Text);
-			this.FechaYHoraAsignada =  (DateTime) window.txtfecha.SelectedDate;
-		}
+		//public void AsignarDatos(TurnosModificar window){
+  //          this.PacientePk = int.Parse( window.txtPacienteDni.SelectedItem?.ToString() );
+		//	this.MedicoPk = int.Parse(window.txtMedicoDni.Text);
+		//	this.FechaYHoraAsignada =  (DateTime) window.txtFecha.SelectedDate;
+		//}
 	}
 }

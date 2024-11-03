@@ -6,8 +6,8 @@
 		xmlns:local="clr-namespace:ClinicaMedica"
 		mc:Ignorable="d"
 		Title="Clinica Medica - Medicos Modificar"
-		Height="600"
-		Width="1024"
+		Height="480"
+		Width="820"
 		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen">
 
@@ -261,7 +261,7 @@
 
 
 		<Button FontSize="24"
-			Content="Volver"
+			Content="Cancelar"
 			HorizontalAlignment="Left"
 			Height="38"
 			VerticalAlignment="Top"
@@ -269,9 +269,9 @@
 			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
-			Click="ButtonVolver"
+			Click="ButtonCancelar"
 			FontFamily="Agency FB"
-			Margin="776,437,0,0"/>
+			Margin="629,356,0,0"/>
 		<Button x:Name="botonMultiUso"
 			FontSize="24"
 			Content="Guardar cambios"
@@ -283,14 +283,14 @@
 			BorderBrush="Black"
 			Background="White"
 			FontFamily="Agency FB"
-			Margin="754,283,0,0"
+			Margin="607,202,0,0"
 			Click="ButtonGuardar"/>
 		<Button x:Name="buttonEliminar"
 			FontSize="24"
 			Content="Eliminar"
 			HorizontalAlignment="Left"
 			Height="38"
-			Margin="756,341,0,0"
+			Margin="609,260,0,0"
 			VerticalAlignment="Top"
 			Width="188"
 			Click="ButtonEliminar"
@@ -302,7 +302,7 @@
 			Content="Salir"
 			HorizontalAlignment="Left"
 			Height="33"
-			Margin="778,480,0,0"
+			Margin="631,399,0,0"
 			VerticalAlignment="Top"
 			Width="144"
 			Click="ButtonSalir"

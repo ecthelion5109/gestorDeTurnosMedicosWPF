@@ -5,19 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClinicaMedica"
         mc:Ignorable="d"
-        Title="Clinica Medica - Turnos" Height="600" Width="1024" Icon="../images/icono.png" WindowStartupLocation="CenterScreen">
+        Title="Clinica Medica - Turnos"
+		Height="600"
+		Width="1024"
+		Icon="../images/icono.png"
+		Activated="Window_Activated"
+		WindowStartupLocation="CenterScreen">
 
 
 	<Grid>
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/turnos.png"/>
 		</Grid.Background>
-		<Button Content="Agregar " HorizontalAlignment="Left" Margin="220,456,0,0" VerticalAlignment="Top" Height="48" Width="170" FontSize="18" Click="ButtonTurnosAgregar"/>
-		<Button Content="Modificar " HorizontalAlignment="Left" Margin="220,525,0,0" VerticalAlignment="Top" Height="49" Width="170" FontSize="18" Click="ButtonTurnosModificar"/>
-		<Button Content="Home" FontSize="18" HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonHome"/>
-		<Button Content="Salir" FontSize="18"  HorizontalAlignment="Left" Margin="10,518,0,0" VerticalAlignment="Top" Height="49" Width="102" Click="ButtonSalir"/>
-		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top"/>
-		<DataGrid x:Name="datagridcitoFatal" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="591,10,10,318"/>
+		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top" SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
+		<ListView x:Name="turnosListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="581,10,10,384" SelectionChanged="listViewTurnos_SelectionChanged">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="Numero" DisplayMemberBinding="{Binding TurnoID}" Width="auto"/>
+					<GridViewColumn Header="Paciente" DisplayMemberBinding="{Binding Paciente}" Width="auto"/>
+					<GridViewColumn Header="Medico" DisplayMemberBinding="{Binding Medico}" Width="auto"/>
+					<GridViewColumn Header="FechaHora" DisplayMemberBinding="{Binding FechaHora}" Width="auto"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar Seleccionado" HorizontalAlignment="Left" Height="38" Margin="320,500,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,502,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,438,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="320,436,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
 	</Grid>
 </Window>

@@ -9,6 +9,13 @@ namespace ClinicaMedica {
 	public partial class App : Application {
 		public static bool UsuarioLogueado = false;
 		public static string UsuarioName = "Señor Gestor";
+		
+		
+		// public static string SelectedMedicoId = null;
+		// public static string SelectedPacienteId = null;
+		// public static string SelectedTurnoId = null;
+		
+		
 	}
 	
 
@@ -40,6 +47,11 @@ namespace ClinicaMedica {
 		}
 		
 		
+		
+		
+		public static void VolverAHome(this Window previousWindow){
+			previousWindow.NavegarA<MainWindow>();
+		}
 		public static void Salir(this Window previousWindow){
 			Application.Current.Shutdown();  // Apagar la aplicación
 		}

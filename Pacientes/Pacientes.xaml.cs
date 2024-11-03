@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace ClinicaMedica
 {
@@ -29,7 +30,7 @@ namespace ClinicaMedica
         {
             InitializeComponent();
 			// generar
-			// PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
+			// pacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 
 		}
 
@@ -47,8 +48,8 @@ namespace ClinicaMedica
 		}
 
 		private void PacienteListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (PacientesListView.SelectedItem != null) {
-				SelectedPaciente = (Paciente)PacientesListView.SelectedItem;
+			if (pacientesListView.SelectedItem != null) {
+				SelectedPaciente = (Paciente)pacientesListView.SelectedItem;
 				buttonModificar.IsEnabled = true;
 				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
 			}
@@ -66,12 +67,12 @@ namespace ClinicaMedica
 
 		//---------------------botones.VolverAHome-------------------//
 		private void ButtonHome(object sender, RoutedEventArgs e) {
-			this.NavegarA<MainWindow>();
+			this.VolverAHome();
 		}
 
 		private void Window_Activated(object sender, EventArgs e) {
 
-			PacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
+			pacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 		}
 	}
 }

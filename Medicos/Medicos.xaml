@@ -34,7 +34,7 @@
 				Height="59"
 				Width="338"
 				FontFamily="Segoe UI Black"/>
-		<ListView Name="MedicoListView"
+		<ListView Name="medicosListView"
 				  ItemsSource="{Binding MedicosList}"
 				  Width="Auto"
 				  Height="Auto"

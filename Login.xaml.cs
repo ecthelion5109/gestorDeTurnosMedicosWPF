@@ -23,23 +23,28 @@ namespace ClinicaMedica{
         }
 		
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			if (labelServidor.IsEnabled) //osea, si modo SQL
-			{
-				//BaseDeDatosSQL.connectionString = $"Server={hostName};Database=ClinicaMedica;Integrated Security=True
-				//static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+
+			if (!labelServidor.IsEnabled) {
+				MainWindow.BaseDeDatos = new BaseDeDatosJSON();
+				//MessageBox.Show("Conexión establecida con el archivo JSON.");
+			} else if (  string.IsNullOrEmpty(labelServidor.Text) && string.IsNullOrEmpty(labelUsuario.Text) && string.IsNullOrEmpty(labelPassword.Text) ) {
 				try {
-					BaseDeDatosSQL.connectionString = $"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};";
 					MainWindow.BaseDeDatos = new BaseDeDatosSQL();
-					MessageBox.Show($"Conexion SQL establecida extiosamente");
 				}
 				catch (Exception ex) {
 					MessageBox.Show($"{ex.Message}");
 					return;
 				}
 			} else {
-				MainWindow.BaseDeDatos = new BaseDeDatosSQL();
-				MessageBox.Show("Conexión establecida con el archivo JSON.");
-				
+				try {
+					BaseDeDatosSQL.connectionString = $"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};";
+					MainWindow.BaseDeDatos = new BaseDeDatosSQL();
+					//MessageBox.Show($"Conexion SQL establecida extiosamente");
+				}
+				catch (Exception ex) {
+					MessageBox.Show($"{ex.Message}");
+					return;
+				}
 			}
 
 			App.UsuarioLogueado = true;

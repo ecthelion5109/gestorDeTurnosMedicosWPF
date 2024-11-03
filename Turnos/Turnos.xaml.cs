@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,26 +14,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace ClinicaMedica {
-	/// <summary>
-	/// Lógica de interacción para Turnos.xaml
-	/// </summary>
 	public partial class Turnos : Window {
+		private string? SelectedTurnoId;
+		
 		public Turnos() {
             InitializeComponent();
-			llenarturnos();
 		}
 
-
-
-
-		private void llenarturnos() {
-
-
+		private void LLenarTurnosGallegoStyle() {
 
 			string consulta = @"
                 SELECT 
+					TurnoID,
                     CONCAT(P.Name, ' ', P.LastName) AS Paciente,
                     CONCAT(M.Name, ' ', M.LastName) AS Medico,
                     T.FechaHora
@@ -48,51 +44,58 @@ namespace ClinicaMedica {
 				DataTable tablita = new DataTable();
 				adaptador.Fill(tablita);
 
-				datagridcitoFatal.ItemsSource = tablita.DefaultView;
+				turnosListView.ItemsSource = tablita.DefaultView;
 			}
+			//turnosListView.DisplayMemberPath = "Name";
+			turnosListView.SelectedValuePath = "TurnoID";
+		}
 
+		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (turnosListView.SelectedValue != null) {
+				SelectedTurnoId = turnosListView.SelectedValue.ToString();
+				//MessageBox.Show($"Selected Medico DNI: {turnosListView.SelectedValue}");
+				//MessageBox.Show($"Selected Medico2 DNI: {SelectedTurnoId}");
+				buttonModificar.IsEnabled = true;
+			}
+			else {
+				SelectedTurnoId = null;
+				buttonModificar.IsEnabled = false;
+			}
+		}
 
-
+		private void Window_Activated(object sender, EventArgs e) {
+			LLenarTurnosGallegoStyle();
 		}
 
 
-
-
-
-
-
-		// Evento que se dispara al cambiar la fecha en el calendario
-		private void CalendarioTurnos_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
+		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
 			DateTime? fechaSeleccionada = CalendarioTurnos.SelectedDate;
 
-			if (fechaSeleccionada.HasValue) {
-				// Llama a un método para cargar turnos de la fecha seleccionada
-				CargarTurnos(fechaSeleccionada.Value);
-			}
-		}
-
-		// Método para cargar los turnos del día
-		private void CargarTurnos(DateTime fecha) {
+			//if (fechaSeleccionada.HasValue) {
+			//	CargarTurnos(fechaSeleccionada.Value);
+			//}
 		}
 
 
-		private void ButtonTurnosModificar(object sender, RoutedEventArgs e) {
+		//---------------------botonesParaModificarDB-------------------//
+		private void ButtonModificar(object sender, RoutedEventArgs e) {
+			// if (SelectedTurnoId != null && turnosListView.SelectedItem != null) {
+				this.AbrirComoDialogo<TurnosModificar>(SelectedTurnoId); // this.NavegarA<TurnosModificar>();
+			// }
+		}
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<TurnosModificar>(); // this.NavegarA<TurnosModificar>();
 		}
-        public void ButtonSalir(object sender, RoutedEventArgs e)
-        {
+		
+		
+		
+		
+		//---------------------botonesDeVolver-------------------//
+        public void ButtonSalir(object sender, RoutedEventArgs e) {
             this.Salir();
         }
-
-        private void ButtonHome(object sender, RoutedEventArgs e)
-        {
-			this.NavegarA<MainWindow>();
-
-        }
-
-		private void ButtonTurnosAgregar(object sender, RoutedEventArgs e) {
-
-			this.AbrirComoDialogo<TurnosModificar>(); // this.NavegarA<TurnosModificar>();
+        private void ButtonHome(object sender, RoutedEventArgs e) {
+			this.VolverAHome();
 		}
 	}
 }

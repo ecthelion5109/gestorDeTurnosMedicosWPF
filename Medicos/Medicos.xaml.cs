@@ -1,9 +1,12 @@
 ﻿using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class Medicos : Window {
+		string SelectMedicoId;
 		private static Medico? SelectedMedico;
 
 
@@ -11,15 +14,43 @@ namespace ClinicaMedica {
 			InitializeComponent();
 
 		}
-		private void Window_Activated(object sender, EventArgs e) {
 
-			MedicoListView.ItemsSource = MainWindow.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
+
+		private void LLenarMedicosGallegoStyle() {
+			var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
+			MiConexion.Open();
+
+			string query = "SELECT * FROM Medico";
+			SqlCommand command = new SqlCommand(query, MiConexion);
+			SqlDataAdapter adapter = new SqlDataAdapter(command);
+			DataTable dt = new DataTable();
+			using (adapter) {
+				adapter.Fill(dt);
+			}
+			medicosListView.ItemsSource = dt.DefaultView;
+			//medicosListView.DisplayMemberPath = "Name";
+			medicosListView.SelectedValuePath = "Id";
+		}
+
+
+
+
+
+
+		private void Window_Activated(object sender, EventArgs e) {
+			LLenarMedicosGallegoStyle();
 		}
 		private void MedicoListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (MedicoListView.SelectedItem != null) {
-				SelectedMedico = (Medico) MedicoListView.SelectedItem;
+			if (medicosListView.SelectedItem != null) {
 				buttonModificar.IsEnabled = true;
-				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
+				MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
+
+
+
+
+				//SelectMedicoId =  ;
+				//SelectedMedico = (Medico) medicosListView.SelectedItem;
+
 			}
 			else {
 				buttonModificar.IsEnabled = false;
@@ -51,7 +82,7 @@ namespace ClinicaMedica {
 
 		//---------------------botones.VolverAHome-------------------//
 		private void ButtonHome(object sender, RoutedEventArgs e) {
-			this.NavegarA<MainWindow>();
+			this.VolverAHome();
 		}
 		
 		

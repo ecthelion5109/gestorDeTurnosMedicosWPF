@@ -26,7 +26,6 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedPaciente = selectedPaciente;
-
 			this.txtDni.Text = SelectedPaciente.Dni;
 			this.txtNombre.Text = SelectedPaciente.Name;
 			this.txtApellido.Text = SelectedPaciente.LastName;
@@ -129,17 +128,14 @@ namespace ClinicaMedica {
 			});
 			this.Close(); // this.NavegarA<Pacientes>();
 		}
-		//---------------------botones.VolverAtras-------------------//
-		private void ButtonVolver(object sender, RoutedEventArgs e) {
+		//---------------------botones.Salida-------------------//
+		private void ButtonCancelar(object sender, RoutedEventArgs e) {
 			this.Close(); // this.NavegarA<Pacientes>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-
-
-
 		//------------------------Fin----------------------//
 	}
 }

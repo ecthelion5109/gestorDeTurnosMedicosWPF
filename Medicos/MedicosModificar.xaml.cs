@@ -118,15 +118,14 @@ namespace ClinicaMedica {
 			});
 			this.Close(); // this.NavegarA<Medicos>();
 		}
-		//---------------------botones.VolverAtras-------------------//
-		private void ButtonVolver(object sender, RoutedEventArgs e) {
+		//---------------------botones.Salida-------------------//
+		private void ButtonCancelar(object sender, RoutedEventArgs e) {
 			this.Close(); // this.NavegarA<Medicos>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-
-		//------------------------Fin----------------------//
+		//------------------------Fin---------------------------//
 	}
 }
