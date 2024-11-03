@@ -10,7 +10,7 @@
 		Width="1024" 
 		Icon="../images/icono.png"  
 		WindowStartupLocation="CenterScreen">
-		
+
 	<Grid>
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
@@ -26,8 +26,7 @@
 	  Background="White"
 	  Click="ButtonCancelar"
 	  FontFamily="Agency FB"
-	  Margin="104,476,0,0"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="32" Margin="295,482,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+	  Margin="841,466,0,0"/>
 		<Button x:Name="botonMultiUso" FontSize="24"
 	  Content="Guardar cambios"
 	  HorizontalAlignment="Left"
@@ -38,9 +37,9 @@
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
-	  Margin="104,414,0,0" Click="ButtonGuardar"/>
-		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="286,414,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-		<Grid Margin="594,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="515">
+	  Margin="841,353,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar paciente" HorizontalAlignment="Left" Height="38" Margin="841,406,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Grid Margin="344,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" MaxWidth="515">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<!-- Columna para los TextBox -->
