@@ -10,16 +10,16 @@
 		<Label Content="Turno " HorizontalAlignment="Left" Margin="317,32,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Matura MT Script Capitals" Foreground="#FF03050A" Width="363"/>
 		<Label Content="DNI Paciente" HorizontalAlignment="Left" Margin="183,170,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>
 		<Label Content="DNI Médico" HorizontalAlignment="Left" Margin="183,228,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>
-		<TextBox x:Name="txtMedicoDni" HorizontalAlignment="Left" Margin="333,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+		<TextBox x:Name="txtMedicoDni" HorizontalAlignment="Left" Margin="333,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 		<Label Content="Fecha" HorizontalAlignment="Left" Margin="183,276,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>
 		<DatePicker x:Name="txtFecha" 
             HorizontalAlignment="Left" 
             Margin="333,280,0,0" 
             VerticalAlignment="Top" 
-            Width="433" 
+            Width="182" 
             Height="25"/>
 		<Label Content="ID Turno" HorizontalAlignment="Left" Margin="183,124,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>
-		<TextBox x:Name="txtTurnoId" HorizontalAlignment="Left" Margin="333,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+		<TextBox x:Name="txtTurnoId" HorizontalAlignment="Left" Margin="333,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 		<Button FontSize="24"
 	  Content="Cancelar"
 	  HorizontalAlignment="Left"
@@ -32,7 +32,7 @@
 	  Click="ButtonCancelar"
 	  FontFamily="Agency FB"
 	  Margin="19,376,0,0"/>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="32" Margin="210,382,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="32" Margin="19,337,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<Button x:Name="botonMultiUso" FontSize="24"
 	  Content="Guardar cambios"
 	  HorizontalAlignment="Left"
@@ -43,11 +43,11 @@
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
-	  Margin="19,314,0,0" Click="ButtonGuardar"/>
-		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="201,314,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-		<TextBox x:Name="txtPacienteDni" HorizontalAlignment="Left" Margin="333,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="433" Height="25"/>
+	  Margin="610,324,0,0" Click="ButtonGuardar"/>
+		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar" HorizontalAlignment="Left" Height="38" Margin="612,370,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<TextBox x:Name="txtPacienteDni" HorizontalAlignment="Left" Margin="333,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 	</Grid>
 	<Window.Background>
-		<ImageBrush ImageSource="/images/turnos - agregar.png" />
+		<ImageBrush ImageSource="/images/otroFondo.png" />
 	</Window.Background>
 </Window>

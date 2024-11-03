@@ -59,3 +59,40 @@ VALUES
     ('23456789', 'Maria', 'Lopez', '2024-01-05 08:00:00', 'San Martin 789', 'Córdoba', 'Córdoba', '345-678-9012', 'maria.lopez@example.com', '1992-09-25'),
     ('34567890', 'Juan', 'Martinez', '2021-08-20 10:15:00', 'Ruta 9 Km 15', 'Mendoza', 'Mendoza', '456-789-0123', 'juan.martinez@example.com', '1978-12-05'),
     ('45678901', 'Sofia', 'Ramirez', '2023-03-10 12:30:00', 'Boulevard Galvez 200', 'Salta', 'Salta', '567-890-1234', 'sofia.ramirez@example.com', '1988-04-22');
+
+
+
+
+
+
+
+
+CREATE TABLE Turno (
+    TurnoID INT IDENTITY(1,1) PRIMARY KEY,
+    PacienteID INT NOT NULL,
+    MedicoID INT NOT NULL,
+    Fecha DATE NOT NULL,
+    Hora TIME NOT NULL,
+    
+    FOREIGN KEY (PacienteID) REFERENCES Paciente(Id),
+    FOREIGN KEY (MedicoID) REFERENCES Medico(Id)
+    
+    -- Constraint 1: Evita que un médico tenga más de un turno en el mismo horario
+    CONSTRAINT [no_disponible_medico] UNIQUE (MedicoID, Fecha, Hora),
+    -- Constraint 2: Evita que un paciente tenga más de un turno en el mismo horario
+    CONSTRAINT [no_disponible_paciente] UNIQUE (PacienteID, Fecha, Hora)
+);
+
+
+INSERT INTO Turno (PacienteID, MedicoID, Fecha, Hora)
+VALUES
+    (1, 1, '2024-11-10', '09:00'), -- Turno 1
+    (2, 1, '2024-11-10', '09:30'), -- Turno 2
+    (3, 2, '2024-11-10', '10:00'), -- Turno 3
+    (4, 2, '2024-11-10', '10:30'), -- Turno 4
+    (5, 3, '2024-11-10', '11:00'), -- Turno 5
+    (1, 3, '2024-11-10', '11:30'), -- Turno 6
+    (2, 4, '2024-11-11', '09:00'), -- Turno 7
+    (3, 4, '2024-11-11', '09:30'), -- Turno 8
+    (4, 5, '2024-11-11', '10:00'), -- Turno 9
+    (5, 5, '2024-11-11', '10:30'); -- Turno 10

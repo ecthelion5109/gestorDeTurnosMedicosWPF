@@ -15,7 +15,7 @@
 
 	<Grid>
 		<Grid.Background>
-			<ImageBrush ImageSource="/images/turnos.png"/>
+			<ImageBrush ImageSource="/images/otroFondo.png"/>
 		</Grid.Background>
 		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top" SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 		<ListView x:Name="turnosListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="581,10,10,384" SelectionChanged="listViewTurnos_SelectionChanged">
