@@ -22,6 +22,7 @@
 		<TextBox x:Name="txtTurnoId" HorizontalAlignment="Left" Margin="333,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 		<Button FontSize="24"
 	  Content="Volver"
+	  Style="{StaticResource BotonRedondeado}" 
 	  HorizontalAlignment="Left"
 	  Height="38"
 	  VerticalAlignment="Top"
@@ -37,13 +38,14 @@
 	  HorizontalAlignment="Left"
 	  Height="38"
 	  VerticalAlignment="Top"
+	  Style="{StaticResource BotonRedondeado}" 
 	  Width="146"
 	  RenderTransformOrigin="0.546,3.469"
 	  BorderBrush="Black"
 	  Background="White"
 	  FontFamily="Agency FB"
 	  Margin="612,292,0,0" Click="ButtonGuardar"/>
-		<Button x:Name="buttonEliminar" FontSize="24" Content="Eliminar turno" HorizontalAlignment="Left" Height="38" Margin="614,335,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button x:Name="buttonEliminar" Style="{StaticResource BotonRedondeado}" FontSize="24" Content="Eliminar turno" HorizontalAlignment="Left" Height="38" Margin="614,335,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 		<TextBox x:Name="txtPacienteDni" HorizontalAlignment="Left" Margin="333,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 	</Grid>
 	<Window.Background>
