@@ -106,5 +106,6 @@
 				FontFamily="Baskerville Old Face"
 				IsEnabled="False">
 		</Button>
+		<Label Content="Turnos" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Ringbearer" Margin="55,43,0,0" FontWeight="Bold"/>
 	</Grid>
 </Window>

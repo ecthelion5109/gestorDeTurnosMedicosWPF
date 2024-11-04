@@ -12,7 +12,7 @@
         Activated="Window_Activated"
 		WindowStartupLocation="CenterScreen">
 
-	<Grid Margin="0,0,-28,0">
+	<Grid>
 		<Grid.Background>
 			<ImageBrush ImageSource="/images/fondo.jpg"/>
 		</Grid.Background>
@@ -76,7 +76,7 @@
 	  Margin="0,225,0,0"
 	  FontFamily="Baskerville Old Face">
 		</Button>
-		<Button
+		<Button x:Name="buttonVerTurnos"
 	  Content="Ver Turnos"
 	  HorizontalAlignment="Center"
 	  VerticalAlignment="Top"
@@ -90,6 +90,7 @@
 	  Margin="0,405,0,0"
 	  FontFamily="Baskerville Old Face">
 		</Button>
+		<Label x:Name="labelBaseDeDatosModo" Content="Modo SQL" Margin="800,28,0,0" FontSize="26" HorizontalAlignment="Left" FontFamily="Palatino Linotype" Background="{x:Null}" Width="205" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="66"/>
 		<!-- <Button Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 		<!-- <Button Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 

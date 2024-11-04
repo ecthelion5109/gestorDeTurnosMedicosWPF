@@ -49,9 +49,13 @@ namespace ClinicaMedica{
 			}
 		}
 		private void Window_Activated(object sender, EventArgs e) {
-			// if (App.UsuarioLogueado) {
-				// labelBienvenidoSenor.Content = $"Bienvenido Señor ``{App.UsuarioName}´´";
-			// }
+			if (App.UsuarioLogueado && App.BaseDeDatos is BaseDeDatosJSON ) {
+				labelBaseDeDatosModo.Content = "Modo JSON";
+				buttonVerTurnos.IsEnabled = false;
+			} else {
+				labelBaseDeDatosModo.Content = "Modo SQL";
+				buttonVerTurnos.IsEnabled = true;
+			}
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {

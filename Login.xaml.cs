@@ -59,11 +59,13 @@ namespace ClinicaMedica{
 		private void radioButtonJSONChecked(object sender, RoutedEventArgs e) {
 			labelPassword.IsEnabled = false;
 			labelServidor.IsEnabled = false;
+			labelUsuario.IsEnabled = false;
 		}
 
 		private void radioButtonSQLChecked(object sender, RoutedEventArgs e) {
 			labelPassword.IsEnabled = true;
 			labelServidor.IsEnabled = true;
+			labelUsuario.IsEnabled = true;
 		}
 	}
 }
