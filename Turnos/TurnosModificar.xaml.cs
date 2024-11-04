@@ -33,9 +33,11 @@ namespace ClinicaMedica {
 			SelectedTurno = selectedTurno;
 			LLenarComboBoxes();
 
-			this.txtMedicos.SelectedItem = selectedTurno.MedicoJoin;
-			this.txtPacientes.SelectedItem = selectedTurno.PacienteJoin;
-			this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
+			this.txtMedicos.DataContext = selectedTurno;
+			// this.txtPacientes.SelectedItem = selectedTurno.PacienteJoin;
+			this.txtPacientes.DataContext = selectedTurno;
+			// this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
+			this.txtEspecialidades.DataContext = selectedTurno;
 
 			this.txtId.Content = selectedTurno.Id;
 			this.txtFecha.SelectedDate = selectedTurno.Fecha;
@@ -127,12 +129,30 @@ namespace ClinicaMedica {
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			OperationCode operacion;
 			//---------Crear-----------//
-			if (SelectedTurno is null)
+			if (SelectedTurno is null) {
+				//MessageBox.Show($"Es null:");
 				operacion = App.BaseDeDatos.CreateTurno(SelectedTurno);
+			}
 			//---------Modificar-----------//
 			else {
+				//MessageBox.Show($"No Es null:");
+				MessageBox.Show(@$"
+					Antes: 
+					{SelectedTurno.PacienteID}
+					{SelectedTurno.MedicoID}
+					{SelectedTurno.Fecha}
+					{SelectedTurno.Hora}
+				");
 				SelectedTurno.AsignarDatosFromWindow(this);
 				operacion = App.BaseDeDatos.UpdateTurno(SelectedTurno);
+				MessageBox.Show(@$"
+					Despues: 
+					{SelectedTurno.PacienteID}
+					{SelectedTurno.MedicoID}
+					{SelectedTurno.Fecha}
+					{SelectedTurno.Hora}
+				");
+
 			}
 
 			//---------Mensaje-----------//
@@ -174,6 +194,9 @@ namespace ClinicaMedica {
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
+		}
+
+		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 		}
 		//------------------------Fin---------------------------//
 	}

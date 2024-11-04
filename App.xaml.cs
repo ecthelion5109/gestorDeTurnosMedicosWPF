@@ -297,7 +297,65 @@ namespace ClinicaMedica {
 	
 	
 	//---------------------------------Tablas.Turnos-------------------------------//
-	public class Turno {
+	public class Turno : INotifyPropertyChanged {
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+		
+		private string _pacienteJoin;
+		public string PacienteJoin {
+			get {
+				if (_pacienteJoin == null) {
+					_pacienteJoin = LoadPacienteNombreCompletoFromDatabase();
+				}
+				return _pacienteJoin;
+			}
+			set {
+				if (_pacienteJoin != value) {
+					_pacienteJoin = value;
+					OnPropertyChanged(nameof(PacienteJoin));
+				}
+			}
+		}
+	
+	
+	
+		private string ?_medicoJoin = null;
+		public string MedicoJoin {
+			get {
+				if (_medicoJoin == null) {
+					_medicoJoin = LoadMedicoNombreCompletoFromDatabase();
+				}
+				return _medicoJoin;
+			}
+			set {
+				if (_medicoJoin != value) {
+					_medicoJoin = value;
+					OnPropertyChanged(nameof(MedicoJoin));
+				}
+			}
+		}
+		
+		
+		private string ?_especialidad = null;  // Backing field for caching
+
+		public string Especialidad {
+			get {
+				if (_especialidad == null) {
+					_especialidad = LoadEspecialidadFromDatabase();
+				}
+				return _especialidad;
+			}
+			set {
+				if (_especialidad != value) {
+					_especialidad = value;
+					OnPropertyChanged(nameof(Especialidad));
+				}
+			}
+		}
+	
 		public string ?Id { get; set; }
 		public string ?PacienteID { get; set; }
 		public string ?MedicoID { get; set; }
@@ -305,27 +363,6 @@ namespace ClinicaMedica {
 		public string ?Hora { get; set; }
 
 
-		// Propiedad para obtener "DNI + Nombre + Apellido" del Paciente
-		private string _pacienteJoin;
-		public string PacienteJoin {
-			get {
-				if (_pacienteJoin is null) {
-					_pacienteJoin = LoadPacienteNombreCompletoFromDatabase();
-				}
-				return _pacienteJoin;
-			}
-		}
-
-		// Propiedad para obtener "DNI + Nombre + Apellido" del Medico
-		private string ?_medicoJoin = null;
-		public string MedicoJoin {
-			get {
-				if (_medicoJoin is null) {
-					_medicoJoin = LoadMedicoNombreCompletoFromDatabase();
-				}
-				return _medicoJoin;
-			}
-		}
 
 
 		private string LoadPacienteNombreCompletoFromDatabase() {
@@ -363,25 +400,6 @@ namespace ClinicaMedica {
 		}
 
 
-
-
-
-
-
-
-
-
-		private string ?_especialidad = null;  // Backing field for caching
-
-		public string Especialidad {
-			get {
-				if (_especialidad is null){
-					_especialidad = LoadEspecialidadFromDatabase();
-				}
-				return _especialidad;
-			}
-		}
-
 		private string LoadEspecialidadFromDatabase() {
 			// Replace with your actual connection string
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -416,21 +434,10 @@ namespace ClinicaMedica {
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void AsignarDatosFromWindow(TurnosModificar window) {
 			this.Id = window.txtId.Content.ToString();
-			this.PacienteID = window.txtPacientes.Text;
-			this.MedicoID = window.txtMedicos.Text;
+			this.PacienteID = ((Turno) window.txtPacientes.DataContext).PacienteID;
+			this.MedicoID = ((Turno) window.txtMedicos.DataContext).MedicoID;
 			this.Fecha = window.txtFecha.SelectedDate;
 			this.Hora = window.txtFecha.Text;
-			//DateTime parsedTime;
-
-			// Parse the time string and set the DateTime if it's valid
-			//if (DateTime.TryParseExact(window.txtHora.Text, "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime)) {
-				// Set this.Hora to the parsed time, ignoring the date part
-				//this.Hora = parsedTime;
-			//}
-			//else {
-				// Handle the parsing error (e.g., show a message to the user)
-				//MessageBox.Show("Invalid time format. Please use HH:mm:ss.");
-			//}
 		}
 	}
 

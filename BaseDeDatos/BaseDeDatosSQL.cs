@@ -60,59 +60,12 @@ namespace ClinicaMedica {
 			sqlComando.ExecuteNonQuery();
 			return OperationCode.CREATE_SUCCESS;
 		}
-		//public bool corroborarquelaputamdreuqepatio(Paciente instancia){
-		//	return !(
-		//			 string.IsNullOrEmpty(instancia.Dni) ||
-		//			 string.IsNullOrEmpty(instancia.Name) ||
-		//			 string.IsNullOrEmpty(instancia.LastName) ||
-		//			 string.IsNullOrEmpty(instancia.Email) ||
-		//			 string.IsNullOrEmpty(instancia.Telefono) ||
-		//			 string.IsNullOrEmpty(instancia.Domicilio) ||
-		//			 string.IsNullOrEmpty(instancia.Localidad) ||
-		//			 string.IsNullOrEmpty(instancia.Provincia) ||
-
-
-
-
-
-
-		//			instancia.FechaIngreso is null ||
-		//			instancia.FechaNacimiento is null
-		//			);
-		//}
+		
+		
 		public OperationCode CreatePaciente(Paciente instancia) {
-
-
-
-
-
-			// if (corroborarquelaputamdreuqepatio(instancia) ){
-				// MessageBox.Show($@"La puta madre:
-				// DatoDni:{instancia.Dni}
-				// DatoName:{instancia.Name}
-				// DatoLastName:{instancia.LastName}
-				// DatoEmail:{instancia.Email}
-				// DatoTelefono:{instancia.Telefono}
-				// DatoDomicilio:{instancia.Domicilio}
-				// DatoLocalidad:{instancia.Localidad}
-				// DatoProvincia:{instancia.Provincia}
-				// FechaIngreso:{instancia.FechaIngreso}
-				// FechaNacimiento:{instancia.FechaNacimiento}
-
-
-			// ");
-
-			// } else {
-
-			// MessageBox.Show("Good");
-			// }
-
-
-
 			string insertQuery = @"
 				INSERT INTO Paciente  (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) 
 				VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)";
-
 			SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
 			sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
 			sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
@@ -130,8 +83,18 @@ namespace ClinicaMedica {
 
 
 
-		public OperationCode CreateTurno(Turno turno) {
-			return OperationCode.SIN_DEFINIR;
+		public OperationCode CreateTurno(Turno instancia) {
+			string insertQuery = @"
+				INSERT INTO Turno  (Id, PacienteID, MedicoID, Fecha, Hora) 
+				VALUES (@Id, @PacienteID, @MedicoID, @Fecha, @Hora)";
+			SqlCommand sqlComando = new SqlCommand(insertQuery, MiConexion);
+			sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+			sqlComando.Parameters.AddWithValue("@PacienteID", instancia.PacienteID);
+			sqlComando.Parameters.AddWithValue("@MedicoID", instancia.MedicoID);
+			sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+			sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
+			sqlComando.ExecuteNonQuery();
+			return OperationCode.CREATE_SUCCESS;
 		}
 
 
@@ -263,11 +226,23 @@ namespace ClinicaMedica {
 			return OperationCode.UPDATE_SUCCESS;
 		}
 		public OperationCode UpdateTurno(Turno instancia) {
+			//MessageBox.Show(@$"
+			//	{instancia.PacienteID}
+			//	{instancia.PacienteJoin}
+			//	{instancia.MedicoID}
+			//	{instancia.Fecha}
+			//	{instancia.Hora}
+			//	{instancia.Id}
+			//");
+
+
 			string query = "UPDATE Turno SET PacienteID = @PacienteID, MedicoID = @MedicoID, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
 			using (SqlCommand sqlComando = new SqlCommand(query, MiConexion)) {
 				sqlComando.Parameters.AddWithValue("@PacienteID", instancia.PacienteID);
 				sqlComando.Parameters.AddWithValue("@MedicoID", instancia.MedicoID);
-				sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+				//sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.Date ?? (object)DBNull.Value);
+				sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.ToString("yyyy-MM-dd") ?? (object)DBNull.Value);
+
 				sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
 				sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
 				sqlComando.ExecuteNonQuery();
