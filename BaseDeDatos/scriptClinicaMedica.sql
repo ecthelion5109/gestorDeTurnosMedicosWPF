@@ -35,13 +35,13 @@ CREATE TABLE Medico (
 -- Insert sample data into Medico
 INSERT INTO Medico (Name, LastName, Provincia, Domicilio, Localidad, Especialidad, Telefono, Guardia, FechaIngreso, SueldoMinimoGarantizado, Dni)
 VALUES 
-    ('Dr. Ricardo', 'Arjona', 'Buenos Aires', 'Av. Siempre Viva 123', 'Capital Federal', 'Cardiology', '123-456-7890', 1, '2022-01-15', 85000.50, '12345678'),
-    ('Dr. Tocando', 'Conchitas', 'Córdoba', 'Calle Falsa 456', 'Villa Carlos Paz', 'Gynecology', '234-567-8901', 0, '2021-05-20', 92000.00, '87654321'),
-    ('Dr. Mario', 'Socolinsky', 'Mendoza', 'Ruta 40 Km 12', 'Godoy Cruz', 'Pediatrics', '345-678-9012', 1, '2020-09-10', 78000.75, '11223344'),
-    ('Dra. Roxana', 'Toledo', 'Salta', 'Calle San Martin 100', 'Salta', 'Massage Therapist', '456-789-0123', 0, '2023-02-05', 99000.25, '55667788'),
-    ('Dra. Tete', 'Falopa', 'Santa Fe', 'Boulevard Galvez 2000', 'Rosario', 'Holistic Healer', '567-890-1234', 1, '2019-12-25', 86000.00, '99887766'),
-    ('Dra. Debora', 'Meltrozo', 'Buenos Aires', 'Ruta 40 Km 10', 'Uruguay', 'Substance Trafficker', NULL, NULL, '2024-10-05', 3564534543.00, '40350997'),
-    ('Dr. Miguel', 'DedoGordo', 'Buenos Aires', 'Ruta 40 Km 13', 'Italia', 'Proctologist', NULL, NULL, '2021-10-03', 543555543.00, '54355292');
+    ('Dr. Ricardo', 'Arjona', 'Buenos Aires', 'Av. Siempre Viva 123', 'Capital Federal', 'Cardiologo', '123-456-7890', 1, '2022-01-15', 85000.50, '12345678'),
+    ('Dr. Tocando', 'Shells', 'Córdoba', 'Calle Falsa 456', 'Villa Carlos Paz', 'Ginecologo', '234-567-8901', 0, '2021-05-20', 92000.00, '87654321'),
+    ('Dr. Mario', 'Socolinsky', 'Mendoza', 'Ruta 40 Km 12', 'Godoy Cruz', 'Pediatra', '345-678-9012', 1, '2020-09-10', 78000.75, '11223344'),
+    ('Dra. Roxana', 'Toledo', 'Salta', 'Calle San Martin 100', 'Salta', 'Masagista de Genitales', '456-789-0123', 0, '2023-02-05', 99000.25, '55667788'),
+    ('Dra. Tete', 'Falopa', 'Santa Fe', 'Boulevard Galvez 2000', 'Rosario', 'Curadora de Empachos', '567-890-1234', 1, '2019-12-25', 86000.00, '99887766'),
+    ('Dra. Debora', 'Meltrozo', 'Buenos Aires', 'Ruta 40 Km 10', 'Uruguay', 'Traficante de Estupefacientes', '123-890-9252', 1, '2024-10-05', 3564534543.00, '40350997'),
+    ('Dr. Miguel', 'DedoGordo', 'Buenos Aires', 'Ruta 40 Km 13', 'Italia', 'Proctologo', '234-890-5216', 0, '2021-10-03', 543555543.00, '54355292');
 
 -- Create Paciente table
 CREATE TABLE Paciente (
