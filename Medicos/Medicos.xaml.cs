@@ -15,43 +15,18 @@ namespace ClinicaMedica {
 		}
 
 
-		
-/*
-		// Modo Gallego
-		private void LLenarMedicosGallegoStyle() {
-			var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
-			MiConexion.Open();
-			string query = "SELECT * FROM Medico";
-			SqlCommand command = new SqlCommand(query, MiConexion);
-			SqlDataAdapter adapter = new SqlDataAdapter(command);
-			DataTable dt = new DataTable();
-			using (adapter) {
-				adapter.Fill(dt);
-			}
-			medicosListView.ItemsSource = dt.DefaultView;
-			medicosListView.SelectedValuePath = "Id";
-		}
+	
+		//----------------------eventosRefresh-------------------//
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (medicosListView.SelectedItem != null) {
-				buttonModificar.IsEnabled = true;
-				MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
-			}
-			else {
-				buttonModificar.IsEnabled = false;
-			}
-		}
-*/
-
-
-
-
-
-		private void Window_Activated(object sender, EventArgs e) {
-			// LLenarMedicosGallegoStyle();
-			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
-		}
-		
-		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			/* //GALLEGO STYLE
+				if (medicosListView.SelectedItem != null) {
+					buttonModificar.IsEnabled = true;
+					MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
+				}
+				else {
+					buttonModificar.IsEnabled = false;
+				}
+			*/
 			if (medicosListView.SelectedItem != null) {
 				SelectedMedico = (Medico) medicosListView.SelectedItem;
 				buttonModificar.IsEnabled = true;
@@ -61,35 +36,39 @@ namespace ClinicaMedica {
 				buttonModificar.IsEnabled = false;
 			}
 		}
-
-		
-		//---------------------botones.Agregar-------------------//
-		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<MedicosModificar>(); // this.NavegarA<MedicosModificar>();
-
+		//----------------------eventosRefresh-------------------//
+		private void Window_Activated(object sender, EventArgs e) {	
+			/* //GALLEGO STYLE
+				var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
+				MiConexion.Open();
+				string query = "SELECT * FROM Medico";
+				SqlCommand command = new SqlCommand(query, MiConexion);
+				SqlDataAdapter adapter = new SqlDataAdapter(command);
+				DataTable dt = new DataTable();
+				using (adapter) {
+					adapter.Fill(dt);
+				}
+				medicosListView.ItemsSource = dt.DefaultView;
+				medicosListView.SelectedValuePath = "Id";
+			*/
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
 		}
-
-		
-		//---------------------botones.Modificar-------------------//
+		//------------------botonesParaModificarDB------------------//
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			if (SelectedMedico != null) {
-				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico); //this.NavegarA<MedicosModificar>();
+				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico);
 			}
 		}
-
-		
-		//---------------------botones.Salir-------------------//
+		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-		
-
-		//---------------------botones.VolverAHome-------------------//
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
-		
-		
 		//------------------------Fin.Medicos----------------------//
 	}
 }

@@ -42,11 +42,11 @@
 		<Button x:Name="buttonEliminar" Style="{StaticResource BotonRedondeado}" FontSize="20" Content="Eliminar turno" HorizontalAlignment="Left" Height="38" Margin="605,271,0,0" VerticalAlignment="Top" Width="144" Click="ButtonEliminar" BorderBrush="Black" Background="White" FontFamily="Baskerville Old Face"/>
 		<Label Content="Hora" HorizontalAlignment="Left" Margin="148,329,0,0" VerticalAlignment="Top" Height="33" Width="132" FontSize="14" Foreground="Black" FontWeight="Bold" VerticalContentAlignment="Center"/>
 		<TextBox x:Name="txtHora" HorizontalAlignment="Center" Margin="0,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="284" Height="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<ComboBox x:Name="txtPacientes" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" Width="284" Height="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<Label x:Name="txtTurnoId" Content="ID Turno" HorizontalAlignment="Center" Margin="0,83,0,0" VerticalAlignment="Top" Height="33" Width="284" FontSize="14" Foreground="Black" FontWeight="Bold" Background="#FFECECEC" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<ComboBox x:Name="txtPacientes" SelectedItem="{Binding PacienteJoin}" HorizontalAlignment="Center" Margin="0,174,0,0" VerticalAlignment="Top" Width="284" Height="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<Label x:Name="txtId" Content="ID Turno" HorizontalAlignment="Center" Margin="0,83,0,0" VerticalAlignment="Top" Height="33" Width="284" FontSize="14" Foreground="Black" FontWeight="Bold" Background="#FFECECEC" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 		<Label Content="Especialidad" HorizontalAlignment="Left" Margin="148,129,0,0" VerticalAlignment="Top" FontSize="14" Foreground="Black" FontWeight="Bold" VerticalContentAlignment="Center"/>
-		<ComboBox x:Name="txtEspecialidades" HorizontalAlignment="Center" Margin="0,128,0,0" VerticalAlignment="Top" Width="284" Height="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-		<ComboBox x:Name="txtMedicos" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="284" Height="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<ComboBox x:Name="txtEspecialidades" SelectedItem="{Binding Especialidad}" HorizontalAlignment="Center" Margin="0,128,0,0" VerticalAlignment="Top" Width="284" Height="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="txtEspecialidades_SelectionChanged"/>
+		<ComboBox x:Name="txtMedicos" SelectedItem="{Binding MedicoJoin}" HorizontalAlignment="Center" Margin="0,225,0,0" VerticalAlignment="Top" Width="284" Height="33" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 	</Grid>
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg" />
