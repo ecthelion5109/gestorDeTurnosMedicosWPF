@@ -45,31 +45,32 @@ namespace ClinicaMedica {
 				MiConexion.Open();
 				string consulta = @"
 					SELECT 
-						TurnoID,
+						Id,
 						PacienteID,
 						MedicoID,
-						FechaHora
+						Fecha,
+						Hora
 					FROM 
 						Turno
 					WHERE
-						TurnoID = @TurnoID
+						Id = @Id
 				";
 
 				using (var command = new SqlCommand(consulta, MiConexion)) {
-					// Assuming TurnoID is a parameter you want to set
 					command.Parameters.AddWithValue("@Id", selectedTurnoId);
 
 					using (var reader = command.ExecuteReader()) {
 						if (reader.Read())  // Checks if there's at least one row
 						{
-							txtTurnoId.Text = reader["TurnoID"].ToString();
+							txtTurnoId.Text = reader["Id"].ToString();
 							txtPacienteDni.Text = reader["PacienteID"].ToString();
 							txtMedicoDni.Text = reader["MedicoID"].ToString();
-							txtFecha.Text = reader["FechaHora"].ToString();
+							txtFecha.Text = reader["Fecha"].ToString();
+							txtHora.Text = reader["Hora"].ToString();
 						}
 						else {
 							// Handle the case where no results were found
-							MessageBox.Show("No data found for the specified TurnoID.");
+							MessageBox.Show("No data found for the specified Id.");
 						}
 					}
 				}
