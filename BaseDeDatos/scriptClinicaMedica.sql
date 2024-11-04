@@ -69,7 +69,7 @@ VALUES
 
 -- Create Turno table
 CREATE TABLE Turno (
-    TurnoID INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     PacienteID INT NOT NULL,
     MedicoID INT NOT NULL,
     Fecha DATE NOT NULL,

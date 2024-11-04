@@ -58,11 +58,11 @@ namespace ClinicaMedica {
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
 				if (CorroborarUserInputEsSeguro()) {
-					if (MainWindow.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDNI.Text)){
+					if (App.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDNI.Text)){
 						operacion = OperationCode.YA_EXISTE;
 					} else {
 						SelectedMedico = new Medico(this);
-						operacion = MainWindow.BaseDeDatos.CreateMedico(SelectedMedico);
+						operacion = App.BaseDeDatos.CreateMedico(SelectedMedico);
 					}
 				}
 				else {
@@ -74,7 +74,7 @@ namespace ClinicaMedica {
 				string originalDni = SelectedMedico.Dni;
 				if (CorroborarUserInputEsSeguro()) {
 					SelectedMedico.AsignarDatosFromWindow(this);
-					operacion = MainWindow.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
+					operacion = App.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
 				}
 				else {
 					operacion = OperationCode.MISSING_FIELDS;
@@ -109,7 +109,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = MainWindow.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
+			OperationCode operacion = App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
 
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {

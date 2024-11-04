@@ -57,7 +57,7 @@ namespace ClinicaMedica {
 
 				using (var command = new SqlCommand(consulta, MiConexion)) {
 					// Assuming TurnoID is a parameter you want to set
-					command.Parameters.AddWithValue("@TurnoID", selectedTurnoId);
+					command.Parameters.AddWithValue("@Id", selectedTurnoId);
 
 					using (var reader = command.ExecuteReader()) {
 						if (reader.Read())  // Checks if there's at least one row
@@ -96,7 +96,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = MainWindow.BaseDeDatos.DeleteTurno(txtTurnoId.Text);
+			OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtTurnoId.Text);
 			//---------Mensaje-----------//
 			MessageBox.Show(operacion switch {
 				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtTurnoId.Text} de la base de Datos",

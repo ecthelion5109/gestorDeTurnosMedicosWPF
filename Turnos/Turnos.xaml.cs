@@ -25,13 +25,13 @@ namespace ClinicaMedica {
 		}
 
 		private void LLenarTurnosGallegoStyle() {
-
 			string consulta = @"
                 SELECT 
-					TurnoID,
+					T.Id,
                     CONCAT(P.Name, ' ', P.LastName) AS Paciente,
                     CONCAT(M.Name, ' ', M.LastName) AS Medico,
-                    T.FechaHora
+                    FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
+					T.Hora
                 FROM 
                     Turno T
                 JOIN 
@@ -47,7 +47,7 @@ namespace ClinicaMedica {
 				turnosListView.ItemsSource = tablita.DefaultView;
 			}
 			//turnosListView.DisplayMemberPath = "Name";
-			turnosListView.SelectedValuePath = "TurnoID";
+			turnosListView.SelectedValuePath = "Id";
 		}
 
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {

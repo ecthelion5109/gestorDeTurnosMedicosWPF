@@ -3,17 +3,10 @@ using System.Data;
 using System.Windows;
 
 namespace ClinicaMedica {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
 	public partial class App : Application {
 		public static bool UsuarioLogueado = false;
 		public static string UsuarioName = "Señor Gestor";
-		
-		
-		// public static string SelectedMedicoId = null;
-		// public static string SelectedPacienteId = null;
-		// public static string SelectedTurnoId = null;
+		public static IBaseDeDatos BaseDeDatos;
 		
 		
 	}
@@ -46,9 +39,6 @@ namespace ClinicaMedica {
 			nuevaVentana.ShowDialog();
 		}
 		
-		
-		
-		
 		public static void VolverAHome(this Window previousWindow){
 			previousWindow.NavegarA<MainWindow>();
 		}
@@ -57,15 +47,6 @@ namespace ClinicaMedica {
 		}
 	}
 	
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-	public enum SqlOperationType {
-		CREATE,
-		READ,
-		UPDATE,
-		DELETE
-	}
 	public enum OperationCode {
 		YA_EXISTE,
 		SUCCESS,

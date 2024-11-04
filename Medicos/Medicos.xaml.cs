@@ -48,7 +48,7 @@ namespace ClinicaMedica {
 
 		private void Window_Activated(object sender, EventArgs e) {
 			// LLenarMedicosGallegoStyle();
-			medicosListView.ItemsSource = MainWindow.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
 		}
 		
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {

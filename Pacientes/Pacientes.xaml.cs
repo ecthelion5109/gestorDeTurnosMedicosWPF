@@ -30,7 +30,7 @@ namespace ClinicaMedica
         {
             InitializeComponent();
 			// generar
-			// pacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
+			// pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 
 		}
 
@@ -72,7 +72,7 @@ namespace ClinicaMedica
 
 		private void Window_Activated(object sender, EventArgs e) {
 
-			pacientesListView.ItemsSource = MainWindow.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
+			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 		}
 	}
 }

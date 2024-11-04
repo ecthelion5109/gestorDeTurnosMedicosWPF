@@ -7,18 +7,10 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica{
 	public partial class MainWindow : Window {
-		//SQL.SqlConnection.SqlClientPermission miConexionSql;
-		public static IBaseDeDatos BaseDeDatos;
 		
 		public MainWindow() {
 			InitializeComponent();
-			 //BaseDeDatos = new BaseDeDatosJSON();
-			// BaseDeDatos = new BaseDeDatosSQL();
-			//string miConexion = ConfigurationManager.ConnectionStrings["ConexionClinicaMedica.Properties.Settings.ClinicaMedicaConnectionString"].ConnectionString;
-			//miConexionSql = new SqlConnection(miConexion);
 		}
-
-
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<Login>();
 		}
@@ -57,9 +49,9 @@ namespace ClinicaMedica{
 			}
 		}
 		private void Window_Activated(object sender, EventArgs e) {
-			if (App.UsuarioLogueado) {
-				labelBienvenidoSenor.Content = $"Bienvenido Señor ``{App.UsuarioName}´´";
-			}
+			// if (App.UsuarioLogueado) {
+				// labelBienvenidoSenor.Content = $"Bienvenido Señor ``{App.UsuarioName}´´";
+			// }
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {

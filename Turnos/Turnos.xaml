@@ -26,21 +26,24 @@
 				SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 		<ListView x:Name="turnosListView"
 				d:ItemsSource="{d:SampleData ItemCount=5}"
-				Margin="445,27,104,275"
+				Margin="445,27,43,275"
 				SelectionChanged="listViewTurnos_SelectionChanged">
 			<ListView.View>
 				<GridView>
-					<GridViewColumn Header="Numero"
-							DisplayMemberBinding="{Binding TurnoID}"
+					<GridViewColumn Header="Número"
+							DisplayMemberBinding="{Binding Id}"
 							Width="auto"/>
 					<GridViewColumn Header="Paciente"
 							DisplayMemberBinding="{Binding Paciente}"
 							Width="auto"/>
-					<GridViewColumn Header="Medico"
+					<GridViewColumn Header="Médico"
 							DisplayMemberBinding="{Binding Medico}"
 							Width="auto"/>
-					<GridViewColumn Header="FechaHora"
-							DisplayMemberBinding="{Binding FechaHora}"
+					<GridViewColumn Header="Fecha"
+							DisplayMemberBinding="{Binding Fecha}"
+							Width="auto"/>
+					<GridViewColumn Header="Hora"
+							DisplayMemberBinding="{Binding Hora}"
 							Width="auto"/>
 				</GridView>
 			</ListView.View>
