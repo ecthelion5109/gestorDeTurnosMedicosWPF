@@ -44,7 +44,7 @@ namespace ClinicaMedica {
 	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }
 
-		// Constructor para jsons
+		// Constructor de Medico para JSON
 		public Medico(string jsonElementKey, JsonElement jsonElement) {
 			Name = jsonElement.GetProperty(nameof(Name)).GetString();
 			LastName = jsonElement.GetProperty(nameof(LastName)).GetString();
@@ -68,6 +68,7 @@ namespace ClinicaMedica {
 			}
 		}
 
+		// Constructor de Medico en base a una ventana
 		public Medico(MedicosModificar window){
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
@@ -87,6 +88,7 @@ namespace ClinicaMedica {
 			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
 		}
 
+		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void AsignarDatosFromWindow(MedicosModificar window) {
 			this.Name = window.txtNombre.Text;
 			this.LastName = window.txtApellido.Text;
@@ -106,7 +108,8 @@ namespace ClinicaMedica {
 			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
 		}
 
-		// Dictionario de DiasDeAtencion --> a Lista
+
+		// Metodo para devolver una lista con los horarios medicos para la interfaz gráfica.
 		public List<HorarioMedico> GetDiasDeAtencionListForUI() {
 			var dias = new List<HorarioMedico> {
 				new() { DiaSemana = "Lunes" },
@@ -126,7 +129,8 @@ namespace ClinicaMedica {
 			return dias;
 		}
 		
-		// Lista a --> Dictionary de DiasDeAtencion
+
+		// Metodo para actualizar los dias de atencion en base a la ventana
 		private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
 			DiasDeAtencion.Clear();
 			foreach (var dia in diasFromUI) {
@@ -135,9 +139,6 @@ namespace ClinicaMedica {
 				}
 			}
 		}
-		
-		
-		
 		
 	}
 	
@@ -159,6 +160,7 @@ namespace ClinicaMedica {
 			
 		public Paciente() { }
 		
+		// Constructor de PAciente para JSON
 		public Paciente(JsonElement json){
 			Dni = json.GetProperty(nameof(Dni)).GetString();
 			Name = json.GetProperty(nameof(Name)).GetString();
@@ -172,6 +174,7 @@ namespace ClinicaMedica {
 			Provincia = json.GetProperty(nameof(Provincia)).GetString();
 		}
 
+		// Constructor de PAciente en base a una ventana
 		public Paciente(PacientesModificar window){
 			this.Dni = window.txtDni.Text;
 			this.Name = window.txtNombre.Text;
@@ -186,6 +189,7 @@ namespace ClinicaMedica {
 		}
 		
 		
+		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void AsignarDatosFromWindow(PacientesModificar window) {
 			this.Dni = window.txtDni.Text;
 			this.Name = window.txtNombre.Text;
@@ -200,6 +204,9 @@ namespace ClinicaMedica {
 		}
 	}
 	
+	
+	
+	//---------------------------------Tablas.Turnos-------------------------------//
 	public class Turno {
 		public int ?MedicoPk { get; set; }
 		public int ?PacientePk { get; set; }
