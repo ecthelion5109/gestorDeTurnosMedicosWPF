@@ -28,7 +28,8 @@ namespace ClinicaMedica {
 		public TurnosModificar(string selectedTurnoId)  //Modificar turno
 		{
 			InitializeComponent();
-			LLenarTurnosGallegoStyle(selectedTurnoId);
+			LLenarComboBoxes();
+			// LLenarTurnosGallegoStyle(selectedTurnoId);
 			// Leer la instancia desde el archivo JSON
 			// Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
 
@@ -39,6 +40,29 @@ namespace ClinicaMedica {
 			// txtpaciente.SelectedIndex = 0;
 
 		}
+
+		private void LLenarComboBoxes() {
+			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				MiConexion.Open();
+				// Query to select distinct specialties from Medico table
+				string consulta = @"SELECT DISTINCT Especialidad FROM Medico";
+
+				using (var command = new SqlCommand(consulta, MiConexion)) {
+					// Execute the query and retrieve data
+					using (var reader = command.ExecuteReader()) {
+						// Clear existing items in ComboBox before adding new ones
+						txtEspecialidades.Items.Clear();
+
+						// Loop through each record in the result set
+						while (reader.Read()) {
+							// Add each specialty to the ComboBox
+							txtEspecialidades.Items.Add(reader["Especialidad"].ToString());
+						}
+					}
+				}
+			}
+		}
+
 
 		private void LLenarTurnosGallegoStyle(string selectedTurnoId) {
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -55,6 +79,7 @@ namespace ClinicaMedica {
 					WHERE
 						Id = @Id
 				";
+				consulta = @"SELECT DISTINCT Especialidad FROM Medico";
 
 				using (var command = new SqlCommand(consulta, MiConexion)) {
 					command.Parameters.AddWithValue("@Id", selectedTurnoId);
@@ -62,7 +87,7 @@ namespace ClinicaMedica {
 					using (var reader = command.ExecuteReader()) {
 						if (reader.Read())  // Checks if there's at least one row
 						{
-							txtTurnoId.Content = reader["Id"].ToString();
+							//txtTurnoId.Content = reader["Id"].ToString();
 							//txtPacienteDni.Text = reader["PacienteID"].ToString();
 							//txtMedicoDni.Text = reader["MedicoID"].ToString();
 							txtFecha.Text = reader["Fecha"].ToString();
