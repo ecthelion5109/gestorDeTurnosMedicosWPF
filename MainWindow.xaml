@@ -18,14 +18,52 @@
 		</Grid.Background>
 
 		<Label Content="Clinica Medica" Margin="0,10,0,0" FontSize="34" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="412" VerticalAlignment="Top" Foreground="#FF1B1B67" Height="67" />
-		<Button Content="Salir" HorizontalAlignment="Left" Margin="447,480,0,0" VerticalAlignment="Top" Height="43" Width="152" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonSalir" RenderTransformOrigin="-0.324,0.588"/>
 		<!-- <Button Content="TURNOS" HorizontalAlignment="Left" Margin="95,305,0,0" VerticalAlignment="Top" Height="29" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/> -->
-		<Button Content="Ver Pacientes" HorizontalAlignment="Left" Margin="447,426,0,0" VerticalAlignment="Top" Height="42" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonPacientes"/>
 		<Button Content="Ver Medicos" HorizontalAlignment="Left" Margin="447,361,0,0" VerticalAlignment="Top" Height="46" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonMedicos"/>
 		<Button Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="447,296,0,0" VerticalAlignment="Top" Height="48" Width="147" Background="#FFEEF6FF" BorderBrush="Black" Click="MetodoBotonLogin" RenderTransformOrigin="-0.324,0.588"/>
 		<Label x:Name="labelBienvenidoSenor" Content="Bienvenido Señor Gestor" Margin="375,204,0,0" FontSize="26" HorizontalAlignment="Left" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="51"/>
 		<Label Content="`Mala Praxis SXXI´" Margin="333,82,0,0" FontSize="24" HorizontalAlignment="Left" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="380" VerticalAlignment="Top" Foreground="#FF333363" Height="57" />
 		<Button Content="Ver Turnos" HorizontalAlignment="Left" Margin="643,384,0,0" VerticalAlignment="Top" Height="46" Width="152" Background="#FFABD6FF" BorderBrush="Black" Click="MetodoBotonTurnos"/>
+		<Button
+	  Content="Salir"
+	  HorizontalAlignment="Center"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="ButtonSalir"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="0,489,0,0"
+	  FontFamily="Baskerville Old Face">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+		<Button
+	  Content="Ver Pacientes"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="MetodoBotonPacientes"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="235,431,0,0"
+	  FontFamily="Baskerville Old Face">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
 		<!-- <Button Content="test guardar" HorizontalAlignment="Left" Margin="17,217,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonGuardar" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 		<!-- <Button Content="test leer" HorizontalAlignment="Left" Margin="17,180,0,0" VerticalAlignment="Top" Height="32" Width="154" Click="MetodoBotonTestearJsonLeer" FontSize="12" Background="#FF88FA7F" Cursor="Hand" FontFamily="SachaWynterTight"/> -->
 

@@ -12,32 +12,34 @@
 		WindowStartupLocation="CenterScreen"
         Activated="Window_Activated">
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
 
 
-        <Grid.Background>
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
+
+
+		<Grid.Background>
 			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
-        </Grid.Background>
+		</Grid.Background>
 
 
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="263*"/>
-        </Grid.RowDefinitions>
-        <!-- Título -->
-        <Label Content="Pacientes" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Segoe UI Black" Margin="475,24,0,0" Grid.RowSpan="2"/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="32*"/>
+			<RowDefinition Height="263*"/>
+		</Grid.RowDefinitions>
+		<!-- Título -->
+		<Label Content="Pacientes" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Segoe UI Black" Margin="475,24,0,0" Grid.RowSpan="2"/>
 		<ListView Name="pacientesListView" 
                   ItemsSource="{Binding PacientesList}" 
                  Width="Auto"
 				 Height="Auto" Margin="354,58,30,102" Grid.Row="1" SelectionChanged="PacienteListView_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}"
 				 >
-            <ListView.View>
-                <GridView>
-                    <!-- Dni Column -->
-                    <GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
-                    <!-- Name Column -->
-                    <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+			<ListView.View>
+				<GridView>
+					<!-- Dni Column -->
+					<GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+					<!-- Name Column -->
+					<GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Name}" Width="auto"/>
 
 					<GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
 
@@ -47,12 +49,90 @@
 
 					<GridViewColumn Header="FechaNacim" DisplayMemberBinding="{Binding FechaNacimiento}" Width="auto"/>
 				</GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar Seleccionado" HorizontalAlignment="Left" Height="38" Margin="48,244,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,439,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-        <Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,375,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="48,180,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
-        <!-- DataGrid insertado aquí -->
-    </Grid>
+			</ListView.View>
+		</ListView>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,439,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
+		<Button
+	  Content="Home"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="ButtonHome"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="55,386,0,0"
+	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+		<Button
+	  Content="Salir"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="ButtonSalir"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="55,441,0,0"
+	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+		<Button
+	  Content="Agregar nuevo"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="ButtonAgregar"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="265,441,0,0"
+	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+		<Button x:Name="buttonModificar"
+	  Content="Modificar paciente"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  Height="37"
+	  Width="170"
+	  Click="ButtonModificar"
+	  FontSize="20"
+	  Style="{StaticResource BotonRedondeado}"
+	  FontWeight="Bold"
+	  BorderBrush="#FF0E0D0D"
+	  Margin="265,386,0,0"
+	  FontFamily="Baskerville Old Face"
+	  IsEnabled="False" Grid.Row="1">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+		<!-- DataGrid insertado aquí -->
+	</Grid>
 </Window>

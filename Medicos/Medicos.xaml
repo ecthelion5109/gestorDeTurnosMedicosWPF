@@ -67,22 +67,87 @@
 			</ListView>
 
 			<!-- Botones -->
-			<Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar seleccionado"
-					HorizontalAlignment="Left" Height="51" Margin="728,210,0,0" VerticalAlignment="Top"
-					Width="199" Click="ButtonModificar" BorderBrush="Black" Background="White" FontFamily="Agency FB"
-					Grid.Row="1"/>
-
-			<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="750,440,0,0"
-					VerticalAlignment="Top" Width="145" Click="ButtonSalir" BorderBrush="Black" Background="White"
-					FontFamily="Agency FB" Grid.Row="1"/>
-
-			<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="750,397,0,0"
-					VerticalAlignment="Top" Width="145" Click="ButtonHome" BorderBrush="Black" Background="White"
-					FontFamily="Agency FB" Grid.Row="1"/>
-
-			<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="718,148,0,0"
-					VerticalAlignment="Top" Width="209" Click="ButtonAgregar" BorderBrush="Black" Background="White"
-					FontFamily="Agency FB" Grid.Row="1"/>
+			<Button
+	   Content="Home"
+	   HorizontalAlignment="Left"
+	   VerticalAlignment="Top"
+	   Height="37"
+	   Width="170"
+	   Click="ButtonHome"
+	   FontSize="20"
+	   Style="{StaticResource BotonRedondeado}"
+	   FontWeight="Bold"
+	   BorderBrush="#FF0E0D0D"
+	   Margin="570,364,0,0"
+	   FontFamily="Baskerville Old Face" Grid.Row="1">
+				<Button.Effect>
+					<DropShadowEffect/>
+				</Button.Effect>
+				<Button.Background>
+					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+				</Button.Background>
+			</Button>
+			<Button
+	   Content="Salir"
+	   HorizontalAlignment="Left"
+	   VerticalAlignment="Top"
+	   Height="37"
+	   Width="170"
+	   Click="ButtonSalir"
+	   FontSize="20"
+	   Style="{StaticResource BotonRedondeado}"
+	   FontWeight="Bold"
+	   BorderBrush="#FF0E0D0D"
+	   Margin="570,419,0,0"
+	   FontFamily="Baskerville Old Face" Grid.Row="1">
+				<Button.Effect>
+					<DropShadowEffect/>
+				</Button.Effect>
+				<Button.Background>
+					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+				</Button.Background>
+			</Button>
+			<Button
+	   Content="Agregar nuevo"
+	   HorizontalAlignment="Left"
+	   VerticalAlignment="Top"
+	   Height="37"
+	   Width="170"
+	   Click="ButtonAgregar"
+	   FontSize="20"
+	   Style="{StaticResource BotonRedondeado}"
+	   FontWeight="Bold"
+	   BorderBrush="#FF0E0D0D"
+	   Margin="780,419,0,0"
+	   FontFamily="Baskerville Old Face" Grid.Row="1">
+				<Button.Effect>
+					<DropShadowEffect/>
+				</Button.Effect>
+				<Button.Background>
+					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+				</Button.Background>
+			</Button>
+			<Button x:Name="buttonModificar"
+	   Content="Modificar médico"
+	   HorizontalAlignment="Left"
+	   VerticalAlignment="Top"
+	   Height="37"
+	   Width="170"
+	   Click="ButtonModificar"
+	   FontSize="20"
+	   Style="{StaticResource BotonRedondeado}"
+	   FontWeight="Bold"
+	   BorderBrush="#FF0E0D0D"
+	   Margin="780,364,0,0"
+	   FontFamily="Baskerville Old Face"
+	   IsEnabled="False" Grid.Row="1">
+				<Button.Effect>
+					<DropShadowEffect/>
+				</Button.Effect>
+				<Button.Background>
+					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+				</Button.Background>
+			</Button>
 		</Grid>
 	</Grid>
 </Window>
