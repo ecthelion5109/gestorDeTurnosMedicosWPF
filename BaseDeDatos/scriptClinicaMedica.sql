@@ -1,7 +1,14 @@
-﻿-- Create database if it doesn't exist
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'ClinicaMedica')
-    CREATE DATABASE ClinicaMedica;
+﻿-- Drop the database if it exists
+IF EXISTS (SELECT * FROM sys.databases WHERE name = 'ClinicaMedica')
+BEGIN
+    DROP DATABASE ClinicaMedica;
+END
 
+-- Create the database
+CREATE DATABASE ClinicaMedica;
+GO  -- Ensure the batch completes before moving to the next command
+
+-- Switch to the database context
 USE ClinicaMedica;
 
 -- Drop tables if they already exist
