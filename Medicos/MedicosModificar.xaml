@@ -260,7 +260,7 @@
 
 
 
-		<Button FontSize="24"
+		<Button FontSize="20"
 			Content="Volver"
 			HorizontalAlignment="Left"
 			Style="{StaticResource BotonRedondeado}" 
@@ -271,10 +271,10 @@
 			BorderBrush="Black"
 			Background="White"
 			Click="ButtonCancelar"
-			FontFamily="Agency FB"
+			FontFamily="Baskerville Old Face"
 			Margin="607,376,0,0"/>
 		<Button x:Name="botonMultiUso"
-			FontSize="24"
+			FontSize="20"
 			Content="Guardar cambios"
 			HorizontalAlignment="Left"
 			Height="38"
@@ -284,11 +284,11 @@
 			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
-			FontFamily="Agency FB"
+			FontFamily="Baskerville Old Face"
 			Margin="607,267,0,0"
 			Click="ButtonGuardar"/>
 		<Button x:Name="buttonEliminar"
-			FontSize="24"
+			FontSize="20"
 			Content="Eliminar medico"
 			HorizontalAlignment="Left"
 			Height="38"
@@ -300,7 +300,7 @@
 			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
-			FontFamily="Agency FB"/>
+			FontFamily="Baskerville Old Face"/>
 
 
 		<!-- 
