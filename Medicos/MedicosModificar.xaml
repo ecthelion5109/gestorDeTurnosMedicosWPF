@@ -6,15 +6,15 @@
 		xmlns:local="clr-namespace:ClinicaMedica"
 		mc:Ignorable="d"
 		Title="Clinica Medica - Medicos Modificar"
-		Height="480"
-		Width="820"
+		Height="635"
+		Width="930"
 		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen">
 
 	<!-- xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" -->
 
 	<Window.Background>
-		<ImageBrush ImageSource="/images/doctor.jpg"/>
+		<ImageBrush ImageSource="/images/MedicosFondo.jpg" Stretch="UniformToFill"/>
 	</Window.Background>
 
 
@@ -27,18 +27,17 @@
 
 
 
-		<Label Content="Modificar o Agregar Médico"
+		<Label Content="Médico"
 		   HorizontalAlignment="Left"
-		   Margin="551,19,0,0"
+		   Margin="144,59,0,0"
 		   VerticalAlignment="Top"
-		   FontSize="26"
+		   FontSize="32"
 		   FontFamily="Ringbearer"
-		   Height="65"
-		   Width="391"/>
+		   Height="65"/>
 
 
-		<Grid Margin="10,19,0,0"
-			VerticalAlignment="Top"
+		<Grid Margin="349,0,0,0"
+			VerticalAlignment="Center"
 			HorizontalAlignment="Left"
 			MaxWidth="515"
 			Height="534">
@@ -47,7 +46,6 @@
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -267,12 +265,11 @@
 			Height="43"
 			VerticalAlignment="Top"
 			Width="188"
-			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
 			Click="ButtonCancelar"
 			FontFamily="Baskerville Old Face"
-			Margin="607,376,0,0"/>
+			Margin="65,495,0,0"/>
 		<Button x:Name="botonMultiUso"
 			FontSize="20"
 			Content="Guardar cambios"
@@ -281,23 +278,21 @@
 			VerticalAlignment="Top"
 			Width="190"
 			Style="{StaticResource BotonRedondeado}" 
-			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
 			FontFamily="Baskerville Old Face"
-			Margin="607,267,0,0"
+			Margin="65,386,0,0"
 			Click="ButtonGuardar"/>
 		<Button x:Name="buttonEliminar"
 			FontSize="20"
 			Content="Eliminar medico"
 			HorizontalAlignment="Left"
 			Height="38"
-			Margin="607,316,0,0"
+			Margin="65,435,0,0"
 			Style="{StaticResource BotonRedondeado}" 
 			VerticalAlignment="Top"
 			Width="188"
 			Click="ButtonEliminar"
-			RenderTransformOrigin="0.546,3.469"
 			BorderBrush="Black"
 			Background="White"
 			FontFamily="Baskerville Old Face"/>

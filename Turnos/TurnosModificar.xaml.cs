@@ -22,6 +22,7 @@ namespace ClinicaMedica {
         public TurnosModificar() //Crear turno
 		{
             InitializeComponent();
+			LLenarComboBoxes();
 		}
 
 
@@ -44,24 +45,42 @@ namespace ClinicaMedica {
 		private void LLenarComboBoxes() {
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
-				// Query to select distinct specialties from Medico table
-				string consulta = @"SELECT DISTINCT Especialidad FROM Medico";
 
-				using (var command = new SqlCommand(consulta, MiConexion)) {
-					// Execute the query and retrieve data
+				// Query to fill txtEspecialidades ComboBox
+				string consultaEspecialidades = @"SELECT DISTINCT Especialidad FROM Medico";
+				using (var command = new SqlCommand(consultaEspecialidades, MiConexion)) {
 					using (var reader = command.ExecuteReader()) {
-						// Clear existing items in ComboBox before adding new ones
 						txtEspecialidades.Items.Clear();
-
-						// Loop through each record in the result set
 						while (reader.Read()) {
-							// Add each specialty to the ComboBox
 							txtEspecialidades.Items.Add(reader["Especialidad"].ToString());
+						}
+					}
+				}
+
+				// Query to fill txtPacientes ComboBox
+				string consultaPacientes = @"SELECT CONCAT(Dni, ' ', Name, ' ', LastName) AS PacienteInfo FROM Paciente";
+				using (var command = new SqlCommand(consultaPacientes, MiConexion)) {
+					using (var reader = command.ExecuteReader()) {
+						txtPacientes.Items.Clear();
+						while (reader.Read()) {
+							txtPacientes.Items.Add(reader["PacienteInfo"].ToString());
+						}
+					}
+				}
+
+				// Query to fill txtMedicos
+				string consultaMedicos = @"SELECT CONCAT(Dni, ' ', Name, ' ', LastName) AS MedicoInfo FROM Medico";
+				using (var command = new SqlCommand(consultaMedicos, MiConexion)) {
+					using (var reader = command.ExecuteReader()) {
+						txtMedicos.Items.Clear();
+						while (reader.Read()) {
+							txtMedicos.Items.Add(reader["MedicoInfo"].ToString());
 						}
 					}
 				}
 			}
 		}
+
 
 
 		private void LLenarTurnosGallegoStyle(string selectedTurnoId) {
