@@ -97,5 +97,9 @@ namespace ClinicaMedica {
         private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
+
+		private void botonIniciar_Click(object sender, RoutedEventArgs e) {
+
+		}
 	}
 }

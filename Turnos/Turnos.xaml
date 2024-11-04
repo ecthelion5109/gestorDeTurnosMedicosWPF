@@ -62,7 +62,7 @@
                 <DropShadowEffect/>
             </Button.Effect>
             <Button.Background>
-                <ImageBrush ImageSource="/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+                <ImageBrush ImageSource="../images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
             </Button.Background>
         </Button>
 
