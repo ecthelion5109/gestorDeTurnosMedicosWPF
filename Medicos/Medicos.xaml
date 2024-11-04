@@ -80,12 +80,6 @@
 	   BorderBrush="#FF0E0D0D"
 	   Margin="570,364,0,0"
 	   FontFamily="Baskerville Old Face" Grid.Row="1">
-				<Button.Effect>
-					<DropShadowEffect/>
-				</Button.Effect>
-				<Button.Background>
-					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-				</Button.Background>
 			</Button>
 			<Button
 	   Content="Salir"
@@ -100,12 +94,6 @@
 	   BorderBrush="#FF0E0D0D"
 	   Margin="570,419,0,0"
 	   FontFamily="Baskerville Old Face" Grid.Row="1">
-				<Button.Effect>
-					<DropShadowEffect/>
-				</Button.Effect>
-				<Button.Background>
-					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-				</Button.Background>
 			</Button>
 			<Button
 	   Content="Agregar nuevo"
@@ -120,12 +108,6 @@
 	   BorderBrush="#FF0E0D0D"
 	   Margin="780,419,0,0"
 	   FontFamily="Baskerville Old Face" Grid.Row="1">
-				<Button.Effect>
-					<DropShadowEffect/>
-				</Button.Effect>
-				<Button.Background>
-					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-				</Button.Background>
 			</Button>
 			<Button x:Name="buttonModificar"
 	   Content="Modificar médico"
@@ -141,12 +123,6 @@
 	   Margin="780,364,0,0"
 	   FontFamily="Baskerville Old Face"
 	   IsEnabled="False" Grid.Row="1">
-				<Button.Effect>
-					<DropShadowEffect/>
-				</Button.Effect>
-				<Button.Background>
-					<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-				</Button.Background>
 			</Button>
 		</Grid>
 	</Grid>

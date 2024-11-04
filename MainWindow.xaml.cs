@@ -22,11 +22,6 @@ namespace ClinicaMedica{
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<Login>();
 		}
-
-		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
-            this.Salir();
-		}
-
         private void MetodoBotonMedicos(object sender, RoutedEventArgs e) {
 			if (App.UsuarioLogueado) {
 				this.NavegarA<Medicos>();
@@ -67,8 +62,8 @@ namespace ClinicaMedica{
 			}
 		}
 
-
-
-
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			this.Salir();
+		}
 	}
 }

@@ -51,7 +51,6 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,439,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB" Grid.Row="1"/>
 		<Button
 	  Content="Home"
 	  HorizontalAlignment="Left"
@@ -65,12 +64,6 @@
 	  BorderBrush="#FF0E0D0D"
 	  Margin="55,386,0,0"
 	  FontFamily="Baskerville Old Face" Grid.Row="1">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button
 	  Content="Salir"
@@ -85,12 +78,6 @@
 	  BorderBrush="#FF0E0D0D"
 	  Margin="55,441,0,0"
 	  FontFamily="Baskerville Old Face" Grid.Row="1">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button
 	  Content="Agregar nuevo"
@@ -105,12 +92,6 @@
 	  BorderBrush="#FF0E0D0D"
 	  Margin="265,441,0,0"
 	  FontFamily="Baskerville Old Face" Grid.Row="1">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button x:Name="buttonModificar"
 	  Content="Modificar paciente"
@@ -126,12 +107,6 @@
 	  Margin="265,386,0,0"
 	  FontFamily="Baskerville Old Face"
 	  IsEnabled="False" Grid.Row="1">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<!-- DataGrid insertado aquí -->
 	</Grid>

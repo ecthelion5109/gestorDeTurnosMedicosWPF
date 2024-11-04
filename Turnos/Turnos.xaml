@@ -26,7 +26,7 @@
 				SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 		<ListView x:Name="turnosListView"
 				d:ItemsSource="{d:SampleData ItemCount=5}"
-				Margin="581,10,10,384"
+				Margin="445,27,104,275"
 				SelectionChanged="listViewTurnos_SelectionChanged">
 			<ListView.View>
 				<GridView>
@@ -59,12 +59,6 @@
 				BorderBrush="#FF0E0D0D"
 			Margin="55,449,0,0"
 				FontFamily="Baskerville Old Face">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="../images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button
 			Content="Salir"
@@ -79,12 +73,6 @@
 				BorderBrush="#FF0E0D0D"
 			Margin="55,504,0,0"
 				FontFamily="Baskerville Old Face">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button
 			Content="Agregar nuevo"
@@ -99,12 +87,6 @@
 				BorderBrush="#FF0E0D0D"
 			Margin="265,504,0,0"
 				FontFamily="Baskerville Old Face">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 		<Button x:Name="buttonModificar"
 				Content="Modificar turno"
@@ -120,12 +102,6 @@
 				Margin="265,449,0,0"
 				FontFamily="Baskerville Old Face"
 				IsEnabled="False">
-			<Button.Effect>
-				<DropShadowEffect/>
-			</Button.Effect>
-			<Button.Background>
-				<ImageBrush ImageSource="/images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-			</Button.Background>
 		</Button>
 	</Grid>
 </Window>

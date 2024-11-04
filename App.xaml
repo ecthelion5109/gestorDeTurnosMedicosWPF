@@ -1,17 +1,14 @@
 ﻿<Application x:Class="ClinicaMedica.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ClinicaMedica"
-             StartupUri="MainWindow.xaml"
-             ShutdownMode="OnLastWindowClose">
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:local="clr-namespace:ClinicaMedica"
+			 StartupUri="MainWindow.xaml"
+			 ShutdownMode="OnLastWindowClose">
 	<Application.Resources>
 		<Style x:Key="BotonRedondeado"
 				TargetType="{x:Type Button}">
-			<Setter Property="Background"
-					Value="#6200EE"/>
 			<Setter Property="Foreground"
 					Value="Black"/>
-			<!-- Default font color -->
 			<Setter Property="BorderThickness"
 					Value="0"/>
 			<Setter Property="Template">
@@ -19,14 +16,15 @@
 					<ControlTemplate TargetType="{x:Type Button}">
 						<Grid>
 							<Border x:Name="border"
-									Background="{TemplateBinding Background}"
 									CornerRadius="15">
+								<Border.Background>
+									<ImageBrush ImageSource="images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+								</Border.Background>
 								<TextBlock
 									HorizontalAlignment="Center"
 									VerticalAlignment="Center"
 									Text="{TemplateBinding Content}"
 									Foreground="{TemplateBinding Foreground}"/>
-								<!-- Use Foreground from Button -->
 							</Border>
 							<Border x:Name="hoverOverlay"
 									Background="Transparent"
@@ -54,12 +52,25 @@
 									Value="False">
 								<Setter Property="Foreground"
 										Value="Gray"/>
-								<!-- Change font color when disabled -->
+								<Setter TargetName="border"
+										Property="Background">
+									<Setter.Value>
+										<ImageBrush ImageSource="images/disabled-background.jpg"/>
+										<!-- Optional background for disabled state -->
+									</Setter.Value>
+								</Setter>
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
+			<Setter Property="Effect">
+				<Setter.Value>
+					<DropShadowEffect Color="Black"
+							BlurRadius="10"
+							ShadowDepth="5"/>
+				</Setter.Value>
+			</Setter>
 		</Style>
-    </Application.Resources>
+	</Application.Resources>
 </Application>
