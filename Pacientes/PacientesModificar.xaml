@@ -16,7 +16,7 @@
 			<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
 		</Grid.Background>
 		<Button FontSize="24"
-	  Content="Cancelar"
+	  Content="Volver"
 	  HorizontalAlignment="Left"
 	  Height="38"
 	  VerticalAlignment="Top"

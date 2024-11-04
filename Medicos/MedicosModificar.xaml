@@ -261,7 +261,7 @@
 
 
 		<Button FontSize="24"
-			Content="Cancelar"
+			Content="Volver"
 			HorizontalAlignment="Left"
 			Height="43"
 			VerticalAlignment="Top"

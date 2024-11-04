@@ -7,9 +7,6 @@ using System.Runtime.CompilerServices;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Horarios-------------------------------//
-	
-	public class TablaEntidad {
-	}
 	public class Horario{
 		public string ?Start { get; set; }
 		public string ?End { get; set; }
@@ -27,160 +24,22 @@ namespace ClinicaMedica {
 		public required string DiaSemana { get; set; }
 		public string ?InicioHorario { get; set; }
 		public string ?FinHorario { get; set; }
-		// public bool Trabaja { get; set; }
 	}
 
 	//---------------------------------Tablas.Medicos-------------------------------//
-	public class Medico : TablaEntidad, INotifyPropertyChanged {
-		public event PropertyChangedEventHandler? PropertyChanged; // Implementing INotifyPropertyChanged
-		protected void OnPropertyChanged([CallerMemberName] string? propertyName = null) /* Method to raise the PropertyChanged event */ {
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-		
-		
-		private string? _name;
-		private string? _lastname;
-		private string? _dni;
-		private string? _domicilio;
-		private string? _localidad;
-		private string? _specialidad;
-		private string? _telefono;
-		private bool? _guardia;
-		private DateTime? _fechaIngreso;
-		private double? _sueldoMinimoGarantizado;
-		private string? _provincia;
-		
-		
-		
-		public string? Name {
-			get => _name;
-			set {
-				if (_name != value) {
-					_name = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-
-		public string? LastName {
-			get => _lastname;
-			set {
-				if (_lastname != value) {
-					_lastname = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-		
-		
-		public string? Dni {
-			get => _dni;
-			set {
-				if (_dni != value) {
-					_dni = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		
-		public string? Provincia {
-			get => _provincia;
-			set {
-				if (_provincia != value) {
-					_provincia = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		
-		public string? Domicilio {
-			get => _domicilio;
-			set {
-				if (_domicilio != value) {
-					_domicilio = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		
-		public string? Localidad {
-			get => _localidad;
-			set {
-				if (_localidad != value) {
-					_localidad = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		
-		public string? Especialidad {
-			get => _specialidad;
-			set {
-				if (_specialidad != value) {
-					_specialidad = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-		
-		
-		public string? Telefono {
-			get => _telefono;
-			set {
-				if (_telefono != value) {
-					_telefono = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-		
-		public bool? Guardia {
-			get => _guardia;
-			set {
-				if (_guardia != value) {
-					_guardia = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-		
-		
-		public DateTime? FechaIngreso {
-			get => _fechaIngreso;
-			set {
-				if (_fechaIngreso != value) {
-					_fechaIngreso = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-		
-		
-		public double? SueldoMinimoGarantizado {
-			get => _sueldoMinimoGarantizado;
-			set {
-				if (_sueldoMinimoGarantizado != value) {
-					_sueldoMinimoGarantizado = value;
-					OnPropertyChanged();
-				}
-			}
-		}
-
-		private Dictionary<string, Horario> _diasDeAtencion = new Dictionary<string, Horario>();
-		public Dictionary<string, Horario> DiasDeAtencion {
-			get => _diasDeAtencion;
-			set {
-				if (_diasDeAtencion != value) {
-					_diasDeAtencion = value;
-					OnPropertyChanged();
-				}
-			}
-		}
+	public class Medico {
+		public string? Name { get; set; }
+		public string? LastName { get; set; }
+		public string? Dni { get; set; }
+		public string? Provincia { get; set; }
+		public string? Domicilio { get; set; }
+		public string? Localidad { get; set; }
+		public string? Especialidad { get; set; }
+		public string? Telefono { get; set; }
+		public bool? Guardia { get; set; }
+		public DateTime? FechaIngreso { get; set; }
+		public double? SueldoMinimoGarantizado { get; set; }
+		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
 
 	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }
@@ -285,7 +144,7 @@ namespace ClinicaMedica {
 	
 	
 	//---------------------------------Tablas.Pacientes-------------------------------//
-	public class Paciente: TablaEntidad {
+	public class Paciente {
 		// public int Dni { get; set; }
 		public string ?Dni { get; set; }
 		public string ?Name { get; set; }
@@ -298,11 +157,8 @@ namespace ClinicaMedica {
 		public string ?Localidad { get; set; }
 		public string ?Provincia { get; set; }
 			
-
-
 		public Paciente() { }
 		
-		// Constructor that takes a JsonElement
 		public Paciente(JsonElement json){
 			Dni = json.GetProperty(nameof(Dni)).GetString();
 			Name = json.GetProperty(nameof(Name)).GetString();
@@ -344,7 +200,7 @@ namespace ClinicaMedica {
 		}
 	}
 	
-	public class Turno: TablaEntidad {
+	public class Turno {
 		public int ?MedicoPk { get; set; }
 		public int ?PacientePk { get; set; }
 		public DateTime ?FechaYHoraAsignada { get; set; }

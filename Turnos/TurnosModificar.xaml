@@ -21,7 +21,7 @@
 		<Label Content="ID Turno" HorizontalAlignment="Left" Margin="183,124,0,0" VerticalAlignment="Top" Height="33" Width="128" FontSize="14" Foreground="Black" FontWeight="Bold"/>
 		<TextBox x:Name="txtTurnoId" HorizontalAlignment="Left" Margin="333,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="182" Height="25"/>
 		<Button FontSize="24"
-	  Content="Cancelar"
+	  Content="Volver"
 	  HorizontalAlignment="Left"
 	  Height="38"
 	  VerticalAlignment="Top"
