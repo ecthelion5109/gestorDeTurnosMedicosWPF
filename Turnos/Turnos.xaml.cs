@@ -24,49 +24,7 @@ namespace ClinicaMedica {
             InitializeComponent();
 		}
 
-		private void LLenarTurnosGallegoStyle() {
-			string consulta = @"
-                SELECT 
-					T.Id,
-                    CONCAT(P.Name, ' ', P.LastName) AS Paciente,
-                    CONCAT(M.Name, ' ', M.LastName) AS Medico,
-                    FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
-					T.Hora
-                FROM 
-                    Turno T
-                JOIN 
-                    Paciente P ON T.PacienteID = P.Id
-                JOIN 
-                    Medico M ON T.MedicoID = M.Id;
-            ";
-			SqlDataAdapter adaptador = new SqlDataAdapter(consulta, BaseDeDatosSQL.connectionString);
-			using (adaptador) {
-				DataTable tablita = new DataTable();
-				adaptador.Fill(tablita);
-
-				turnosListView.ItemsSource = tablita.DefaultView;
-			}
-			turnosListView.SelectedValuePath = "Id";
-		}
-		
-		
-
-		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (turnosListView.SelectedValue != null) {
-				SelectedTurnoId = turnosListView.SelectedValue.ToString();
-				buttonModificar.IsEnabled = true;
-			}
-			else {
-				SelectedTurnoId = null;
-				buttonModificar.IsEnabled = false;
-			}
-		}
-
-		private void Window_Activated(object sender, EventArgs e) {
-			LLenarTurnosGallegoStyle();
-		}
-
-
+		//----------------------eventosRefresh-------------------//
 		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
@@ -102,20 +60,49 @@ namespace ClinicaMedica {
 
 			turnosListView.SelectedValuePath = "Id";
 		}
+		//----------------------eventosRefresh-------------------//
+		private void Window_Activated(object sender, EventArgs e) {
+			string consulta = @"
+                SELECT 
+					T.Id,
+                    CONCAT(P.Name, ' ', P.LastName) AS Paciente,
+                    CONCAT(M.Name, ' ', M.LastName) AS Medico,
+                    FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
+					T.Hora
+                FROM 
+                    Turno T
+                JOIN 
+                    Paciente P ON T.PacienteID = P.Id
+                JOIN 
+                    Medico M ON T.MedicoID = M.Id;
+            ";
+			SqlDataAdapter adaptador = new SqlDataAdapter(consulta, BaseDeDatosSQL.connectionString);
+			using (adaptador) {
+				DataTable tablita = new DataTable();
+				adaptador.Fill(tablita);
 
-
-
-		//---------------------botonesParaModificarDB-------------------//
+				turnosListView.ItemsSource = tablita.DefaultView;
+			}
+			turnosListView.SelectedValuePath = "Id";
+		}
+		//----------------------eventosRefresh-------------------//
+		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			if (turnosListView.SelectedValue != null) {
+				SelectedTurnoId = turnosListView.SelectedValue.ToString();
+				buttonModificar.IsEnabled = true;
+			}
+			else {
+				SelectedTurnoId = null;
+				buttonModificar.IsEnabled = false;
+			}
+		}
+		//------------------botonesParaModificarDB------------------//
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<TurnosModificar>(SelectedTurnoId);
 		}
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<TurnosModificar>();
 		}
-		
-		
-		
-		
 		//---------------------botonesDeVolver-------------------//
         public void ButtonSalir(object sender, RoutedEventArgs e) {
             this.Salir();

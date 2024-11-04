@@ -17,29 +17,21 @@ using System.Windows.Shapes;
 
 namespace ClinicaMedica {
     public partial class TurnosModificar : Window {
-		
+		private static Turno ?SelectedTurno;
 		//---------------------public.constructors-------------------//
         public TurnosModificar() //Crear turno
 		{
             InitializeComponent();
+			SelectedTurno = null;
 			LLenarComboBoxes();
 		}
 
 
-		public TurnosModificar(string selectedTurnoId)  //Modificar turno
+		public TurnosModificar(Turno selectedTurno)  //Modificar turno
 		{
 			InitializeComponent();
+			SelectedTurno = selectedTurno;
 			LLenarComboBoxes();
-			// LLenarTurnosGallegoStyle(selectedTurnoId);
-			// Leer la instancia desde el archivo JSON
-			// Turno turnoLeido = BaseDeDatos.LeerDesdeJson<Turno>("turno.json");
-
-			// Asignar el DNI al ComboBox
-			// txtpaciente.Items.Add(turnoLeido.PacientePk);
-
-			// Opcionalmente, puedes seleccionar automáticamente el primer valor:
-			// txtpaciente.SelectedIndex = 0;
-
 		}
 
 		private void LLenarComboBoxes() {
@@ -123,16 +115,32 @@ namespace ClinicaMedica {
 
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			OperationCode operacion;
+			//---------Crear-----------//
+			if (SelectedTurno is null)
+				operacion = App.BaseDeDatos.CreateTurno(SelectedTurno);
+			//---------Modificar-----------//
+			else {
+				SelectedTurno.AsignarDatosFromWindow(this);
+				operacion = App.BaseDeDatos.UpdateTurno(SelectedTurno);
+			}
+
+			//---------Mensaje-----------//
+			MessageBox.Show(operacion switch {
+				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Turno: {SelectedTurno.Id}",
+				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedTurno.Id}",
+				_ => "Error: Sin definir"
+			});
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			//---------Checknulls-----------//
-			if (txtTurnoId.Content is null) {
+			if (txtId.Content is null) {
 				MessageBox.Show($"No hay item seleccionado.");
 				return;
 			}
 			//---------confirmacion-----------//
-			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {txtTurnoId.Content}",
+			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {txtId.Content}",
 				"Confirmar Eliminación",
 				MessageBoxButton.OKCancel,
 				MessageBoxImage.Warning
@@ -140,12 +148,12 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			//OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtTurnoId.Content);
+			OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtId.Content.ToString());
 			//---------Mensaje-----------//
-			//MessageBox.Show(operacion switch {
-				//OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtTurnoId.Content} de la base de Datos",
-				//_ => "Error: Sin definir"
-			//});
+			MessageBox.Show(operacion switch {
+				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtId.Content} de la base de Datos",
+				_ => "Error: Sin definir"
+			});
 			this.Close(); // this.NavegarA<Pacientes>();
 
 		}

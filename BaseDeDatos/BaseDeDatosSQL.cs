@@ -198,7 +198,27 @@ namespace ClinicaMedica {
 		}
 
 		public List<Turno> ReadTurnos() {
-			return new List<Turno>();
+			List<Turno> turnosList = new List<Turno>();
+			string query = "SELECT * FROM Turno";
+			try {
+				SqlCommand command = new SqlCommand(query, MiConexion);
+				SqlDataReader reader = command.ExecuteReader();
+				while (reader.Read()) {
+					Turno instancia = new Turno {
+						Id = reader["Id"]?.ToString(),
+						PacienteID = reader["PacienteId"]?.ToString(),
+						MedicoID = reader["MedicoID"]?.ToString(),
+						Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
+						Hora = reader["Hora"] != DBNull.Value ? Convert.ToDateTime(reader["Hora"]) : (DateTime?)null,
+					};
+					turnosList.Add(instancia);
+				}
+				reader.Close();
+			}
+			catch (Exception ex) {
+				MessageBox.Show("Error retrieving data: " + ex.Message);
+			}
+			return turnosList;
 		}
 		//------------------------UPDATE----------------------//
 		public OperationCode UpdateMedico(Medico instancia, string originalDni) {
@@ -217,11 +237,7 @@ namespace ClinicaMedica {
 			sqlComando.Parameters.AddWithValue("@Guardia", instancia.Guardia);
 			sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
 			sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
-
-
-
 			sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
-
 			sqlComando.ExecuteNonQuery();
 
 			return OperationCode.UPDATE_SUCCESS;
@@ -245,8 +261,18 @@ namespace ClinicaMedica {
 
 			return OperationCode.UPDATE_SUCCESS;
 		}
-		public OperationCode UpdateTurno(Turno turno) {
-			return OperationCode.SIN_DEFINIR;
+		public OperationCode UpdateTurno(Turno instancia) {
+			string query = "UPDATE Turno SET PacienteID = @PacienteID, MedicoID = @MedicoID, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
+			using (SqlCommand sqlComando = new SqlCommand(query, MiConexion)) {
+				sqlComando.Parameters.AddWithValue("@PacienteID", instancia.PacienteID);
+				sqlComando.Parameters.AddWithValue("@MedicoID", instancia.MedicoID);
+				sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+				sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
+				sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+				sqlComando.ExecuteNonQuery();
+			}
+
+			return OperationCode.UPDATE_SUCCESS;
 		}
 
 
@@ -270,9 +296,14 @@ namespace ClinicaMedica {
 
 			return OperationCode.DELETE_SUCCESS;
 		}
-
 		public OperationCode DeleteTurno(string turnoId) {
-			return OperationCode.SIN_DEFINIR;
+			string query = "DELETE FROM Turno WHERE Id = @Id";
+
+			SqlCommand command = new SqlCommand(query, MiConexion);
+			command.Parameters.AddWithValue("@Id", turnoId);
+			command.ExecuteNonQuery();
+
+			return OperationCode.DELETE_SUCCESS;
 		}
 
 

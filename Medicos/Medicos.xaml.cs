@@ -41,16 +41,7 @@ namespace ClinicaMedica {
 			}
 		}
 */
-
-
-
-
-
-		private void Window_Activated(object sender, EventArgs e) {
-			// LLenarMedicosGallegoStyle();
-			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
-		}
-		
+		//----------------------eventosRefresh-------------------//
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (medicosListView.SelectedItem != null) {
 				SelectedMedico = (Medico) medicosListView.SelectedItem;
@@ -61,35 +52,27 @@ namespace ClinicaMedica {
 				buttonModificar.IsEnabled = false;
 			}
 		}
-
-		
-		//---------------------botones.Agregar-------------------//
-		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<MedicosModificar>(); // this.NavegarA<MedicosModificar>();
-
+		//----------------------eventosRefresh-------------------//
+		private void Window_Activated(object sender, EventArgs e) {
+			// LLenarMedicosGallegoStyle();
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
 		}
-
-		
-		//---------------------botones.Modificar-------------------//
+		//------------------botonesParaModificarDB------------------//
+		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
 			if (SelectedMedico != null) {
-				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico); //this.NavegarA<MedicosModificar>();
+				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico);
 			}
 		}
-
-		
-		//---------------------botones.Salir-------------------//
+		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-		
-
-		//---------------------botones.VolverAHome-------------------//
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
-		
-		
 		//------------------------Fin.Medicos----------------------//
 	}
 }
