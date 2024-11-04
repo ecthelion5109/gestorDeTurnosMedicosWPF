@@ -62,9 +62,9 @@ namespace ClinicaMedica {
 					using (var reader = command.ExecuteReader()) {
 						if (reader.Read())  // Checks if there's at least one row
 						{
-							txtTurnoId.Text = reader["Id"].ToString();
-							txtPacienteDni.Text = reader["PacienteID"].ToString();
-							txtMedicoDni.Text = reader["MedicoID"].ToString();
+							txtTurnoId.Content = reader["Id"].ToString();
+							//txtPacienteDni.Text = reader["PacienteID"].ToString();
+							//txtMedicoDni.Text = reader["MedicoID"].ToString();
 							txtFecha.Text = reader["Fecha"].ToString();
 							txtHora.Text = reader["Hora"].ToString();
 						}
@@ -84,12 +84,12 @@ namespace ClinicaMedica {
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			//---------Checknulls-----------//
-			if (txtTurnoId.Text is null) {
+			if (txtTurnoId.Content is null) {
 				MessageBox.Show($"No hay item seleccionado.");
 				return;
 			}
 			//---------confirmacion-----------//
-			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {txtTurnoId.Text}",
+			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {txtTurnoId.Content}",
 				"Confirmar Eliminación",
 				MessageBoxButton.OKCancel,
 				MessageBoxImage.Warning
@@ -97,12 +97,12 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtTurnoId.Text);
+			//OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtTurnoId.Content);
 			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtTurnoId.Text} de la base de Datos",
-				_ => "Error: Sin definir"
-			});
+			//MessageBox.Show(operacion switch {
+				//OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtTurnoId.Content} de la base de Datos",
+				//_ => "Error: Sin definir"
+			//});
 			this.Close(); // this.NavegarA<Pacientes>();
 
 		}
