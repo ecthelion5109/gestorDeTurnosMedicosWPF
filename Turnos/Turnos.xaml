@@ -11,60 +11,84 @@
 		Icon="../images/icono.png"
 		Activated="Window_Activated"
 		WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="#6200EE"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" 
+	<Window.Resources>
+		<Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
+			<Setter Property="Background" Value="#6200EE"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Grid>
+							<!-- Background Border (with image background) -->
+							<Border x:Name="border"
+                                Background="{TemplateBinding Background}" 
                                 CornerRadius="15">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
+								<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							</Border>
 
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/images/otroFondo.png"/>
-        </Grid.Background>
-        <Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top" SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
-        <ListView x:Name="turnosListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="581,10,10,384" SelectionChanged="listViewTurnos_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Numero" DisplayMemberBinding="{Binding TurnoID}" Width="auto"/>
-                    <GridViewColumn Header="Paciente" DisplayMemberBinding="{Binding Paciente}" Width="auto"/>
-                    <GridViewColumn Header="Medico" DisplayMemberBinding="{Binding Medico}" Width="auto"/>
-                    <GridViewColumn Header="FechaHora" DisplayMemberBinding="{Binding FechaHora}" Width="auto"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar Seleccionado" HorizontalAlignment="Left" Height="38" Margin="320,500,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-        <Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,502,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-        <Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,438,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
-        <Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="320,436,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+							<!-- Hover Overlay -->
+							<Border x:Name="hoverOverlay" 
+                                Background="Transparent"
+                                CornerRadius="15"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="hoverOverlay" Property="Background">
+									<Setter.Value>
+										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+											<GradientStop Color="#002F4F4F" Offset="1"/>
+											<GradientStop Color="#BF8ABFBF" Offset="0"/>
+										</LinearGradientBrush>
+									</Setter.Value>
+								</Setter>
+								<Setter Property="BorderThickness" Value="8"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
 
-        <Button x:Name="botonIniciar"
-                Content="INICIAR"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Height="76"
-                Width="226"
-                Click="botonIniciar_Click"
-                FontSize="26"
-                Style="{StaticResource BotonRedondeado}" FontWeight="Bold" BorderBrush="#FF0E0D0D" Foreground="#FF081873" Margin="40,357,0,0">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect>
-            <Button.Background>
-                <ImageBrush ImageSource="../images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
-            </Button.Background>
-        </Button>
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/otroFondo.png"/>
+		</Grid.Background>
+		<Calendar x:Name="CalendarioTurnos" HorizontalAlignment="Left" Margin="802,336,0,0" VerticalAlignment="Top" SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
+		<ListView x:Name="turnosListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="581,10,10,384" SelectionChanged="listViewTurnos_SelectionChanged">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="Numero" DisplayMemberBinding="{Binding TurnoID}" Width="auto"/>
+					<GridViewColumn Header="Paciente" DisplayMemberBinding="{Binding Paciente}" Width="auto"/>
+					<GridViewColumn Header="Medico" DisplayMemberBinding="{Binding Medico}" Width="auto"/>
+					<GridViewColumn Header="FechaHora" DisplayMemberBinding="{Binding FechaHora}" Width="auto"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<Button x:Name="buttonModificar" IsEnabled="false" FontSize="24" Content="Modificar Seleccionado" HorizontalAlignment="Left" Height="38" Margin="320,500,0,0" VerticalAlignment="Top" Width="209" Click="ButtonModificar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Salir" HorizontalAlignment="Left" Height="33" Margin="80,502,0,0" VerticalAlignment="Top" Width="145" Click="ButtonSalir" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Home" HorizontalAlignment="Left" Height="38" Margin="80,438,0,0" VerticalAlignment="Top" Width="145" Click="ButtonHome" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
+		<Button FontSize="24" Content="Agregar nuevo" HorizontalAlignment="Left" Height="38" Margin="320,436,0,0" VerticalAlignment="Top" Width="209" Click="ButtonAgregar" RenderTransformOrigin="0.546,3.469" BorderBrush="Black" Background="White" FontFamily="Agency FB"/>
 
-    </Grid>
+		<Button x:Name="botonIniciar"
+				Content="INICIAR"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Height="76"
+				Width="226"
+				Click="botonIniciar_Click"
+				FontSize="26"
+				Style="{StaticResource BotonRedondeado}" 
+				FontWeight="Bold" BorderBrush="#FF0E0D0D" 
+				Foreground="#FF081873" 
+				Margin="40,357,0,0">
+			<Button.Effect>
+				<DropShadowEffect/>
+			</Button.Effect>
+			<Button.Background>
+				<ImageBrush ImageSource="../images/grey-abstract-background-with-wave-and-lines-white-gradient-background-grey-wave-dynamic-vector.jpg"/>
+			</Button.Background>
+		</Button>
+	</Grid>
 </Window>
