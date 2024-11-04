@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.IO;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Data.SqlClient;
 
 
 namespace ClinicaMedica {
@@ -302,12 +303,106 @@ namespace ClinicaMedica {
 		public string ?MedicoID { get; set; }
 		public DateTime ?Fecha { get; set; }
 		public string ?Hora { get; set; }
-			
+
+
+		// Propiedad para obtener "DNI + Nombre + Apellido" del Paciente
+		private string _pacienteJoin;
+		public string PacienteJoin {
+			get {
+				if (_pacienteJoin is null) {
+					_pacienteJoin = LoadPacienteNombreCompletoFromDatabase();
+				}
+				return _pacienteJoin;
+			}
+		}
+
+		// Propiedad para obtener "DNI + Nombre + Apellido" del Medico
+		private string ?_medicoJoin = null;
+		public string MedicoJoin {
+			get {
+				if (_medicoJoin is null) {
+					_medicoJoin = LoadMedicoNombreCompletoFromDatabase();
+				}
+				return _medicoJoin;
+			}
+		}
+
+
+		private string LoadPacienteNombreCompletoFromDatabase() {
+			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				connection.Open();
+				string query = @"
+                SELECT CONCAT(Dni, ' ', Name, ' ', LastName)
+                FROM Paciente
+                WHERE Id = @PacienteID";
+
+				using (var command = new SqlCommand(query, connection)) {
+					command.Parameters.AddWithValue("@PacienteID", PacienteID);
+
+					var result = command.ExecuteScalar();
+					return result?.ToString() ?? "Paciente no encontrado";
+				}
+			}
+		}
+
+		private string LoadMedicoNombreCompletoFromDatabase() {
+			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				connection.Open();
+				string query = @"
+                SELECT CONCAT(Dni, ' ', Name, ' ', LastName)
+                FROM Medico
+                WHERE Id = @MedicoID";
+
+				using (var command = new SqlCommand(query, connection)) {
+					command.Parameters.AddWithValue("@MedicoID", MedicoID);
+
+					var result = command.ExecuteScalar();
+					return result?.ToString() ?? "Medico no encontrado";
+				}
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+		private string ?_especialidad = null;  // Backing field for caching
+
+		public string Especialidad {
+			get {
+				if (_especialidad is null){
+					_especialidad = LoadEspecialidadFromDatabase();
+				}
+				return _especialidad;
+			}
+		}
+
+		private string LoadEspecialidadFromDatabase() {
+			// Replace with your actual connection string
+			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				connection.Open();
+				string query = "SELECT Especialidad FROM Medico WHERE Id = @MedicoID";
+
+				using (var command = new SqlCommand(query, connection)) {
+					command.Parameters.AddWithValue("@MedicoID", MedicoID);
+
+					var result = command.ExecuteScalar();
+					return result?.ToString() ?? "Especialidad no encontrada";
+				}
+			}
+		}
+
 		public Turno() { }
 		
 		// Constructor de PAciente para JSON
 		public Turno(JsonElement json){
 		}
+
 
 		// Constructor de Turno en base a una ventana
 		public Turno(TurnosModificar window){

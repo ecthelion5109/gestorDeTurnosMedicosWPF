@@ -32,6 +32,16 @@ namespace ClinicaMedica {
 			InitializeComponent();
 			SelectedTurno = selectedTurno;
 			LLenarComboBoxes();
+
+			this.txtMedicos.SelectedItem = selectedTurno.MedicoJoin;
+			this.txtPacientes.SelectedItem = selectedTurno.PacienteJoin;
+			this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
+
+			this.txtId.Content = selectedTurno.Id;
+			this.txtFecha.SelectedDate = selectedTurno.Fecha;
+			this.txtHora.Text = selectedTurno.Hora;
+
+			// LLenarComboBoxes();
 		}
 
 		private void LLenarComboBoxes() {
