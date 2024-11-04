@@ -175,7 +175,7 @@
 	  HorizontalAlignment="Left"
 	  Margin="324,34,0,0"
 	  VerticalAlignment="Top"
-	  FontSize="26"
+	  FontSize="32"
 	  FontFamily="Ringbearer"
 	  Height="51" Width="176"/>
 

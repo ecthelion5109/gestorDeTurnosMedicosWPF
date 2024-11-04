@@ -46,15 +46,14 @@ namespace ClinicaMedica {
 
 				turnosListView.ItemsSource = tablita.DefaultView;
 			}
-			//turnosListView.DisplayMemberPath = "Name";
 			turnosListView.SelectedValuePath = "Id";
 		}
+		
+		
 
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (turnosListView.SelectedValue != null) {
 				SelectedTurnoId = turnosListView.SelectedValue.ToString();
-				//MessageBox.Show($"Selected Medico DNI: {turnosListView.SelectedValue}");
-				//MessageBox.Show($"Selected Medico2 DNI: {SelectedTurnoId}");
 				buttonModificar.IsEnabled = true;
 			}
 			else {
@@ -69,22 +68,49 @@ namespace ClinicaMedica {
 
 
 		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
-			DateTime? fechaSeleccionada = CalendarioTurnos.SelectedDate;
+			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				MiConexion.Open();
 
-			//if (fechaSeleccionada.HasValue) {
-			//	CargarTurnos(fechaSeleccionada.Value);
-			//}
+				string consulta = @"
+					SELECT 
+						T.Id,
+						CONCAT(P.Name, ' ', P.LastName) AS Paciente,
+						CONCAT(M.Name, ' ', M.LastName) AS Medico,
+						FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
+						T.Hora
+					FROM 
+						Turno T
+					JOIN 
+						Paciente P ON T.PacienteID = P.Id
+					JOIN 
+						Medico M ON T.MedicoID = M.Id
+					WHERE
+						T.Fecha = @Fecha;
+				";
+
+				using (var command = new SqlCommand(consulta, MiConexion)) {
+					command.Parameters.AddWithValue("@Fecha", CalendarioTurnos.SelectedDate?.Date);
+
+					using (var adaptador = new SqlDataAdapter(command)) {
+						DataTable tablita = new DataTable();
+						adaptador.Fill(tablita);
+
+						turnosListView.ItemsSource = tablita.DefaultView;
+					}
+				}
+			}
+
+			turnosListView.SelectedValuePath = "Id";
 		}
+
 
 
 		//---------------------botonesParaModificarDB-------------------//
 		private void ButtonModificar(object sender, RoutedEventArgs e) {
-			// if (SelectedTurnoId != null && turnosListView.SelectedItem != null) {
-				this.AbrirComoDialogo<TurnosModificar>(SelectedTurnoId); // this.NavegarA<TurnosModificar>();
-			// }
+			this.AbrirComoDialogo<TurnosModificar>(SelectedTurnoId);
 		}
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<TurnosModificar>(); // this.NavegarA<TurnosModificar>();
+			this.AbrirComoDialogo<TurnosModificar>();
 		}
 		
 		

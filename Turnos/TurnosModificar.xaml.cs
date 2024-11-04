@@ -98,7 +98,6 @@ namespace ClinicaMedica {
 					WHERE
 						Id = @Id
 				";
-				consulta = @"SELECT DISTINCT Especialidad FROM Medico";
 
 				using (var command = new SqlCommand(consulta, MiConexion)) {
 					command.Parameters.AddWithValue("@Id", selectedTurnoId);
