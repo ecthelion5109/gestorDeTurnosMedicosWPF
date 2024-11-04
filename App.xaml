@@ -14,7 +14,7 @@
                     <Grid>
                         <Border x:Name="border" CornerRadius="15">
                             <Border.Background>
-                                <ImageBrush ImageSource="images/boton/original.jpg"/>
+                                <ImageBrush ImageSource="images/boton/doradito.jpg"/>
                             </Border.Background>
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -26,7 +26,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="images/boton/doradito.jpg"/>
+                                    <ImageBrush ImageSource="images/boton/doraditoOscuro.jpg"/>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="Foreground" Value="Black"/>
