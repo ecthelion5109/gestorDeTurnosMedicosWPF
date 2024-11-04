@@ -301,7 +301,7 @@ namespace ClinicaMedica {
 		public string ?PacienteID { get; set; }
 		public string ?MedicoID { get; set; }
 		public DateTime ?Fecha { get; set; }
-		public DateTime ?Hora { get; set; }
+		public string ?Hora { get; set; }
 			
 		public Turno() { }
 		
@@ -315,17 +315,7 @@ namespace ClinicaMedica {
 			this.PacienteID = window.txtPacientes.Text;
 			this.MedicoID = window.txtMedicos.Text;
 			this.Fecha = window.txtFecha.SelectedDate;
-			DateTime parsedTime;
-
-			// Parse the time string and set the DateTime if it's valid
-			if (DateTime.TryParseExact(window.txtHora.Text, "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime)) {
-				// Set this.Hora to the parsed time, ignoring the date part
-				this.Hora = parsedTime;
-			}
-			else {
-				// Handle the parsing error (e.g., show a message to the user)
-				MessageBox.Show("Invalid time format. Please use HH:mm:ss.");
-			}
+			this.Hora = window.txtFecha.Text;
 		}
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
@@ -334,17 +324,18 @@ namespace ClinicaMedica {
 			this.PacienteID = window.txtPacientes.Text;
 			this.MedicoID = window.txtMedicos.Text;
 			this.Fecha = window.txtFecha.SelectedDate;
-			DateTime parsedTime;
+			this.Hora = window.txtFecha.Text;
+			//DateTime parsedTime;
 
 			// Parse the time string and set the DateTime if it's valid
-			if (DateTime.TryParseExact(window.txtHora.Text, "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime)) {
+			//if (DateTime.TryParseExact(window.txtHora.Text, "HH:mm:ss", null, System.Globalization.DateTimeStyles.None, out parsedTime)) {
 				// Set this.Hora to the parsed time, ignoring the date part
-				this.Hora = parsedTime;
-			}
-			else {
+				//this.Hora = parsedTime;
+			//}
+			//else {
 				// Handle the parsing error (e.g., show a message to the user)
-				MessageBox.Show("Invalid time format. Please use HH:mm:ss.");
-			}
+				//MessageBox.Show("Invalid time format. Please use HH:mm:ss.");
+			//}
 		}
 	}
 

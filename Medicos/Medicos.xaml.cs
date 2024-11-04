@@ -15,34 +15,18 @@ namespace ClinicaMedica {
 		}
 
 
-		
-/*
-		// Modo Gallego
-		private void LLenarMedicosGallegoStyle() {
-			var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
-			MiConexion.Open();
-			string query = "SELECT * FROM Medico";
-			SqlCommand command = new SqlCommand(query, MiConexion);
-			SqlDataAdapter adapter = new SqlDataAdapter(command);
-			DataTable dt = new DataTable();
-			using (adapter) {
-				adapter.Fill(dt);
-			}
-			medicosListView.ItemsSource = dt.DefaultView;
-			medicosListView.SelectedValuePath = "Id";
-		}
-		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			if (medicosListView.SelectedItem != null) {
-				buttonModificar.IsEnabled = true;
-				MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
-			}
-			else {
-				buttonModificar.IsEnabled = false;
-			}
-		}
-*/
+	
 		//----------------------eventosRefresh-------------------//
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			/* //GALLEGO STYLE
+				if (medicosListView.SelectedItem != null) {
+					buttonModificar.IsEnabled = true;
+					MessageBox.Show($"Selected Medico DNI: {medicosListView.SelectedValue}");
+				}
+				else {
+					buttonModificar.IsEnabled = false;
+				}
+			*/
 			if (medicosListView.SelectedItem != null) {
 				SelectedMedico = (Medico) medicosListView.SelectedItem;
 				buttonModificar.IsEnabled = true;
@@ -53,8 +37,20 @@ namespace ClinicaMedica {
 			}
 		}
 		//----------------------eventosRefresh-------------------//
-		private void Window_Activated(object sender, EventArgs e) {
-			// LLenarMedicosGallegoStyle();
+		private void Window_Activated(object sender, EventArgs e) {	
+			/* //GALLEGO STYLE
+				var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString);
+				MiConexion.Open();
+				string query = "SELECT * FROM Medico";
+				SqlCommand command = new SqlCommand(query, MiConexion);
+				SqlDataAdapter adapter = new SqlDataAdapter(command);
+				DataTable dt = new DataTable();
+				using (adapter) {
+					adapter.Fill(dt);
+				}
+				medicosListView.ItemsSource = dt.DefaultView;
+				medicosListView.SelectedValuePath = "Id";
+			*/
 			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
 		}
 		//------------------botonesParaModificarDB------------------//

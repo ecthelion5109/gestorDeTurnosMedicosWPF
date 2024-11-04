@@ -209,7 +209,8 @@ namespace ClinicaMedica {
 						PacienteID = reader["PacienteId"]?.ToString(),
 						MedicoID = reader["MedicoID"]?.ToString(),
 						Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-						Hora = reader["Hora"] != DBNull.Value ? Convert.ToDateTime(reader["Hora"]) : (DateTime?)null,
+						// Hora = reader["Hora"] != DBNull.Value ? Convert.ToDateTime(reader["Hora"]) : (DateTime?)null,
+						Hora = reader["Hora"].ToString(),
 					};
 					turnosList.Add(instancia);
 				}
