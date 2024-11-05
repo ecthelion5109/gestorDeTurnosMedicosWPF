@@ -70,8 +70,8 @@
             <Run Language="es-es" Text="a"/>
         </TextBlock>
 
-        <RadioButton Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" Margin="405,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonSQLChecked" Background="{x:Null}" Height="25" Width="105" FontFamily="Bahnschrift Light"/>
-        <RadioButton Content="Modo Json" HorizontalAlignment="Left" Margin="550,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonJSONChecked" FontFamily="Bahnschrift Light"/>
+        <RadioButton x:Name="checkboxSQL" Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" Margin="405,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonSQLChecked" Background="{x:Null}" Height="25" Width="105" FontFamily="Bahnschrift Light"/>
+        <RadioButton x:Name="checkboxJSON" Content="Modo Json" HorizontalAlignment="Left" Margin="550,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonJSONChecked" FontFamily="Bahnschrift Light"/>
     </Grid>
 </Window>
 

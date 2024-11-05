@@ -49,11 +49,14 @@ namespace ClinicaMedica{
 			}
 		}
 		private void Window_Activated(object sender, EventArgs e) {
-			if (App.UsuarioLogueado && App.BaseDeDatos is BaseDeDatosJSON ) {
+			if (App.BaseDeDatos is BaseDeDatosJSON ) {
 				labelBaseDeDatosModo.Content = "Modo JSON";
 				buttonVerTurnos.IsEnabled = false;
-			} else {
+			} else if (App.BaseDeDatos is BaseDeDatosSQL) {
 				labelBaseDeDatosModo.Content = "Modo SQL";
+				buttonVerTurnos.IsEnabled = true;
+			} else {
+				labelBaseDeDatosModo.Content = "Elegir DB Modo";
 				buttonVerTurnos.IsEnabled = true;
 			}
 		}
