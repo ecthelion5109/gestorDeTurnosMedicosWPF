@@ -62,26 +62,44 @@ namespace ClinicaMedica {
 				}
 
 				// Query to fill txtPacientes ComboBox
-				string consultaPacientes = @"SELECT CONCAT(Dni, ' ', Name, ' ', LastName) AS PacienteInfo FROM Paciente";
+				string consultaPacientes = @"SELECT Id as PacienteId, CONCAT(Dni, ' ', Name, ' ', LastName) AS PacienteDisplay FROM Paciente";
 				using (var command = new SqlCommand(consultaPacientes, MiConexion)) {
 					using (var reader = command.ExecuteReader()) {
 						txtPacientes.Items.Clear();
 						while (reader.Read()) {
-							txtPacientes.Items.Add(reader["PacienteInfo"].ToString());
+							txtPacientes.Items.Add(new { 
+								PacienteId = reader["PacienteId"], 
+								PacienteDisplay = reader["PacienteDisplay"]
+							});
 						}
 					}
 				}
+				txtPacientes.DisplayMemberPath = "PacienteDisplay";
+				txtPacientes.SelectedValuePath = "PacienteId";
+				
+				
+				
+				
+				
+				
 
-				// Query to fill txtMedicos
-				string consultaMedicos = @"SELECT CONCAT(Dni, ' ', Name, ' ', LastName) AS MedicoInfo FROM Medico";
+				// Query to fill txtMedicos ComboBox
+				string consultaMedicos = @"SELECT Id as MedicoId, CONCAT(Dni, ' ', Name, ' ', LastName) AS MedicoDisplay FROM Medico";
 				using (var command = new SqlCommand(consultaMedicos, MiConexion)) {
 					using (var reader = command.ExecuteReader()) {
 						txtMedicos.Items.Clear();
 						while (reader.Read()) {
-							txtMedicos.Items.Add(reader["MedicoInfo"].ToString());
+							txtMedicos.Items.Add(new { 
+								MedicoId = reader["MedicoId"], 
+								MedicoDisplay = reader["MedicoDisplay"]
+							});
 						}
 					}
 				}
+				txtMedicos.DisplayMemberPath = "MedicoDisplay";
+				txtMedicos.SelectedValuePath = "MedicoId";
+				
+				
 			}
 		}
 
@@ -125,45 +143,53 @@ namespace ClinicaMedica {
 		}
 		*/
 
+		public bool FaltanCamposPorCompletar(){
+			return !(
+					this.txtPacientes.SelectedValue is null ||
+					this.txtMedicos.SelectedValue is null ||
+					 this.txtFecha.SelectedDate is null ||
+					 string.IsNullOrEmpty(this.txtId.Content.ToString()) ||
+					 string.IsNullOrEmpty(this.txtHora.Text)
+			);
+		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			// ---------AsegurarInput-----------//
+			if (FaltanCamposPorCompletar()) {
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+				return;
+			}
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
-				//MessageBox.Show($"Es null:");
-				MessageBox.Show($@"
-				{this.txtEspecialidades.SelectedItem}
-				{this.txtHora.Text}
-				{((Medico) this.txtMedicos.DataContext )}
-				{this.txtPacientes.SelectedItem}
-				");
 				SelectedTurno = new Turno(this);
-
-
-
 				App.BaseDeDatos.CreateTurno(SelectedTurno);
 			}
 			//---------Modificar-----------//
 			else {
-				//MessageBox.Show($"No Es null:");
-				MessageBox.Show(@$"
-					Antes: 
-					{SelectedTurno.PacienteId}
-					{SelectedTurno.MedicoId}
-					{SelectedTurno.Fecha}
-					{SelectedTurno.Hora}
-				");
 				SelectedTurno.AsignarDatosFromWindow(this);
 				App.BaseDeDatos.UpdateTurno(SelectedTurno);
-				MessageBox.Show(@$"
-					Despues: 
-					{SelectedTurno.PacienteId}
-					{SelectedTurno.MedicoId}
-					{SelectedTurno.Fecha}
-					{SelectedTurno.Hora}
-				");
-
 			}
 		}
+				// MessageBox.Show($@"
+					// {this.txtEspecialidades.SelectedItem}
+					// {this.txtHora.Text}
+					// {((Medico) this.txtMedicos.DataContext )}
+					// {this.txtPacientes.SelectedItem}
+					// ");
+				// MessageBox.Show(@$"
+					// Antes: 
+					// {SelectedTurno.PacienteId}
+					// {SelectedTurno.MedicoId}
+					// {SelectedTurno.Fecha}
+					// {SelectedTurno.Hora}
+				// ");
+				// MessageBox.Show(@$"
+					// Despues: 
+					// {SelectedTurno.PacienteId}
+					// {SelectedTurno.MedicoId}
+					// {SelectedTurno.Fecha}
+					// {SelectedTurno.Hora}
+				// ");
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			//---------Checknulls-----------//
@@ -183,7 +209,6 @@ namespace ClinicaMedica {
 			if (App.BaseDeDatos.DeleteTurno(txtId.Content.ToString())){
 				this.Close();
 			}
-
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {

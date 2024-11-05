@@ -5,20 +5,15 @@ namespace ClinicaMedica {
 		List<Paciente> ReadPacientes();
 		List<Turno> ReadTurnos();
 
-		// checkers
-		bool CorroborarQueNoExistaMedico(string Id);
-		bool CorroborarQueNoExistaPaciente(string Id);
-		bool CorroborarQueNoExistaTurno(string Id);
-
 		// Create methods
-		void CreateMedico(Medico instance);
-		void CreatePaciente(Paciente instance);
-		void CreateTurno(Turno instance);
+		bool CreateMedico(Medico instance);
+		bool CreatePaciente(Paciente instance);
+		bool CreateTurno(Turno instance);
 
 		// Update methods
-		void UpdateMedico(Medico instance, string originalDni);
-		void UpdatePaciente(Paciente instance, string originalDni);
-		void UpdateTurno(Turno instance);
+		bool UpdateMedico(Medico instance, string originalDni);
+		bool UpdatePaciente(Paciente instance, string originalDni);
+		bool UpdateTurno(Turno instance);
 
 		// Delete methods
 		bool DeleteMedico(string Id);

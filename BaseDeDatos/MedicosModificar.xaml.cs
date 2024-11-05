@@ -57,12 +57,8 @@ namespace ClinicaMedica {
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
 				if (CorroborarUserInputEsSeguro()) {
-					if (App.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDni.Text)){
-						MessageBox.Show($"Error: Ya existe un médico con DNI: {this.txtDni.Text}");
-					} else {
-						SelectedMedico = new Medico(this);
-						App.BaseDeDatos.CreateMedico(SelectedMedico);
-					}
+					SelectedMedico = new Medico(this);
+					App.BaseDeDatos.CreateMedico(SelectedMedico);
 				}
 				else {
 					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
@@ -98,9 +94,9 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
-
-			this.Close(); // this.NavegarA<Medicos>();
+			if (App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni)){
+				this.Close(); // this.NavegarA<Medicos>();
+			}
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {

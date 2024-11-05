@@ -12,108 +12,133 @@ namespace ClinicaMedica {
 		public BaseDeDatosSQL() {
 		}
 
-		//------------------------CHECKERS----------------------//
-		public bool CorroborarQueNoExistaMedico(string key) {
-			string checkQuery = "SELECT COUNT(1) FROM Medico WHERE Dni = @Dni";
-			using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection)) {
-					checkCommand.Parameters.AddWithValue("@Dni", key);
-					return (int)checkCommand.ExecuteScalar() > 0;
-				}
-			}
-		}
-		public bool CorroborarQueNoExistaPaciente(string key) {
-			string checkQuery = "SELECT COUNT(1) FROM Paciente WHERE Dni = @Dni";
-			using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection)) {
-					checkCommand.Parameters.AddWithValue("@Dni", key);
-					return (int)checkCommand.ExecuteScalar() > 0;
-				}
-			}
-		}
-
-		public bool CorroborarQueNoExistaTurno(string key) {
-			return false;
-		}
-
 
 
 
 		//------------------------CREATE.Medico----------------------//
-		public void CreateMedico(Medico instancia) {
+		public bool CreateMedico(Medico instancia) {
 			string insertQuery = @"
 				INSERT INTO Medico (Name, LastName, Dni, Provincia, Domicilio, Localidad, Especialidad, Telefono, Guardia, FechaIngreso, SueldoMinimoGarantizado) 
 				VALUES (@Name, @LastName, @Dni, @Provincia, @Domicilio, @Localidad, @Especialidad, @Telefono, @Guardia, @FechaIngreso, @SueldoMinimoGarantizado)";
 			
-			using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
-					sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
-					sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
-					sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
-					sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-					sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
-					sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
-					sqlComando.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
-					sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
-					sqlComando.Parameters.AddWithValue("@Guardia", instancia.Guardia);
-					sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
-					sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
+			try {
+				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
+						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
+						sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
+						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
+						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
+						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
+						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
+						sqlComando.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
+						sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
+						sqlComando.Parameters.AddWithValue("@Guardia", instancia.Guardia);
+						sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
 
-					sqlComando.ExecuteNonQuery();
+						sqlComando.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
+				return true;
+			} 
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un médico con ese dni.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
-			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el médico debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
 		
 		
 		//------------------------CREATE.Paciente----------------------//
-		public void CreatePaciente(Paciente instancia) {
+		public bool CreatePaciente(Paciente instancia) {
 			string insertQuery = @"
 				INSERT INTO Paciente (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) 
 				VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)";
 			
-			using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
-					sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
-					sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
-					sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
-					sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
-					sqlComando.Parameters.AddWithValue("@Email", instancia.Email);
-					sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
-					sqlComando.Parameters.AddWithValue("@FechaNacimiento", instancia.FechaNacimiento);
-					sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
-					sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
-					sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-
-					sqlComando.ExecuteNonQuery();
+			try {
+				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
+						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
+						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
+						sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
+						sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@Email", instancia.Email);
+						sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
+						sqlComando.Parameters.AddWithValue("@FechaNacimiento", instancia.FechaNacimiento);
+						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
+						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
+						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
+						sqlComando.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
+				return true;
+			} 
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un paciente con ese dni.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
-
-			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el paciente debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
 
 
 		//------------------------CREATE.Turno----------------------//
-		public void CreateTurno(Turno instancia) {
+		public bool CreateTurno(Turno instancia) {
 			string insertQuery = @"
 				INSERT INTO Turno (PacienteId, MedicoId, Fecha, Hora) 
 				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora)";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (var command = new SqlCommand(insertQuery, connection)) {
-					//command.Parameters.AddWithValue("@Id", instancia.Id);
-					command.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
-					command.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
-					command.Parameters.AddWithValue("@Fecha", instancia.Fecha);
-					command.Parameters.AddWithValue("@Hora", instancia.Hora);
-					command.ExecuteNonQuery();
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (var command = new SqlCommand(insertQuery, connection)) {
+						command.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
+						command.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
+						command.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+						command.Parameters.AddWithValue("@Hora", instancia.Hora);
+						command.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se ha creado la instancia de Turno entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
+				return true;
 			}
-			MessageBox.Show($"Exito: Se ha creado la instancia de Turno entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un turno entre este paciente y medico en esa fecha. O el medico ya tiene un turno en esa fecha con otro paciente.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el turno debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
 
 
@@ -198,64 +223,91 @@ namespace ClinicaMedica {
 			return turnosList;
 		}
 		//------------------------UPDATE----------------------//
-		public void UpdateMedico(Medico instancia, string originalDni) {
+		public bool UpdateMedico(Medico instancia, string originalDni) {
 			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Dni = @originalDni";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@Name", instancia.Name);
-					command.Parameters.AddWithValue("@LastName", instancia.LastName);
-					command.Parameters.AddWithValue("@Dni", instancia.Dni);
-					command.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-					command.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
-					command.Parameters.AddWithValue("@Localidad", instancia.Localidad);
-					command.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
-					command.Parameters.AddWithValue("@Telefono", instancia.Telefono);
-					command.Parameters.AddWithValue("@Guardia", instancia.Guardia);
-					command.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
-					command.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
-					command.Parameters.AddWithValue("@originalDni", originalDni);
-					command.ExecuteNonQuery();
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (var command = new SqlCommand(query, connection)) {
+						command.Parameters.AddWithValue("@Name", instancia.Name);
+						command.Parameters.AddWithValue("@LastName", instancia.LastName);
+						command.Parameters.AddWithValue("@Dni", instancia.Dni);
+						command.Parameters.AddWithValue("@Provincia", instancia.Provincia);
+						command.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
+						command.Parameters.AddWithValue("@Localidad", instancia.Localidad);
+						command.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
+						command.Parameters.AddWithValue("@Telefono", instancia.Telefono);
+						command.Parameters.AddWithValue("@Guardia", instancia.Guardia);
+						command.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
+						command.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
+						command.Parameters.AddWithValue("@originalDni", originalDni);
+						command.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+				return true;
+			} 
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un médico con ese dni.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
-			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el médico debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
-		public void UpdatePaciente(Paciente instancia, string originalDni) {
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Dni = @originalDni";
-				using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
-					sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
-					sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
-					sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
-					sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
-					sqlComando.Parameters.AddWithValue("@Email", instancia.Email);
-					sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
-					sqlComando.Parameters.AddWithValue("@FechaNacimiento", instancia.FechaNacimiento);
-					sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
-					sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
-					sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-					sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
-					sqlComando.ExecuteNonQuery();
+		public bool UpdatePaciente(Paciente instancia, string originalDni) {
+			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Dni = @originalDni";
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
+						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
+						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
+						sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
+						sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@Email", instancia.Email);
+						sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
+						sqlComando.Parameters.AddWithValue("@FechaNacimiento", instancia.FechaNacimiento);
+						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
+						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
+						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
+						sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
+						sqlComando.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+				return true;
 			}
-			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un paciente con ese dni.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el paciente debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
-		public void UpdateTurno(Turno instancia) {
-			//MessageBox.Show(@$"
-			//	{instancia.PacienteId}
-			//	{instancia.PacienteJoin}
-			//	{instancia.MedicoId}
-			//	{instancia.Fecha}
-			//	{instancia.Hora}
-			//	{instancia.Id}
-			//");
-
-
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+		public bool UpdateTurno(Turno instancia) {
+			//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
+			string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				connection.Open();
-				//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
-				string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
 				using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 					sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
 					sqlComando.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
@@ -265,9 +317,26 @@ namespace ClinicaMedica {
 					//sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
 					sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
 					sqlComando.ExecuteNonQuery();
+					}
 				}
+				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}");
+				return true;
 			}
-			MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}");
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
+			{
+				MessageBox.Show("Error de constraints. Ya existe un turno entre este paciente y medico en esa fecha. O el medico ya tiene un turno en esa fecha con otro paciente.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede crear el turno debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
 		}
 
 
@@ -334,15 +403,19 @@ namespace ClinicaMedica {
 						command.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {idToDelete} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {idToDelete} de la Base de Datos SQL");
 				return true;
 			}
-			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
+			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
 			{
-				MessageBox.Show("No se puede eliminar este paciente porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
+				MessageBox.Show("Error de constraints. Ya existe un turno entre este paciente y medico en esa fecha. O el medico ya tiene un turno en esa fecha con otro paciente.", "Violación de Constraint", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) when (ex.Number == 547) // Foreign key violation error code
+			{
+				MessageBox.Show("No se puede modificar el turno debido a una violación de clave foránea.", "Violación de Clave Foránea", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 			catch (SqlException ex) {
-				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
 				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

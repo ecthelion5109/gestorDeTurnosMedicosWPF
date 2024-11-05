@@ -41,11 +41,9 @@ namespace ClinicaMedica {
 
 
 		//---------------------botones.GuardarCambios-------------------//
-		bool CorroborarUserInputEsSeguro(){
-			return !(
+		bool FaltanCamposPorCompletar(){
+			return (
 					 string.IsNullOrEmpty(this.txtDni.Text) ||
-					 
-					 
 					 //string.IsNullOrEmpty(this.txtNombre.Text) ||
 					 //string.IsNullOrEmpty(this.txtApellido.Text) ||
 					 //string.IsNullOrEmpty(this.txtEmail.Text) ||
@@ -64,30 +62,22 @@ namespace ClinicaMedica {
 					 );
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			// ---------AsegurarInput-----------//
+			if (FaltanCamposPorCompletar()){
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+				return;
+			}
+			
 			//---------Crear-----------//
 			if (SelectedPaciente is null) {
-				if (CorroborarUserInputEsSeguro()) {
-					if (App.BaseDeDatos.CorroborarQueNoExistaPaciente(this.txtDni.Text)){
-						MessageBox.Show($"Error: Ya existe un paciente con DNI: {this.txtDni.Text}");
-					} else {
-						SelectedPaciente = new Paciente(this);
-						App.BaseDeDatos.CreatePaciente(SelectedPaciente);
-					}
-				}
-				else {
-					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
-				}
+				SelectedPaciente = new Paciente(this);
+				App.BaseDeDatos.CreatePaciente(SelectedPaciente);
 			}
 			//---------Modificar-----------//
 			else {
 				string originalDni = SelectedPaciente.Dni;
-				if (CorroborarUserInputEsSeguro()) {
-					SelectedPaciente.AsignarDatosFromWindow(this);
-					App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni);
-				}
-				else {
-					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
-				}
+				SelectedPaciente.AsignarDatosFromWindow(this);
+				App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni);
 			}
 		}
 
@@ -108,10 +98,9 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			App.BaseDeDatos.DeletePaciente(SelectedPaciente.Dni);
-
-			//---------Mensaje-----------//
-			this.Close(); // this.NavegarA<Pacientes>();
+			if (App.BaseDeDatos.DeletePaciente(SelectedPaciente.Dni)) {
+				this.Close(); // this.NavegarA<Medicos>();
+			}
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
