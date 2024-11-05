@@ -132,17 +132,10 @@ namespace ClinicaMedica {
 
 
 
-			// ---------AsegurarInput-----------//
-			if (true) {
-				// MessageBox.Show($"txtEspecialidades.SelectedItem: {this.txtEspecialidades.SelectedItem} \ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}\ntxtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}");
-				MessageBox.Show($"txtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}\ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}");
-				//return;
-			}
-
-
-
-
-
+			// ---------DebugTest-----------//
+			// if (true) {
+				// MessageBox.Show($"txtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}\ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}");
+			// }
 
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
