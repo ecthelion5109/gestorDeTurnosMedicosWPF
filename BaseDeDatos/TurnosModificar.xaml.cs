@@ -172,7 +172,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------confirmacion-----------//
-			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {txtId.Content}",
+			if (MessageBox.Show($"¿Está seguro que desea eliminar este turno?",
 				"Confirmar Eliminación",
 				MessageBoxButton.OKCancel,
 				MessageBoxImage.Warning
