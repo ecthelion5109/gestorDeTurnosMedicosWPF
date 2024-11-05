@@ -74,8 +74,8 @@ CREATE TABLE Turno (
     MedicoId INT NOT NULL,
     Fecha DATE NOT NULL,
     Hora TIME NOT NULL,
-    CONSTRAINT no_disponible_medico UNIQUE (MedicoId, Fecha, Hora),
-    CONSTRAINT no_disponible_paciente UNIQUE (PacienteID, Fecha, Hora),
+    -- CONSTRAINT no_disponible_medico UNIQUE (MedicoId, Fecha, Hora),
+    -- CONSTRAINT no_disponible_paciente UNIQUE (PacienteID, Fecha, Hora),
     FOREIGN KEY (PacienteID) REFERENCES Paciente(Id),
     FOREIGN KEY (MedicoId) REFERENCES Medico(Id)
 );
