@@ -54,6 +54,7 @@
 				FontWeight="Bold"
 				VerticalContentAlignment="Center"/>
 		<DatePicker x:Name="txtFecha"
+				Style="{StaticResource DatePickerLindo}" 
 					HorizontalAlignment="Center"
 					Margin="0,273,0,0"
 					VerticalAlignment="Top"
@@ -128,7 +129,9 @@
 				Height="33"
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"/>
-		<ComboBox x:Name="txtPacientes"
+		<ComboBox 
+				Style="{StaticResource ComboBoxLindo}" 
+				x:Name="txtPacientes"
 				HorizontalAlignment="Center"
 				Margin="0,174,0,0"
 				VerticalAlignment="Top"
@@ -158,6 +161,7 @@
 				FontWeight="Bold"
 				VerticalContentAlignment="Center"/>
 		<ComboBox x:Name="txtEspecialidades"
+				Style="{StaticResource ComboBoxLindo}" 
 				HorizontalAlignment="Center"
 				Margin="0,128,0,0"
 				VerticalAlignment="Top"
@@ -167,6 +171,7 @@
 				VerticalContentAlignment="Center"
 				/>
 		<ComboBox x:Name="txtMedicos"
+				Style="{StaticResource ComboBoxLindo}" 
 				HorizontalAlignment="Center"
 				Margin="0,225,0,0"
 				VerticalAlignment="Top"

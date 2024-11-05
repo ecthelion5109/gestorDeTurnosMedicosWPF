@@ -39,7 +39,7 @@ namespace ClinicaMedica {
 			this.txtPacientes.SelectedValue = SelectedTurno.PacienteId;
 			this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
 			this.txtId.Content = SelectedTurno.Id;
-			this.txtFecha.SelectedDate = SelectedTurno.Fecha?.ToString();
+			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
 			this.txtHora.Text = SelectedTurno.Hora;
 			
 			//this.txtMedicos.DataContext = selectedTurno;

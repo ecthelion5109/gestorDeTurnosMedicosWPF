@@ -70,6 +70,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtNombre"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="0"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -82,6 +83,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtApellido"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="1"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -94,6 +96,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDni"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="2"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -106,6 +109,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtTelefono"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="3"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -118,6 +122,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtProvincia"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="4"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -130,6 +135,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDomicilio"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="5"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -142,6 +148,7 @@
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtLocalidad"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="6"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -154,6 +161,7 @@
 				   VerticalAlignment="Center"
 				   HorizontalAlignment="Right"/>
 			<TextBox x:Name="txtEspecialidad"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="7"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -167,6 +175,7 @@
 				   HorizontalAlignment="Right"
 				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtSueldoMinGarant"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="8"
 					 Grid.Column="1"
 					 Margin="5,5,5,5"/>
@@ -180,6 +189,7 @@
 				   VerticalAlignment="Center"/>
 			<DatePicker Grid.Row="9"
 						Grid.Column="1"
+				Style="{StaticResource DatePickerLindo}" 
 						x:Name="txtFechaIngreso"
 						Margin="5,5,5,5"
 						Grid.ColumnSpan="2"/>

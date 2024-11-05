@@ -6,7 +6,227 @@
              ShutdownMode="OnLastWindowClose">
     <Application.Resources>
 
-        <Style x:Key="CalendarioLindo"
+
+
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,TextBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+	
+	
+	
+        <!-- Estilo de TextBox con sombreado y bordes redondeados -->
+        <Style x:Key="TextBoxLindo1" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="10" Background="White" BorderBrush="Gray" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Gray" BlurRadius="8" ShadowDepth="2"/>
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+	
+	
+        <Style x:Key="TextBoxLindo2" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="5"
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                Padding="5">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black"
+                                                  BlurRadius="20"
+                                                  ShadowDepth="12"/>
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,ComboBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- Estilo para ComboBox con sombreado y bordes redondeados -->
+        <Style x:Key="ComboBoxLindo" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border CornerRadius="5"
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                Padding="5">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black"
+                                                  BlurRadius="20"
+                                                  ShadowDepth="12"/>
+                            </Border.Effect>
+                            <Grid>
+                                <ToggleButton x:Name="ToggleButton"
+                                              Grid.Column="2"
+                                              Focusable="False"
+                                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ClickMode="Press"
+                                              Background="White"
+                                              BorderThickness="0"/>
+                                <ContentPresenter x:Name="ContentSite"
+                                                  IsHitTestVisible="False"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                  Margin="5,3,23,3"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"/>
+                                <TextBox x:Name="PART_EditableTextBox"
+                                         Style="{x:Null}"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Center"
+                                         Focusable="True"
+                                         Background="Transparent"
+                                         Visibility="Hidden"
+                                         IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                                <Popup x:Name="Popup"
+                                       Placement="Bottom"
+                                       IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       AllowsTransparency="True"
+                                       Focusable="False"
+                                       PopupAnimation="Slide">
+                                    <Grid x:Name="DropDown"
+                                          SnapsToDevicePixels="True"
+                                          MinWidth="{TemplateBinding ActualWidth}"
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border x:Name="DropDownBorder"
+                                                Background="White"
+                                                BorderBrush="Gray"
+                                                BorderThickness="1"
+                                                CornerRadius="10">
+                                            <ScrollViewer Margin="4"
+                                                          SnapsToDevicePixels="True">
+                                                <StackPanel IsItemsHost="True"
+                                                            KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,DatePickers,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <Style x:Key="DatePickerLindo" TargetType="DatePicker">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePicker">
+                        <Border CornerRadius="5"
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black"
+                                                  BlurRadius="20"
+                                                  ShadowDepth="12"/>
+                            </Border.Effect>
+                            <Grid>
+                                <DatePickerTextBox x:Name="PART_TextBox"
+                                                   HorizontalAlignment="Stretch"
+                                                   VerticalAlignment="Center"
+                                                   Background="Transparent"
+                                                   IsReadOnly="True"/>
+                                <Button x:Name="PART_Button"
+                                        Content="▼"
+                                        Width="20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Focusable="False"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,LISTVIEWS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <Style x:Key="ListViewLindo1" TargetType="ListView">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border CornerRadius="5"
+                                Background="White"
+                                BorderBrush="Black"
+                                BorderThickness="2">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Gray"
+                                        BlurRadius="10"
+                                        ShadowDepth="20"/>
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ScrollViewer">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+		<Style x:Key="ListViewLindo2" TargetType="ListView">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListView">
+						<Border CornerRadius="10"
+								BorderBrush="Black"
+								BorderThickness="2"
+								Background="White">
+							<Border.Effect>
+								<DropShadowEffect Color="Black"
+										BlurRadius="30"
+										ShadowDepth="10"/>
+							</Border.Effect>
+							<ScrollViewer x:Name="PART_ScrollViewer"
+									Padding="5"
+									Focusable="false">
+								<ItemsPresenter/>
+							</ScrollViewer>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+
+
+
+
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,CALENDARIOS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- Estilo de Calendar con sombreado y bordes redondeados -->
+        <Style x:Key="CalendarLindo1"
                 TargetType="Calendar">
             <Setter Property="Template">
                 <Setter.Value>
@@ -26,26 +246,19 @@
             </Setter>
         </Style>
 
-
-
-
-        <Style x:Key="ListViewSombreado"
-                TargetType="ListView">
+        <Style x:Key="CalendarLindo2" TargetType="Calendar">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ListView">
-                        <Border CornerRadius="5"
+                    <ControlTemplate TargetType="Calendar">
+                        <Border CornerRadius="10"
                                 Background="White"
-                                BorderBrush="Gray"
-                                BorderThickness="1">
+                                BorderBrush="Black"
+                                BorderThickness="2">
                             <Border.Effect>
-                                <DropShadowEffect Color="Gray"
-                                                  BlurRadius="8"
-                                                  ShadowDepth="10"/>
+                                <DropShadowEffect Color="Black"
+                                        BlurRadius="10"
+                                        ShadowDepth="22"/>
                             </Border.Effect>
-                            <ScrollViewer x:Name="PART_ScrollViewer">
-                                <ItemsPresenter/>
-                            </ScrollViewer>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -57,6 +270,7 @@
 
 
 
+	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="BotonRedondeado"
                 TargetType="{x:Type Button}">
             <Setter Property="Foreground"

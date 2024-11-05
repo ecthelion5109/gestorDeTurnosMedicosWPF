@@ -62,8 +62,6 @@
 				Width="310">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
-				<!-- Columna para los TextBox -->
-				<!-- Columna para los Labels -->
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
@@ -92,6 +90,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtNombre"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="0"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -104,6 +103,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtApellido"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="1"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -116,6 +116,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDni"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="2"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -128,6 +129,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtTelefono"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="3"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -140,6 +142,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtProvincia"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="4"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -152,6 +155,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDomicilio"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="5"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -164,6 +168,7 @@
 				   Width="Auto"
 					VerticalAlignment="Center"/>
 			<TextBox x:Name="txtLocalidad"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="6"
 					 Grid.Column="1"
 					 Width="Auto"
@@ -177,6 +182,7 @@
 				   HorizontalAlignment="Right"
 					VerticalAlignment="Center"/>
 			<DatePicker Grid.Row="9"
+				Style="{StaticResource DatePickerLindo}" 
 						Grid.Column="1"
 						x:Name="txtFechaNacimiento"
 						Margin="5,5,5,5"
@@ -190,6 +196,7 @@
 					Margin="0,1,0,0"/>
 			<DatePicker Grid.Row="12"
 						Grid.Column="1"
+				Style="{StaticResource DatePickerLindo}" 
 						x:Name="txtFechaIngreso"
 						Margin="5,0,5,0"/>
 			<Label Content="Email"
@@ -199,6 +206,7 @@
 					VerticalAlignment="Center"
 					Margin="56,0,0,0"/>
 			<TextBox x:Name="txtEmail"
+					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="13"
 					 Grid.Column="1"
 					 Width="Auto"

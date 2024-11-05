@@ -43,7 +43,7 @@
 				  ItemsSource="{Binding PacientesList}"
 				  Width="Auto"
 				  Height="Auto"
-          Style="{StaticResource ListViewSombreado}"
+          Style="{StaticResource ListViewLindo2}"
 				Margin="10,32,524,260"
 				SelectionChanged="PacienteListView_SelectionChanged"
 				d:ItemsSource="{d:SampleData ItemCount=5}"

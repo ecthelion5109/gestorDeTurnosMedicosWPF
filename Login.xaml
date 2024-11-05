@@ -7,32 +7,21 @@
         mc:Ignorable="d" MinHeight="600" MinWidth="1024"
         Title="Clinica Medica - Login" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600" MaxHeight="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Icon="images/icono.png" WindowStartupLocation="CenterScreen">
 
-    <Window.Resources>
-        <!-- Estilo de TextBox con sombreado y bordes redondeados -->
-        <Style TargetType="TextBox">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border CornerRadius="10" Background="White" BorderBrush="Gray" BorderThickness="1">
-                            <Border.Effect>
-                                <DropShadowEffect Color="Gray" BlurRadius="8" ShadowDepth="2"/>
-                            </Border.Effect>
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="2"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
 
     <Grid VerticalAlignment="Center" Height="600" Width="1024" HorizontalAlignment="Center">
         <Grid.Background>
             <ImageBrush ImageSource="/images/otroFondo.png"/>
         </Grid.Background>
 
-        <TextBox x:Name="labelServidor" HorizontalAlignment="Left" Margin="427,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="labelUsuario" HorizontalAlignment="Left" Margin="427,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="labelPassword" HorizontalAlignment="Left" Margin="427,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="labelServidor" 
+					Style="{StaticResource TextBoxLindo2}" 
+					HorizontalAlignment="Left" Margin="427,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="labelUsuario" 
+					Style="{StaticResource TextBoxLindo2}" 
+					HorizontalAlignment="Left" Margin="427,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
+        <TextBox x:Name="labelPassword" 
+					Style="{StaticResource TextBoxLindo2}" 
+					HorizontalAlignment="Left" Margin="427,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="24" TextAlignment="Center" FontSize="16"/>
 
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="30" FontFamily="Bahnschrift Light" Margin="344,77,0,0" Foreground="Black">
             <TextBlock.Background>

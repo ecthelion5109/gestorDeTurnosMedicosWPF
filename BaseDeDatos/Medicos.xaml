@@ -43,6 +43,7 @@
 					  Width="Auto"
 					  Height="Auto"
 					  Margin="350,16,15,197"
+						Style="{StaticResource ListViewLindo2}"
 					  SelectionChanged="medicosListView_SelectionChanged"
 					  Background="#A5FFFFFF"
 					  BorderBrush="#72828790"
