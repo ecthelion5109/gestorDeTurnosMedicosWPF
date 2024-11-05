@@ -118,6 +118,7 @@ namespace ClinicaMedica {
 						command.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
 						command.Parameters.AddWithValue("@Fecha", instancia.Fecha);
 						command.Parameters.AddWithValue("@Hora", instancia.Hora);
+						// command.Parameters.Add(new SqlParameter("@Hora", SqlDbType.Time) { Value = instancia.Hora });
 						command.ExecuteNonQuery();
 					}
 				}

@@ -34,7 +34,7 @@ namespace ClinicaMedica {
 			LLenarComboBoxes();
 
 			this.txtMedicos.DataContext = selectedTurno;
-			// this.txtPacientes.SelectedItem = selectedTurno.PacienteJoin;
+			// this.txtPacientes.SelectedItem = selectedTurno.PacienteConcat;
 			this.txtPacientes.DataContext = selectedTurno;
 			// this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
 			this.txtEspecialidades.DataContext = selectedTurno;
@@ -43,7 +43,6 @@ namespace ClinicaMedica {
 			this.txtFecha.SelectedDate = selectedTurno.Fecha;
 			this.txtHora.Text = selectedTurno.Hora;
 
-			// LLenarComboBoxes();
 		}
 
 		private void LLenarComboBoxes() {
@@ -105,31 +104,60 @@ namespace ClinicaMedica {
 
 		public bool FaltanCamposPorCompletar(){
 			return (
-					this.txtPacientes.SelectedValue is null ||
-					this.txtMedicos.SelectedValue is null ||
-					 this.txtFecha.SelectedDate is null ||
-					 string.IsNullOrEmpty(this.txtId.Content.ToString()) ||
-					 string.IsNullOrEmpty(this.txtHora.Text
-				)
+				//string.IsNullOrEmpty(this.txtId.Content.ToString()) ||
+
+				this.txtPacientes.SelectedValue is null ||
+				this.txtMedicos.SelectedValue is null ||
+
+				this.txtFecha.SelectedDate is null ||
+				string.IsNullOrEmpty(this.txtHora.Text)
 			);
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+
+
+
+
+
+
+
+
+
 			// ---------AsegurarInput-----------//
 			if (FaltanCamposPorCompletar()) {
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				return;
 			}
+
+
+
+			// ---------AsegurarInput-----------//
+			if (true) {
+				// MessageBox.Show($"txtEspecialidades.SelectedItem: {this.txtEspecialidades.SelectedItem} \ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}\ntxtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}");
+				MessageBox.Show($"txtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}\ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}");
+				//return;
+			}
+
+
+
+
+
+
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
-				SelectedTurno = new Turno();
-				SelectedTurno.AsignarDatosFromWindow(this);
-				App.BaseDeDatos.CreateTurno(SelectedTurno);
+				var newturno = new Turno();
+				newturno.AsignarDatosFromWindow(this);
+				if ( App.BaseDeDatos.CreateTurno(newturno) ) {
+					this.Close();
+				}
 			}
 			//---------Modificar-----------//
 			else {
 				SelectedTurno.AsignarDatosFromWindow(this);
-				App.BaseDeDatos.UpdateTurno(SelectedTurno);
+				if ( App.BaseDeDatos.UpdateTurno(SelectedTurno) ) {
+					this.Close();
+				}
 			}
 		}
 
@@ -165,7 +193,6 @@ namespace ClinicaMedica {
 		}
 
 		private void txtPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			 MessageBox.Show($"txtEspecialidades.SelectedItem: {this.txtEspecialidades.SelectedItem} \ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}\ntxtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}");
 		}
 		//------------------------Fin---------------------------//
 	}
