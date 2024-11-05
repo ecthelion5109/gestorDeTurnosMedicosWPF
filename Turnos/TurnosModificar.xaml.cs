@@ -86,15 +86,15 @@ namespace ClinicaMedica {
 		}
 
 
-
+		/*
 		private void LLenarTurnosGallegoStyle(string selectedTurnoId) {
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
 				string consulta = @"
 					SELECT 
 						Id,
-						PacienteID,
-						MedicoID,
+						PacienteId,
+						MedicoId,
 						Fecha,
 						Hora
 					FROM 
@@ -110,8 +110,8 @@ namespace ClinicaMedica {
 						if (reader.Read())  // Checks if there's at least one row
 						{
 							//txtTurnoId.Content = reader["Id"].ToString();
-							//txtPacienteDni.Text = reader["PacienteID"].ToString();
-							//txtMedicoDni.Text = reader["MedicoID"].ToString();
+							//txtPacienteDni.Text = reader["PacienteId"].ToString();
+							//txtMedicoDni.Text = reader["MedicoId"].ToString();
 							txtFecha.Text = reader["Fecha"].ToString();
 							txtHora.Text = reader["Hora"].ToString();
 						}
@@ -123,7 +123,7 @@ namespace ClinicaMedica {
 				}
 			}
 		}
-
+		*/
 
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
@@ -138,8 +138,8 @@ namespace ClinicaMedica {
 				//MessageBox.Show($"No Es null:");
 				MessageBox.Show(@$"
 					Antes: 
-					{SelectedTurno.PacienteID}
-					{SelectedTurno.MedicoID}
+					{SelectedTurno.PacienteId}
+					{SelectedTurno.MedicoId}
 					{SelectedTurno.Fecha}
 					{SelectedTurno.Hora}
 				");
@@ -147,8 +147,8 @@ namespace ClinicaMedica {
 				operacion = App.BaseDeDatos.UpdateTurno(SelectedTurno);
 				MessageBox.Show(@$"
 					Despues: 
-					{SelectedTurno.PacienteID}
-					{SelectedTurno.MedicoID}
+					{SelectedTurno.PacienteId}
+					{SelectedTurno.MedicoId}
 					{SelectedTurno.Fecha}
 					{SelectedTurno.Hora}
 				");

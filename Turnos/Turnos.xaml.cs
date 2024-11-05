@@ -39,9 +39,9 @@ namespace ClinicaMedica {
 					FROM 
 						Turno T
 					JOIN 
-						Paciente P ON T.PacienteID = P.Id
+						Paciente P ON T.PacienteId = P.Id
 					JOIN 
-						Medico M ON T.MedicoID = M.Id
+						Medico M ON T.MedicoId = M.Id
 					WHERE
 						T.Fecha = @Fecha;
 				";
@@ -93,9 +93,9 @@ namespace ClinicaMedica {
                 FROM 
                     Turno T
                 JOIN 
-                    Paciente P ON T.PacienteID = P.Id
+                    Paciente P ON T.PacienteId = P.Id
                 JOIN 
-                    Medico M ON T.MedicoID = M.Id;
+                    Medico M ON T.MedicoId = M.Id;
             ";
 			SqlDataAdapter adaptador = new SqlDataAdapter(consulta, BaseDeDatosSQL.connectionString);
 			using (adaptador) {
