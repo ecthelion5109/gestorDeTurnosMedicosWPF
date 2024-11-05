@@ -23,18 +23,6 @@
       "Domicilio": "titaltia 545",
       "Localidad": "Moron",
       "Provincia": "Bs Asires"
-    },
-    "2342342": {
-      "Dni": "2342342",
-      "Name": "Aylen",
-      "LastName": "Pereira",
-      "FechaIngreso": "2024-10-31T00:00:00",
-      "Email": "aye@ghmail.com",
-      "Telefono": "54354343",
-      "FechaNacimiento": "1997-11-04T00:00:00",
-      "Domicilio": "CalleSinNombre 123",
-      "Localidad": "Merlo",
-      "Provincia": "Buenos Aires"
     }
   },
   "medicos": {
@@ -84,20 +72,6 @@
         }
       }
     },
-    "5769537": {
-      "Name": "Dr. Miguel",
-      "LastName": "Dedo Gordo",
-      "Dni": "5769537",
-      "Provincia": "Buenos Aires",
-      "Domicilio": "Uruguay 5434",
-      "Localidad": "Merlo",
-      "Especialidad": "Proctologia",
-      "Telefono": "45646546546546",
-      "Guardia": false,
-      "FechaIngreso": "2021-05-05T00:00:00",
-      "SueldoMinimoGarantizado": 900000.0,
-      "DiasDeAtencion": {}
-    },
     "1321452": {
       "Name": "Dr. Tocando",
       "LastName": "Shells",
@@ -120,41 +94,28 @@
           "End": "16:00"
         }
       }
-    },
-    "7354854": {
-      "Name": "Dr. Tete",
-      "LastName": "Falopa",
-      "Dni": "7354854",
-      "Provincia": "Buenos Aires",
-      "Domicilio": "Equiza 6654",
-      "Localidad": "Gonzalez Catan",
-      "Especialidad": "Sanadora de empachos",
-      "Telefono": "",
-      "Guardia": false,
-      "FechaIngreso": "2014-10-18T00:00:00",
-      "SueldoMinimoGarantizado": 7000.0,
-      "DiasDeAtencion": {
-        "Lunes": {
-          "Start": "15:00",
-          "End": "21:00"
-        },
-        "Jueves": {
-          "Start": "19:00",
-          "End": "23:00"
-        }
-      }
     }
   },
   "turnos": {
     "25654321_40350997": {
-      "MedicoPk": 25654321,
-      "PacientePk": 40350997,
-      "FechaYHoraAsignada": "2024-11-03T00:00:00"
+      "PacienteJoin": "LoadPacienteNombreCompletoFromDatabase",
+      "MedicoJoin": "LoadMedicoNombreCompletoFromDatabase",
+      "Especialidad": "LoadEspecialidadFromDatabase",
+      "Id": null,
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null
     },
     "87654321_10350123": {
-      "MedicoPk": 87654321,
-      "PacientePk": 10350123,
-      "FechaYHoraAsignada": "2024-10-05T00:00:00"
+      "PacienteJoin": "LoadPacienteNombreCompletoFromDatabase",
+      "MedicoJoin": "LoadMedicoNombreCompletoFromDatabase",
+      "Especialidad": "LoadEspecialidadFromDatabase",
+      "Id": null,
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null
     }
   }
 }

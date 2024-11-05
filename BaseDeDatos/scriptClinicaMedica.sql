@@ -71,17 +71,17 @@ VALUES
 CREATE TABLE Turno (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     PacienteID INT NOT NULL,
-    MedicoID INT NOT NULL,
+    MedicoId INT NOT NULL,
     Fecha DATE NOT NULL,
     Hora TIME NOT NULL,
-    CONSTRAINT no_disponible_medico UNIQUE (MedicoID, Fecha, Hora),
+    CONSTRAINT no_disponible_medico UNIQUE (MedicoId, Fecha, Hora),
     CONSTRAINT no_disponible_paciente UNIQUE (PacienteID, Fecha, Hora),
     FOREIGN KEY (PacienteID) REFERENCES Paciente(Id),
-    FOREIGN KEY (MedicoID) REFERENCES Medico(Id)
+    FOREIGN KEY (MedicoId) REFERENCES Medico(Id)
 );
 
 -- Insert sample data into Turno
-INSERT INTO Turno (PacienteID, MedicoID, Fecha, Hora)
+INSERT INTO Turno (PacienteID, MedicoId, Fecha, Hora)
 VALUES
     (1, 1, '2024-11-01', '09:00'),
     (2, 1, '2024-11-02', '09:30'),

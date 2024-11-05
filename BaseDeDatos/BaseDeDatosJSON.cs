@@ -154,6 +154,27 @@ namespace ClinicaMedica {
 			string jsonString = JsonConvert.SerializeObject(MiDiccionario, Formatting.Indented);
 			File.WriteAllText(archivoPath, jsonString);
 		}
+		
+		
+		
+		
+
+
+		//------------------------GET-PROPERTIES----------------------//
+		public string LoadPacienteNombreCompletoFromDatabase(string instance_id) {
+			return "LoadPacienteNombreCompletoFromDatabase";
+		}
+
+		public string LoadMedicoNombreCompletoFromDatabase(string instance_id) {
+			return "LoadMedicoNombreCompletoFromDatabase";
+		}
+
+
+		public string LoadEspecialidadFromDatabase(string instance_id) {
+			return "LoadEspecialidadFromDatabase";
+		}
+
+		
 		//------------------------Fin.BaseDeDatosJSON----------------------//
 	}
 }

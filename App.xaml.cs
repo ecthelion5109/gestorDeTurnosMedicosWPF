@@ -74,24 +74,29 @@ namespace ClinicaMedica {
 		List<Turno> ReadTurnos();
 
 		// checkers
-		bool CorroborarQueNoExistaMedico(string key);
-		bool CorroborarQueNoExistaPaciente(string key);
-		bool CorroborarQueNoExistaTurno(string key);
+		bool CorroborarQueNoExistaMedico(string Id);
+		bool CorroborarQueNoExistaPaciente(string Id);
+		bool CorroborarQueNoExistaTurno(string Id);
 
 		// Create methods
-		OperationCode CreateMedico(Medico medico);
-		OperationCode CreatePaciente(Paciente paciente);
-		OperationCode CreateTurno(Turno turno);
+		OperationCode CreateMedico(Medico instance);
+		OperationCode CreatePaciente(Paciente instance);
+		OperationCode CreateTurno(Turno instance);
 
 		// Update methods
-		OperationCode UpdateMedico(Medico medico, string originalDni);
-		OperationCode UpdatePaciente(Paciente paciente, string originalDni);
-		OperationCode UpdateTurno(Turno turno);
+		OperationCode UpdateMedico(Medico instance, string originalDni);
+		OperationCode UpdatePaciente(Paciente instance, string originalDni);
+		OperationCode UpdateTurno(Turno instance);
 
 		// Delete methods
-		OperationCode DeleteMedico(string medicoId);
-		OperationCode DeletePaciente(string pacienteId);
-		OperationCode DeleteTurno(string turnoId);
+		OperationCode DeleteMedico(string Id);
+		OperationCode DeletePaciente(string Id);
+		OperationCode DeleteTurno(string Id);
+		
+		
+		string LoadPacienteNombreCompletoFromDatabase(string Id);
+		string LoadMedicoNombreCompletoFromDatabase(string Id);
+		string LoadEspecialidadFromDatabase(string Id);
 	}
 	
 	
@@ -158,24 +163,9 @@ namespace ClinicaMedica {
 			}
 		}
 
-		// Constructor de Medico en base a una ventana
+		// Constructor de PAciente en base a una ventana
 		public Medico(MedicosModificar window){
-			this.Name = window.txtNombre.Text;
-			this.LastName = window.txtApellido.Text;
-			this.Dni = window.txtDNI.Text;
-            this.Telefono = window.txtTelefono.Text;
-            this.Provincia = window.txtProvincia.Text;
-			this.Domicilio = window.txtDomicilio.Text;
-			this.Localidad = window.txtLocalidad.Text;
-			this.Especialidad = window.txtEspecialidad.Text;
-			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
-			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
-			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)){
-				this.SueldoMinimoGarantizado = sueldo;
-			} else {
-				this.SueldoMinimoGarantizado = 0; // Set a default value if parsing fails
-			}
-			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
+			AsignarDatosFromWindow(window);
 		}
 
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
@@ -266,16 +256,7 @@ namespace ClinicaMedica {
 
 		// Constructor de PAciente en base a una ventana
 		public Paciente(PacientesModificar window){
-			this.Dni = window.txtDni.Text;
-			this.Name = window.txtNombre.Text;
-			this.LastName = window.txtApellido.Text;
-			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
-			this.Email = window.txtEmail.Text;
-			this.Telefono = window.txtTelefono.Text;
-			this.FechaNacimiento = (DateTime)window.txtFechaNacimiento.SelectedDate;
-			this.Domicilio = window.txtDomicilio.Text;
-			this.Localidad = window.txtLocalidad.Text;
-			this.Provincia = window.txtProvincia.Text;
+			AsignarDatosFromWindow(window);
 		}
 		
 		
@@ -308,7 +289,7 @@ namespace ClinicaMedica {
 		public string PacienteJoin {
 			get {
 				if (_pacienteJoin == null) {
-					_pacienteJoin = LoadPacienteNombreCompletoFromDatabase();
+					_pacienteJoin = App.BaseDeDatos.LoadPacienteNombreCompletoFromDatabase(Id);
 				}
 				return _pacienteJoin;
 			}
@@ -326,7 +307,7 @@ namespace ClinicaMedica {
 		public string MedicoJoin {
 			get {
 				if (_medicoJoin == null) {
-					_medicoJoin = LoadMedicoNombreCompletoFromDatabase();
+					_medicoJoin = App.BaseDeDatos.LoadMedicoNombreCompletoFromDatabase(MedicoId);
 				}
 				return _medicoJoin;
 			}
@@ -344,7 +325,7 @@ namespace ClinicaMedica {
 		public string Especialidad {
 			get {
 				if (_especialidad == null) {
-					_especialidad = LoadEspecialidadFromDatabase();
+					_especialidad = App.BaseDeDatos.LoadEspecialidadFromDatabase(MedicoId);
 				}
 				return _especialidad;
 			}
@@ -357,63 +338,10 @@ namespace ClinicaMedica {
 		}
 	
 		public string ?Id { get; set; }
-		public string ?PacienteID { get; set; }
-		public string ?MedicoID { get; set; }
+		public string ?PacienteId { get; set; }
+		public string ?MedicoId { get; set; }
 		public DateTime ?Fecha { get; set; }
 		public string ?Hora { get; set; }
-
-
-
-
-		private string LoadPacienteNombreCompletoFromDatabase() {
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				string query = @"
-                SELECT CONCAT(Dni, ' ', Name, ' ', LastName)
-                FROM Paciente
-                WHERE Id = @PacienteID";
-
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@PacienteID", PacienteID);
-
-					var result = command.ExecuteScalar();
-					return result?.ToString() ?? "Paciente no encontrado";
-				}
-			}
-		}
-
-		private string LoadMedicoNombreCompletoFromDatabase() {
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				string query = @"
-                SELECT CONCAT(Dni, ' ', Name, ' ', LastName)
-                FROM Medico
-                WHERE Id = @MedicoID";
-
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@MedicoID", MedicoID);
-
-					var result = command.ExecuteScalar();
-					return result?.ToString() ?? "Medico no encontrado";
-				}
-			}
-		}
-
-
-		private string LoadEspecialidadFromDatabase() {
-			// Replace with your actual connection string
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				string query = "SELECT Especialidad FROM Medico WHERE Id = @MedicoID";
-
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@MedicoID", MedicoID);
-
-					var result = command.ExecuteScalar();
-					return result?.ToString() ?? "Especialidad no encontrada";
-				}
-			}
-		}
 
 		public Turno() { }
 		
@@ -421,21 +349,16 @@ namespace ClinicaMedica {
 		public Turno(JsonElement json){
 		}
 
-
-		// Constructor de Turno en base a una ventana
+		// Constructor de PAciente en base a una ventana
 		public Turno(TurnosModificar window){
-			this.Id = window.txtId.Content.ToString();
-			this.PacienteID = window.txtPacientes.Text;
-			this.MedicoID = window.txtMedicos.Text;
-			this.Fecha = window.txtFecha.SelectedDate;
-			this.Hora = window.txtFecha.Text;
+			AsignarDatosFromWindow(window);
 		}
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void AsignarDatosFromWindow(TurnosModificar window) {
 			this.Id = window.txtId.Content.ToString();
-			this.PacienteID = ((Turno) window.txtPacientes.DataContext).PacienteID;
-			this.MedicoID = ((Turno) window.txtMedicos.DataContext).MedicoID;
+			this.PacienteId = ((Turno) window.txtPacientes.DataContext).PacienteId;
+			this.MedicoId = ((Turno) window.txtMedicos.DataContext).MedicoId;
 			this.Fecha = window.txtFecha.SelectedDate;
 			this.Hora = window.txtFecha.Text;
 		}
