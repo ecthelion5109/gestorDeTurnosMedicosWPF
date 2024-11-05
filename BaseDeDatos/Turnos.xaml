@@ -36,10 +36,10 @@
                                                         DisplayMemberBinding="{Binding Id}"
                                                         Width="auto"/>
                                         <GridViewColumn Header="Paciente Datos"
-                                                        DisplayMemberBinding="{Binding PacienteJoin}"
+                                                        DisplayMemberBinding="{Binding PacienteConcat}"
                                                         Width="auto"/>
                                         <GridViewColumn Header="Médico Datos"
-                                                        DisplayMemberBinding="{Binding MedicoJoin}"
+                                                        DisplayMemberBinding="{Binding MedicoConcat}"
                                                         Width="auto"/>
                                         <GridViewColumn Header="Fecha"
                                                         DisplayMemberBinding="{Binding Fecha}"

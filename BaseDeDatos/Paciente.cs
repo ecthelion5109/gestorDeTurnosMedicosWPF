@@ -5,7 +5,7 @@ namespace ClinicaMedica {
 	//---------------------------------Tablas.Pacientes-------------------------------//
 	public class ComboBoxItem{
 		public int Id { get; set; }
-		public string PacienteJoin { get; set; }
+		public string PacienteConcat { get; set; }
 	}
 	
 	

@@ -32,8 +32,8 @@ namespace ClinicaMedica {
 				string consulta = @"
 					SELECT 
 						T.Id,
-						CONCAT(P.Name, ' ', P.LastName) AS PacienteJoin,
-						CONCAT(M.Name, ' ', M.LastName) AS MedicoJoin,
+						CONCAT(P.Name, ' ', P.LastName) AS PacienteConcat,
+						CONCAT(M.Name, ' ', M.LastName) AS MedicoConcat,
 						FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
 						T.Hora
 					FROM 

@@ -10,36 +10,36 @@ namespace ClinicaMedica {
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 		
-		private string _pacienteJoin;
-		public string PacienteJoin {
+		private string _pacienteConcat;
+		public string PacienteConcat {
 			get {
-				if (_pacienteJoin == null) {
-					_pacienteJoin = App.BaseDeDatos.LoadPacienteNombreCompletoFromDatabase(Id);
+				if (_pacienteConcat == null) {
+					_pacienteConcat = App.BaseDeDatos.LoadPacienteNombreCompletoFromDatabase(PacienteId);
 				}
-				return _pacienteJoin;
+				return _pacienteConcat;
 			}
 			set {
-				if (_pacienteJoin != value) {
-					_pacienteJoin = value;
-					OnPropertyChanged(nameof(PacienteJoin));
+				if (_pacienteConcat != value) {
+					_pacienteConcat = value;
+					OnPropertyChanged(nameof(PacienteConcat));
 				}
 			}
 		}
 	
 	
 	
-		private string ?_medicoJoin = null;
-		public string MedicoJoin {
+		private string ?_medicoConcat = null;
+		public string MedicoConcat {
 			get {
-				if (_medicoJoin == null) {
-					_medicoJoin = App.BaseDeDatos.LoadMedicoNombreCompletoFromDatabase(MedicoId);
+				if (_medicoConcat == null) {
+					_medicoConcat = App.BaseDeDatos.LoadMedicoNombreCompletoFromDatabase(MedicoId);
 				}
-				return _medicoJoin;
+				return _medicoConcat;
 			}
 			set {
-				if (_medicoJoin != value) {
-					_medicoJoin = value;
-					OnPropertyChanged(nameof(MedicoJoin));
+				if (_medicoConcat != value) {
+					_medicoConcat = value;
+					OnPropertyChanged(nameof(MedicoConcat));
 				}
 			}
 		}
@@ -83,8 +83,15 @@ namespace ClinicaMedica {
 			this.Id = window.txtId.Content?.ToString() ?? this.Id;
 			this.PacienteId = window.txtPacientes.SelectedValue.ToString();
 			this.MedicoId = window.txtMedicos.SelectedValue.ToString();
-			this.Fecha = window.txtFecha.SelectedDate;
-			this.Hora = window.txtFecha.Text;
+			//this.Fecha = ((DateTime) window.txtFecha.SelectedDate).Date.ToString("yyyy-MM-dd");
+			if (window.txtFecha.SelectedDate.HasValue) {
+				this.Fecha = window.txtFecha.SelectedDate.Value.Date; // Set as DateTime, keeping only the date part
+			}
+			else {
+				// Handle the case where no date is selected, if necessary
+				this.Fecha = DateTime.MinValue; // Or some other default value
+			}
+			this.Hora = window.txtHora.Text;
 		}
 	}
 }

@@ -47,7 +47,7 @@ namespace ClinicaMedica {
 		
 
 		//---------------------botones.GuardarCambios-------------------//
-		bool CorroborarUserInputEsSeguro(){
+		bool FaltanCamposPorCompletar(){
 			return !(string.IsNullOrEmpty(this.txtSueldoMinGarant.Text) ||
 					 string.IsNullOrEmpty(this.txtDni.Text) ||
 					 this.txtFechaIngreso.SelectedDate is null ||
@@ -56,9 +56,11 @@ namespace ClinicaMedica {
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
-				if (CorroborarUserInputEsSeguro()) {
+				if (FaltanCamposPorCompletar()) {
 					SelectedMedico = new Medico(this);
-					App.BaseDeDatos.CreateMedico(SelectedMedico);
+					if ( App.BaseDeDatos.CreateMedico(SelectedMedico)){
+						this.Close();
+					}						
 				}
 				else {
 					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
@@ -67,7 +69,7 @@ namespace ClinicaMedica {
 			//---------Modificar-----------//
 			else {
 				string originalDni = SelectedMedico.Dni;
-				if (CorroborarUserInputEsSeguro()) {
+				if (FaltanCamposPorCompletar()) {
 					SelectedMedico.AsignarDatosFromWindow(this);
 					App.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
 				}

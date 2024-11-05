@@ -52,11 +52,6 @@ namespace ClinicaMedica {
 					 //string.IsNullOrEmpty(this.txtLocalidad.Text) ||
 					 //string.IsNullOrEmpty(this.txtProvincia.Text) ||
 					 
-					 
-					 
-					 
-					 
-					 
 					 this.txtFechaIngreso.SelectedDate is null ||
 					 this.txtFechaNacimiento.SelectedDate is null
 					 );
@@ -70,14 +65,18 @@ namespace ClinicaMedica {
 			
 			//---------Crear-----------//
 			if (SelectedPaciente is null) {
-				SelectedPaciente = new Paciente(this);
-				App.BaseDeDatos.CreatePaciente(SelectedPaciente);
+				var nuevpacoiente = new Paciente(this);
+				if (App.BaseDeDatos.CreatePaciente(nuevpacoiente)){
+					this.Close();
+				}
 			}
 			//---------Modificar-----------//
 			else {
 				string originalDni = SelectedPaciente.Dni;
 				SelectedPaciente.AsignarDatosFromWindow(this);
-				App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni);
+				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni)){
+					this.Close();
+				}
 			}
 		}
 
