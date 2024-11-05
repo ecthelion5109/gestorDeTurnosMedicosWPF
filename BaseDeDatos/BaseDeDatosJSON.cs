@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.IO;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : IBaseDeDatos{
@@ -29,19 +30,19 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------CREATE----------------------//
-		public OperationCode CreateMedico(Medico medico) {
-			this.MiDiccionario["medicos"][medico.Dni] = medico;
-			this.GuardarJson(); // Guardar los cambios en el archivo JSON
-			return OperationCode.CREATE_SUCCESS;
+		public void CreateMedico(Medico instancia) {
+			this.MiDiccionario["medicos"][instancia.Dni] = instancia;
+			this.GuardarJson();
+			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 		}
-		public OperationCode CreatePaciente(Paciente paciente){
-			this.MiDiccionario["pacientes"][paciente.Dni] = paciente;
-			this.GuardarJson(); // Guardar los cambios en el archivo JSON
-			return OperationCode.CREATE_SUCCESS;
+		public void CreatePaciente(Paciente instancia) {
+			this.MiDiccionario["pacientes"][instancia.Dni] = instancia;
+			this.GuardarJson();
+			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
 		}
 
-		public  OperationCode CreateTurno(Turno turno) {
-			return OperationCode.SIN_DEFINIR;
+		public void CreateTurno(Turno turno) {
+			MessageBox.Show($"No se ha implementado esto en json");
 		}
 
 		//------------------------public.READ----------------------//
@@ -55,48 +56,62 @@ namespace ClinicaMedica {
             return this.MiDiccionario["turnos"].Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
-        public OperationCode UpdateMedico(Medico medico, string originalDni){
-			if (string.IsNullOrEmpty(medico.Dni)) {
-				return OperationCode.MISSING_DNI;
+        public void UpdateMedico(Medico instancia, string originalDni){
+			if (string.IsNullOrEmpty(instancia.Dni)) {
+				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 			} 
 				
-			if (originalDni != medico.Dni) {
+			if (originalDni != instancia.Dni) {
 				this.MiDiccionario["medicos"].Remove(originalDni);
-				this.MiDiccionario["medicos"][medico.Dni] = medico;
+				this.MiDiccionario["medicos"][instancia.Dni] = instancia;
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
-			return OperationCode.UPDATE_SUCCESS;
+			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 		}
-        public OperationCode UpdatePaciente(Paciente paciente, string originalDni){
-			if (string.IsNullOrEmpty(paciente.Dni)) {
-				return OperationCode.MISSING_DNI;
+        public void UpdatePaciente(Paciente instancia, string originalDni){
+			if (string.IsNullOrEmpty(instancia.Dni)) {
+				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 			} 
 				
-			if (originalDni != paciente.Dni) {
+			if (originalDni != instancia.Dni) {
 				this.MiDiccionario["pacientes"].Remove(originalDni);
-				this.MiDiccionario["pacientes"][paciente.Dni] = paciente;
+				this.MiDiccionario["pacientes"][instancia.Dni] = instancia;
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
-			return OperationCode.UPDATE_SUCCESS;
+			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 		}
-        public OperationCode UpdateTurno(Turno turno) {
-			return OperationCode.SIN_DEFINIR;
+        public void UpdateTurno(Turno turno) {
+			MessageBox.Show($"Sin definir.");
 		}
 		//------------------------public.DELETE----------------------//
 		
-		public OperationCode DeleteMedico(string medicoId){
-			this.MiDiccionario["medicos"].Remove(medicoId);
-			this.GuardarJson(); // Save changes to the database
-			return OperationCode.DELETE_SUCCESS;
+		public bool DeleteMedico(string idToRemove) {
+			try {
+				this.MiDiccionario["medicos"].Remove(idToRemove);
+				this.GuardarJson(); // Save changes to the database
+				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {idToRemove} del Json");
+				return true;
+			} catch (Exception ex) {
+				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el medico", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+
+			}
 		}
-		public OperationCode DeletePaciente(string pacienteId){
-			this.MiDiccionario["pacientes"].Remove(pacienteId);
-			this.GuardarJson(); // Save changes to the database
-			return OperationCode.DELETE_SUCCESS;
+		public bool DeletePaciente(string idToRemove){
+			try {
+				this.MiDiccionario["pacientes"].Remove(idToRemove);
+				this.GuardarJson(); // Save changes to the database
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {idToRemove} del Json");
+				return true;
+			} catch (Exception ex) { 
+				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el paciente", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
 		}
 
-        public OperationCode DeleteTurno(string turnoId) {
-			return OperationCode.SIN_DEFINIR;
+        public bool DeleteTurno(string idToRemove) {
+			MessageBox.Show($"Sin implementar");
+			return false;
 		}
 		
 		
