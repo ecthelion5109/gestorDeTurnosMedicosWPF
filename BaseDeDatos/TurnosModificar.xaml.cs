@@ -26,23 +26,27 @@ namespace ClinicaMedica {
 			LLenarComboBoxes();
 		}
 
-
 		public TurnosModificar(Turno selectedTurno)  //Modificar turno
 		{
 			InitializeComponent();
 			SelectedTurno = selectedTurno;
 			LLenarComboBoxes();
+			SetComboBoxSelections();
+		}
 
-			this.txtMedicos.DataContext = selectedTurno;
+		private void SetComboBoxSelections(){
+			this.txtMedicos.SelectedValue = SelectedTurno.MedicoId;
+			this.txtPacientes.SelectedValue = SelectedTurno.PacienteId;
+			this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
+			this.txtId.Content = SelectedTurno.Id;
+			this.txtFecha.SelectedDate = SelectedTurno.Fecha?.ToString();
+			this.txtHora.Text = SelectedTurno.Hora;
+			
+			//this.txtMedicos.DataContext = selectedTurno;
 			// this.txtPacientes.SelectedItem = selectedTurno.PacienteConcat;
-			this.txtPacientes.DataContext = selectedTurno;
+			//this.txtPacientes.DataContext = selectedTurno;
 			// this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
-			this.txtEspecialidades.DataContext = selectedTurno;
-
-			this.txtId.Content = selectedTurno.Id;
-			this.txtFecha.SelectedDate = selectedTurno.Fecha;
-			this.txtHora.Text = selectedTurno.Hora;
-
+			//this.txtEspecialidades.DataContext = selectedTurno;
 		}
 
 		private void LLenarComboBoxes() {
@@ -75,12 +79,6 @@ namespace ClinicaMedica {
 				}
 				txtPacientes.DisplayMemberPath = "PacienteDisplay";
 				txtPacientes.SelectedValuePath = "PacienteId";
-				
-				
-				
-				
-				
-				
 
 				// Query to fill txtMedicos ComboBox
 				string consultaMedicos = @"SELECT Id as MedicoId, CONCAT(Dni, ' ', Name, ' ', LastName) AS MedicoDisplay FROM Medico";
@@ -180,12 +178,6 @@ namespace ClinicaMedica {
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
-		}
-
-		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-		}
-
-		private void txtPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 		}
 		//------------------------Fin---------------------------//
 	}

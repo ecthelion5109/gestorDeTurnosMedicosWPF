@@ -129,7 +129,6 @@
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"/>
 		<ComboBox x:Name="txtPacientes"
-				SelectedItem="{Binding PacienteConcat}"
 				HorizontalAlignment="Center"
 				Margin="0,174,0,0"
 				VerticalAlignment="Top"
@@ -137,7 +136,7 @@
 				Height="33"
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"
-				SelectionChanged="txtPacientes_SelectionChanged"/>
+				/>
 		<Label x:Name="txtId"
 				HorizontalAlignment="Center"
 				Margin="0,83,0,0"
@@ -159,7 +158,6 @@
 				FontWeight="Bold"
 				VerticalContentAlignment="Center"/>
 		<ComboBox x:Name="txtEspecialidades"
-				SelectedItem="{Binding Especialidad}"
 				HorizontalAlignment="Center"
 				Margin="0,128,0,0"
 				VerticalAlignment="Top"
@@ -167,9 +165,8 @@
 				Height="32"
 				HorizontalContentAlignment="Center"
 				VerticalContentAlignment="Center"
-				SelectionChanged="txtEspecialidades_SelectionChanged"/>
+				/>
 		<ComboBox x:Name="txtMedicos"
-				SelectedItem="{Binding MedicoConcat}"
 				HorizontalAlignment="Center"
 				Margin="0,225,0,0"
 				VerticalAlignment="Top"
