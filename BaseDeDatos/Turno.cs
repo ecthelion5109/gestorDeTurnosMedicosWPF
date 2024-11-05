@@ -80,7 +80,7 @@ namespace ClinicaMedica {
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void AsignarDatosFromWindow(TurnosModificar window) {
-			this.Id = window.txtId.Content.ToString();
+			this.Id = window.txtId.Content?.ToString() ?? this.Id;
 			this.PacienteId = window.txtPacientes.SelectedValue.ToString();
 			this.MedicoId = window.txtMedicos.SelectedValue.ToString();
 			this.Fecha = window.txtFecha.SelectedDate;

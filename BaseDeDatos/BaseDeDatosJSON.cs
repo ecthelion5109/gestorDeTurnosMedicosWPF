@@ -190,16 +190,16 @@ namespace ClinicaMedica {
 
 		//------------------------GET-PROPERTIES----------------------//
 		public string LoadPacienteNombreCompletoFromDatabase(string instance_id) {
-			return "LoadPacienteNombreCompletoFromDatabase";
+			return "LoadPacienteConcatNotImplemented";
 		}
 
 		public string LoadMedicoNombreCompletoFromDatabase(string instance_id) {
-			return "LoadMedicoNombreCompletoFromDatabase";
+			return "LoadMedicoConcatNotImplemented";
 		}
 
 
 		public string LoadEspecialidadFromDatabase(string instance_id) {
-			return "LoadEspecialidadFromDatabase";
+			return "LoadEspecialidadConcatNotImplemented";
 		}
 
 		

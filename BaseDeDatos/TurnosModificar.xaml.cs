@@ -103,53 +103,14 @@ namespace ClinicaMedica {
 			}
 		}
 
-
-		/*
-		private void LLenarTurnosGallegoStyle(string selectedTurnoId) {
-			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				MiConexion.Open();
-				string consulta = @"
-					SELECT 
-						Id,
-						PacienteId,
-						MedicoId,
-						Fecha,
-						Hora
-					FROM 
-						Turno
-					WHERE
-						Id = @Id
-				";
-
-				using (var command = new SqlCommand(consulta, MiConexion)) {
-					command.Parameters.AddWithValue("@Id", selectedTurnoId);
-
-					using (var reader = command.ExecuteReader()) {
-						if (reader.Read())  // Checks if there's at least one row
-						{
-							//txtTurnoId.Content = reader["Id"].ToString();
-							//txtPacienteDni.Text = reader["PacienteId"].ToString();
-							//txtMedicoDni.Text = reader["MedicoId"].ToString();
-							txtFecha.Text = reader["Fecha"].ToString();
-							txtHora.Text = reader["Hora"].ToString();
-						}
-						else {
-							// Handle the case where no results were found
-							MessageBox.Show("No data found for the specified Id.");
-						}
-					}
-				}
-			}
-		}
-		*/
-
 		public bool FaltanCamposPorCompletar(){
-			return !(
+			return (
 					this.txtPacientes.SelectedValue is null ||
 					this.txtMedicos.SelectedValue is null ||
 					 this.txtFecha.SelectedDate is null ||
 					 string.IsNullOrEmpty(this.txtId.Content.ToString()) ||
-					 string.IsNullOrEmpty(this.txtHora.Text)
+					 string.IsNullOrEmpty(this.txtHora.Text
+				)
 			);
 		}
 
@@ -161,7 +122,8 @@ namespace ClinicaMedica {
 			}
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
-				SelectedTurno = new Turno(this);
+				SelectedTurno = new Turno();
+				SelectedTurno.AsignarDatosFromWindow(this);
 				App.BaseDeDatos.CreateTurno(SelectedTurno);
 			}
 			//---------Modificar-----------//
@@ -170,26 +132,6 @@ namespace ClinicaMedica {
 				App.BaseDeDatos.UpdateTurno(SelectedTurno);
 			}
 		}
-				// MessageBox.Show($@"
-					// {this.txtEspecialidades.SelectedItem}
-					// {this.txtHora.Text}
-					// {((Medico) this.txtMedicos.DataContext )}
-					// {this.txtPacientes.SelectedItem}
-					// ");
-				// MessageBox.Show(@$"
-					// Antes: 
-					// {SelectedTurno.PacienteId}
-					// {SelectedTurno.MedicoId}
-					// {SelectedTurno.Fecha}
-					// {SelectedTurno.Hora}
-				// ");
-				// MessageBox.Show(@$"
-					// Despues: 
-					// {SelectedTurno.PacienteId}
-					// {SelectedTurno.MedicoId}
-					// {SelectedTurno.Fecha}
-					// {SelectedTurno.Hora}
-				// ");
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			//---------Checknulls-----------//
@@ -220,6 +162,10 @@ namespace ClinicaMedica {
 		}
 
 		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+		}
+
+		private void txtPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			 MessageBox.Show($"txtEspecialidades.SelectedItem: {this.txtEspecialidades.SelectedItem} \ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}\ntxtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}");
 		}
 		//------------------------Fin---------------------------//
 	}

@@ -13,11 +13,11 @@
 
 
 	<Grid HorizontalAlignment="Stretch"
-			VerticalAlignment="Stretch">
+		  VerticalAlignment="Stretch">
 
 
 		<Grid HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch">
+			  VerticalAlignment="Stretch">
 			<Grid.Background>
 				<ImageBrush ImageSource="/images/hospital.jpg"/>
 			</Grid.Background>
@@ -35,7 +35,8 @@
 				   Height="102"
 				   Width="335"
 				   FontFamily="Ringbearer"
-					Margin="15,32,0,0" Grid.RowSpan="2"/>
+				   Margin="15,32,0,0"
+					Grid.RowSpan="2"/>
 
 			<!-- ListView -->
 			<ListView Name="medicosListView"
@@ -45,30 +46,30 @@
 					  SelectionChanged="medicosListView_SelectionChanged"
 					  Background="#A5FFFFFF"
 					  BorderBrush="#72828790"
-					Grid.RowSpan="2">
+					  Grid.RowSpan="2">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn Header="Dni"
-								DisplayMemberBinding="{Binding Dni}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding Dni}"
+										Width="auto"/>
 						<GridViewColumn Header="Name"
-								DisplayMemberBinding="{Binding Name}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding Name}"
+										Width="auto"/>
 						<GridViewColumn Header="LastName"
-								DisplayMemberBinding="{Binding LastName}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding LastName}"
+										Width="auto"/>
 						<GridViewColumn Header="Especialidad"
-								DisplayMemberBinding="{Binding Especialidad}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding Especialidad}"
+										Width="auto"/>
 						<GridViewColumn Header="Teléfono"
-								DisplayMemberBinding="{Binding Telefono}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding Telefono}"
+										Width="auto"/>
 						<GridViewColumn Header="Hace guardia"
-								DisplayMemberBinding="{Binding Guardia}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding Guardia}"
+										Width="auto"/>
 						<GridViewColumn Header="Sueldo minimo"
-								DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
-								Width="auto"/>
+										DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
+										Width="auto"/>
 					</GridView>
 				</ListView.View>
 			</ListView>
@@ -87,7 +88,7 @@
 				BorderBrush="#FF0E0D0D"
 				Margin="15,379,0,0"
 				FontFamily="Baskerville Old Face"
-					Grid.Row="1">
+				Grid.Row="1">
 			</Button>
 			<Button
 				Content="Salir"
@@ -102,7 +103,7 @@
 				BorderBrush="#FF0E0D0D"
 				Margin="15,434,0,0"
 				FontFamily="Baskerville Old Face"
-					Grid.Row="1">
+				Grid.Row="1">
 			</Button>
 			<Button
 				Content="Agregar nuevo"
@@ -117,7 +118,7 @@
 				BorderBrush="#FF0E0D0D"
 				Margin="225,434,0,0"
 				FontFamily="Baskerville Old Face"
-					Grid.Row="1">
+				Grid.Row="1">
 			</Button>
 			<Button x:Name="buttonModificar"
 					Content="Modificar médico"
