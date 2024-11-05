@@ -10,7 +10,9 @@
       "FechaNacimiento": "2023-11-01T00:00:00",
       "Domicilio": "italia 555",
       "Localidad": "G. Catan",
-      "Provincia": "Bs Asires"
+      "Provincia": "Bs Asires",
+      "JoinedName": "40350997 - Alexander Seling",
+      "Id": null
     },
     "10350991": {
       "Dni": "10350991",
@@ -22,7 +24,23 @@
       "FechaNacimiento": "2023-11-01T00:00:00",
       "Domicilio": "titaltia 545",
       "Localidad": "Moron",
-      "Provincia": "Bs Asires"
+      "Provincia": "Bs Asires",
+      "JoinedName": "10350991 - Enrique Pereyra",
+      "Id": null
+    },
+    "546": {
+      "Dni": "546",
+      "Name": "6",
+      "LastName": "546546546546",
+      "FechaIngreso": "2024-11-13T00:00:00",
+      "Email": "5654654654",
+      "Telefono": "54654654",
+      "FechaNacimiento": "2024-11-12T00:00:00",
+      "Domicilio": "6546546546",
+      "Localidad": "456546",
+      "Provincia": "654654",
+      "JoinedName": "546 - 6 546546546546",
+      "Id": null
     }
   },
   "medicos": {
@@ -47,7 +65,9 @@
           "Start": "12:00",
           "End": "19:00"
         }
-      }
+      },
+      "JoinedName": "876543 - Dr. Roxana Gomez",
+      "Id": null
     },
     "256543": {
       "Name": "Dr. Carlos",
@@ -70,30 +90,30 @@
           "Start": "10:00",
           "End": "14:00"
         }
-      }
+      },
+      "JoinedName": "256543 - Dr. Carlos Merkier",
+      "Id": null
     },
-    "1321452": {
-      "Name": "Dr. Tocando",
-      "LastName": "Shells",
-      "Dni": "1321452",
-      "Provincia": "Corrientes",
-      "Domicilio": "Pium 12342",
-      "Localidad": "Merlo",
-      "Especialidad": "Ginecologo",
-      "Telefono": "546546546546",
-      "Guardia": false,
-      "FechaIngreso": "2021-10-03T00:00:00",
-      "SueldoMinimoGarantizado": 1153400.0,
+    "5345345": {
+      "Name": "dsfdsf",
+      "LastName": "sfdsfdsfds",
+      "Dni": "5345345",
+      "Provincia": "345345",
+      "Domicilio": "34534534534",
+      "Localidad": "5345345",
+      "Especialidad": "345345345",
+      "Telefono": "345345",
+      "Guardia": true,
+      "FechaIngreso": "2024-11-07T00:00:00",
+      "SueldoMinimoGarantizado": 34534534534.0,
       "DiasDeAtencion": {
-        "Martes": {
-          "Start": "11:00",
-          "End": "15:00"
-        },
-        "Sabado": {
-          "Start": "07:00",
-          "End": "16:00"
+        "Lunes": {
+          "Start": "534",
+          "End": "534"
         }
-      }
+      },
+      "JoinedName": "5345345 - dsfdsf sfdsfdsfds",
+      "Id": null
     }
   },
   "turnos": {
@@ -101,21 +121,21 @@
       "PacienteJoin": "LoadPacienteNombreCompletoFromDatabase",
       "MedicoJoin": "LoadMedicoNombreCompletoFromDatabase",
       "Especialidad": "LoadEspecialidadFromDatabase",
-      "Id": null,
       "PacienteId": null,
       "MedicoId": null,
       "Fecha": null,
-      "Hora": null
+      "Hora": null,
+      "Id": null
     },
     "87654321_10350123": {
       "PacienteJoin": "LoadPacienteNombreCompletoFromDatabase",
       "MedicoJoin": "LoadMedicoNombreCompletoFromDatabase",
       "Especialidad": "LoadEspecialidadFromDatabase",
-      "Id": null,
       "PacienteId": null,
       "MedicoId": null,
       "Fecha": null,
-      "Hora": null
+      "Hora": null,
+      "Id": null
     }
   }
 }
