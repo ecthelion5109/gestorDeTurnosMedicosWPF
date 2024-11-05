@@ -1,20 +1,21 @@
 ﻿<Window x:Class="ClinicaMedica.Pacientes"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClinicaMedica"
-        mc:Ignorable="d"
-        Title="Clinica Medica - Pacientes" 
-		Height="600" 
-		Width="1024"  
-		Icon="../images/icono.png"  
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:ClinicaMedica"
+		mc:Ignorable="d"
+		Title="Clinica Medica - Pacientes"
+		Height="600"
+		Width="1024"
+		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen"
-        Activated="Window_Activated">
+		Activated="Window_Activated">
 
 
 
-	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"   >
+	<Grid HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch">
 
 
 		<Grid.Background>
@@ -28,84 +29,111 @@
 			<RowDefinition Height="263*"/>
 		</Grid.RowDefinitions>
 		<!-- Título -->
-		<Label Content="Pacientes" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="72" Height="125" Width="374" FontFamily="Ringbearer" Margin="551,32,0,0" Grid.RowSpan="2" FontWeight="Bold"/>
-		<ListView Name="pacientesListView" 
-                  ItemsSource="{Binding PacientesList}" 
-                 Width="Auto"
-				 Height="Auto" Margin="10,32,524,260" SelectionChanged="PacienteListView_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="2"
-				 >
+		<Label Content="Pacientes"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				FontSize="72"
+				Height="125"
+				Width="374"
+				FontFamily="Ringbearer"
+				Margin="551,32,0,0"
+				Grid.RowSpan="2"
+				FontWeight="Bold"/>
+		<ListView Name="pacientesListView"
+				  ItemsSource="{Binding PacientesList}"
+				  Width="Auto"
+				  Height="Auto"
+          Style="{StaticResource ListViewSombreado}"
+				Margin="10,32,524,260"
+				SelectionChanged="PacienteListView_SelectionChanged"
+				d:ItemsSource="{d:SampleData ItemCount=5}"
+				Grid.RowSpan="2">
 			<ListView.View>
 				<GridView>
 					<!-- Dni Column -->
-					<GridViewColumn Header="Dni" DisplayMemberBinding="{Binding Dni}" Width="auto"/>
+					<GridViewColumn Header="Dni"
+							DisplayMemberBinding="{Binding Dni}"
+							Width="auto"/>
 					<!-- Name Column -->
-					<GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+					<GridViewColumn Header="Nombre"
+							DisplayMemberBinding="{Binding Name}"
+							Width="auto"/>
 
-					<GridViewColumn Header="Apellido" DisplayMemberBinding="{Binding LastName}" Width="auto"/>
+					<GridViewColumn Header="Apellido"
+							DisplayMemberBinding="{Binding LastName}"
+							Width="auto"/>
 
-					<GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="auto"/>
+					<GridViewColumn Header="Email"
+							DisplayMemberBinding="{Binding Email}"
+							Width="auto"/>
 
-					<GridViewColumn Header="Teléfono" DisplayMemberBinding="{Binding Telefono}" Width="auto"/>
+					<GridViewColumn Header="Teléfono"
+							DisplayMemberBinding="{Binding Telefono}"
+							Width="auto"/>
 
 				</GridView>
 			</ListView.View>
 		</ListView>
 		<Button
-	  Content="Home"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="ButtonHome"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="55,386,0,0"
-	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			Content="Home"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Height="37"
+			Width="170"
+			Click="ButtonHome"
+			FontSize="20"
+			Style="{StaticResource BotonRedondeado}"
+			FontWeight="Bold"
+			BorderBrush="#FF0E0D0D"
+			Margin="55,386,0,0"
+			FontFamily="Baskerville Old Face"
+				Grid.Row="1">
 		</Button>
 		<Button
-	  Content="Salir"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="ButtonSalir"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="55,441,0,0"
-	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			Content="Salir"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Height="37"
+			Width="170"
+			Click="ButtonSalir"
+			FontSize="20"
+			Style="{StaticResource BotonRedondeado}"
+			FontWeight="Bold"
+			BorderBrush="#FF0E0D0D"
+			Margin="55,441,0,0"
+			FontFamily="Baskerville Old Face"
+				Grid.Row="1">
 		</Button>
 		<Button
-	  Content="Agregar nuevo"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="ButtonAgregar"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="265,441,0,0"
-	  FontFamily="Baskerville Old Face" Grid.Row="1">
+			Content="Agregar nuevo"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Height="37"
+			Width="170"
+			Click="ButtonAgregar"
+			FontSize="20"
+			Style="{StaticResource BotonRedondeado}"
+			FontWeight="Bold"
+			BorderBrush="#FF0E0D0D"
+			Margin="265,441,0,0"
+			FontFamily="Baskerville Old Face"
+				Grid.Row="1">
 		</Button>
 		<Button x:Name="buttonModificar"
-	  Content="Modificar paciente"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="ButtonModificar"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="265,386,0,0"
-	  FontFamily="Baskerville Old Face"
-	  IsEnabled="False" Grid.Row="1">
+				Content="Modificar paciente"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Height="37"
+				Width="170"
+				Click="ButtonModificar"
+				FontSize="20"
+				Style="{StaticResource BotonRedondeado}"
+				FontWeight="Bold"
+				BorderBrush="#FF0E0D0D"
+				Margin="265,386,0,0"
+				FontFamily="Baskerville Old Face"
+				IsEnabled="False"
+				Grid.Row="1">
 		</Button>
 		<!-- DataGrid insertado aquí -->
 	</Grid>

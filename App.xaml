@@ -5,21 +5,79 @@
              StartupUri="MainWindow.xaml"
              ShutdownMode="OnLastWindowClose">
     <Application.Resources>
-        <Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+
+        <Style x:Key="CalendarioLindo"
+                TargetType="Calendar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Calendar">
+                        <Border CornerRadius="10"
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Gray"
+                                                  BlurRadius="8"
+                                                  ShadowDepth="2"/>
+                            </Border.Effect>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+        <Style x:Key="ListViewSombreado"
+                TargetType="ListView">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border CornerRadius="5"
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Gray"
+                                                  BlurRadius="8"
+                                                  ShadowDepth="10"/>
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ScrollViewer">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+
+        <Style x:Key="BotonRedondeado"
+                TargetType="{x:Type Button}">
+            <Setter Property="Foreground"
+                    Value="Black"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="RenderTransformOrigin"
+                    Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <!-- Tamaño inicial del botón -->
-                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <ScaleTransform ScaleX="1"
+                            ScaleY="1"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
-                            <Border x:Name="border" CornerRadius="15">
+                            <Border x:Name="border"
+                                    CornerRadius="15">
                                 <Border.Background>
                                     <ImageBrush ImageSource="images/boton/doradito.jpg"/>
                                 </Border.Background>
@@ -30,24 +88,32 @@
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background">
+                            <Trigger Property="IsMouseOver"
+                                    Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="images/boton/doraditoOscuro.jpg"/>
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Setter Property="BorderThickness" Value="8"/>
+                                <Setter Property="Foreground"
+                                        Value="Black"/>
+                                <Setter Property="BorderThickness"
+                                        Value="8"/>
                                 <!-- Cambiar el tamaño del botón al pasar el mouse -->
                                 <Setter Property="RenderTransform">
                                     <Setter.Value>
-                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                        <ScaleTransform ScaleX="1.2"
+                                                ScaleY="1.2"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="Gray"/>
-                                <Setter TargetName="border" Property="Background">
+                            <Trigger Property="IsEnabled"
+                                    Value="False">
+                                <Setter Property="Foreground"
+                                        Value="Gray"/>
+                                <Setter TargetName="border"
+                                        Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="images/boton/disabled.jpg"/>
                                     </Setter.Value>
@@ -59,9 +125,14 @@
             </Setter>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5"/>
+                    <DropShadowEffect Color="Black"
+                            BlurRadius="10"
+                            ShadowDepth="5"/>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
+
     </Application.Resources>
 </Application>

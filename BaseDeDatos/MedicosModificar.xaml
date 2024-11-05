@@ -14,12 +14,14 @@
 	<!-- xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" -->
 
 	<Window.Background>
-		<ImageBrush ImageSource="/images/MedicosFondo.jpg" Stretch="UniformToFill"/>
+		<ImageBrush ImageSource="/images/MedicosFondo.jpg"
+				Stretch="UniformToFill"/>
 	</Window.Background>
 
 
 
-	<Grid Height="auto" Width="auto">
+	<Grid Height="auto"
+			Width="auto">
 		<!-- <Grid.ColumnDefinitions> -->
 		<!-- <ColumnDefinition Width="133*"/> -->
 		<!-- <ColumnDefinition Width="148*"/> -->
@@ -28,19 +30,19 @@
 
 
 		<Label Content="Médico"
-		   HorizontalAlignment="Left"
-		   Margin="144,59,0,0"
-		   VerticalAlignment="Top"
-		   FontSize="32"
-		   FontFamily="Ringbearer"
-		   Height="65"/>
+			   HorizontalAlignment="Left"
+			   Margin="144,59,0,0"
+			   VerticalAlignment="Top"
+			   FontSize="32"
+			   FontFamily="Ringbearer"
+			   Height="65"/>
 
 
 		<Grid Margin="349,0,0,0"
-			VerticalAlignment="Center"
-			HorizontalAlignment="Left"
-			MaxWidth="515"
-			Height="534">
+			  VerticalAlignment="Center"
+			  HorizontalAlignment="Left"
+			  MaxWidth="515"
+			  Height="534">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
@@ -62,187 +64,187 @@
 			</Grid.RowDefinitions>
 
 			<Label Content="Nombre"
-			   Grid.Row="0"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="0"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtNombre"
-				 Grid.Row="0"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="0"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Apellido"
-			   Grid.Row="1"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="1"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtApellido"
-				 Grid.Row="1"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="1"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="DNI"
-			   Grid.Row="2"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="2"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDni"
-				 Grid.Row="2"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="2"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Teléfono"
-			   Grid.Row="3"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="3"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtTelefono"
-				 Grid.Row="3"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="3"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Provincia"
-			   Grid.Row="4"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="4"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtProvincia"
-				 Grid.Row="4"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="4"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Domicilio"
-			   Grid.Row="5"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="5"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtDomicilio"
-				 Grid.Row="5"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="5"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Localidad"
-			   Grid.Row="6"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-				VerticalAlignment="Center"/>
+				   Grid.Row="6"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtLocalidad"
-				 Grid.Row="6"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="6"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Especialidad"
-			   Grid.Row="7"
-			   Grid.Column="0"
-			   Width="Auto"
-				VerticalAlignment="Center"
-				HorizontalAlignment="Right"/>
+				   Grid.Row="7"
+				   Grid.Column="0"
+				   Width="Auto"
+				   VerticalAlignment="Center"
+				   HorizontalAlignment="Right"/>
 			<TextBox x:Name="txtEspecialidad"
-				 Grid.Row="7"
-				 Grid.Column="1"
-				 Width="Auto"
-				 Margin="5,5,5,5"/>
+					 Grid.Row="7"
+					 Grid.Column="1"
+					 Width="Auto"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Sueldo Minimo Garantizado"
-			   Grid.Row="8"
-			   Width="Auto"
-			   Grid.Column="0"
-				HorizontalContentAlignment="Center"
-				HorizontalAlignment="Right"
-				VerticalAlignment="Center"/>
+				   Grid.Row="8"
+				   Width="Auto"
+				   Grid.Column="0"
+				   HorizontalContentAlignment="Center"
+				   HorizontalAlignment="Right"
+				   VerticalAlignment="Center"/>
 			<TextBox x:Name="txtSueldoMinGarant"
-				 Grid.Row="8"
-				 Grid.Column="1"
-				Margin="5,5,5,5"/>
+					 Grid.Row="8"
+					 Grid.Column="1"
+					 Margin="5,5,5,5"/>
 
 			<Label Content="Fecha de Ingreso"
-			   Grid.Row="9"
-			   Grid.Column="0"
-			   Width="Auto"
-			   Height="Auto"
-			   HorizontalAlignment="Right"
-				VerticalAlignment="Center"/>
+				   Grid.Row="9"
+				   Grid.Column="0"
+				   Width="Auto"
+				   Height="Auto"
+				   HorizontalAlignment="Right"
+				   VerticalAlignment="Center"/>
 			<DatePicker Grid.Row="9"
-					Grid.Column="1"
-					x:Name="txtFechaIngreso"
-					Margin="5,5,5,5"
-					Grid.ColumnSpan="2"/>
+						Grid.Column="1"
+						x:Name="txtFechaIngreso"
+						Margin="5,5,5,5"
+						Grid.ColumnSpan="2"/>
 
 			<Label Content="Realiza Guardia"
-			   Grid.Row="10"
-			   Grid.Column="0"
-			   Width="Auto"
-			   Height="Auto"
-			   HorizontalAlignment="Right"
-				VerticalAlignment="Center"/>
+				   Grid.Row="10"
+				   Grid.Column="0"
+				   Width="Auto"
+				   Height="Auto"
+				   HorizontalAlignment="Right"
+				   VerticalAlignment="Center"/>
 			<CheckBox x:Name="txtRealizaGuardia"
-				  Grid.Row="10"
-				  Grid.Column="1"
-				  HorizontalAlignment="Center"
-				  Margin="5,5,5,5"
-				  Width="16"
-				VerticalAlignment="Center">
+					  Grid.Row="10"
+					  Grid.Column="1"
+					  HorizontalAlignment="Center"
+					  Margin="5,5,5,5"
+					  Width="16"
+					  VerticalAlignment="Center">
 				<DatePicker/>
 			</CheckBox>
 			<Label Content="Días de atención"
-			   Grid.Row="11"
-			   Grid.Column="0"
-			   HorizontalAlignment="Right"
-			   Width="Auto"
-			   Height="Auto"
-			   Grid.RowSpan="3"
-			   VerticalAlignment="Center"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"/>
+				   Grid.Row="11"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+				   Height="Auto"
+				   Grid.RowSpan="3"
+				   VerticalAlignment="Center"
+				   HorizontalContentAlignment="Center"
+				   VerticalContentAlignment="Center"/>
 			<ListView x:Name="txtDiasDeAtencion"
-				  VerticalAlignment="Center"
-				  Height="auto"
-				  Grid.RowSpan="3"
-				  Grid.Row="11"
-				  Grid.Column="1"
-				  Margin="5,5,5,5"
-				  HorizontalAlignment="Center"
-				  HorizontalContentAlignment="Center"
-				  ScrollViewer.VerticalScrollBarVisibility="Auto"
-				Width="auto"
-				ScrollViewer.HorizontalScrollBarVisibility="Auto"
-				Grid.IsSharedSizeScope="True">
+					  VerticalAlignment="Center"
+					  Height="auto"
+					  Grid.RowSpan="3"
+					  Grid.Row="11"
+					  Grid.Column="1"
+					  Margin="5,5,5,5"
+					  HorizontalAlignment="Center"
+					  HorizontalContentAlignment="Center"
+					  ScrollViewer.VerticalScrollBarVisibility="Auto"
+					  Width="auto"
+					  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+					  Grid.IsSharedSizeScope="True">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn Header="Día de la Semana"
-									Width="auto"
-									DisplayMemberBinding="{Binding DiaSemana}"/>
+										Width="auto"
+										DisplayMemberBinding="{Binding DiaSemana}"/>
 						<GridViewColumn Header="Inicio Horario"
-									Width="120">
+										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding InicioHorario, UpdateSourceTrigger=PropertyChanged}"
-										 Margin="1,1,1,1"
-										Width="100"/>
+											 Margin="1,1,1,1"
+											 Width="100"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
 						<GridViewColumn Header="Fin Horario"
-									Width="120">
+										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBox Text="{Binding FinHorario, UpdateSourceTrigger=PropertyChanged}"
-										 Width="100"
-										Margin="1,1,1,1"/>
+											 Width="100"
+											 Margin="1,1,1,1"/>
 								</DataTemplate>
 							</GridViewColumn.CellTemplate>
 						</GridViewColumn>
@@ -259,43 +261,43 @@
 
 
 		<Button FontSize="20"
-			Content="Volver"
-			HorizontalAlignment="Left"
-			Style="{StaticResource BotonRedondeado}" 
-			Height="43"
-			VerticalAlignment="Top"
-			Width="188"
-			BorderBrush="Black"
-			Background="White"
-			Click="ButtonCancelar"
-			FontFamily="Baskerville Old Face"
-			Margin="65,495,0,0"/>
+				Content="Volver"
+				HorizontalAlignment="Left"
+				Style="{StaticResource BotonRedondeado}"
+				Height="43"
+				VerticalAlignment="Top"
+				Width="188"
+				BorderBrush="Black"
+				Background="White"
+				Click="ButtonCancelar"
+				FontFamily="Baskerville Old Face"
+				Margin="65,495,0,0"/>
 		<Button x:Name="botonMultiUso"
-			FontSize="20"
-			Content="Guardar cambios"
-			HorizontalAlignment="Left"
-			Height="38"
-			VerticalAlignment="Top"
-			Width="190"
-			Style="{StaticResource BotonRedondeado}" 
-			BorderBrush="Black"
-			Background="White"
-			FontFamily="Baskerville Old Face"
-			Margin="65,386,0,0"
-			Click="ButtonGuardar"/>
+				FontSize="20"
+				Content="Guardar cambios"
+				HorizontalAlignment="Left"
+				Height="38"
+				VerticalAlignment="Top"
+				Width="190"
+				Style="{StaticResource BotonRedondeado}"
+				BorderBrush="Black"
+				Background="White"
+				FontFamily="Baskerville Old Face"
+				Margin="65,386,0,0"
+				Click="ButtonGuardar"/>
 		<Button x:Name="buttonEliminar"
-			FontSize="20"
-			Content="Eliminar medico"
-			HorizontalAlignment="Left"
-			Height="38"
-			Margin="65,435,0,0"
-			Style="{StaticResource BotonRedondeado}" 
-			VerticalAlignment="Top"
-			Width="188"
-			Click="ButtonEliminar"
-			BorderBrush="Black"
-			Background="White"
-			FontFamily="Baskerville Old Face"/>
+				FontSize="20"
+				Content="Eliminar medico"
+				HorizontalAlignment="Left"
+				Height="38"
+				Margin="65,435,0,0"
+				Style="{StaticResource BotonRedondeado}"
+				VerticalAlignment="Top"
+				Width="188"
+				Click="ButtonEliminar"
+				BorderBrush="Black"
+				Background="White"
+				FontFamily="Baskerville Old Face"/>
 
 
 		<!-- 
