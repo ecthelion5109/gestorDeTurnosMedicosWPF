@@ -13,36 +13,44 @@ namespace ClinicaMedica {
 			this.LLenarMiDiccionarioConNewtonsoftJson();
 		}
 		
-		
-		
-		//------------------------CHECKERS----------------------//
-		public bool CorroborarQueNoExistaMedico(string key){
-			return this.MiDiccionario["medicos"].ContainsKey(key);
-		}
-		public bool CorroborarQueNoExistaPaciente(string key){
-			return this.MiDiccionario["pacientes"].ContainsKey(key);
-		}
-		public bool CorroborarQueNoExistaTurno(string key){
-			return this.MiDiccionario["turnos"].ContainsKey(key);
-		}
-		
-		
-		
-		
 		//------------------------CREATE----------------------//
-		public void CreateMedico(Medico instancia) {
+		public bool CreateMedico(Medico instancia) {
+			bool YaExiste(string key){
+				return this.MiDiccionario["medicos"].ContainsKey(key);
+			}
+		
+			if (YaExiste(instancia.Dni)) {
+				return false;
+			}
 			this.MiDiccionario["medicos"][instancia.Dni] = instancia;
 			this.GuardarJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
+			return true;
 		}
-		public void CreatePaciente(Paciente instancia) {
+		public bool CreatePaciente(Paciente instancia) {
+			bool YaExiste(string key){
+				return this.MiDiccionario["pacientes"].ContainsKey(key);
+			}
+		
+			if (YaExiste(instancia.Dni)) {
+				return false;
+			}
 			this.MiDiccionario["pacientes"][instancia.Dni] = instancia;
 			this.GuardarJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
+			return true;
 		}
 
-		public void CreateTurno(Turno turno) {
+		public bool CreateTurno(Turno instancia) {
+			bool YaExiste(string key){
+				return this.MiDiccionario["turnos"].ContainsKey(key);
+			}
+			
+			//if (YaExiste(instancia.Dni)) {
+			//	return false;
+			//}
 			MessageBox.Show($"No se ha implementado esto en json");
+			return true;
 		}
 
 		//------------------------public.READ----------------------//
@@ -56,9 +64,10 @@ namespace ClinicaMedica {
             return this.MiDiccionario["turnos"].Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
-        public void UpdateMedico(Medico instancia, string originalDni){
+        public bool UpdateMedico(Medico instancia, string originalDni){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
+				return false;
 			} 
 				
 			if (originalDni != instancia.Dni) {
@@ -67,10 +76,12 @@ namespace ClinicaMedica {
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+			return true;
 		}
-        public void UpdatePaciente(Paciente instancia, string originalDni){
+        public bool UpdatePaciente(Paciente instancia, string originalDni){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
+				return false;
 			} 
 				
 			if (originalDni != instancia.Dni) {
@@ -79,9 +90,11 @@ namespace ClinicaMedica {
 			}
 			this.GuardarJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+			return true;
 		}
-        public void UpdateTurno(Turno turno) {
+        public bool UpdateTurno(Turno instancia) {
 			MessageBox.Show($"Sin definir.");
+			return false;
 		}
 		//------------------------public.DELETE----------------------//
 		
@@ -126,8 +139,8 @@ namespace ClinicaMedica {
 					var pacientes = new Dictionary<string, object>();
 					foreach (var pacienteElement in database["pacientes"])
 					{
-						var paciente = JsonConvert.DeserializeObject<Paciente>(pacienteElement.Value.ToString());
-						pacientes[pacienteElement.Key] = paciente;
+						var instancia = JsonConvert.DeserializeObject<Paciente>(pacienteElement.Value.ToString());
+						pacientes[pacienteElement.Key] = instancia;
 					}
 					MiDiccionario["pacientes"] = pacientes;
 				}
@@ -139,8 +152,8 @@ namespace ClinicaMedica {
 					foreach (var medicoElement in database["medicos"])
 					{
 						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoElement.Value.ToString()).RootElement;
-						var medico = new Medico(medicoElement.Key, medicoJsonElement);
-						medicos[medicoElement.Key] = medico;
+						var instancia = new Medico(medicoElement.Key, medicoJsonElement);
+						medicos[medicoElement.Key] = instancia;
 					}
 					MiDiccionario["medicos"] = medicos;
 				}
@@ -153,8 +166,8 @@ namespace ClinicaMedica {
 					foreach (var turnoElement in database["turnos"])
 					{
 						// Deserialize each entry as a Turno object
-						var turno = JsonConvert.DeserializeObject<Turno>(turnoElement.Value.ToString());
-						turnos[turnoElement.Key] = turno;
+						var instancia = JsonConvert.DeserializeObject<Turno>(turnoElement.Value.ToString());
+						turnos[turnoElement.Key] = instancia;
 					}
 					MiDiccionario["turnos"] = turnos;
 				}

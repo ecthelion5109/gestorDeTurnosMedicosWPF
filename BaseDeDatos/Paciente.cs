@@ -3,6 +3,15 @@ using System.ComponentModel;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Pacientes-------------------------------//
+	public class ComboBoxItem{
+		public int Id { get; set; }
+		public string PacienteJoin { get; set; }
+	}
+	
+	
+	
+	
+	
 	public class Paciente : Entidad {
 		// public int Dni { get; set; }
 		public string ?Dni { get; set; }
