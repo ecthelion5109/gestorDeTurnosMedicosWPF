@@ -325,12 +325,12 @@ namespace ClinicaMedica {
 			return false;
 		}
 		public bool DeleteTurno(string idToDelete) {
-			string query = "DELETE FROM Turno WHERE Dni = @Dni";
+			string query = "DELETE FROM Turno WHERE Id = @idToDelete";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
 					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@Dni", idToDelete);
+						command.Parameters.AddWithValue("@idToDelete", idToDelete);
 						command.ExecuteNonQuery();
 					}
 				}
