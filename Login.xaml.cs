@@ -30,13 +30,27 @@ namespace ClinicaMedica {
 			}
 
 			if (
-				!(string.IsNullOrEmpty(labelServidor.Text) 
-				&& string.IsNullOrEmpty(labelUsuario.Text) 
+				!(string.IsNullOrEmpty(labelServidor.Text)
+				&& string.IsNullOrEmpty(labelUsuario.Text)
 				&& string.IsNullOrEmpty(labelPassword.Text))
 			) {
 				try {
 					BaseDeDatosSQL.connectionString = $"Server={labelPassword.Text};";
 					App.UsuarioName = labelUsuario.Text;
+					App.BaseDeDatos = new BaseDeDatosSQL();
+					App.UsuarioLogueado = true;
+					this.Close();
+					return;
+				}
+				catch (Exception ex) {
+					MessageBox.Show($"{ex.Message}");
+					App.UsuarioLogueado = false;
+					this.Close();
+					return;
+				}
+			}
+			else {
+				try {
 					App.BaseDeDatos = new BaseDeDatosSQL();
 					App.UsuarioLogueado = true;
 					this.Close();

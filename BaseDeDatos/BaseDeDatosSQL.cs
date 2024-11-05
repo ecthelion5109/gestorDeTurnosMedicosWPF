@@ -101,12 +101,12 @@ namespace ClinicaMedica {
 		//------------------------CREATE.Turno----------------------//
 		public OperationCode CreateTurno(Turno instancia) {
 			string insertQuery = @"
-				INSERT INTO Turno (Id, PacienteId, MedicoId, Fecha, Hora) 
-				VALUES (@Id, @PacienteId, @MedicoId, @Fecha, @Hora)";
+				INSERT INTO Turno (PacienteId, MedicoId, Fecha, Hora) 
+				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora)";
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				connection.Open();
 				using (var command = new SqlCommand(insertQuery, connection)) {
-					command.Parameters.AddWithValue("@Id", instancia.Id);
+					//command.Parameters.AddWithValue("@Id", instancia.Id);
 					command.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
 					command.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
 					command.Parameters.AddWithValue("@Fecha", instancia.Fecha);
@@ -255,14 +255,15 @@ namespace ClinicaMedica {
 
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				connection.Open();
-				string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
+				//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
+				string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
 				using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 					sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
 					sqlComando.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
 					//sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.Date ?? (object)DBNull.Value);
-					sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.ToString("yyyy-MM-dd") ?? (object)DBNull.Value);
+					//sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.ToString("yyyy-MM-dd") ?? (object)DBNull.Value);
 
-					sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
+					//sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
 					sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
 					sqlComando.ExecuteNonQuery();
 				}
@@ -273,16 +274,32 @@ namespace ClinicaMedica {
 
 
 		//------------------------DELETE----------------------//
-		public OperationCode DeleteMedico(string idToDelete){
+		public OperationCode DeleteMedico(string idToDelete) {
 			string query = "DELETE FROM Medico WHERE Dni = @Dni";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand command = new SqlCommand(query, connection)){
-					command.Parameters.AddWithValue("@Dni", idToDelete);
-					command.ExecuteNonQuery();
+
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand command = new SqlCommand(query, connection)) {
+						command.Parameters.AddWithValue("@Dni", idToDelete);
+						command.ExecuteNonQuery();
+					}
 				}
+				return OperationCode.DELETE_SUCCESS;
 			}
-			return OperationCode.DELETE_SUCCESS;
+			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
+			{
+				MessageBox.Show("No se puede eliminar este medico porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return OperationCode.DELETE_FAILED;
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
+				return OperationCode.DELETE_FAILED;
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return OperationCode.DELETE_FAILED;
+			}
 		}
 		public OperationCode DeletePaciente(string idToDelete) {
 			string query = "DELETE FROM Medico WHERE Dni = @Dni";

@@ -131,6 +131,16 @@ namespace ClinicaMedica {
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
 				//MessageBox.Show($"Es null:");
+				MessageBox.Show($@"
+				{this.txtEspecialidades.SelectedItem}
+				{this.txtHora.Text}
+				{((Medico) this.txtMedicos.DataContext )}
+				{this.txtPacientes.SelectedItem}
+				");
+				SelectedTurno = new Turno(this);
+
+
+
 				operacion = App.BaseDeDatos.CreateTurno(SelectedTurno);
 			}
 			//---------Modificar-----------//
