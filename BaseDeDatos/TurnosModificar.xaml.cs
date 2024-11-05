@@ -127,7 +127,6 @@ namespace ClinicaMedica {
 
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
-			OperationCode operacion;
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
 				//MessageBox.Show($"Es null:");
@@ -141,7 +140,7 @@ namespace ClinicaMedica {
 
 
 
-				operacion = App.BaseDeDatos.CreateTurno(SelectedTurno);
+				App.BaseDeDatos.CreateTurno(SelectedTurno);
 			}
 			//---------Modificar-----------//
 			else {
@@ -154,7 +153,7 @@ namespace ClinicaMedica {
 					{SelectedTurno.Hora}
 				");
 				SelectedTurno.AsignarDatosFromWindow(this);
-				operacion = App.BaseDeDatos.UpdateTurno(SelectedTurno);
+				App.BaseDeDatos.UpdateTurno(SelectedTurno);
 				MessageBox.Show(@$"
 					Despues: 
 					{SelectedTurno.PacienteId}
@@ -164,13 +163,6 @@ namespace ClinicaMedica {
 				");
 
 			}
-
-			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Turno: {SelectedTurno.Id}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedTurno.Id}",
-				_ => "Error: Sin definir"
-			});
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
@@ -188,13 +180,9 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = App.BaseDeDatos.DeleteTurno(txtId.Content.ToString());
-			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {txtId.Content} de la base de Datos",
-				_ => "Error: Sin definir"
-			});
-			this.Close(); // this.NavegarA<Pacientes>();
+			if (App.BaseDeDatos.DeleteTurno(txtId.Content.ToString())){
+				this.Close();
+			}
 
 		}
 		//---------------------botones.Salida-------------------//

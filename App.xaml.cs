@@ -51,19 +51,5 @@ namespace ClinicaMedica {
 			Application.Current.Shutdown();  // Apagar la aplicación
 		}
 	}
-	
-	public enum OperationCode {
-		YA_EXISTE,
-		SUCCESS,
-		CREATE_SUCCESS,
-		SIN_DEFINIR,
-		UPDATE_SUCCESS,
-		DELETE_SUCCESS,
-		DELETE_FAILED,
-		MISSING_DNI,
-		MISSING_FIELDS,
-		ERROR,
-		DATOS_LEIDOS
-	}
 
 }

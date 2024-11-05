@@ -91,7 +91,7 @@
 			   HorizontalAlignment="Right"
 			   Width="Auto"
 				VerticalAlignment="Center"/>
-			<TextBox x:Name="txtDNI"
+			<TextBox x:Name="txtDni"
 				 Grid.Row="2"
 				 Grid.Column="1"
 				 Width="Auto"

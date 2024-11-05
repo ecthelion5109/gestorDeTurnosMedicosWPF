@@ -64,19 +64,18 @@ namespace ClinicaMedica {
 					 );
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
-			OperationCode operacion;
 			//---------Crear-----------//
 			if (SelectedPaciente is null) {
 				if (CorroborarUserInputEsSeguro()) {
 					if (App.BaseDeDatos.CorroborarQueNoExistaPaciente(this.txtDni.Text)){
-						operacion = OperationCode.YA_EXISTE;
+						MessageBox.Show($"Error: Ya existe un paciente con DNI: {this.txtDni.Text}");
 					} else {
 						SelectedPaciente = new Paciente(this);
-						operacion = App.BaseDeDatos.CreatePaciente(SelectedPaciente);
+						App.BaseDeDatos.CreatePaciente(SelectedPaciente);
 					}
 				}
 				else {
-					operacion = OperationCode.MISSING_FIELDS;
+					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				}
 			}
 			//---------Modificar-----------//
@@ -84,22 +83,12 @@ namespace ClinicaMedica {
 				string originalDni = SelectedPaciente.Dni;
 				if (CorroborarUserInputEsSeguro()) {
 					SelectedPaciente.AsignarDatosFromWindow(this);
-					operacion = App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni);
+					App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni);
 				}
 				else {
-					operacion = OperationCode.MISSING_FIELDS;
+					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				}
 			}
-
-			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Paciente: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedPaciente.Name} {SelectedPaciente.LastName}",
-				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDni.Text}",
-				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
-				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
-				_ => "Error: Sin definir"
-			});
 		}
 
 
@@ -119,13 +108,9 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = App.BaseDeDatos.DeletePaciente(SelectedPaciente.Dni);
+			App.BaseDeDatos.DeletePaciente(SelectedPaciente.Dni);
 
 			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedPaciente.Name} {SelectedPaciente.LastName} de la base de Datos",
-				_ => "Error: Sin definir"
-			});
 			this.Close(); // this.NavegarA<Pacientes>();
 		}
 		//---------------------botones.Salida-------------------//

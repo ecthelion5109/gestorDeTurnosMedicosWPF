@@ -42,7 +42,7 @@ namespace ClinicaMedica {
 
 
 		//------------------------CREATE.Medico----------------------//
-		public OperationCode CreateMedico(Medico instancia) {
+		public void CreateMedico(Medico instancia) {
 			string insertQuery = @"
 				INSERT INTO Medico (Name, LastName, Dni, Provincia, Domicilio, Localidad, Especialidad, Telefono, Guardia, FechaIngreso, SueldoMinimoGarantizado) 
 				VALUES (@Name, @LastName, @Dni, @Provincia, @Domicilio, @Localidad, @Especialidad, @Telefono, @Guardia, @FechaIngreso, @SueldoMinimoGarantizado)";
@@ -65,13 +65,12 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 				}
 			}
-
-			return OperationCode.CREATE_SUCCESS;
+			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 		}
 		
 		
 		//------------------------CREATE.Paciente----------------------//
-		public OperationCode CreatePaciente(Paciente instancia) {
+		public void CreatePaciente(Paciente instancia) {
 			string insertQuery = @"
 				INSERT INTO Paciente (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) 
 				VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)";
@@ -94,12 +93,12 @@ namespace ClinicaMedica {
 				}
 			}
 
-			return OperationCode.CREATE_SUCCESS;
+			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
 		}
 
 
 		//------------------------CREATE.Turno----------------------//
-		public OperationCode CreateTurno(Turno instancia) {
+		public void CreateTurno(Turno instancia) {
 			string insertQuery = @"
 				INSERT INTO Turno (PacienteId, MedicoId, Fecha, Hora) 
 				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora)";
@@ -114,7 +113,7 @@ namespace ClinicaMedica {
 					command.ExecuteNonQuery();
 				}
 			}
-			return OperationCode.CREATE_SUCCESS;
+			MessageBox.Show($"Exito: Se ha creado la instancia de Turno entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
 		}
 
 
@@ -199,7 +198,7 @@ namespace ClinicaMedica {
 			return turnosList;
 		}
 		//------------------------UPDATE----------------------//
-		public OperationCode UpdateMedico(Medico instancia, string originalDni) {
+		public void UpdateMedico(Medico instancia, string originalDni) {
 			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Dni = @originalDni";
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				connection.Open();
@@ -219,9 +218,9 @@ namespace ClinicaMedica {
 					command.ExecuteNonQuery();
 				}
 			}
-			return OperationCode.UPDATE_SUCCESS;
+			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 		}
-		public OperationCode UpdatePaciente(Paciente instancia, string originalDni) {
+		public void UpdatePaciente(Paciente instancia, string originalDni) {
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				connection.Open();
 				string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Dni = @originalDni";
@@ -240,9 +239,9 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 				}
 			}
-			return OperationCode.UPDATE_SUCCESS;
+			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 		}
-		public OperationCode UpdateTurno(Turno instancia) {
+		public void UpdateTurno(Turno instancia) {
 			//MessageBox.Show(@$"
 			//	{instancia.PacienteId}
 			//	{instancia.PacienteJoin}
@@ -268,15 +267,65 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 				}
 			}
-			return OperationCode.UPDATE_SUCCESS;
+			MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}");
 		}
 
 
 
 		//------------------------DELETE----------------------//
-		public OperationCode DeleteMedico(string idToDelete) {
-			string query = "DELETE FROM Medico WHERE Dni = @Dni";
+		public bool DeleteMedico(string dniToDelete) {
+			string query = "DELETE FROM Medico WHERE Dni = @dniToDelete";
 
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand command = new SqlCommand(query, connection)) {
+						command.Parameters.AddWithValue("@dniToDelete", dniToDelete);
+						command.ExecuteNonQuery();
+					}
+				}
+				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {dniToDelete} de la Base de Datos SQL");
+				return true;
+			}
+			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
+			{
+				MessageBox.Show("No se puede eliminar este medico porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
+		}
+		public bool DeletePaciente(string dniToDelete) {
+			string query = "DELETE FROM Paciente WHERE Dni = @dniToDelete";
+			try {
+				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+					connection.Open();
+					using (SqlCommand command = new SqlCommand(query, connection)) {
+						command.Parameters.AddWithValue("@dniToDelete", dniToDelete);
+						command.ExecuteNonQuery();
+					}
+				}
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {dniToDelete} de la Base de Datos SQL");
+				return true;
+			}
+			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
+			{
+				MessageBox.Show("No se puede eliminar este paciente porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			catch (SqlException ex) {
+				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			catch (Exception ex) {
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			return false;
+		}
+		public bool DeleteTurno(string idToDelete) {
+			string query = "DELETE FROM Turno WHERE Dni = @Dni";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
@@ -285,43 +334,20 @@ namespace ClinicaMedica {
 						command.ExecuteNonQuery();
 					}
 				}
-				return OperationCode.DELETE_SUCCESS;
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {idToDelete} de la Base de Datos SQL");
+				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
 			{
-				MessageBox.Show("No se puede eliminar este medico porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
-				return OperationCode.DELETE_FAILED;
+				MessageBox.Show("No se puede eliminar este paciente porque tiene turnos asignados.", "Violacion de clave foranea", MessageBoxButton.OK, MessageBoxImage.Warning);
 			}
 			catch (SqlException ex) {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
-				return OperationCode.DELETE_FAILED;
 			}
 			catch (Exception ex) {
 				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				return OperationCode.DELETE_FAILED;
 			}
-		}
-		public OperationCode DeletePaciente(string idToDelete) {
-			string query = "DELETE FROM Medico WHERE Dni = @Dni";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand command = new SqlCommand(query, connection)){
-					command.Parameters.AddWithValue("@Dni", idToDelete);
-					command.ExecuteNonQuery();
-				}
-			}
-			return OperationCode.DELETE_SUCCESS;
-		}
-		public OperationCode DeleteTurno(string idToDelete) {
-			string query = "DELETE FROM Turno WHERE Id = @Id";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (SqlCommand command = new SqlCommand(query, connection)){
-					command.Parameters.AddWithValue("@Id", idToDelete);
-					command.ExecuteNonQuery();
-				}
-			}
-			return OperationCode.DELETE_SUCCESS;
+			return false;
 		}
 
 

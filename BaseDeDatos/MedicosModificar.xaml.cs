@@ -32,7 +32,7 @@ namespace ClinicaMedica {
 			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionListForUI();
 			this.txtNombre.Text = SelectedMedico.Name;
 			this.txtApellido.Text = SelectedMedico.LastName;
-			this.txtDNI.Text = SelectedMedico.Dni;
+			this.txtDni.Text = SelectedMedico.Dni;
             this.txtTelefono.Text = SelectedMedico.Telefono;
             this.txtProvincia.Text = SelectedMedico.Provincia;
 			this.txtDomicilio.Text = SelectedMedico.Domicilio;
@@ -49,24 +49,23 @@ namespace ClinicaMedica {
 		//---------------------botones.GuardarCambios-------------------//
 		bool CorroborarUserInputEsSeguro(){
 			return !(string.IsNullOrEmpty(this.txtSueldoMinGarant.Text) ||
-					 string.IsNullOrEmpty(this.txtDNI.Text) ||
+					 string.IsNullOrEmpty(this.txtDni.Text) ||
 					 this.txtFechaIngreso.SelectedDate is null ||
 					 this.txtRealizaGuardia.IsChecked is null);
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
-			OperationCode operacion;
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
 				if (CorroborarUserInputEsSeguro()) {
-					if (App.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDNI.Text)){
-						operacion = OperationCode.YA_EXISTE;
+					if (App.BaseDeDatos.CorroborarQueNoExistaMedico(this.txtDni.Text)){
+						MessageBox.Show($"Error: Ya existe un médico con DNI: {this.txtDni.Text}");
 					} else {
 						SelectedMedico = new Medico(this);
-						operacion = App.BaseDeDatos.CreateMedico(SelectedMedico);
+						App.BaseDeDatos.CreateMedico(SelectedMedico);
 					}
 				}
 				else {
-					operacion = OperationCode.MISSING_FIELDS;
+					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				}
 			}
 			//---------Modificar-----------//
@@ -74,22 +73,12 @@ namespace ClinicaMedica {
 				string originalDni = SelectedMedico.Dni;
 				if (CorroborarUserInputEsSeguro()) {
 					SelectedMedico.AsignarDatosFromWindow(this);
-					operacion = App.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
+					App.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
 				}
 				else {
-					operacion = OperationCode.MISSING_FIELDS;
+					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				}
 			}
-
-			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.CREATE_SUCCESS => $"Exito: Se ha creado la instancia de Medico: {SelectedMedico.Name} {SelectedMedico.LastName}",
-				OperationCode.UPDATE_SUCCESS => $"Exito: Se han actualizado los datos de: {SelectedMedico.Name} {SelectedMedico.LastName}",
-				OperationCode.YA_EXISTE => $"Error: Ya existe un médico con DNI: {this.txtDNI.Text}",
-				OperationCode.MISSING_DNI => $"Error: El DNI es obligatorio.",
-				OperationCode.MISSING_FIELDS => $"Error: Faltan datos obligatorios por completar.",
-				_ => "Error: Sin definir"
-			});
 		}
 
 
@@ -109,13 +98,8 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			OperationCode operacion = App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
+			App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni);
 
-			//---------Mensaje-----------//
-			MessageBox.Show(operacion switch {
-				OperationCode.DELETE_SUCCESS => $"Exito: Se ha eliminado a: {SelectedMedico.Name} {SelectedMedico.LastName} de la base de Datos",
-				_ => "Error: Sin definir"
-			});
 			this.Close(); // this.NavegarA<Medicos>();
 		}
 		//---------------------botones.Salida-------------------//
