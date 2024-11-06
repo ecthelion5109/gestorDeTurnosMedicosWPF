@@ -141,7 +141,7 @@ namespace ClinicaMedica {
 			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
 		}
 		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<MedicosModificar>(); 
+			this.AbrirComoDialogo<TurnosModificar>(); 
 		}
 		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
