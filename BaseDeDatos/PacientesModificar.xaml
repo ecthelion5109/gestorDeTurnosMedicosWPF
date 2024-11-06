@@ -120,6 +120,7 @@
 					 Grid.Row="2"
 					 Grid.Column="1"
 					 Width="Auto"
+					  MaxLength="8"
 					 Margin="5,5,5,5"/>
 
 			<Label Content="Teléfono"
@@ -132,6 +133,7 @@
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="3"
 					 Grid.Column="1"
+					  MaxLength="20"
 					 Width="Auto"
 					 Margin="5,5,5,5"/>
 

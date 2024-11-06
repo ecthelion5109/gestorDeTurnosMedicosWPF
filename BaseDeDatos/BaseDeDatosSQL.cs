@@ -32,8 +32,8 @@ namespace ClinicaMedica {
 			{
 				conexion.Open();
 				string consulta = "SELECT * FROM Medico";
-				using (var comando = new SqlCommand(consulta, conexion))
-				using (var reader = comando.ExecuteReader())
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader())
 				{
 					while (reader.Read())
 					{
@@ -64,8 +64,8 @@ namespace ClinicaMedica {
 			{
 				conexion.Open();
 				string consulta = "SELECT * FROM Paciente";
-				using (var comando = new SqlCommand(consulta, conexion))
-				using (var reader = comando.ExecuteReader())
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader())
 				{
 					while (reader.Read())
 					{
@@ -95,8 +95,8 @@ namespace ClinicaMedica {
 			{
 				conexion.Open();
 				string consulta = "SELECT * FROM Turno";
-				using (var comando = new SqlCommand(consulta, conexion))
-				using (var reader = comando.ExecuteReader())
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader())
 				{
 					while (reader.Read())
 					{
@@ -118,7 +118,8 @@ namespace ClinicaMedica {
 		public bool CreateMedico(Medico instancia) {
 			string insertQuery = @"
 				INSERT INTO Medico (Name, LastName, Dni, Provincia, Domicilio, Localidad, Especialidad, Telefono, Guardia, FechaIngreso, SueldoMinimoGarantizado) 
-				VALUES (@Name, @LastName, @Dni, @Provincia, @Domicilio, @Localidad, @Especialidad, @Telefono, @Guardia, @FechaIngreso, @SueldoMinimoGarantizado)";
+				VALUES (@Name, @LastName, @Dni, @Provincia, @Domicilio, @Localidad, @Especialidad, @Telefono, @Guardia, @FechaIngreso, @SueldoMinimoGarantizado)
+				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			
 			try {
 				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -135,10 +136,10 @@ namespace ClinicaMedica {
 						sqlComando.Parameters.AddWithValue("@Guardia", instancia.Guardia);
 						sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
 						sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
-
-						sqlComando.ExecuteNonQuery();
+						instancia.Id = sqlComando.ExecuteScalar().ToString();	//ahora la instancia creada desde la ventana tiene su propia Id
 					}
 				}
+				DictMedicos[instancia.Id] = instancia;
 				MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 				return true;
 			} 
@@ -164,7 +165,8 @@ namespace ClinicaMedica {
 		public bool CreatePaciente(Paciente instancia) {
 			string insertQuery = @"
 				INSERT INTO Paciente (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) 
-				VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)";
+				VALUES (@Dni, @Name, @LastName, @FechaIngreso, @Email, @Telefono, @FechaNacimiento, @Domicilio, @Localidad, @Provincia)
+				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			
 			try {
 				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -180,9 +182,10 @@ namespace ClinicaMedica {
 						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
 						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
 						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-						sqlComando.ExecuteNonQuery();
+						instancia.Id = sqlComando.ExecuteScalar().ToString();	//ahora la instancia creada desde la ventana tiene su propia Id
 					}
 				}
+				DictPacientes[instancia.Id] = instancia;
 				MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
 				return true;
 			} 
@@ -208,20 +211,21 @@ namespace ClinicaMedica {
 		public bool CreateTurno(Turno instancia) {
 			string insertQuery = @"
 				INSERT INTO Turno (PacienteId, MedicoId, Fecha, Hora) 
-				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora)";
+				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora);
+				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
-					using (var command = new SqlCommand(insertQuery, connection)) {
-						command.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
-						command.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
-						command.Parameters.AddWithValue("@Fecha", instancia.Fecha);
-						command.Parameters.AddWithValue("@Hora", instancia.Hora);
-						// command.Parameters.Add(new SqlParameter("@Hora", SqlDbType.Time) { Value = instancia.Hora });
-						command.ExecuteNonQuery();
+					using (var sqlComando = new SqlCommand(insertQuery, connection)) {
+						sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
+						sqlComando.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
+						sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+						sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
+						instancia.Id = sqlComando.ExecuteScalar().ToString();	//ahora la instancia creada desde la ventana tiene su propia Id
 					}
 				}
-				MessageBox.Show($"Exito: Se ha creado la instancia de Turno entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
+				ListTurnos.Add(instancia);
+				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -249,8 +253,8 @@ namespace ClinicaMedica {
 			// string query = "SELECT * FROM Medico";
 			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				// connection.Open();
-				// using (var command = new SqlCommand(query, connection)) {
-					// using (var reader = command.ExecuteReader()) {
+				// using (var sqlComando = new SqlCommand(query, connection)) {
+					// using (var reader = sqlComando.ExecuteReader()) {
 						// while (reader.Read()) {
 							// Medico instancia = new Medico {
 								// Name = reader["Name"]?.ToString(),
@@ -279,8 +283,8 @@ namespace ClinicaMedica {
 			// string query = "SELECT * FROM Paciente";
 			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				// connection.Open();
-				// using (var command = new SqlCommand(query, connection)) {
-					// using (var reader = command.ExecuteReader()) {
+				// using (var sqlComando = new SqlCommand(query, connection)) {
+					// using (var reader = sqlComando.ExecuteReader()) {
 						// while (reader.Read()) {
 							// Paciente instancia = new Paciente {
 								// Dni = reader["Dni"]?.ToString(),
@@ -315,8 +319,8 @@ namespace ClinicaMedica {
 			// string query = "SELECT * FROM Turno";
 			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				// connection.Open();
-				// using (var command = new SqlCommand(query, connection)) {
-					// using (var reader = command.ExecuteReader()) {
+				// using (var sqlComando = new SqlCommand(query, connection)) {
+					// using (var reader = sqlComando.ExecuteReader()) {
 						// while (reader.Read()) {
 							// Turno instancia = new Turno {
 								// Id = reader["Id"]?.ToString(),
@@ -338,20 +342,20 @@ namespace ClinicaMedica {
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
-					using (var command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@Name", instancia.Name);
-						command.Parameters.AddWithValue("@LastName", instancia.LastName);
-						command.Parameters.AddWithValue("@Dni", instancia.Dni);
-						command.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-						command.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
-						command.Parameters.AddWithValue("@Localidad", instancia.Localidad);
-						command.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
-						command.Parameters.AddWithValue("@Telefono", instancia.Telefono);
-						command.Parameters.AddWithValue("@Guardia", instancia.Guardia);
-						command.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
-						command.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
-						command.Parameters.AddWithValue("@Id", instancia.Id);
-						command.ExecuteNonQuery();
+					using (var sqlComando = new SqlCommand(query, connection)) {
+						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
+						sqlComando.Parameters.AddWithValue("@LastName", instancia.LastName);
+						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
+						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
+						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
+						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
+						sqlComando.Parameters.AddWithValue("@Especialidad", instancia.Especialidad);
+						sqlComando.Parameters.AddWithValue("@Telefono", instancia.Telefono);
+						sqlComando.Parameters.AddWithValue("@Guardia", instancia.Guardia);
+						sqlComando.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
+						sqlComando.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
+						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+						sqlComando.ExecuteNonQuery();
 					}
 				}
 				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
@@ -458,9 +462,9 @@ namespace ClinicaMedica {
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
-					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@Id", instancia.Id);
-						command.ExecuteNonQuery();
+					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
+						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+						sqlComando.ExecuteNonQuery();
 					}
 				}
 				DictMedicos.Remove(instancia.Id);
@@ -484,9 +488,9 @@ namespace ClinicaMedica {
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
-					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@Id", instancia.Id);
-						command.ExecuteNonQuery();
+					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
+						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+						sqlComando.ExecuteNonQuery();
 					}
 				}
 				DictPacientes.Remove(instancia.Id);
@@ -510,9 +514,9 @@ namespace ClinicaMedica {
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
-					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@Id", instancia.Id);
-						command.ExecuteNonQuery();
+					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
+						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
+						sqlComando.ExecuteNonQuery();
 					}
 				}
 				ListTurnos.Remove(instancia);
@@ -553,9 +557,9 @@ namespace ClinicaMedica {
 					SELECT CONCAT(Dni, ' ', Name, ' ', LastName)
 					FROM Paciente
 					WHERE Id = @PacienteId";
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@PacienteId", instance_id);
-					var result = command.ExecuteScalar();
+				using (var sqlComando = new SqlCommand(query, connection)) {
+					sqlComando.Parameters.AddWithValue("@PacienteId", instance_id);
+					var result = sqlComando.ExecuteScalar();
 					return result?.ToString() ?? "Paciente no encontrado";
 				}
 			}
@@ -569,10 +573,10 @@ namespace ClinicaMedica {
                 FROM Medico
                 WHERE Id = @MedicoId";
 
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@MedicoId", instance_id);
+				using (var sqlComando = new SqlCommand(query, connection)) {
+					sqlComando.Parameters.AddWithValue("@MedicoId", instance_id);
 
-					var result = command.ExecuteScalar();
+					var result = sqlComando.ExecuteScalar();
 					return result?.ToString() ?? "Medico no encontrado";
 				}
 			}
@@ -585,10 +589,10 @@ namespace ClinicaMedica {
 				connection.Open();
 				string query = "SELECT Especialidad FROM Medico WHERE Id = @MedicoId";
 
-				using (var command = new SqlCommand(query, connection)) {
-					command.Parameters.AddWithValue("@MedicoId", instance_id);
+				using (var sqlComando = new SqlCommand(query, connection)) {
+					sqlComando.Parameters.AddWithValue("@MedicoId", instance_id);
 
-					var result = command.ExecuteScalar();
+					var result = sqlComando.ExecuteScalar();
 					return result?.ToString() ?? "Especialidad no encontrada";
 				}
 			}

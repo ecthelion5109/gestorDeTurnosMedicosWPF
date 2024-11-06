@@ -98,6 +98,7 @@
 			<TextBox x:Name="txtDni"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="2"
+					  MaxLength="8"
 					 Grid.Column="1"
 					 Width="Auto"
 					 Margin="5,5,5,5"/>
@@ -113,6 +114,7 @@
 					 Grid.Row="3"
 					 Grid.Column="1"
 					 Width="Auto"
+					  MaxLength="20"
 					 Margin="5,5,5,5"/>
 
 			<Label Content="Provincia"
