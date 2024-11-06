@@ -1,47 +1,43 @@
 namespace ClinicaMedica {
-	public interface IBaseDeDatos{
-
-		//Dictionary<string, Medico> DictMedicos;
-		//Dictionary<string, Paciente> DictPacientes;
-		//List<Turno> ListTurnos;
-
-		// Read methods
-		//List<Medico> ReadMedicos();
-		//List<Paciente> ReadPacientes();
-		List<Turno> ReadTurnosWhereMedicoId(Medico instance);
-		List<Turno> ReadTurnosWherePacienteId(Paciente instance);
-		
-		
-		// List<Turno> ReadMedicosWhereTurnoId(Turno instance);
-		// List<Turno> ReadPacientesWhereTurnoId(Turno instance);
-
-
-		
+	public abstract class BaseDeDatosAbstracta{
+		// Public diccionarios
+		public static Dictionary<string, Turno> DictTurnos = new();
+		public static Dictionary<string, Medico> DictMedicos = new();
+		public static Dictionary<string, Paciente> DictPacientes = new();
 
 		// Read methods
-		List<Medico> ReadMedicos();
-		List<Paciente> ReadPacientes();
-		List<Turno> ReadTurnos();
+		public abstract List<Medico> ReadMedicos();
+		public abstract List<Paciente> ReadPacientes();
+		public abstract List<Turno> ReadTurnos();
 
 		// Create methods
-		bool CreateMedico(Medico instance);
-		bool CreatePaciente(Paciente instance);
-		bool CreateTurno(Turno instance);
+		public abstract bool CreateMedico(Medico instance);
+		public abstract bool CreatePaciente(Paciente instance);
+		public abstract bool CreateTurno(Turno instance);
 
 		// Update methods
-		bool UpdateMedico(Medico instance, string originalDni);	//El dni es mas que nada para jsonMode
-		bool UpdatePaciente(Paciente instance, string originalDni);//El dni es mas que nada para jsonMode
-		bool UpdateTurno(Turno instance);//El dni es mas que nada para jsonMode
+		public abstract bool UpdateMedico(Medico instance, string originalDni);	//El dni es mas que nada para jsonMode
+		public abstract bool UpdatePaciente(Paciente instance, string originalDni);//El dni es mas que nada para jsonMode
+		public abstract bool UpdateTurno(Turno instance);//El dni es mas que nada para jsonMode
 
 		// Delete methods
-		bool DeleteMedico(Medico instance);
-		bool DeletePaciente(Paciente instance);
-		bool DeleteTurno(Turno instance);
+		public abstract bool DeleteMedico(Medico instance);
+		public abstract bool DeletePaciente(Paciente instance);
+		public abstract bool DeleteTurno(Turno instance);
 		
-		
-		string LoadPacienteNombreCompletoFromDatabase(string Id);
-		string LoadMedicoNombreCompletoFromDatabase(string Id);
-		string LoadEspecialidadFromDatabase(string Id);
+		// Filtros
+		public List<Turno> ReadTurnosWhereMedicoId(Medico instance) {
+			if (instance is null){
+				return null;
+			}
+			return DictTurnos.Values.Where(t => t.MedicoId == instance.Id).ToList();
+		}
+		public List<Turno> ReadTurnosWherePacienteId(Paciente instance) {
+			if (instance is null){
+				return null;
+			}
+			return DictTurnos.Values.Where(t => t.PacienteId == instance.Id).ToList();
+		}
 	}
 	
 	

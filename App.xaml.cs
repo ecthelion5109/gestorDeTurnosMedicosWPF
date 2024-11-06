@@ -13,7 +13,7 @@ namespace ClinicaMedica {
 	public partial class App : Application {
 		public static bool UsuarioLogueado = false;
 		public static string UsuarioName = "Señor Gestor";
-		public static IBaseDeDatos BaseDeDatos;
+		public static BaseDeDatosAbstracta BaseDeDatos;
 	}
     public static class WindowExtensions{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new(){

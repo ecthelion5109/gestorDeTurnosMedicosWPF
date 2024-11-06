@@ -5,61 +5,8 @@ namespace ClinicaMedica {
 	//---------------------------------Tablas.Turnos-------------------------------//
 	public class Turno : Entidad, INotifyPropertyChanged {
 		public event PropertyChangedEventHandler PropertyChanged;
-		protected virtual void OnPropertyChanged(string propertyName)
-		{
+		protected virtual void OnPropertyChanged(string propertyName){
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-		
-		private string _pacienteConcat;
-		public string PacienteConcat {
-			get {
-				if (_pacienteConcat == null) {
-					_pacienteConcat = App.BaseDeDatos.LoadPacienteNombreCompletoFromDatabase(PacienteId);
-				}
-				return _pacienteConcat;
-			}
-			set {
-				if (_pacienteConcat != value) {
-					_pacienteConcat = value;
-					OnPropertyChanged(nameof(PacienteConcat));
-				}
-			}
-		}
-	
-	
-	
-		private string ?_medicoConcat = null;
-		public string MedicoConcat {
-			get {
-				if (_medicoConcat == null) {
-					_medicoConcat = App.BaseDeDatos.LoadMedicoNombreCompletoFromDatabase(MedicoId);
-				}
-				return _medicoConcat;
-			}
-			set {
-				if (_medicoConcat != value) {
-					_medicoConcat = value;
-					OnPropertyChanged(nameof(MedicoConcat));
-				}
-			}
-		}
-		
-		
-		private string ?_especialidad = null;  // Backing field for caching
-
-		public string Especialidad {
-			get {
-				if (_especialidad == null) {
-					_especialidad = App.BaseDeDatos.LoadEspecialidadFromDatabase(MedicoId);
-				}
-				return _especialidad;
-			}
-			set {
-				if (_especialidad != value) {
-					_especialidad = value;
-					OnPropertyChanged(nameof(Especialidad));
-				}
-			}
 		}
 	
 		public string ?PacienteId { get; set; }

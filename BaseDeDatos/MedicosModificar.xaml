@@ -6,7 +6,7 @@
 		xmlns:local="clr-namespace:ClinicaMedica"
 		mc:Ignorable="d"
 		Title="Clinica Medica - Medicos Modificar"
-		Height="635"
+		Height="675"
 		Width="930"
 		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen">
@@ -38,11 +38,11 @@
 			   Height="65"/>
 
 
-		<Grid Margin="349,0,0,0"
-			  VerticalAlignment="Center"
+		<Grid Margin="349,4,0,0"
+			  VerticalAlignment="Top"
 			  HorizontalAlignment="Left"
 			  MaxWidth="515"
-			  Height="534">
+			  Height="645">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>

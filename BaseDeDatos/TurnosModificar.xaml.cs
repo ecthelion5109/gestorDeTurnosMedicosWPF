@@ -37,7 +37,7 @@ namespace ClinicaMedica {
 		private void SetComboBoxSelections(){
 			this.txtMedicos.SelectedValue = SelectedTurno.MedicoId;
 			this.txtPacientes.SelectedValue = SelectedTurno.PacienteId;
-			this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
+			//this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
 			this.txtId.Content = SelectedTurno.Id;
 			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
 			this.txtHora.Text = SelectedTurno.Hora.ToString();

@@ -4,20 +4,16 @@ using Newtonsoft.Json;
 using System.Data.SqlClient;
 
 namespace ClinicaMedica {
-	public class BaseDeDatosJSON : IBaseDeDatos{
+	public class BaseDeDatosJSON : BaseDeDatosAbstracta{
 		public string archivoPath = "database.json";
 		public Dictionary<string, Dictionary<string, object>> MiDiccionario;
-		public static Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
-		public static Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
-		public static List<Turno> ListTurnos { get; private set; } = new ();
-		
 		
 		public BaseDeDatosJSON() {
 			this.LLenarMiDiccionarioConNewtonsoftJson();
 		}
 		
 		//------------------------CREATE----------------------//
-		public bool CreateMedico(Medico instancia) {
+		public override bool CreateMedico(Medico instancia) {
 			bool YaExiste(string key){
 				return this.MiDiccionario["medicos"].ContainsKey(key);
 			}
@@ -30,7 +26,7 @@ namespace ClinicaMedica {
 			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
-		public bool CreatePaciente(Paciente instancia) {
+		public override bool CreatePaciente(Paciente instancia) {
 			bool YaExiste(string key){
 				return this.MiDiccionario["pacientes"].ContainsKey(key);
 			}
@@ -44,7 +40,7 @@ namespace ClinicaMedica {
 			return true;
 		}
 
-		public bool CreateTurno(Turno instancia) {
+		public override bool CreateTurno(Turno instancia) {
 			bool YaExiste(string key){
 				return this.MiDiccionario["turnos"].ContainsKey(key);
 			}
@@ -55,32 +51,18 @@ namespace ClinicaMedica {
 			MessageBox.Show($"No se ha implementado esto en json");
 			return true;
 		}
-
 		//------------------------public.READ----------------------//
-		public List<Turno> ReadTurnosWhereMedicoId(Medico instance) {
-			if (instance is null){
-				return null;
-			}
-			return ListTurnos.Where(t => t.MedicoId == instance.Id).ToList();
-		}
-		public List<Turno> ReadTurnosWherePacienteId(Paciente instance) {
-			if (instance is null){
-				return null;
-			}
-			return ListTurnos.Where(t => t.PacienteId == instance.Id).ToList();
-		}
-		//------------------------public.READ----------------------//
-		public List<Medico> ReadMedicos() {
+		public override List<Medico> ReadMedicos() {
 			return this.MiDiccionario["medicos"].Values.Cast<Medico>().ToList();
 		}
-        public List<Paciente> ReadPacientes() {
+        public override List<Paciente> ReadPacientes() {
             return this.MiDiccionario["pacientes"].Values.Cast<Paciente>().ToList();
         }
-        public List<Turno> ReadTurnos() {
+        public override List<Turno> ReadTurnos() {
             return this.MiDiccionario["turnos"].Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
-        public bool UpdateMedico(Medico instancia, string originalDni){
+        public override bool UpdateMedico(Medico instancia, string originalDni){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
@@ -94,7 +76,7 @@ namespace ClinicaMedica {
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
-        public bool UpdatePaciente(Paciente instancia, string originalDni){
+        public override bool UpdatePaciente(Paciente instancia, string originalDni){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
@@ -108,13 +90,13 @@ namespace ClinicaMedica {
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
-        public bool UpdateTurno(Turno instancia) {
+        public override bool UpdateTurno(Turno instancia) {
 			MessageBox.Show($"Sin definir.");
 			return false;
 		}
 		//------------------------public.DELETE----------------------//
 		
-		public bool DeleteMedico(Medico instancia) {
+		public override bool DeleteMedico(Medico instancia) {
 			try {
 				this.MiDiccionario["medicos"].Remove(instancia.Id);
 				this.GuardarJson(); // Save changes to the database
@@ -126,7 +108,7 @@ namespace ClinicaMedica {
 
 			}
 		}
-		public bool DeletePaciente(Paciente instancia){
+		public override bool DeletePaciente(Paciente instancia){
 			try {
 				this.MiDiccionario["pacientes"].Remove(instancia.Id);
 				this.GuardarJson(); // Save changes to the database
@@ -138,7 +120,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-        public bool DeleteTurno(Turno instancia) {
+        public override bool DeleteTurno(Turno instancia) {
 			MessageBox.Show($"Sin implementar");
 			return false;
 		}
@@ -199,25 +181,6 @@ namespace ClinicaMedica {
 			File.WriteAllText(archivoPath, jsonString);
 		}
 		
-		
-		
-		
-
-
-		//------------------------GET-PROPERTIES----------------------//
-		public string LoadPacienteNombreCompletoFromDatabase(string instance_id) {
-			return "LoadPacienteConcatNotImplemented";
-		}
-
-		public string LoadMedicoNombreCompletoFromDatabase(string instance_id) {
-			return "LoadMedicoConcatNotImplemented";
-		}
-
-
-		public string LoadEspecialidadFromDatabase(string instance_id) {
-			return "LoadEspecialidadConcatNotImplemented";
-		}
-
 		
 		//------------------------Fin.BaseDeDatosJSON----------------------//
 	}
