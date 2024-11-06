@@ -47,7 +47,7 @@ namespace ClinicaMedica
 
 		}
 
-		private void PacienteListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+		private void pacientesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (pacientesListView.SelectedItem != null) {
 				SelectedPaciente = (Paciente)pacientesListView.SelectedItem;
 				buttonModificar.IsEnabled = true;

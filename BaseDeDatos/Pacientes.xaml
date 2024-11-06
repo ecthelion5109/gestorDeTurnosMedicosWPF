@@ -44,7 +44,7 @@
 				  Width="Auto"
 				  Height="Auto"
 				Margin="10,32,524,260"
-				SelectionChanged="PacienteListView_SelectionChanged"
+				SelectionChanged="pacientesListView_SelectionChanged"
 				d:ItemsSource="{d:SampleData ItemCount=5}"
 				Grid.RowSpan="2">
 			<ListView.View>

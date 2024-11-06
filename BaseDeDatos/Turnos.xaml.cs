@@ -45,6 +45,9 @@ namespace ClinicaMedica {
 					WHERE
 						T.Fecha = @Fecha;
 				";
+				// string consulta = @"
+					// SELECT * FROM Turno;
+				// ";
 
 				using (var command = new SqlCommand(consulta, MiConexion)) {
 					command.Parameters.AddWithValue("@Fecha", CalendarioTurnos.SelectedDate?.Date);
@@ -79,8 +82,78 @@ namespace ClinicaMedica {
 			else {
 				buttonModificar.IsEnabled = false;
 			}
+			
+			
+
+			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				MiConexion.Open();
+
+				string consulta = @"
+					SELECT 
+						Dni, Name, LastName, Especialidad
+					FROM 
+						Medico
+					WHERE
+						Id = @MedicoId
+				";
+				using (var command = new SqlCommand(consulta, MiConexion)) {
+					command.Parameters.AddWithValue("@MedicoId", SelectedTurno.MedicoId);
+
+					using (var adaptador = new SqlDataAdapter(command)) {
+						DataTable tablita = new DataTable();
+						adaptador.Fill(tablita);
+
+						medicosListView.ItemsSource = tablita.DefaultView;
+					}
+				}
+			}
+			medicosListView.SelectedValuePath = "Id";
+			
+			
+			
+			
+			
+
+			
+			
+
+			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				MiConexion.Open();
+
+				string consulta = @"
+					SELECT 
+						Dni, Name, LastName, Email, Telefono
+					FROM 
+						Paciente
+					WHERE
+						Id = @PacienteId
+				";
+				using (var command = new SqlCommand(consulta, MiConexion)) {
+					command.Parameters.AddWithValue("@PacienteId", SelectedTurno.PacienteId);
+
+					using (var adaptador = new SqlDataAdapter(command)) {
+						DataTable tablita = new DataTable();
+						adaptador.Fill(tablita);
+
+						pacientesListView.ItemsSource = tablita.DefaultView;
+					}
+				}
+			}
+			pacientesListView.SelectedValuePath = "Id";
+			
+			
+			
+			
 		}
 		//----------------------eventosRefresh-------------------//
+
+		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+		}
+
+		private void pacientesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+		}
 		private void Window_Activated(object sender, EventArgs e) {
 			/* //GALLEGO STYLE
 			string consulta = @"

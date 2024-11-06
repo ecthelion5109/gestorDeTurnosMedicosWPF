@@ -12,47 +12,40 @@
         Activated="Window_Activated"
         WindowStartupLocation="CenterScreen">
 
-        <Window.Resources>
-        </Window.Resources>
+	<Window.Resources>
+	</Window.Resources>
 
-        <Grid>
-                <Grid.Background>
-                        <ImageBrush ImageSource="/images/otroFondo.png"/>
-                </Grid.Background>
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/otroFondo.png"/>
+		</Grid.Background>
 
-                <Calendar x:Name="CalendarioTurnos"
-						Style="{StaticResource CalendarLindo2}" 
+		<Calendar x:Name="CalendarioTurnos"
                           HorizontalAlignment="Left"
-                          Margin="802,336,0,0"
+                          Margin="476,386,0,0"
                           VerticalAlignment="Top"
                           SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 
-                <ListView x:Name="turnosListView"
+		<ListView x:Name="turnosListView"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
-                          Margin="445,27,43,275"
+                          Margin="675,43,32,30"
                           SelectionChanged="listViewTurnos_SelectionChanged">
-                        <ListView.View>
-                                <GridView>
-                                        <GridViewColumn Header="Número"
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="Número"
                                                         DisplayMemberBinding="{Binding Id}"
                                                         Width="auto"/>
-                                        <GridViewColumn Header="Paciente Datos"
-                                                        DisplayMemberBinding="{Binding PacienteConcat}"
-                                                        Width="auto"/>
-                                        <GridViewColumn Header="Médico Datos"
-                                                        DisplayMemberBinding="{Binding MedicoConcat}"
-                                                        Width="auto"/>
-                                        <GridViewColumn Header="Fecha"
+					<GridViewColumn Header="Fecha"
                                                         DisplayMemberBinding="{Binding Fecha}"
                                                         Width="auto"/>
-                                        <GridViewColumn Header="Hora"
+					<GridViewColumn Header="Hora"
                                                         DisplayMemberBinding="{Binding Hora}"
                                                         Width="auto"/>
-                                </GridView>
-                        </ListView.View>
-                </ListView>
+				</GridView>
+			</ListView.View>
+		</ListView>
 
-                <Button Content="Home"
+		<Button Content="Home"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Height="37"
@@ -64,9 +57,9 @@
                         BorderBrush="#FF0E0D0D"
                         Margin="55,449,0,0"
                         FontFamily="Baskerville Old Face">
-                </Button>
+		</Button>
 
-                <Button Content="Salir"
+		<Button Content="Salir"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Height="37"
@@ -78,9 +71,9 @@
                         BorderBrush="#FF0E0D0D"
                         Margin="55,504,0,0"
                         FontFamily="Baskerville Old Face">
-                </Button>
+		</Button>
 
-                <Button Content="Agregar nuevo"
+		<Button Content="Agregar nuevo"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Height="37"
@@ -92,9 +85,9 @@
                         BorderBrush="#FF0E0D0D"
                         Margin="265,504,0,0"
                         FontFamily="Baskerville Old Face">
-                </Button>
+		</Button>
 
-                <Button x:Name="buttonModificar"
+		<Button x:Name="buttonModificar"
                         Content="Modificar turno"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
@@ -108,9 +101,9 @@
                         Margin="265,449,0,0"
                         FontFamily="Baskerville Old Face"
                         IsEnabled="False">
-                </Button>
+		</Button>
 
-                <Label Content="Turnos"
+		<Label Content="Turnos"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        FontSize="72"
@@ -119,5 +112,75 @@
                        FontFamily="Ringbearer"
                        Margin="55,43,0,0"
                        FontWeight="Bold"/>
-        </Grid>
+
+
+
+
+
+
+		<ListView x:Name="medicosListView"
+					Width="Auto"
+					Height="Auto"
+					Margin="318,152,369,342"
+					Style="{StaticResource ListViewLindo2}"
+					SelectionChanged="medicosListView_SelectionChanged"
+					Background="#A5FFFFFF"
+					BorderBrush="#72828790">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="Dni"
+								DisplayMemberBinding="{Binding Dni}"
+								Width="auto"/>
+					<GridViewColumn Header="Nombre"
+								DisplayMemberBinding="{Binding Name}"
+								Width="auto"/>
+					<GridViewColumn Header="Apellido"
+								DisplayMemberBinding="{Binding LastName}"
+								Width="auto"/>
+					<GridViewColumn Header="Especialidad"
+								DisplayMemberBinding="{Binding Especialidad}"
+								Width="auto"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+
+
+
+
+
+		<ListView x:Name="pacientesListView"
+			  ItemsSource="{Binding PacientesList}"
+			  Width="Auto"
+			  Height="Auto"
+			  Margin="318,260,369,225"
+			  SelectionChanged="pacientesListView_SelectionChanged"
+			  d:ItemsSource="{d:SampleData ItemCount=5}"
+			>
+			<ListView.View>
+				<GridView>
+					<!-- Dni Column -->
+					<GridViewColumn Header="Dni"
+				  DisplayMemberBinding="{Binding Dni}"
+				  Width="auto"/>
+					<!-- Name Column -->
+					<GridViewColumn Header="Nombre"
+				  DisplayMemberBinding="{Binding Name}"
+				  Width="auto"/>
+
+					<GridViewColumn Header="Apellido"
+				  DisplayMemberBinding="{Binding LastName}"
+				  Width="auto"/>
+
+					<GridViewColumn Header="Email"
+				  DisplayMemberBinding="{Binding Email}"
+				  Width="auto"/>
+
+					<GridViewColumn Header="Teléfono"
+				  DisplayMemberBinding="{Binding Telefono}"
+				  Width="auto"/>
+
+				</GridView>
+			</ListView.View>
+		</ListView>
+	</Grid>
 </Window>

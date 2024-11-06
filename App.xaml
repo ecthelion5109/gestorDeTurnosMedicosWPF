@@ -196,27 +196,27 @@
             </Setter>
         </Style>
 		<Style x:Key="ListViewLindo2" TargetType="ListView">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ListView">
-						<Border CornerRadius="10"
-								BorderBrush="Black"
-								BorderThickness="2"
-								Background="White">
-							<Border.Effect>
-								<DropShadowEffect Color="Black"
-										BlurRadius="30"
-										ShadowDepth="10"/>
-							</Border.Effect>
-							<ScrollViewer x:Name="PART_ScrollViewer"
-									Padding="5"
-									Focusable="false">
-								<ItemsPresenter/>
-							</ScrollViewer>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
+			<!-- <Setter Property="Template"> -->
+				<!-- <Setter.Value> -->
+					<!-- <ControlTemplate TargetType="ListView"> -->
+						<!-- <Border CornerRadius="10" -->
+								<!-- BorderBrush="Black" -->
+								<!-- BorderThickness="2" -->
+								<!-- Background="White"> -->
+							<!-- <Border.Effect> -->
+								<!-- <DropShadowEffect Color="Black" -->
+										<!-- BlurRadius="30" -->
+										<!-- ShadowDepth="10"/> -->
+							<!-- </Border.Effect> -->
+							<!-- <ScrollViewer x:Name="PART_ScrollViewer" -->
+									<!-- Padding="5" -->
+									<!-- Focusable="false"> -->
+								<!-- <ItemsPresenter/> -->
+							<!-- </ScrollViewer> -->
+						<!-- </Border> -->
+					<!-- </ControlTemplate> -->
+				<!-- </Setter.Value> -->
+			<!-- </Setter> -->
 		</Style>
 
 
@@ -226,24 +226,24 @@
 
 	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,CALENDARIOS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Estilo de Calendar con sombreado y bordes redondeados -->
-        <Style x:Key="CalendarLindo1"
-                TargetType="Calendar">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Calendar">
-                        <Border CornerRadius="10"
-                                Background="White"
-                                BorderBrush="Gray"
-                                BorderThickness="1">
-                            <Border.Effect>
-                                <DropShadowEffect Color="Gray"
-                                                  BlurRadius="8"
-                                                  ShadowDepth="2"/>
-                            </Border.Effect>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+		<Style x:Key="CalendarLindo1">
+			<!-- TargetType="Calendar"> -->
+            <!-- <Setter Property="Template"> -->
+                <!-- <Setter.Value> -->
+                    <!-- <ControlTemplate TargetType="Calendar"> -->
+                        <!-- <Border CornerRadius="10" -->
+                                <!-- Background="White" -->
+                                <!-- BorderBrush="Gray" -->
+                                <!-- BorderThickness="1"> -->
+                            <!-- <Border.Effect> -->
+                                <!-- <DropShadowEffect Color="Gray" -->
+                                                  <!-- BlurRadius="8" -->
+                                                  <!-- ShadowDepth="2"/> -->
+                            <!-- </Border.Effect> -->
+                        <!-- </Border> -->
+                    <!-- </ControlTemplate> -->
+                <!-- </Setter.Value> -->
+            <!-- </Setter> -->
         </Style>
 
         <Style x:Key="CalendarLindo2" TargetType="Calendar">
