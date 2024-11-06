@@ -27,9 +27,6 @@
 				<RowDefinition Height="263*"/>
 			</Grid.RowDefinitions>
 
-			<!-- Tituloi -->
-
-			<!-- ListView -->
 			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="10,17,479,147" Grid.RowSpan="2">
 
 				<StackPanel Orientation="Vertical" Background="Transparent">
@@ -208,7 +205,7 @@
 						   Width="30"/>
 								<GridViewColumn Header="Fecha"
 						   DisplayMemberBinding="{Binding Fecha}"
-						   Width="65"/>
+						   Width="70"/>
 								<GridViewColumn Header="Hora"
 						   DisplayMemberBinding="{Binding Hora}"
 						   Width="60"/>

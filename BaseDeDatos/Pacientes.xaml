@@ -29,50 +29,109 @@
 			<RowDefinition Height="263*"/>
 		</Grid.RowDefinitions>
 		<!-- Título -->
-		<Label Content="Pacientes"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				FontSize="72"
-				Height="125"
-				Width="374"
-				FontFamily="Ringbearer"
-				Margin="551,32,0,0"
-				Grid.RowSpan="2"
-				FontWeight="Bold"/>
-		<ListView Name="pacientesListView"
-				  ItemsSource="{Binding PacientesList}"
-				  Width="Auto"
-				  Height="Auto"
-				Margin="10,32,524,260"
-				SelectionChanged="pacientesListView_SelectionChanged"
-				d:ItemsSource="{d:SampleData ItemCount=5}"
-				Grid.RowSpan="2">
-			<ListView.View>
-				<GridView>
-					<!-- Dni Column -->
-					<GridViewColumn Header="Dni"
-							DisplayMemberBinding="{Binding Dni}"
-							Width="auto"/>
-					<!-- Name Column -->
-					<GridViewColumn Header="Nombre"
-							DisplayMemberBinding="{Binding Name}"
-							Width="auto"/>
 
-					<GridViewColumn Header="Apellido"
-							DisplayMemberBinding="{Binding LastName}"
-							Width="auto"/>
 
-					<GridViewColumn Header="Email"
-							DisplayMemberBinding="{Binding Email}"
-							Width="auto"/>
 
-					<GridViewColumn Header="Teléfono"
-							DisplayMemberBinding="{Binding Telefono}"
-							Width="auto"/>
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="512,17,22,180" Grid.RowSpan="2">
 
-				</GridView>
-			</ListView.View>
-		</ListView>
+			<StackPanel Orientation="Vertical" Background="Transparent">
+
+
+
+				<Label Content="Pacientes"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top"
+							FontSize="72"
+							Height="125"
+							Width="374"
+							FontFamily="Ringbearer"
+							Grid.RowSpan="2"
+							FontWeight="Bold"/>
+				<ListView Name="pacientesListView"
+							  ItemsSource="{Binding PacientesList}"
+							  Width="Auto"
+							  Height="167"
+							
+							SelectionChanged="pacientesListView_SelectionChanged"
+							d:ItemsSource="{d:SampleData ItemCount=5}"
+							Grid.RowSpan="2">
+					<ListView.View>
+						<GridView>
+							<!-- Dni Column -->
+							<GridViewColumn Header="Dni"
+										DisplayMemberBinding="{Binding Dni}"
+										Width="auto"/>
+							<!-- Name Column -->
+							<GridViewColumn Header="Nombre"
+										DisplayMemberBinding="{Binding Name}"
+										Width="auto"/>
+
+							<GridViewColumn Header="Apellido"
+										DisplayMemberBinding="{Binding LastName}"
+										Width="auto"/>
+
+							<GridViewColumn Header="Email"
+										DisplayMemberBinding="{Binding Email}"
+										Width="auto"/>
+
+							<GridViewColumn Header="Teléfono"
+										DisplayMemberBinding="{Binding Telefono}"
+										Width="auto"/>
+
+						</GridView>
+					</ListView.View>
+				</ListView>
+
+
+
+
+
+
+				<StackPanel Orientation="Horizontal" Background="Transparent" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button
+							Content="Agregar nuevo"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top"
+							Height="35"
+							Width="150"
+							Click="ButtonAgregar"
+							FontSize="20"
+							Style="{StaticResource BotonRedondeado}"
+							FontWeight="Bold"
+							BorderBrush="#FF0E0D0D"
+							FontFamily="Baskerville Old Face" Margin="25,0,25,5"
+							>
+					</Button>
+					<Button x:Name="buttonModificarPaciente"
+								Content="Modificar"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Height="35"
+								Click="ButtonModificarPaciente"
+								FontSize="20"
+								Style="{StaticResource BotonRedondeado}"
+								FontWeight="Bold"
+								BorderBrush="#FF0E0D0D"
+								FontFamily="Baskerville Old Face"
+								IsEnabled="False" Margin="25,0,25,0" Width="150"
+								/>
+				</StackPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+			</StackPanel>
+		</ContentControl>
+
+
 		<Button
 			Content="Home"
 			HorizontalAlignment="Left"
@@ -103,41 +162,62 @@
 			FontFamily="Baskerville Old Face"
 				Grid.Row="1">
 		</Button>
-		<Button
-			Content="Agregar nuevo"
-			HorizontalAlignment="Left"
-			VerticalAlignment="Top"
-			Height="37"
-			Width="170"
-			Click="ButtonAgregar"
-			FontSize="20"
-			Style="{StaticResource BotonRedondeado}"
-			FontWeight="Bold"
-			BorderBrush="#FF0E0D0D"
-			Margin="265,441,0,0"
-			FontFamily="Baskerville Old Face"
-				Grid.Row="1">
-		</Button>
-		<Button x:Name="buttonModificarPaciente"
-				Content="Modificar paciente"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Height="37"
-				Width="170"
-				Click="ButtonModificarPaciente"
-				FontSize="20"
-				Style="{StaticResource BotonRedondeado}"
-				FontWeight="Bold"
-				BorderBrush="#FF0E0D0D"
-				Margin="265,386,0,0"
-				FontFamily="Baskerville Old Face"
-				IsEnabled="False"
-				Grid.Row="1">
-		</Button>
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="656,114,193,134" Grid.Row="1">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="255,17,534,165" Grid.RowSpan="2">
+			<StackPanel Orientation="Vertical" Background="Transparent">
+				<Label Content="Turnos"
+			  FontSize="35"
+			  FontFamily="Ringbearer"
+			  FontWeight="Bold" HorizontalAlignment="Center"/>
+				<ListView x:Name="turnosListView"
+			  Background="Transparent"
+			  BorderThickness="0"
+							 
+			  SelectionChanged="listViewTurnos_SelectionChanged" Height="245">
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Header="Id"
+						  DisplayMemberBinding="{Binding Id}"
+						  Width="30"/>
+							<GridViewColumn Header="Fecha"
+						  DisplayMemberBinding="{Binding Fecha}"
+						  Width="70"/>
+							<GridViewColumn Header="Hora"
+						  DisplayMemberBinding="{Binding Hora}"
+						  Width="60"/>
+						</GridView>
+					</ListView.View>
+				</ListView>
+
+
+
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button x:Name="buttonModificarTurno"
+				  Content="Modificar"
+				  VerticalAlignment="Top"
+				  Height="30"
+				  Click="ButtonModificarTurno"
+				  FontSize="20"
+				  Style="{StaticResource BotonRedondeado}"
+				  FontWeight="Bold"
+				  BorderBrush="#FF0E0D0D"
+				  FontFamily="Baskerville Old Face"
+				  IsEnabled="False" Margin="25,15,25,15" Width="130"
+					/>
+				</StackPanel>
+
+			</StackPanel>
+		</ContentControl>
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="49,17,799,217" Grid.RowSpan="2">
 			<!-- </Expander> -->
 			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
+
+
+
+				<Label Content="Medico"
+			  FontSize="25"
+			  FontFamily="Ringbearer"
+			  FontWeight="Bold" HorizontalAlignment="Center"/>
 
 
 
@@ -152,15 +232,33 @@
 
 				<TextBlock Text="Especialidad:" FontWeight="Bold" Margin="0,5,0,5" />
 				<TextBlock x:Name="txtMedicoEspecialidad" Margin="0,0,0,10" />
+
+
+
+
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button x:Name="buttonModificarMedico"
+				  Content="Modificar"
+				  HorizontalAlignment="Left"
+				  VerticalAlignment="Top"
+				  Height="30"
+				  Click="ButtonModificarMedico"
+				  FontSize="20"
+				  Style="{StaticResource BotonRedondeado}"
+				  FontWeight="Bold"
+				  BorderBrush="#FF0E0D0D"
+				  FontFamily="Baskerville Old Face"
+				  IsEnabled="False" Margin="25,15,25,15" Width="120"
+						/>
+				</StackPanel>
+
+
+
+
+
+
 			</StackPanel>
 		</ContentControl>
-		<Label Content="Turnos"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  FontSize="25"
-	  FontFamily="Ringbearer"
-	  Margin="695,71,0,0"
-	  FontWeight="Bold" Grid.Row="1"/>
 		<!-- DataGrid insertado aquí -->
 	</Grid>
 </Window>

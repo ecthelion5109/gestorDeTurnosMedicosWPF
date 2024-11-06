@@ -70,15 +70,6 @@ namespace ClinicaMedica {
 		
 		
 		private void llenarIdentidadesForaneas() {
-			/* //GALLEGO STYLE
-				if (turnosListView.SelectedItem != null) {
-					buttonModificar.IsEnabled = true;
-					MessageBox.Show($"Selected Turno Id: {turnosListView.SelectedValue}");
-				}
-				else {
-					buttonModificar.IsEnabled = false;
-				}
-			*/
 			if (turnosListView.SelectedValue != null) {
 				SelectedTurno = (Turno) turnosListView.SelectedItem;
 				buttonModificarTurno.IsEnabled = true;
@@ -103,49 +94,6 @@ namespace ClinicaMedica {
 				txtMedicoApellido.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].LastName;
 				txtMedicoEspecialidad.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Especialidad;
 			}
-			/*
-			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				MiConexion.Open();
-
-				string consulta = @"
-					SELECT 
-						Dni, Name, LastName, Especialidad
-					FROM 
-						Medico
-					WHERE
-						Id = @MedicoId
-				";
-				using (var command = new SqlCommand(consulta, MiConexion)) {
-					command.Parameters.AddWithValue("@MedicoId", SelectedTurno.MedicoId);
-
-					using (var adaptador = new SqlDataAdapter(command)) {
-						DataTable tablita = new DataTable();
-						adaptador.Fill(tablita);
-
-						if (tablita.Rows.Count > 0) {
-							DataRow fila = tablita.Rows[0];
-
-							txtMedicoDni.Text = fila["Dni"].ToString();
-							txtMedicoNombre.Text = fila["Name"].ToString();
-							txtMedicoApellido.Text = fila["LastName"].ToString();
-							txtMedicoEspecialidad.Text = fila["Especialidad"].ToString();
-						}
-						else {
-							// Limpiar los TextBox si no se encuentra el médico
-							txtMedicoDni.Text = "";
-							txtMedicoNombre.Text = "";
-							txtMedicoApellido.Text = "";
-							txtMedicoEspecialidad.Text = "";
-						}
-					}
-				}
-			}
-			// medicosListView.SelectedValuePath = "Id";
-			*/
-			
-			
-			
-			
 
 			
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -245,14 +193,22 @@ namespace ClinicaMedica {
 			this.AbrirComoDialogo<TurnosModificar>(SelectedTurno);
 		}
 
-        // private void UnselectTurno(object sender, RoutedEventArgs e) {
-        // turnosListView.SelectedValue = null;
-        // SelectedTurno = null;
-        // txtMedicoDni.Text = "";
-        // txtMedicoNombre.Text = "";
-        // txtMedicoApellido.Text = "";
-        // txtMedicoEspecialidad.Text = "";
-        // }
-        //------------------------Fin.Turnos----------------------//
-    }
+		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
+
+		}
+
+		// private void UnselectTurno(object sender, RoutedEventArgs e) {
+		// turnosListView.SelectedValue = null;
+		// SelectedTurno = null;
+		// txtMedicoDni.Text = "";
+		// txtMedicoNombre.Text = "";
+		// txtMedicoApellido.Text = "";
+		// txtMedicoEspecialidad.Text = "";
+		// }
+		//------------------------Fin.Turnos----------------------//
+	}
 }

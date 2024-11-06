@@ -74,5 +74,17 @@ namespace ClinicaMedica
 
 			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 		}
-    }
+
+		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
+
+		}
+
+		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+		}
+
+		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
+
+		}
+	}
 }

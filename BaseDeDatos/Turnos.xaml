@@ -47,7 +47,7 @@
 			</StackPanel>
 		</ContentControl>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="680,26,27,98">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="455,30,252,76">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
                        FontSize="65"
@@ -58,7 +58,7 @@
 					  Background="Transparent"
 					  BorderThickness="0"
 							 
-							SelectionChanged="listViewTurnos_SelectionChanged">
+							SelectionChanged="listViewTurnos_SelectionChanged" Height="280">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Header="Número"
@@ -73,6 +73,53 @@
 						</GridView>
 					</ListView.View>
 				</ListView>
+				
+				
+				
+				
+
+
+
+				<StackPanel Orientation="Horizontal" Background="Transparent" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button
+							Content="Agregar nuevo"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top"
+							Height="30"
+							Width="125"
+							Click="ButtonAgregar"
+							FontSize="20"
+							Style="{StaticResource BotonRedondeado}"
+							FontWeight="Bold"
+							BorderBrush="#FF0E0D0D"
+							FontFamily="Baskerville Old Face" Margin="10,10,10,10"
+							>
+					</Button>
+					<Button x:Name="buttonModificarTurno"
+								Content="Modificar"
+								HorizontalAlignment="Left"
+								VerticalAlignment="Top"
+								Height="30"
+								Click="ButtonModificarTurno"
+								FontSize="20"
+								Style="{StaticResource BotonRedondeado}"
+								FontWeight="Bold"
+								BorderBrush="#FF0E0D0D"
+								FontFamily="Baskerville Old Face"
+								IsEnabled="False" Width="125" Margin="10,10,10,10"
+								/>
+				</StackPanel>
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</StackPanel>
 		</ContentControl>
 
@@ -104,41 +151,10 @@
                         FontFamily="Baskerville Old Face">
 		</Button>
 
-		<Button Content="Agregar nuevo"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Height="37"
-                        Width="170"
-                        Click="ButtonAgregar"
-                        FontSize="20"
-                        Style="{StaticResource BotonRedondeado}"
-                        FontWeight="Bold"
-                        BorderBrush="#FF0E0D0D"
-                        Margin="265,504,0,0"
-                        FontFamily="Baskerville Old Face">
-		</Button>
-
-		<Button x:Name="buttonModificarTurno"
-                        Content="Modificar turno"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Height="37"
-                        Width="170"
-                        Click="ButtonModificarTurno"
-                        FontSize="20"
-                        Style="{StaticResource BotonRedondeado}"
-                        FontWeight="Bold"
-                        BorderBrush="#FF0E0D0D"
-                        Margin="265,449,0,0"
-                        FontFamily="Baskerville Old Face"
-                        IsEnabled="False">
-		</Button>
 
 
 
-
-
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="257,29,591,225">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="259,30,589,204">
 			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
 
@@ -162,49 +178,70 @@
 
 				<TextBlock Text="Especialidad:" FontWeight="Bold" Margin="0,5,0,5" />
 				<TextBlock x:Name="txtMedicoEspecialidad" Margin="0,0,0,10" />
+				
+				
+				
+				
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button x:Name="buttonModificarMedico"
+				  Content="Modificar"
+				  HorizontalAlignment="Left"
+				  VerticalAlignment="Top"
+				  Height="30"
+				  Click="ButtonModificarMedico"
+				  FontSize="20"
+				  Style="{StaticResource BotonRedondeado}"
+				  FontWeight="Bold"
+				  BorderBrush="#FF0E0D0D"
+				  FontFamily="Baskerville Old Face"
+				  IsEnabled="False" Margin="25,15,25,15" Width="120"
+						/>
+				</StackPanel>
+				
+				
+				
+				
+				
+				
 			</StackPanel>
 			<!-- </Expander> -->
 		</ContentControl>
-
-
-
-
-
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="456,26,369,225">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="795,30,29,152">
+			<!-- </Expander> -->
 			<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
-			<StackPanel Orientation="Vertical" Background="Transparent" Margin="0,0,0,10">
-				<Label Content="Paciente"
-	  FontSize="25"
-	  FontFamily="Ringbearer"
-	  FontWeight="Bold" HorizontalAlignment="Center"/>
-				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
-				<TextBlock x:Name="txtPacienteDni" Margin="0,0,0,5" />
+			<StackPanel Orientation="Vertical" Background="Transparent">
+				<Label Content="Paciente" FontSize="25" FontFamily="Ringbearer" FontWeight="Bold" HorizontalAlignment="Center"/>
+				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5"/>
+				<TextBlock x:Name="txtPacienteDni" Margin="0,0,0,10" />
 
 				<TextBlock Text="Nombre:" FontWeight="Bold" Margin="0,5,0,5" />
-				<TextBlock x:Name="txtPacienteNombre" Margin="0,0,0,5" />
+				<TextBlock x:Name="txtPacienteNombre" Margin="0,0,0,10" />
 
 				<TextBlock Text="Apellido:" FontWeight="Bold" Margin="0,5,0,5" />
-				<TextBlock x:Name="txtPacienteApellido" Margin="0,0,0,5" />
+				<TextBlock x:Name="txtPacienteApellido" Margin="0,0,0,10" />
 
 				<TextBlock Text="Correo:" FontWeight="Bold" Margin="0,5,0,5" />
-				<TextBlock x:Name="txtPacienteEmail" Margin="0,0,0,5" />
+				<TextBlock x:Name="txtPacienteEmail" Margin="0,0,0,10" />
 
 				<TextBlock Text="Telefono:" FontWeight="Bold" Margin="0,5,0,5" />
-				<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,5" />
+				<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,10" />
+
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button x:Name="buttonModificarPaciente"
+				  Content="Modificar"
+				  HorizontalAlignment="Left"
+				  VerticalAlignment="Top"
+				  Height="30"
+				  Click="ButtonModificarPaciente"
+				  FontSize="20"
+				  Style="{StaticResource BotonRedondeado}"
+				  FontWeight="Bold"
+				  BorderBrush="#FF0E0D0D"
+				  FontFamily="Baskerville Old Face"
+				  IsEnabled="False" Margin="25,15,25,15" Width="120"
+						/>
+				</StackPanel>
 			</StackPanel>
-			<!-- </Expander> -->
 		</ContentControl>
-		<Button Content="Agregar nuevo"
-	  HorizontalAlignment="Left"
-	  VerticalAlignment="Top"
-	  Height="28"
-	  Width="134"
-	  Click="ButtonAgregar"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="488,526,0,0"
-	  FontFamily="Baskerville Old Face"/>
 	</Grid>
 </Window>
