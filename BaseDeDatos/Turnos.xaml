@@ -118,15 +118,15 @@
 
 
 
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="325,92,369,378">
 
 		<ListView x:Name="medicosListView"
 					Width="Auto"
 					Height="Auto"
-					Margin="315,92,357,430"
-					Style="{StaticResource ListViewLindo2}"
+                  Background="Transparent"
+                  BorderThickness="0"
 					SelectionChanged="medicosListView_SelectionChanged"
-					Background="#A5FFFFFF"
-					BorderBrush="#72828790">
+					>
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="Dni"
@@ -144,7 +144,7 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
-
+		</ContentControl>
 
 
 

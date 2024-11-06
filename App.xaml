@@ -11,6 +11,67 @@
 	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,TextBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
 	
 	
+		<Style x:Key="LabelLindo" TargetType="Label">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="Gray"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Label">
+						<Border Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="10">
+							<Border.Effect>
+								<DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="4" Opacity="0.5"/>
+							</Border.Effect>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	
+    <Style x:Key="ContentControlLindo" TargetType="ContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContentControl">
+                    <Border 
+                        Background="White" 
+                        CornerRadius="10" 
+                        Padding="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect 
+                                Color="Black" 
+                                ShadowDepth="8" 
+                                Opacity="0.8" 
+                                BlurRadius="15"/>
+                        </Border.Effect>
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
         <!-- Estilo de TextBox con sombreado y bordes redondeados -->
         <Style x:Key="TextBoxLindo1" TargetType="TextBox">
