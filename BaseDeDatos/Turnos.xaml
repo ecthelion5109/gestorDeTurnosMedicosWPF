@@ -20,16 +20,17 @@
 			<ImageBrush ImageSource="/images/otroFondo.png"/>
 		</Grid.Background>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}"  Margin="461,378,364,27">
+		<ContentControl Style="{StaticResource ContentControlLindo}"  Margin="40,113,784,292">
 			<Calendar x:Name="CalendarioTurnos"
                           HorizontalAlignment="Center"
 					  Background="Transparent"
+					  Margin = "5,5,5,5"
 					  BorderThickness="0"
                           VerticalAlignment="Center"
                           SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 		</ContentControl>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="675,43,32,30">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="675,94,32,30">
 			<ListView x:Name="turnosListView"
 						 d:ItemsSource="{d:SampleData ItemCount=5}"
 					  Background="Transparent"
@@ -117,94 +118,77 @@
                        Height="125"
                        Width="374"
                        FontFamily="Ringbearer"
-                       Margin="55,43,0,0"
+                       Margin="675,0,0,0"
                        FontWeight="Bold"/>
 
 
 
 
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="205,92,369,378">
-			<ListView x:Name="medicosListView"
-						Width="Auto"
-						Height="Auto"
-					  Background="Transparent"
-					  BorderThickness="0"
-						SelectionChanged="medicosListView_SelectionChanged"
-						>
-				<ListView.View>
-					<GridView>
-						<GridViewColumn Header="Dni"
-									DisplayMemberBinding="{Binding Dni}"
-									Width="auto"/>
-						<GridViewColumn Header="Nombre"
-									DisplayMemberBinding="{Binding Name}"
-									Width="auto"/>
-						<GridViewColumn Header="Apellido"
-									DisplayMemberBinding="{Binding LastName}"
-									Width="auto"/>
-						<GridViewColumn Header="Especialidad"
-									DisplayMemberBinding="{Binding Especialidad}"
-									Width="auto"/>
-					</GridView>
-				</ListView.View>
-			</ListView>
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="257,104,592,206">
+			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
+			<StackPanel Orientation="Vertical" Background="Transparent">
+				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoDni" Margin="0,0,0,10" />
+
+				<TextBlock Text="Nombre:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoNombre" Margin="0,0,0,10" />
+
+				<TextBlock Text="Apellido:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoApellido" Margin="0,0,0,10" />
+
+				<TextBlock Text="Especialidad:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoEspecialidad" Margin="0,0,0,10" />
+			</StackPanel>
+			<!-- </Expander> -->
 		</ContentControl>
 
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="205,260,369,230">
-			<ListView x:Name="pacientesListView"
-				  ItemsSource="{Binding PacientesList}"
-				  Width="Auto"
-				  Height="Auto"
-					  Background="Transparent"
-					  BorderThickness="0"
-				  SelectionChanged="pacientesListView_SelectionChanged"
-				  d:ItemsSource="{d:SampleData ItemCount=5}"
-				>
-				<ListView.View>
-					<GridView>
-						<!-- Dni Column -->
-						<GridViewColumn Header="Dni"
-					  DisplayMemberBinding="{Binding Dni}"
-					  Width="auto"/>
-						<!-- Name Column -->
-						<GridViewColumn Header="Nombre"
-					  DisplayMemberBinding="{Binding Name}"
-					  Width="auto"/>
 
-						<GridViewColumn Header="Apellido"
-					  DisplayMemberBinding="{Binding LastName}"
-					  Width="auto"/>
 
-						<GridViewColumn Header="Email"
-					  DisplayMemberBinding="{Binding Email}"
-					  Width="auto"/>
 
-						<GridViewColumn Header="Teléfono"
-					  DisplayMemberBinding="{Binding Telefono}"
-					  Width="auto"/>
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="461,101,364,170">
+			<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
+			<StackPanel Orientation="Vertical" Background="Transparent">
+				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtPacienteDni" Margin="0,0,0,10" />
 
-					</GridView>
-				</ListView.View>
-			</ListView>
+				<TextBlock Text="Nombre:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtPacienteNombre" Margin="0,0,0,10" />
+
+				<TextBlock Text="Apellido:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtPacienteApellido" Margin="0,0,0,10" />
+
+				<TextBlock Text="Correo:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtPacienteEmail" Margin="0,0,0,10" />
+
+				<TextBlock Text="Telefono:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,10" />
+			</StackPanel>
+			<!-- </Expander> -->
 		</ContentControl>
-		
-		
-		
+
+
+
+
+
+
+
+
+
 		<Label Content="Medico"
 	  HorizontalAlignment="Left"
 	  VerticalAlignment="Top"
 	  FontSize="25"
 	  FontFamily="Ringbearer"
-	  Margin="434,43,0,0"
+	  Margin="296,62,0,0"
 	  FontWeight="Bold"/>
 		<Label Content="Paciente"
 	  HorizontalAlignment="Left"
 	  VerticalAlignment="Top"
 	  FontSize="25"
 	  FontFamily="Ringbearer"
-	  Margin="432,211,0,0"
+	  Margin="500,62,0,0"
 	  FontWeight="Bold"/>
 	</Grid>
 </Window>

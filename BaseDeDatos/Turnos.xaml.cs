@@ -103,11 +103,25 @@ namespace ClinicaMedica {
 						DataTable tablita = new DataTable();
 						adaptador.Fill(tablita);
 
-						medicosListView.ItemsSource = tablita.DefaultView;
+						if (tablita.Rows.Count > 0) {
+							DataRow fila = tablita.Rows[0];
+
+							txtMedicoDni.Text = fila["Dni"].ToString();
+							txtMedicoNombre.Text = fila["Name"].ToString();
+							txtMedicoApellido.Text = fila["LastName"].ToString();
+							txtMedicoEspecialidad.Text = fila["Especialidad"].ToString();
+						}
+						else {
+							// Limpiar los TextBox si no se encuentra el médico
+							txtMedicoDni.Text = "";
+							txtMedicoNombre.Text = "";
+							txtMedicoApellido.Text = "";
+							txtMedicoEspecialidad.Text = "";
+						}
 					}
 				}
 			}
-			medicosListView.SelectedValuePath = "Id";
+			// medicosListView.SelectedValuePath = "Id";
 			
 			
 			
@@ -115,8 +129,6 @@ namespace ClinicaMedica {
 			
 
 			
-			
-
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
 
@@ -135,11 +147,28 @@ namespace ClinicaMedica {
 						DataTable tablita = new DataTable();
 						adaptador.Fill(tablita);
 
-						pacientesListView.ItemsSource = tablita.DefaultView;
+						if (tablita.Rows.Count > 0) {
+							DataRow fila = tablita.Rows[0];
+
+							txtPacienteDni.Text = fila["Dni"].ToString();
+							txtPacienteNombre.Text = fila["Name"].ToString();
+							txtPacienteApellido.Text = fila["LastName"].ToString();
+							txtPacienteEmail.Text = fila["Email"].ToString();
+							txtPacienteTelefono.Text = fila["Telefono"].ToString();
+						}
+						else {
+							// Limpiar los Labels si no se encuentra el paciente
+							txtPacienteDni.Text = "";
+							txtPacienteNombre.Text = "";
+							txtPacienteApellido.Text = "";
+							txtPacienteEmail.Text = "";
+							txtPacienteTelefono.Text = "";
+						}
 					}
 				}
 			}
-			pacientesListView.SelectedValuePath = "Id";
+
+			// pacientesListView.SelectedValuePath = "Id";
 			
 			
 			

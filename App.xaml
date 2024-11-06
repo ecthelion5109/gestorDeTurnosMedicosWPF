@@ -8,71 +8,76 @@
 
 
 
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,TextBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
-	
-	
-		<Style x:Key="LabelLindo" TargetType="Label">
-			<Setter Property="Background" Value="White"/>
-			<Setter Property="BorderBrush" Value="Gray"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="Padding" Value="10"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Label">
-						<Border Background="{TemplateBinding Background}"
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,TextBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+
+
+        <Style x:Key="LabelLindo" TargetType="Label">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border Background="{TemplateBinding Background}"
 								BorderBrush="{TemplateBinding BorderBrush}"
 								BorderThickness="{TemplateBinding BorderThickness}"
 								CornerRadius="10">
-							<Border.Effect>
-								<DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="4" Opacity="0.5"/>
-							</Border.Effect>
-							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	
-    <Style x:Key="ContentControlLindo" TargetType="ContentControl">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContentControl">
-                    <Border 
-                        Background="White" 
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="4" Opacity="0.5"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ContentControlLindo" TargetType="ContentControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <Border 
                         CornerRadius="10" 
                         Padding="10"
                         BorderBrush="Black" 
-                        BorderThickness="1">
-                        <Border.Effect>
-                            <DropShadowEffect 
+                        BorderThickness="0">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFB9B9B9"/>
+                                    <GradientStop Color="#FFE8E8E8" Offset="0.738"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border.Effect>
+                                <DropShadowEffect 
                                 Color="Black" 
                                 ShadowDepth="8" 
-                                Opacity="0.8" 
-                                BlurRadius="15"/>
-                        </Border.Effect>
-                        <ContentPresenter />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+                                Opacity="1" 
+                                BlurRadius="7"/>
+                            </Border.Effect>
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Estilo de TextBox con sombreado y bordes redondeados -->
         <Style x:Key="TextBoxLindo1" TargetType="TextBox">
             <Setter Property="Template">
@@ -88,8 +93,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-	
-	
+
+
         <Style x:Key="TextBoxLindo2" TargetType="TextBox">
             <Setter Property="Template">
                 <Setter.Value>
@@ -111,7 +116,7 @@
             </Setter>
         </Style>
 
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,ComboBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,ComboBoxes,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Estilo para ComboBox con sombreado y bordes redondeados -->
         <Style x:Key="ComboBoxLindo" TargetType="ComboBox">
             <Setter Property="Template">
@@ -181,36 +186,36 @@
             </Setter>
         </Style>
 
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,DatePickers,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,DatePickers,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="DatePickerLindo" TargetType="DatePicker">
             <!-- <Setter Property="Template"> -->
-                <!-- <Setter.Value> -->
-                    <!-- <ControlTemplate TargetType="DatePicker"> -->
-                        <!-- <Border CornerRadius="5" -->
-                                <!-- Background="White" -->
-                                <!-- BorderBrush="Gray" -->
-                                <!-- BorderThickness="1"> -->
-                            <!-- <Border.Effect> -->
-                                <!-- <DropShadowEffect Color="Black" -->
-                                                  <!-- BlurRadius="20" -->
-                                                  <!-- ShadowDepth="12"/> -->
-                            <!-- </Border.Effect> -->
-                            <!-- <Grid> -->
-                                <!-- <DatePickerTextBox x:Name="PART_TextBox" -->
-                                                   <!-- HorizontalAlignment="Stretch" -->
-                                                   <!-- VerticalAlignment="Center" -->
-                                                   <!-- Background="Transparent" -->
-                                                   <!-- IsReadOnly="True"/> -->
-                                <!-- <Button x:Name="PART_Button" -->
-                                        <!-- Content="▼" -->
-                                        <!-- Width="20" -->
-                                        <!-- HorizontalAlignment="Right" -->
-                                        <!-- VerticalAlignment="Center" -->
-                                        <!-- Focusable="False"/> -->
-                            <!-- </Grid> -->
-                        <!-- </Border> -->
-                    <!-- </ControlTemplate> -->
-                <!-- </Setter.Value> -->
+            <!-- <Setter.Value> -->
+            <!-- <ControlTemplate TargetType="DatePicker"> -->
+            <!-- <Border CornerRadius="5" -->
+            <!-- Background="White" -->
+            <!-- BorderBrush="Gray" -->
+            <!-- BorderThickness="1"> -->
+            <!-- <Border.Effect> -->
+            <!-- <DropShadowEffect Color="Black" -->
+            <!-- BlurRadius="20" -->
+            <!-- ShadowDepth="12"/> -->
+            <!-- </Border.Effect> -->
+            <!-- <Grid> -->
+            <!-- <DatePickerTextBox x:Name="PART_TextBox" -->
+            <!-- HorizontalAlignment="Stretch" -->
+            <!-- VerticalAlignment="Center" -->
+            <!-- Background="Transparent" -->
+            <!-- IsReadOnly="True"/> -->
+            <!-- <Button x:Name="PART_Button" -->
+            <!-- Content="▼" -->
+            <!-- Width="20" -->
+            <!-- HorizontalAlignment="Right" -->
+            <!-- VerticalAlignment="Center" -->
+            <!-- Focusable="False"/> -->
+            <!-- </Grid> -->
+            <!-- </Border> -->
+            <!-- </ControlTemplate> -->
+            <!-- </Setter.Value> -->
             <!-- </Setter> -->
         </Style>
 
@@ -233,8 +238,8 @@
 
 
 
-		
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,LISTVIEWS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,LISTVIEWS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="ListViewLindo1" TargetType="ListView">
             <Setter Property="Template">
                 <Setter.Value>
@@ -256,54 +261,54 @@
                 </Setter.Value>
             </Setter>
         </Style>
-		<Style x:Key="ListViewLindo2" TargetType="ListView">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="ListView">
-						<Border CornerRadius="10"
+        <Style x:Key="ListViewLindo2" TargetType="ListView">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border CornerRadius="10"
 								BorderBrush="Black"
 								BorderThickness="2"
 								Background="White">
-							<Border.Effect>
-								<DropShadowEffect Color="Black"
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black"
 										BlurRadius="30"
 										ShadowDepth="10"/>
-							</Border.Effect>
-							<ScrollViewer x:Name="PART_ScrollViewer"
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ScrollViewer"
 									Padding="5"
 									Focusable="false">
-								<ItemsPresenter/>
-							</ScrollViewer>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
 
 
 
 
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,CALENDARIOS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,CALENDARIOS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <!-- Estilo de Calendar con sombreado y bordes redondeados -->
-		<Style x:Key="CalendarLindo1">
-			<!-- TargetType="Calendar"> -->
+        <Style x:Key="CalendarLindo1">
+            <!-- TargetType="Calendar"> -->
             <!-- <Setter Property="Template"> -->
-                <!-- <Setter.Value> -->
-                    <!-- <ControlTemplate TargetType="Calendar"> -->
-                        <!-- <Border CornerRadius="10" -->
-                                <!-- Background="White" -->
-                                <!-- BorderBrush="Gray" -->
-                                <!-- BorderThickness="1"> -->
-                            <!-- <Border.Effect> -->
-                                <!-- <DropShadowEffect Color="Gray" -->
-                                                  <!-- BlurRadius="8" -->
-                                                  <!-- ShadowDepth="2"/> -->
-                            <!-- </Border.Effect> -->
-                        <!-- </Border> -->
-                    <!-- </ControlTemplate> -->
-                <!-- </Setter.Value> -->
+            <!-- <Setter.Value> -->
+            <!-- <ControlTemplate TargetType="Calendar"> -->
+            <!-- <Border CornerRadius="10" -->
+            <!-- Background="White" -->
+            <!-- BorderBrush="Gray" -->
+            <!-- BorderThickness="1"> -->
+            <!-- <Border.Effect> -->
+            <!-- <DropShadowEffect Color="Gray" -->
+            <!-- BlurRadius="8" -->
+            <!-- ShadowDepth="2"/> -->
+            <!-- </Border.Effect> -->
+            <!-- </Border> -->
+            <!-- </ControlTemplate> -->
+            <!-- </Setter.Value> -->
             <!-- </Setter> -->
         </Style>
 
@@ -331,7 +336,7 @@
 
 
 
-	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="BotonRedondeado"
                 TargetType="{x:Type Button}">
             <Setter Property="Foreground"
