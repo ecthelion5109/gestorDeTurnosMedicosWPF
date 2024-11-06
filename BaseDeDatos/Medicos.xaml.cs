@@ -103,7 +103,13 @@ namespace ClinicaMedica {
 			}
 		}
 		//------------------botonesParaCrear------------------//
-		private void ButtonAgregar(object sender, RoutedEventArgs e) {
+		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
+		private void ButtonAgregarPaciente(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
+		}
+		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
 		}
 		//---------------------botonesDeVolver-------------------//

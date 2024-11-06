@@ -94,7 +94,7 @@
 							VerticalAlignment="Top"
 							Height="35"
 							Width="150"
-							Click="ButtonAgregar"
+							Click="ButtonAgregarPaciente"
 							FontSize="20"
 							Style="{StaticResource BotonRedondeado}"
 							FontWeight="Bold"

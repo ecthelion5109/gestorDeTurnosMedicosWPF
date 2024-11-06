@@ -18,197 +18,128 @@ using System.Data;
 
 namespace ClinicaMedica {
 	public partial class Turnos : Window {
-		private Turno? SelectedTurno;
+		private static Medico? SelectedMedico;
+		private static Turno? SelectedTurno;
+		private static Paciente? SelectedPaciente;
 		
 		public Turnos() {
             InitializeComponent();
 		}
 
-		//----------------------eventosRefresh-------------------//
-		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
-			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				MiConexion.Open();
+		//----------------------ClearMetohds-------------------//
+		private void ClearMedicoUI(){
+			buttonModificarMedico.IsEnabled = false;
+			SelectedMedico = null;
+			turnosListView.ItemsSource = null;
+			ClearTurnoUI();
+		}
 
-				string consulta = @"
-					SELECT 
-						T.Id,
-						CONCAT(P.Dni, ' ', P.Name, ' ', P.LastName) AS PacienteConcat,
-						CONCAT(M.Dni, ' ', M.Name, ' ', M.LastName) AS MedicoConcat,
-						FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
-						T.Hora
-					FROM 
-						Turno T
-					JOIN 
-						Paciente P ON T.PacienteId = P.Id
-					JOIN 
-						Medico M ON T.MedicoId = M.Id
-					WHERE
-						T.Fecha = @Fecha;
-				";
-				// string consulta = @"
-					// SELECT * FROM Turno;
-				// ";
+		private void ClearTurnoUI(){
+			buttonModificarTurno.IsEnabled = false;
+			SelectedTurno = null;
+			ClearPacienteUI();
+		}
 
-				using (var command = new SqlCommand(consulta, MiConexion)) {
-					command.Parameters.AddWithValue("@Fecha", CalendarioTurnos.SelectedDate?.Date);
-
-					using (var adaptador = new SqlDataAdapter(command)) {
-						DataTable tablita = new DataTable();
-						adaptador.Fill(tablita);
-
-						turnosListView.ItemsSource = tablita.DefaultView;
-					}
-				}
+		private void ClearPacienteUI(){
+			buttonModificarPaciente.IsEnabled = false;
+			txtPacienteDni.Text = "";
+			txtPacienteNombre.Text = "";
+			txtPacienteApellido.Text = "";
+			txtPacienteEmail.Text = "";
+			txtPacienteTelefono.Text = "";
+		}
+		
+		
+		//----------------------LlenarMethods-------------------//
+		private void UpdateMedicoUI(){
+			if (SelectedMedico != null){
+				buttonModificarMedico.IsEnabled = true;
+				turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
 			}
+			else{
+				ClearMedicoUI();
+			}
+		}
 
-			turnosListView.SelectedValuePath = "Id";
-		}
-		//----------------------eventosRefresh-------------------//
-		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			llenarIdentidadesForaneas();
-		}
-		
-		
-		private void llenarIdentidadesForaneas() {
-			if (turnosListView.SelectedValue != null) {
-				SelectedTurno = (Turno) turnosListView.SelectedItem;
+		private void UpdateTurnoUI(){
+			if (SelectedTurno != null){
 				buttonModificarTurno.IsEnabled = true;
-				// MessageBox.Show($"Selected Turno Id: {SelectedMedico.Id}");
+				SelectedPaciente = BaseDeDatosSQL.DictPacientes[SelectedTurno.PacienteId];
+				UpdatePacienteUI();
 			}
-			else {
-				SelectedTurno = null;
-				buttonModificarTurno.IsEnabled = false;
+			else{
+				ClearTurnoUI();
 			}
-			
-			
-			
-			if (SelectedTurno is null) {
-				txtMedicoDni.Text = "";
-				txtMedicoNombre.Text = "";
-				txtMedicoApellido.Text = "";
-				txtMedicoEspecialidad.Text = "";
-			}
-			else {
-				txtMedicoDni.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Dni;
-				txtMedicoNombre.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Name;
-				txtMedicoApellido.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].LastName;
-				txtMedicoEspecialidad.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Especialidad;
-			}
-
-			
-			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				MiConexion.Open();
-
-				string consulta = @"
-					SELECT 
-						Dni, Name, LastName, Email, Telefono
-					FROM 
-						Paciente
-					WHERE
-						Id = @PacienteId
-				";
-				using (var command = new SqlCommand(consulta, MiConexion)) {
-					command.Parameters.AddWithValue("@PacienteId", SelectedTurno.PacienteId);
-
-					using (var adaptador = new SqlDataAdapter(command)) {
-						DataTable tablita = new DataTable();
-						adaptador.Fill(tablita);
-
-						if (tablita.Rows.Count > 0) {
-							DataRow fila = tablita.Rows[0];
-
-							txtPacienteDni.Text = fila["Dni"].ToString();
-							txtPacienteNombre.Text = fila["Name"].ToString();
-							txtPacienteApellido.Text = fila["LastName"].ToString();
-							txtPacienteEmail.Text = fila["Email"].ToString();
-							txtPacienteTelefono.Text = fila["Telefono"].ToString();
-						}
-						else {
-							// Limpiar los Labels si no se encuentra el paciente
-							txtPacienteDni.Text = "";
-							txtPacienteNombre.Text = "";
-							txtPacienteApellido.Text = "";
-							txtPacienteEmail.Text = "";
-							txtPacienteTelefono.Text = "";
-						}
-					}
-				}
-			}
-
-			// pacientesListView.SelectedValuePath = "Id";
-			
-			
-			
-			
 		}
+
+		private void UpdatePacienteUI(){
+			if (SelectedPaciente != null){
+				txtPacienteDni.Text = SelectedPaciente.Dni;
+				txtPacienteNombre.Text = SelectedPaciente.Name;
+				txtPacienteApellido.Text = SelectedPaciente.LastName;
+				txtPacienteEmail.Text = SelectedPaciente.Email;
+				txtPacienteTelefono.Text = SelectedPaciente.Telefono;
+				buttonModificarPaciente.IsEnabled = true;
+			}
+			else{
+				ClearPacienteUI();
+			}
+		}
+		
+		
 		//----------------------eventosRefresh-------------------//
-
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+			//SelectedMedico = (Medico)medicosListView.SelectedItem;
+			//UpdateMedicoUI();
 		}
-
-		private void pacientesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			//SelectedTurno = (Turno)turnosListView.SelectedItem;
+			//UpdateTurnoUI();
 		}
-		private void Window_Activated(object sender, EventArgs e) {
-			/* //GALLEGO STYLE
-			string consulta = @"
-                SELECT 
-					T.Id,
-                    CONCAT(P.Name, ' ', P.LastName) AS Paciente,
-                    CONCAT(M.Name, ' ', M.LastName) AS Medico,
-                    FORMAT(T.Fecha, 'yyyy-MM-dd') AS Fecha,
-					T.Hora
-                FROM 
-                    Turno T
-                JOIN 
-                    Paciente P ON T.PacienteId = P.Id
-                JOIN 
-                    Medico M ON T.MedicoId = M.Id;
-            ";
-			SqlDataAdapter adaptador = new SqlDataAdapter(consulta, BaseDeDatosSQL.connectionString);
-			using (adaptador) {
-				DataTable tablita = new DataTable();
-				adaptador.Fill(tablita);
-
-				turnosListView.ItemsSource = tablita.DefaultView;
+		private void Window_Activated(object sender, EventArgs e) {	
+			//medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
+			//ClearMedicoUI();  // Clear all selections and UI elements
+		}
+		
+		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
+		}
+		
+		//---------------------botonesDeModificar-------------------//
+		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
+			if (SelectedTurno != null) {
+				this.AbrirComoDialogo<TurnosModificar>(SelectedTurno);
 			}
-			turnosListView.SelectedValuePath = "Id";
-			*/
-			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
 		}
-		//------------------botonesParaModificarDB------------------//
-		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<TurnosModificar>();
+		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
+			if (SelectedMedico != null) {
+				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico);
+			}
+		}
+		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
+			if (SelectedPaciente != null) {
+				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
+			}
+		}
+		
+		
+		//------------------botonesParaCrear------------------//
+		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
+		private void ButtonAgregarPaciente(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
+		}
+		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
 		}
 		//---------------------botonesDeVolver-------------------//
-        public void ButtonSalir(object sender, RoutedEventArgs e) {
-            this.Salir();
-        }
-        private void ButtonHome(object sender, RoutedEventArgs e) {
+		private void ButtonSalir(object sender, RoutedEventArgs e) {
+			this.Salir();
+		}
+		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
 
-		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<TurnosModificar>(SelectedTurno);
-		}
-
-		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
-
-		}
-
-		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
-
-		}
-
-		// private void UnselectTurno(object sender, RoutedEventArgs e) {
-		// turnosListView.SelectedValue = null;
-		// SelectedTurno = null;
-		// txtMedicoDni.Text = "";
-		// txtMedicoNombre.Text = "";
-		// txtMedicoApellido.Text = "";
-		// txtMedicoEspecialidad.Text = "";
-		// }
-		//------------------------Fin.Turnos----------------------//
-	}
+        //------------------------Fin.Turnos----------------------//
+    }
 }

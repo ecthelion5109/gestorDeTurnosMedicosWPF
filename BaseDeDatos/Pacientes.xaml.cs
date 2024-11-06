@@ -35,10 +35,6 @@ namespace ClinicaMedica
 		}
 
 
-		private void ButtonAgregar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
-
-		}
 
 		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
 			if (SelectedPaciente != null) {
@@ -59,13 +55,21 @@ namespace ClinicaMedica
 
 		}
 
+
+		//------------------botonesParaCrear------------------//
+		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
+		private void ButtonAgregarPaciente(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
+		}
+		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<MedicosModificar>(); 
+		}
 		//---------------------botones.Salir-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-
-
-		//---------------------botones.VolverAHome-------------------//
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
