@@ -9,7 +9,7 @@ namespace ClinicaMedica {
 		public Dictionary<string, Dictionary<string, object>> MiDiccionario;
 		public static Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
 		public static Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
-		public static List<Turno> DictTurnos { get; private set; } = new ();
+		public static List<Turno> ListTurnos { get; private set; } = new ();
 		
 		
 		public BaseDeDatosJSON() {
@@ -56,6 +56,10 @@ namespace ClinicaMedica {
 			return true;
 		}
 
+		//------------------------public.READ----------------------//
+		public List<Turno> ReadTurnosWhereMedicoId(string medicoId) {
+			return ListTurnos.Where(t => t.MedicoId == medicoId).ToList();
+		}
 		//------------------------public.READ----------------------//
 		public List<Medico> ReadMedicos() {
 			return this.MiDiccionario["medicos"].Values.Cast<Medico>().ToList();

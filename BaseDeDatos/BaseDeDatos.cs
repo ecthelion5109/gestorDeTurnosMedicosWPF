@@ -3,7 +3,16 @@ namespace ClinicaMedica {
 
 		//Dictionary<string, Medico> DictMedicos;
 		//Dictionary<string, Paciente> DictPacientes;
-		//List<Turno> DictTurnos;
+		//List<Turno> ListTurnos;
+
+		// Read methods
+		//List<Medico> ReadMedicos();
+		//List<Paciente> ReadPacientes();
+		List<Turno> ReadTurnosWhereMedicoId(string medicoId);
+
+
+		
+
 		// Read methods
 		List<Medico> ReadMedicos();
 		List<Paciente> ReadPacientes();

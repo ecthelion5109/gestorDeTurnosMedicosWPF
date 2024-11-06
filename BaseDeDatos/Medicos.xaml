@@ -28,50 +28,55 @@
 			</Grid.RowDefinitions>
 
 			<!-- Tituloi -->
-			<Label Content="Médicos"
-				   HorizontalAlignment="Left"
-				   VerticalAlignment="Top"
-				   FontSize="72"
-				   Height="102"
-				   Width="335"
-				   FontFamily="Ringbearer"
-				   Margin="553,15,0,0"
-					Grid.RowSpan="2"/>
 
 			<!-- ListView -->
-			<ListView Name="medicosListView"
-					  Width="Auto"
-					  Height="Auto"
-					  Margin="650,75,34,105"
-					  SelectionChanged="medicosListView_SelectionChanged"
-					  Background="#A5FFFFFF"
-					  BorderBrush="#72828790" Grid.Row="1">
-				<ListView.View>
-					<GridView>
-						<GridViewColumn Header="Dni"
-										DisplayMemberBinding="{Binding Dni}"
-										Width="auto"/>
-						<GridViewColumn Header="Name"
-										DisplayMemberBinding="{Binding Name}"
-										Width="auto"/>
-						<GridViewColumn Header="LastName"
-										DisplayMemberBinding="{Binding LastName}"
-										Width="auto"/>
-						<GridViewColumn Header="Especialidad"
-										DisplayMemberBinding="{Binding Especialidad}"
-										Width="auto"/>
-						<GridViewColumn Header="Teléfono"
-										DisplayMemberBinding="{Binding Telefono}"
-										Width="auto"/>
-						<GridViewColumn Header="Hace guardia"
-										DisplayMemberBinding="{Binding Guardia}"
-										Width="auto"/>
-						<GridViewColumn Header="Sueldo minimo"
-										DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
-										Width="auto"/>
-					</GridView>
-				</ListView.View>
-			</ListView>
+			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="10,17,499,175" Grid.RowSpan="2">
+
+				<StackPanel Orientation="Vertical" Background="Transparent">
+					<Label Content="Médicos"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Top"
+						   FontSize="72"
+						   Height="102"
+						   Width="335"
+						   FontFamily="Ringbearer"
+							Grid.RowSpan="2"/>
+					<ListView Name="medicosListView"
+							  Width="Auto"
+							  Height="Auto"
+							 
+							  Background="Transparent"
+							  BorderThickness="0"
+							  SelectionChanged="medicosListView_SelectionChanged"
+							  BorderBrush="#72828790">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="Dni"
+												DisplayMemberBinding="{Binding Dni}"
+												Width="auto"/>
+								<GridViewColumn Header="Name"
+												DisplayMemberBinding="{Binding Name}"
+												Width="auto"/>
+								<GridViewColumn Header="LastName"
+												DisplayMemberBinding="{Binding LastName}"
+												Width="auto"/>
+								<GridViewColumn Header="Especialidad"
+												DisplayMemberBinding="{Binding Especialidad}"
+												Width="auto"/>
+								<GridViewColumn Header="Teléfono"
+												DisplayMemberBinding="{Binding Telefono}"
+												Width="auto"/>
+								<GridViewColumn Header="Hace guardia"
+												DisplayMemberBinding="{Binding Guardia}"
+												Width="auto"/>
+								<GridViewColumn Header="Sueldo minimo"
+												DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
+												Width="auto"/>
+							</GridView>
+						</ListView.View>
+					</ListView>
+				</StackPanel>
+			</ContentControl>
 
 			<!-- Botones -->
 			<Button
@@ -135,37 +140,7 @@
 					IsEnabled="False"
 					Grid.Row="1">
 			</Button>
-
-			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="336,75,414,191" Grid.Row="1">
-				<ListView x:Name="turnosListView"
-						 
-					  Background="Transparent"
-					  BorderThickness="0"
-							 >
-					<ListView.View>
-						<GridView>
-							<GridViewColumn Header="Número"
-															DisplayMemberBinding="{Binding SelectedMedico.Id}"
-															Width="auto"/>
-							<GridViewColumn Header="Fecha"
-															DisplayMemberBinding="{Binding SelectedMedico.Name}"
-															Width="auto"/>
-							<GridViewColumn Header="Hora"
-															DisplayMemberBinding="{Binding SelectedMedico.LastName}"
-															Width="auto"/>
-						</GridView>
-					</ListView.View>
-				</ListView>
-			</ContentControl>
-
-			<Label Content="Turnos"
-	   HorizontalAlignment="Left"
-	   VerticalAlignment="Top"
-	   FontSize="25"
-	   FontFamily="Ringbearer"
-	   Margin="419,57,0,0"
-	   FontWeight="Bold" Grid.RowSpan="2"/>
-			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="100,38,724,171" Grid.Row="1">
+			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="814,17,10,226" Grid.RowSpan="2">
 				<!-- </Expander> -->
 				<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 				<StackPanel Orientation="Vertical" Background="Transparent">
@@ -187,6 +162,33 @@
 
 					<TextBlock Text="Telefono:" FontWeight="Bold" Margin="0,5,0,5" />
 					<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,10" />
+				</StackPanel>
+			</ContentControl>
+			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="550,17,239,226" Grid.RowSpan="2">
+				<StackPanel Orientation="Vertical" Background="Transparent">
+					<Label Content="Turnos"
+			   FontSize="35"
+			   FontFamily="Ringbearer"
+			   FontWeight="Bold" HorizontalAlignment="Center"/>
+					<ListView x:Name="turnosListView"
+			   Background="Transparent"
+			   BorderThickness="0"
+							 
+			   SelectionChanged="listViewTurnos_SelectionChanged">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="Número"
+						   DisplayMemberBinding="{Binding Id}"
+						   Width="auto"/>
+								<GridViewColumn Header="Fecha"
+						   DisplayMemberBinding="{Binding Fecha}"
+						   Width="auto"/>
+								<GridViewColumn Header="Hora"
+						   DisplayMemberBinding="{Binding Hora}"
+						   Width="auto"/>
+							</GridView>
+						</ListView.View>
+					</ListView>
 				</StackPanel>
 			</ContentControl>
 		</Grid>

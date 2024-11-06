@@ -36,6 +36,19 @@ namespace ClinicaMedica {
 			else {
 				buttonModificar.IsEnabled = false;
 			}
+			
+			
+			
+			// turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
+			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico.Id);
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 		//----------------------eventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
@@ -69,6 +82,25 @@ namespace ClinicaMedica {
 		}
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
+		}
+
+		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			Turno selectedTurno = (Turno) turnosListView.SelectedItem;
+
+			if (selectedTurno is null) {
+				txtPacienteDni.Text = "";
+				txtPacienteNombre.Text = "";
+				txtPacienteApellido.Text = "";
+				txtPacienteEmail.Text = "";
+				txtPacienteTelefono.Text = "";
+			}
+			else {
+				txtPacienteDni.Text = BaseDeDatosSQL.DictPacientes[selectedTurno.PacienteId].Dni;
+				txtPacienteNombre.Text = BaseDeDatosSQL.DictPacientes[selectedTurno.PacienteId].Name;
+				txtPacienteApellido.Text = BaseDeDatosSQL.DictPacientes[selectedTurno.PacienteId].LastName;
+				txtPacienteEmail.Text = BaseDeDatosSQL.DictPacientes[selectedTurno.PacienteId].Email;
+				txtPacienteTelefono.Text = BaseDeDatosSQL.DictPacientes[selectedTurno.PacienteId].Telefono;
+			}
 		}
 		//------------------------Fin.Medicos----------------------//
 	}

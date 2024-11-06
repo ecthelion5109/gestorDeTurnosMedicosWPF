@@ -9,7 +9,7 @@ namespace ClinicaMedica {
 		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 		static public Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
 		static public Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
-		static public List<Turno> DictTurnos { get; private set; } = new ();
+		static public List<Turno> ListTurnos { get; private set; } = new ();
 		
 		
 		public BaseDeDatosSQL() {
@@ -108,7 +108,7 @@ namespace ClinicaMedica {
 								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
 								Hora = TimeSpan.Parse(reader["Hora"].ToString()),
 						};
-						DictTurnos.Add(turno);
+						ListTurnos.Add(turno);
 					}
 				}
 			}
@@ -302,8 +302,13 @@ namespace ClinicaMedica {
 			// return pacienteList;
 		}
 
+		public List<Turno> ReadTurnosWhereMedicoId(string medicoId) {
+			// return ListTurnos;
+			return ListTurnos.Where(t => t.MedicoId == medicoId).ToList();
+		}
+
 		public List<Turno> ReadTurnos() {
-			return DictTurnos;
+			return ListTurnos;
 			// List<Turno> turnosList = new List<Turno>();
 			// string query = "SELECT * FROM Turno";
 			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
