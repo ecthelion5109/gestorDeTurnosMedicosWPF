@@ -40,7 +40,7 @@ namespace ClinicaMedica
 
 		}
 
-		private void ButtonModificar(object sender, RoutedEventArgs e) {
+		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
 			if (SelectedPaciente != null) {
 				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
 			}
@@ -50,11 +50,11 @@ namespace ClinicaMedica
 		private void pacientesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			if (pacientesListView.SelectedItem != null) {
 				SelectedPaciente = (Paciente)pacientesListView.SelectedItem;
-				buttonModificar.IsEnabled = true;
+				buttonModificarPaciente.IsEnabled = true;
 				//MessageBox.Show($"Selected Medico DNI: {SelectedMedico.Dni}");
 			}
 			else {
-				buttonModificar.IsEnabled = false;
+				buttonModificarPaciente.IsEnabled = false;
 			}
 
 		}
@@ -74,5 +74,5 @@ namespace ClinicaMedica
 
 			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes(); // ahora viene desde ventana activated
 		}
-	}
+    }
 }

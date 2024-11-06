@@ -57,8 +57,11 @@ namespace ClinicaMedica {
 		}
 
 		//------------------------public.READ----------------------//
-		public List<Turno> ReadTurnosWhereMedicoId(string medicoId) {
-			return ListTurnos.Where(t => t.MedicoId == medicoId).ToList();
+		public List<Turno> ReadTurnosWhereMedicoId(Medico instance) {
+			if (instance is null){
+				return null;
+			}
+			return ListTurnos.Where(t => t.MedicoId == instance.Id).ToList();
 		}
 		//------------------------public.READ----------------------//
 		public List<Medico> ReadMedicos() {
@@ -105,11 +108,11 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.DELETE----------------------//
 		
-		public bool DeleteMedico(string idToRemove) {
+		public bool DeleteMedico(Medico instancia) {
 			try {
-				this.MiDiccionario["medicos"].Remove(idToRemove);
+				this.MiDiccionario["medicos"].Remove(instancia.Id);
 				this.GuardarJson(); // Save changes to the database
-				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {idToRemove} del Json");
+				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} del Json");
 				return true;
 			} catch (Exception ex) {
 				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el medico", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -117,11 +120,11 @@ namespace ClinicaMedica {
 
 			}
 		}
-		public bool DeletePaciente(string idToRemove){
+		public bool DeletePaciente(Paciente instancia){
 			try {
-				this.MiDiccionario["pacientes"].Remove(idToRemove);
+				this.MiDiccionario["pacientes"].Remove(instancia.Id);
 				this.GuardarJson(); // Save changes to the database
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {idToRemove} del Json");
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} del Json");
 				return true;
 			} catch (Exception ex) { 
 				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el paciente", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -129,7 +132,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-        public bool DeleteTurno(string idToRemove) {
+        public bool DeleteTurno(Turno instancia) {
 			MessageBox.Show($"Sin implementar");
 			return false;
 		}

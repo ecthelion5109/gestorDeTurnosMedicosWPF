@@ -148,7 +148,7 @@ namespace ClinicaMedica {
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			//---------Checknulls-----------//
-			if (txtId.Content is null) {
+			if (SelectedTurno is null) {
 				MessageBox.Show($"No hay item seleccionado.");
 				return;
 			}
@@ -161,7 +161,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			if (App.BaseDeDatos.DeleteTurno(txtId.Content.ToString())){
+			if (App.BaseDeDatos.DeleteTurno(SelectedTurno)){
 				this.Close();
 			}
 		}

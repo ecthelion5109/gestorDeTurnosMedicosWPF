@@ -118,13 +118,13 @@
 			FontFamily="Baskerville Old Face"
 				Grid.Row="1">
 		</Button>
-		<Button x:Name="buttonModificar"
+		<Button x:Name="buttonModificarPaciente"
 				Content="Modificar paciente"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
 				Height="37"
 				Width="170"
-				Click="ButtonModificar"
+				Click="ButtonModificarPaciente"
 				FontSize="20"
 				Style="{StaticResource BotonRedondeado}"
 				FontWeight="Bold"

@@ -81,12 +81,12 @@ namespace ClinicaMedica {
 			*/
 			if (turnosListView.SelectedValue != null) {
 				SelectedTurno = (Turno) turnosListView.SelectedItem;
-				buttonModificar.IsEnabled = true;
+				buttonModificarTurno.IsEnabled = true;
 				// MessageBox.Show($"Selected Turno Id: {SelectedMedico.Id}");
 			}
 			else {
 				SelectedTurno = null;
-				buttonModificar.IsEnabled = false;
+				buttonModificarTurno.IsEnabled = false;
 			}
 			
 			
@@ -230,9 +230,6 @@ namespace ClinicaMedica {
 			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
 		}
 		//------------------botonesParaModificarDB------------------//
-		private void ButtonModificar(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<TurnosModificar>(SelectedTurno);
-		}
 		private void ButtonAgregar(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<TurnosModificar>();
 		}
@@ -244,14 +241,18 @@ namespace ClinicaMedica {
 			this.VolverAHome();
 		}
 
-		// private void UnselectTurno(object sender, RoutedEventArgs e) {
-			// turnosListView.SelectedValue = null;
-			// SelectedTurno = null;
-				// txtMedicoDni.Text = "";
-				// txtMedicoNombre.Text = "";
-				// txtMedicoApellido.Text = "";
-				// txtMedicoEspecialidad.Text = "";
-		// }
-		//------------------------Fin.Turnos----------------------//
-	}
+		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
+			this.AbrirComoDialogo<TurnosModificar>(SelectedTurno);
+		}
+
+        // private void UnselectTurno(object sender, RoutedEventArgs e) {
+        // turnosListView.SelectedValue = null;
+        // SelectedTurno = null;
+        // txtMedicoDni.Text = "";
+        // txtMedicoNombre.Text = "";
+        // txtMedicoApellido.Text = "";
+        // txtMedicoEspecialidad.Text = "";
+        // }
+        //------------------------Fin.Turnos----------------------//
+    }
 }

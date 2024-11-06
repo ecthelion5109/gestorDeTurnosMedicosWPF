@@ -245,32 +245,32 @@ namespace ClinicaMedica {
 		//------------------------READ----------------------//
 		public List<Medico> ReadMedicos() {
 			return DictMedicos.Values.ToList();
-			List<Medico> medicoList = new List<Medico>();
-			string query = "SELECT * FROM Medico";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (var command = new SqlCommand(query, connection)) {
-					using (var reader = command.ExecuteReader()) {
-						while (reader.Read()) {
-							Medico instancia = new Medico {
-								Name = reader["Name"]?.ToString(),
-								LastName = reader["LastName"]?.ToString(),
-								Dni = reader["Dni"]?.ToString(),
-								Provincia = reader["Provincia"]?.ToString(),
-								Domicilio = reader["Domicilio"]?.ToString(),
-								Localidad = reader["Localidad"]?.ToString(),
-								Especialidad = reader["Especialidad"]?.ToString(),
-								Telefono = reader["Telefono"]?.ToString(),
-								Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
-								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
-							};
-							medicoList.Add(instancia);
-						}
-					}
-				}
-			}
-			return medicoList;
+			// List<Medico> medicoList = new List<Medico>();
+			// string query = "SELECT * FROM Medico";
+			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				// connection.Open();
+				// using (var command = new SqlCommand(query, connection)) {
+					// using (var reader = command.ExecuteReader()) {
+						// while (reader.Read()) {
+							// Medico instancia = new Medico {
+								// Name = reader["Name"]?.ToString(),
+								// LastName = reader["LastName"]?.ToString(),
+								// Dni = reader["Dni"]?.ToString(),
+								// Provincia = reader["Provincia"]?.ToString(),
+								// Domicilio = reader["Domicilio"]?.ToString(),
+								// Localidad = reader["Localidad"]?.ToString(),
+								// Especialidad = reader["Especialidad"]?.ToString(),
+								// Telefono = reader["Telefono"]?.ToString(),
+								// Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
+								// FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								// SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
+							// };
+							// medicoList.Add(instancia);
+						// }
+					// }
+				// }
+			// }
+			// return medicoList;
 		}
 
 		public List<Paciente> ReadPacientes() {
@@ -302,9 +302,11 @@ namespace ClinicaMedica {
 			// return pacienteList;
 		}
 
-		public List<Turno> ReadTurnosWhereMedicoId(string medicoId) {
-			// return ListTurnos;
-			return ListTurnos.Where(t => t.MedicoId == medicoId).ToList();
+		public List<Turno> ReadTurnosWhereMedicoId(Medico instance) {
+			if (instance is null){
+				return null;
+			}
+			return ListTurnos.Where(t => t.MedicoId == instance.Id).ToList();
 		}
 
 		public List<Turno> ReadTurnos() {
@@ -332,7 +334,7 @@ namespace ClinicaMedica {
 		}
 		//------------------------UPDATE----------------------//
 		public bool UpdateMedico(Medico instancia, string originalDni) {
-			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Dni = @originalDni";
+			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
@@ -348,7 +350,7 @@ namespace ClinicaMedica {
 						command.Parameters.AddWithValue("@Guardia", instancia.Guardia);
 						command.Parameters.AddWithValue("@FechaIngreso", instancia.FechaIngreso);
 						command.Parameters.AddWithValue("@SueldoMinimoGarantizado", instancia.SueldoMinimoGarantizado);
-						command.Parameters.AddWithValue("@originalDni", originalDni);
+						command.Parameters.AddWithValue("@Id", instancia.Id);
 						command.ExecuteNonQuery();
 					}
 				}
@@ -372,7 +374,7 @@ namespace ClinicaMedica {
 			return false;
 		}
 		public bool UpdatePaciente(Paciente instancia, string originalDni) {
-			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Dni = @originalDni";
+			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
@@ -387,7 +389,7 @@ namespace ClinicaMedica {
 						sqlComando.Parameters.AddWithValue("@Domicilio", instancia.Domicilio);
 						sqlComando.Parameters.AddWithValue("@Localidad", instancia.Localidad);
 						sqlComando.Parameters.AddWithValue("@Provincia", instancia.Provincia);
-						sqlComando.Parameters.AddWithValue("@originalDni", originalDni);
+						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
 						sqlComando.ExecuteNonQuery();
 					}
 				}
@@ -450,18 +452,18 @@ namespace ClinicaMedica {
 
 
 		//------------------------DELETE----------------------//
-		public bool DeleteMedico(string dniToDelete) {
-			string query = "DELETE FROM Medico WHERE Dni = @dniToDelete";
+		public bool DeleteMedico(Medico instancia) {
+			string query = "DELETE FROM Medico WHERE Id = @Id";
 
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
 					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@dniToDelete", dniToDelete);
+						command.Parameters.AddWithValue("@Id", instancia.Id);
 						command.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {dniToDelete} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL");
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -476,17 +478,17 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
-		public bool DeletePaciente(string dniToDelete) {
-			string query = "DELETE FROM Paciente WHERE Dni = @dniToDelete";
+		public bool DeletePaciente(Paciente instancia) {
+			string query = "DELETE FROM Paciente WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
 					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@dniToDelete", dniToDelete);
+						command.Parameters.AddWithValue("@Id", instancia.Id);
 						command.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {dniToDelete} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL");
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -501,17 +503,18 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
-		public bool DeleteTurno(string idToDelete) {
-			string query = "DELETE FROM Turno WHERE Id = @idToDelete";
+		public bool DeleteTurno(Turno instancia) {
+			string query = "DELETE FROM Turno WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 					connection.Open();
 					using (SqlCommand command = new SqlCommand(query, connection)) {
-						command.Parameters.AddWithValue("@idToDelete", idToDelete);
+						command.Parameters.AddWithValue("@Id", instancia.Id);
 						command.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {idToDelete} de la Base de Datos SQL");
+				ListTurnos.Remove(instancia);
+				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} de la Base de Datos SQL");
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code

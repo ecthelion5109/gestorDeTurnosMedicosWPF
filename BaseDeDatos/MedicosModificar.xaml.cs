@@ -96,7 +96,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------Eliminar-----------//
-			if (App.BaseDeDatos.DeleteMedico(SelectedMedico.Dni)){
+			if (App.BaseDeDatos.DeleteMedico(SelectedMedico)){
 				this.Close(); // this.NavegarA<Medicos>();
 			}
 		}

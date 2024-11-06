@@ -118,13 +118,13 @@
                         FontFamily="Baskerville Old Face">
 		</Button>
 
-		<Button x:Name="buttonModificar"
+		<Button x:Name="buttonModificarTurno"
                         Content="Modificar turno"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Height="37"
                         Width="170"
-                        Click="ButtonModificar"
+                        Click="ButtonModificarTurno"
                         FontSize="20"
                         Style="{StaticResource BotonRedondeado}"
                         FontWeight="Bold"

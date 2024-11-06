@@ -8,7 +8,7 @@ namespace ClinicaMedica {
 		// Read methods
 		//List<Medico> ReadMedicos();
 		//List<Paciente> ReadPacientes();
-		List<Turno> ReadTurnosWhereMedicoId(string medicoId);
+		List<Turno> ReadTurnosWhereMedicoId(Medico instance);
 
 
 		
@@ -24,14 +24,14 @@ namespace ClinicaMedica {
 		bool CreateTurno(Turno instance);
 
 		// Update methods
-		bool UpdateMedico(Medico instance, string originalDni);
-		bool UpdatePaciente(Paciente instance, string originalDni);
-		bool UpdateTurno(Turno instance);
+		bool UpdateMedico(Medico instance, string originalDni);	//El dni es mas que nada para jsonMode
+		bool UpdatePaciente(Paciente instance, string originalDni);//El dni es mas que nada para jsonMode
+		bool UpdateTurno(Turno instance);//El dni es mas que nada para jsonMode
 
 		// Delete methods
-		bool DeleteMedico(string Id);
-		bool DeletePaciente(string Id);
-		bool DeleteTurno(string Id);
+		bool DeleteMedico(Medico instance);
+		bool DeletePaciente(Paciente instance);
+		bool DeleteTurno(Turno instance);
 		
 		
 		string LoadPacienteNombreCompletoFromDatabase(string Id);
