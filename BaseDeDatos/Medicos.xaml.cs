@@ -20,58 +20,75 @@ namespace ClinicaMedica {
 	
 		
 		//----------------------metodos-------------------//
-		
-		
-		
-		private void LLenarStackPanelPaciente(){
-			buttonModificarMedico.IsEnabled = true;
-			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
-			buttonModificarTurno.IsEnabled = true;
-			//derivado.
-			SelectedPaciente = BaseDeDatosSQL.DictPacientes[SelectedTurno.PacienteId];
-			txtPacienteDni.Text = SelectedPaciente.Dni;
-			txtPacienteNombre.Text = SelectedPaciente.Name;
-			txtPacienteApellido.Text = SelectedPaciente.LastName;
-			txtPacienteEmail.Text = SelectedPaciente.Email;
-			txtPacienteTelefono.Text = SelectedPaciente.Telefono;
-			buttonModificarPaciente.IsEnabled = true;
-		}
-		private void ClearStackPanelPaciente(){
+		private void ClearMedicoUI(){
 			buttonModificarMedico.IsEnabled = false;
-			SelectedTurno = null;
-			SelectedPaciente = null;
+			SelectedMedico = null;
 			turnosListView.ItemsSource = null;
+			ClearTurnoUI();
+		}
+
+		private void ClearTurnoUI(){
 			buttonModificarTurno.IsEnabled = false;
-			//derivado.
+			SelectedTurno = null;
+			ClearPacienteUI();
+		}
+
+		private void ClearPacienteUI(){
+			buttonModificarPaciente.IsEnabled = false;
 			txtPacienteDni.Text = "";
 			txtPacienteNombre.Text = "";
 			txtPacienteApellido.Text = "";
 			txtPacienteEmail.Text = "";
 			txtPacienteTelefono.Text = "";
-			buttonModificarPaciente.IsEnabled = false;
 		}
-		
-		
-		private void llenarStackPanels(){
-			if (SelectedMedico is null){
-				ClearStackPanelPaciente();
-			} else {
-				LLenarStackPanelPaciente();
+
+		private void UpdateMedicoUI(){
+			if (SelectedMedico != null){
+				buttonModificarMedico.IsEnabled = true;
+				turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
+			}
+			else{
+				ClearMedicoUI();
+			}
+		}
+
+		private void UpdateTurnoUI(){
+			if (SelectedTurno != null){
+				buttonModificarTurno.IsEnabled = true;
+				SelectedPaciente = BaseDeDatosSQL.DictPacientes[SelectedTurno.PacienteId];
+				UpdatePacienteUI();
+			}
+			else{
+				ClearTurnoUI();
+			}
+		}
+
+		private void UpdatePacienteUI(){
+			if (SelectedPaciente != null){
+				txtPacienteDni.Text = SelectedPaciente.Dni;
+				txtPacienteNombre.Text = SelectedPaciente.Name;
+				txtPacienteApellido.Text = SelectedPaciente.LastName;
+				txtPacienteEmail.Text = SelectedPaciente.Email;
+				txtPacienteTelefono.Text = SelectedPaciente.Telefono;
+				buttonModificarPaciente.IsEnabled = true;
+			}
+			else{
+				ClearPacienteUI();
 			}
 		}
 
 		//----------------------eventosRefresh-------------------//
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			SelectedMedico = (Medico) medicosListView.SelectedItem;
-			llenarStackPanels();
+			SelectedMedico = (Medico)medicosListView.SelectedItem;
+			UpdateMedicoUI();
 		}
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			SelectedTurno = (Turno) turnosListView.SelectedItem;
-			llenarStackPanels();
+			SelectedTurno = (Turno)turnosListView.SelectedItem;
+			UpdateTurnoUI();
 		}
 		private void Window_Activated(object sender, EventArgs e) {	
-			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos(); // ahora viene desde ventana activated
-			llenarStackPanels();
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
+			ClearMedicoUI();  // Clear all selections and UI elements
 		}
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
