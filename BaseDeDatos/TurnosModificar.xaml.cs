@@ -46,49 +46,16 @@ namespace ClinicaMedica {
 		private void LLenarComboBoxes() {
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
+				txtEspecialidades.ItemsSource = App.BaseDeDatos.ReadDistinctEspecialidades();
+				
+				txtPacientes.ItemsSource = App.BaseDeDatos.ReadPacientes();
+				txtPacientes.DisplayMemberPath = "Displayear";
+				
+				txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
+				txtMedicos.DisplayMemberPath = "Displayear";
 
-				// Query to fill txtEspecialidades ComboBox
-				string consultaEspecialidades = @"SELECT DISTINCT Especialidad FROM Medico";
-				using (var command = new SqlCommand(consultaEspecialidades, MiConexion)) {
-					using (var reader = command.ExecuteReader()) {
-						txtEspecialidades.Items.Clear();
-						while (reader.Read()) {
-							txtEspecialidades.Items.Add(reader["Especialidad"].ToString());
-						}
-					}
-				}
-
-				// Query to fill txtPacientes ComboBox
-				string consultaPacientes = @"SELECT Id as PacienteId, CONCAT(Dni, ' ', Name, ' ', LastName) AS PacienteDisplay FROM Paciente";
-				using (var command = new SqlCommand(consultaPacientes, MiConexion)) {
-					using (var reader = command.ExecuteReader()) {
-						txtPacientes.Items.Clear();
-						while (reader.Read()) {
-							txtPacientes.Items.Add(new { 
-								PacienteId = reader["PacienteId"], 
-								PacienteDisplay = reader["PacienteDisplay"]
-							});
-						}
-					}
-				}
-				txtPacientes.DisplayMemberPath = "PacienteDisplay";
-				txtPacientes.SelectedValuePath = "PacienteId";
-
-				// Query to fill txtMedicos ComboBox
-				string consultaMedicos = @"SELECT Id as MedicoId, CONCAT(Dni, ' ', Name, ' ', LastName) AS MedicoDisplay FROM Medico";
-				using (var command = new SqlCommand(consultaMedicos, MiConexion)) {
-					using (var reader = command.ExecuteReader()) {
-						txtMedicos.Items.Clear();
-						while (reader.Read()) {
-							txtMedicos.Items.Add(new { 
-								MedicoId = reader["MedicoId"], 
-								MedicoDisplay = reader["MedicoDisplay"]
-							});
-						}
-					}
-				}
-				txtMedicos.DisplayMemberPath = "MedicoDisplay";
-				txtMedicos.SelectedValuePath = "MedicoId";
+				// txtPacientes.SelectedValuePath = "Id";
+				// txtMedicos.SelectedValuePath = "Id";
 				
 				
 			}

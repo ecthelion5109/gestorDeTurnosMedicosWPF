@@ -1,10 +1,11 @@
 namespace ClinicaMedica {
 	public abstract class BaseDeDatosAbstracta{
+		
 		// Public diccionarios
 		public static Dictionary<string, Turno> DictTurnos = new();
 		public static Dictionary<string, Medico> DictMedicos = new();
 		public static Dictionary<string, Paciente> DictPacientes = new();
-
+		
 		// Read methods
 		public abstract List<Medico> ReadMedicos();
 		public abstract List<Paciente> ReadPacientes();
@@ -38,6 +39,14 @@ namespace ClinicaMedica {
 			}
 			return DictTurnos.Values.Where(t => t.PacienteId == instance.Id).ToList();
 		}
+		public List<string> ReadDistinctEspecialidades() {
+			return DictMedicos.Values
+								.Select(medico => medico.Especialidad)
+								.Distinct()
+								.ToList();
+		}
+		
+		
 	}
 	
 	

@@ -27,7 +27,7 @@ CREATE TABLE Medico (
     Localidad NVARCHAR(50),
     Provincia NVARCHAR(50),
     Telefono NVARCHAR(20),
-    Especialidad NVARCHAR(50),
+    Especialidad NVARCHAR(50) NOT NULL,
     Guardia BIT,
     SueldoMinimoGarantizado FLOAT(53)
 );

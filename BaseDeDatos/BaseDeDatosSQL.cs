@@ -45,8 +45,7 @@ namespace ClinicaMedica {
 
 		private static void CargarPacientes()
 		{
-			using (var conexion = new SqlConnection(connectionString))
-			{
+			using (var conexion = new SqlConnection(connectionString)){
 				conexion.Open();
 				string consulta = "SELECT * FROM Paciente";
 				using (var sqlComando = new SqlCommand(consulta, conexion))

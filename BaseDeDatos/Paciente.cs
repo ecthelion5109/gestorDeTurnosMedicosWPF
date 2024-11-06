@@ -16,7 +16,8 @@ namespace ClinicaMedica {
 		public string ?Localidad { get; set; }
 		public string ?Provincia { get; set; }
 			
-			
+				
+		public string Displayear => $"{Id}: {Name} {LastName}";
 			
 		public Paciente() { }
 		
