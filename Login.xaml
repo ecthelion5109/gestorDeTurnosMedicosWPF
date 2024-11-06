@@ -40,7 +40,7 @@
             <Run Language="es-ar" Text="Usuario"/>
         </TextBlock>
 
-        <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face"/>
+        <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face" MouseEnter="MouseHoverEvento"    />
         <Button Content="Salir" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,525,0,0" VerticalAlignment="Top" Height="32" Width="87" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonSalir" FontFamily="Baskerville Old Face" FontSize="20"/>
         <Button Content="Cancelar" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,468,0,0" VerticalAlignment="Top" Height="32" Width="88" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonCancelar" FontFamily="Baskerville Old Face" FontSize="20"/>
 
