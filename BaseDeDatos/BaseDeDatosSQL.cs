@@ -463,6 +463,7 @@ namespace ClinicaMedica {
 						command.ExecuteNonQuery();
 					}
 				}
+				DictMedicos.Remove(instancia.Id);
 				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL");
 				return true;
 			}
@@ -488,6 +489,7 @@ namespace ClinicaMedica {
 						command.ExecuteNonQuery();
 					}
 				}
+				DictPacientes.Remove(instancia.Id);
 				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL");
 				return true;
 			}
