@@ -7,6 +7,9 @@ namespace ClinicaMedica {
 	public class BaseDeDatosJSON : IBaseDeDatos{
 		public string archivoPath = "database.json";
 		public Dictionary<string, Dictionary<string, object>> MiDiccionario;
+		public static Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
+		public static Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
+		public static List<Turno> DictTurnos { get; private set; } = new ();
 		
 		
 		public BaseDeDatosJSON() {

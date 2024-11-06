@@ -11,7 +11,8 @@ namespace ClinicaMedica {
 
 		public Medicos() {
 			InitializeComponent();
-
+			// this.DataContext = this;
+			// turnosListView.ItemsData = SelectedMedico;
 		}
 
 

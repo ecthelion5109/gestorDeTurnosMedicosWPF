@@ -65,6 +65,11 @@ namespace ClinicaMedica {
 		}
 		//----------------------eventosRefresh-------------------//
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			llenarIdentidadesForaneas();
+		}
+		
+		
+		private void llenarIdentidadesForaneas() {
 			/* //GALLEGO STYLE
 				if (turnosListView.SelectedItem != null) {
 					buttonModificar.IsEnabled = true;
@@ -80,11 +85,25 @@ namespace ClinicaMedica {
 				// MessageBox.Show($"Selected Turno Id: {SelectedMedico.Id}");
 			}
 			else {
+				SelectedTurno = null;
 				buttonModificar.IsEnabled = false;
 			}
 			
 			
-
+			
+			if (SelectedTurno is null) {
+				txtMedicoDni.Text = "";
+				txtMedicoNombre.Text = "";
+				txtMedicoApellido.Text = "";
+				txtMedicoEspecialidad.Text = "";
+			}
+			else {
+				txtMedicoDni.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Dni;
+				txtMedicoNombre.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Name;
+				txtMedicoApellido.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].LastName;
+				txtMedicoEspecialidad.Text = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId].Especialidad;
+			}
+			/*
 			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
 				MiConexion.Open();
 
@@ -122,7 +141,7 @@ namespace ClinicaMedica {
 				}
 			}
 			// medicosListView.SelectedValuePath = "Id";
-			
+			*/
 			
 			
 			
@@ -224,6 +243,15 @@ namespace ClinicaMedica {
         private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
+
+		// private void UnselectTurno(object sender, RoutedEventArgs e) {
+			// turnosListView.SelectedValue = null;
+			// SelectedTurno = null;
+				// txtMedicoDni.Text = "";
+				// txtMedicoNombre.Text = "";
+				// txtMedicoApellido.Text = "";
+				// txtMedicoEspecialidad.Text = "";
+		// }
 		//------------------------Fin.Turnos----------------------//
 	}
 }

@@ -7,9 +7,9 @@ using System.Data;
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : IBaseDeDatos{
 		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
-		public static Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
-		public static Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
-		public static List<Turno> DictTurnos { get; private set; } = new ();
+		static public Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
+		static public Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
+		static public List<Turno> DictTurnos { get; private set; } = new ();
 		
 		
 		public BaseDeDatosSQL() {

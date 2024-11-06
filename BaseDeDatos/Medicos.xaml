@@ -35,19 +35,17 @@
 				   Height="102"
 				   Width="335"
 				   FontFamily="Ringbearer"
-				   Margin="15,32,0,0"
+				   Margin="553,15,0,0"
 					Grid.RowSpan="2"/>
 
 			<!-- ListView -->
 			<ListView Name="medicosListView"
 					  Width="Auto"
 					  Height="Auto"
-					  Margin="350,16,15,197"
-						Style="{StaticResource ListViewLindo2}"
+					  Margin="650,75,34,105"
 					  SelectionChanged="medicosListView_SelectionChanged"
 					  Background="#A5FFFFFF"
-					  BorderBrush="#72828790"
-					  Grid.RowSpan="2">
+					  BorderBrush="#72828790" Grid.Row="1">
 				<ListView.View>
 					<GridView>
 						<GridViewColumn Header="Dni"
@@ -137,6 +135,60 @@
 					IsEnabled="False"
 					Grid.Row="1">
 			</Button>
+
+			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="336,75,414,191" Grid.Row="1">
+				<ListView x:Name="turnosListView"
+						 
+					  Background="Transparent"
+					  BorderThickness="0"
+							 >
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Header="Número"
+															DisplayMemberBinding="{Binding SelectedMedico.Id}"
+															Width="auto"/>
+							<GridViewColumn Header="Fecha"
+															DisplayMemberBinding="{Binding SelectedMedico.Name}"
+															Width="auto"/>
+							<GridViewColumn Header="Hora"
+															DisplayMemberBinding="{Binding SelectedMedico.LastName}"
+															Width="auto"/>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</ContentControl>
+
+			<Label Content="Turnos"
+	   HorizontalAlignment="Left"
+	   VerticalAlignment="Top"
+	   FontSize="25"
+	   FontFamily="Ringbearer"
+	   Margin="419,57,0,0"
+	   FontWeight="Bold" Grid.RowSpan="2"/>
+			<ContentControl Style="{StaticResource ContentControlLindo}" Margin="100,38,724,171" Grid.Row="1">
+				<!-- </Expander> -->
+				<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
+				<StackPanel Orientation="Vertical" Background="Transparent">
+					<Label Content="Paciente"
+			  FontSize="25"
+			  FontFamily="Ringbearer"
+			  FontWeight="Bold" HorizontalAlignment="Center"/>
+					<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
+					<TextBlock x:Name="txtPacienteDni" Margin="0,0,0,10" />
+
+					<TextBlock Text="Nombre:" FontWeight="Bold" Margin="0,5,0,5" />
+					<TextBlock x:Name="txtPacienteNombre" Margin="0,0,0,10" />
+
+					<TextBlock Text="Apellido:" FontWeight="Bold" Margin="0,5,0,5" />
+					<TextBlock x:Name="txtPacienteApellido" Margin="0,0,0,10" />
+
+					<TextBlock Text="Correo:" FontWeight="Bold" Margin="0,5,0,5" />
+					<TextBlock x:Name="txtPacienteEmail" Margin="0,0,0,10" />
+
+					<TextBlock Text="Telefono:" FontWeight="Bold" Margin="0,5,0,5" />
+					<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,10" />
+				</StackPanel>
+			</ContentControl>
 		</Grid>
 	</Grid>
 

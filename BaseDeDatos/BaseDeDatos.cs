@@ -1,5 +1,9 @@
 namespace ClinicaMedica {
 	public interface IBaseDeDatos{
+
+		//Dictionary<string, Medico> DictMedicos;
+		//Dictionary<string, Paciente> DictPacientes;
+		//List<Turno> DictTurnos;
 		// Read methods
 		List<Medico> ReadMedicos();
 		List<Paciente> ReadPacientes();
