@@ -63,6 +63,12 @@ namespace ClinicaMedica {
 			}
 			return ListTurnos.Where(t => t.MedicoId == instance.Id).ToList();
 		}
+		// public List<Turno> ReadPacientesWhereTurnoId(Turno instance) {
+			// if (instance is null){
+				// return null;
+			// }
+			// return DictPacientes.Where(t => t.MedicoId == instance.Id).ToList();
+		// }
 		//------------------------public.READ----------------------//
 		public List<Medico> ReadMedicos() {
 			return this.MiDiccionario["medicos"].Values.Cast<Medico>().ToList();

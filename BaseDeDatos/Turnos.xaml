@@ -29,7 +29,7 @@
 				  FontSize="20"
 				  FontFamily="Ringbearer"
 				  FontWeight="Bold" HorizontalAlignment="Center"/>
-				<Calendar x:Name="CalendarioTurnos"
+				<Calendar x:Name="txtCalendario"
 							  HorizontalAlignment="Center"
 						  Background="Transparent"
 						  BorderThickness="10"
@@ -47,7 +47,7 @@
 			</StackPanel>
 		</ContentControl>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="455,30,252,76">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="443,30,246,76">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
                        FontSize="65"
@@ -80,7 +80,7 @@
 
 
 
-				<StackPanel Orientation="Horizontal" Background="Transparent" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button
 							Content="Agregar nuevo"
 							HorizontalAlignment="Left"
@@ -92,7 +92,7 @@
 							Style="{StaticResource BotonRedondeado}"
 							FontWeight="Bold"
 							BorderBrush="#FF0E0D0D"
-							FontFamily="Baskerville Old Face" Margin="10,10,10,10"
+							FontFamily="Baskerville Old Face" Margin="10,15,10,15"
 							>
 					</Button>
 					<Button x:Name="buttonModificarTurno"
@@ -106,7 +106,7 @@
 								FontWeight="Bold"
 								BorderBrush="#FF0E0D0D"
 								FontFamily="Baskerville Old Face"
-								IsEnabled="False" Width="125" Margin="10,10,10,10"
+								IsEnabled="False" Width="125" Margin="10,15,10,15"
 								/>
 				</StackPanel>
 
@@ -154,7 +154,7 @@
 
 
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="259,30,589,204">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="249,30,599,204">
 			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
 
@@ -194,7 +194,7 @@
 				  FontWeight="Bold"
 				  BorderBrush="#FF0E0D0D"
 				  FontFamily="Baskerville Old Face"
-				  IsEnabled="False" Margin="25,15,25,15" Width="120"
+				  IsEnabled="False" Margin="25,15,25,15" Width="110"
 						/>
 				</StackPanel>
 				
