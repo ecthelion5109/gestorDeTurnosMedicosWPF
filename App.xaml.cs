@@ -15,8 +15,6 @@ namespace ClinicaMedica {
 		public static string UsuarioName = "Señor Gestor";
 		public static IBaseDeDatos BaseDeDatos;
 	}
-	
-
     public static class WindowExtensions{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new(){
 			T nuevaVentana = new();
