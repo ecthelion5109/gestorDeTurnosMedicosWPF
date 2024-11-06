@@ -134,6 +134,33 @@
 				IsEnabled="False"
 				Grid.Row="1">
 		</Button>
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="656,114,193,134" Grid.Row="1">
+			<!-- </Expander> -->
+			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
+			<StackPanel Orientation="Vertical" Background="Transparent">
+
+
+
+				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoDni" Margin="0,0,0,10" />
+
+				<TextBlock Text="Nombre:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoNombre" Margin="0,0,0,10" />
+
+				<TextBlock Text="Apellido:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoApellido" Margin="0,0,0,10" />
+
+				<TextBlock Text="Especialidad:" FontWeight="Bold" Margin="0,5,0,5" />
+				<TextBlock x:Name="txtMedicoEspecialidad" Margin="0,0,0,10" />
+			</StackPanel>
+		</ContentControl>
+		<Label Content="Turnos"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  FontSize="25"
+	  FontFamily="Ringbearer"
+	  Margin="695,71,0,0"
+	  FontWeight="Bold" Grid.Row="1"/>
 		<!-- DataGrid insertado aquí -->
 	</Grid>
 </Window>

@@ -54,7 +54,7 @@ namespace ClinicaMedica {
 					return;
 				}
 				catch (Exception ex) {
-					MessageBox.Show($"{ex.Message}");
+					MessageBox.Show($"{ex}");
 					App.UsuarioLogueado = false;
 					this.Close();
 					return;
@@ -68,7 +68,7 @@ namespace ClinicaMedica {
 					return;
 				}
 				catch (Exception ex) {
-					MessageBox.Show($"{ex.Message}");
+					MessageBox.Show($"{ex}");
 					App.UsuarioLogueado = false;
 					this.Close();
 					return;

@@ -7,13 +7,112 @@ using System.Data;
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : IBaseDeDatos{
 		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+		public static Dictionary<string, Medico> DictMedicos { get; private set; } = new ();
+		public static Dictionary<string, Paciente> DictPacientes { get; private set; } = new ();
+		public static List<Turno> DictTurnos { get; private set; } = new ();
 		
 		
 		public BaseDeDatosSQL() {
+			this.LLenarMiDiccionarioConConsultasSQL();
+		}
+
+		
+		//------------------------Private----------------------//
+		private void LLenarMiDiccionarioConConsultasSQL(){
+			CargarMedicos();
+			CargarPacientes();
+			CargarTurnos();
 		}
 
 
 
+		private static void CargarMedicos()
+		{
+			using (var conexion = new SqlConnection(connectionString))
+			{
+				conexion.Open();
+				string consulta = "SELECT * FROM Medico";
+				using (var comando = new SqlCommand(consulta, conexion))
+				using (var reader = comando.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var medico = new Medico
+						{
+								Id = reader["Id"]?.ToString(),
+								Name = reader["Name"]?.ToString(),
+								LastName = reader["LastName"]?.ToString(),
+								Dni = reader["Dni"]?.ToString(),
+								Provincia = reader["Provincia"]?.ToString(),
+								Domicilio = reader["Domicilio"]?.ToString(),
+								Localidad = reader["Localidad"]?.ToString(),
+								Especialidad = reader["Especialidad"]?.ToString(),
+								Telefono = reader["Telefono"]?.ToString(),
+								Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
+								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
+						};
+						DictMedicos[medico.Id] = medico;
+					}
+				}
+			}
+		}
+
+		private static void CargarPacientes()
+		{
+			using (var conexion = new SqlConnection(connectionString))
+			{
+				conexion.Open();
+				string consulta = "SELECT * FROM Paciente";
+				using (var comando = new SqlCommand(consulta, conexion))
+				using (var reader = comando.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var paciente = new Paciente
+						{
+								Id = reader["Id"]?.ToString(),
+								Dni = reader["Dni"]?.ToString(),
+								Name = reader["Name"]?.ToString(),
+								LastName = reader["LastName"]?.ToString(),
+								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								Email = reader["Email"]?.ToString(),
+								Telefono = reader["Telefono"]?.ToString(),
+								FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+								Domicilio = reader["Domicilio"]?.ToString(),
+								Localidad = reader["Localidad"]?.ToString(),
+								Provincia = reader["Provincia"]?.ToString()
+						};
+						DictPacientes[paciente.Id] = paciente;
+					}
+				}
+			}
+		}
+
+		private static void CargarTurnos()
+		{
+			using (var conexion = new SqlConnection(connectionString))
+			{
+				conexion.Open();
+				string consulta = "SELECT * FROM Turno";
+				using (var comando = new SqlCommand(consulta, conexion))
+				using (var reader = comando.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var turno = new Turno
+						{
+								Id = reader["Id"]?.ToString(),
+								PacienteId = reader["PacienteId"]?.ToString(),
+								MedicoId = reader["MedicoId"]?.ToString(),
+								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
+								Hora = TimeSpan.Parse(reader["Hora"].ToString()),
+						};
+						DictTurnos.Add(turno);
+					}
+				}
+			}
+		}
 
 		//------------------------CREATE.Medico----------------------//
 		public bool CreateMedico(Medico instancia) {
@@ -145,6 +244,7 @@ namespace ClinicaMedica {
 
 		//------------------------READ----------------------//
 		public List<Medico> ReadMedicos() {
+			return DictMedicos.Values.ToList();
 			List<Medico> medicoList = new List<Medico>();
 			string query = "SELECT * FROM Medico";
 			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
@@ -174,54 +274,56 @@ namespace ClinicaMedica {
 		}
 
 		public List<Paciente> ReadPacientes() {
-			List<Paciente> pacienteList = new List<Paciente>();
-			string query = "SELECT * FROM Paciente";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (var command = new SqlCommand(query, connection)) {
-					using (var reader = command.ExecuteReader()) {
-						while (reader.Read()) {
-							Paciente instancia = new Paciente {
-								Dni = reader["Dni"]?.ToString(),
-								Name = reader["Name"]?.ToString(),
-								LastName = reader["LastName"]?.ToString(),
-								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								Email = reader["Email"]?.ToString(),
-								Telefono = reader["Telefono"]?.ToString(),
-								FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
-								Domicilio = reader["Domicilio"]?.ToString(),
-								Localidad = reader["Localidad"]?.ToString(),
-								Provincia = reader["Provincia"]?.ToString()
-							};
-							pacienteList.Add(instancia);
-						}
-					}
-				}
-			}
-			return pacienteList;
+			return DictPacientes.Values.ToList();
+			// List<Paciente> pacienteList = new List<Paciente>();
+			// string query = "SELECT * FROM Paciente";
+			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				// connection.Open();
+				// using (var command = new SqlCommand(query, connection)) {
+					// using (var reader = command.ExecuteReader()) {
+						// while (reader.Read()) {
+							// Paciente instancia = new Paciente {
+								// Dni = reader["Dni"]?.ToString(),
+								// Name = reader["Name"]?.ToString(),
+								// LastName = reader["LastName"]?.ToString(),
+								// FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								// Email = reader["Email"]?.ToString(),
+								// Telefono = reader["Telefono"]?.ToString(),
+								// FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+								// Domicilio = reader["Domicilio"]?.ToString(),
+								// Localidad = reader["Localidad"]?.ToString(),
+								// Provincia = reader["Provincia"]?.ToString()
+							// };
+							// pacienteList.Add(instancia);
+						// }
+					// }
+				// }
+			// }
+			// return pacienteList;
 		}
 
 		public List<Turno> ReadTurnos() {
-			List<Turno> turnosList = new List<Turno>();
-			string query = "SELECT * FROM Turno";
-			using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				connection.Open();
-				using (var command = new SqlCommand(query, connection)) {
-					using (var reader = command.ExecuteReader()) {
-						while (reader.Read()) {
-							Turno instancia = new Turno {
-								Id = reader["Id"]?.ToString(),
-								PacienteId = reader["PacienteId"]?.ToString(),
-								MedicoId = reader["MedicoId"]?.ToString(),
-								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-								Hora = reader["Hora"].ToString(),
-							};
-							turnosList.Add(instancia);
-						}
-					}
-				}
-			}
-			return turnosList;
+			return DictTurnos;
+			// List<Turno> turnosList = new List<Turno>();
+			// string query = "SELECT * FROM Turno";
+			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				// connection.Open();
+				// using (var command = new SqlCommand(query, connection)) {
+					// using (var reader = command.ExecuteReader()) {
+						// while (reader.Read()) {
+							// Turno instancia = new Turno {
+								// Id = reader["Id"]?.ToString(),
+								// PacienteId = reader["PacienteId"]?.ToString(),
+								// MedicoId = reader["MedicoId"]?.ToString(),
+								// Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
+								// Hora = TimeSpan.Parse(reader["Hora"].ToString()),
+							// };
+							// turnosList.Add(instancia);
+						// }
+					// }
+				// }
+			// }
+			// return turnosList;
 		}
 		//------------------------UPDATE----------------------//
 		public bool UpdateMedico(Medico instancia, string originalDni) {

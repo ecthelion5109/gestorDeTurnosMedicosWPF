@@ -65,7 +65,7 @@ namespace ClinicaMedica {
 		public string ?PacienteId { get; set; }
 		public string ?MedicoId { get; set; }
 		public DateTime ?Fecha { get; set; }
-		public string ?Hora { get; set; }
+		public TimeSpan ?Hora { get; set; }
 
 		public Turno() { }
 		
@@ -91,7 +91,7 @@ namespace ClinicaMedica {
 				// Handle the case where no date is selected, if necessary
 				this.Fecha = DateTime.MinValue; // Or some other default value
 			}
-			this.Hora = window.txtHora.Text;
+			this.Hora = TimeSpan.Parse(window.txtHora.Text);
 		}
 	}
 }

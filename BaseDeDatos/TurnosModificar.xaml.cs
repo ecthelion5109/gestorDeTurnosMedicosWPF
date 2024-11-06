@@ -40,7 +40,7 @@ namespace ClinicaMedica {
 			this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
 			this.txtId.Content = SelectedTurno.Id;
 			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
-			this.txtHora.Text = SelectedTurno.Hora;
+			this.txtHora.Text = SelectedTurno.Hora.ToString();
 		}
 
 		private void LLenarComboBoxes() {
