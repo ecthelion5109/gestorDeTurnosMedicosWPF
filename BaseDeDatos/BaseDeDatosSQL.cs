@@ -106,7 +106,7 @@ namespace ClinicaMedica {
 				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			
 			try {
-				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (SqlConnection connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
 						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
@@ -153,7 +153,7 @@ namespace ClinicaMedica {
 				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			
 			try {
-				using (SqlConnection connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (SqlConnection connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(insertQuery, connection)) {
 						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
@@ -198,7 +198,7 @@ namespace ClinicaMedica {
 				VALUES (@PacienteId, @MedicoId, @Fecha, @Hora);
 				SELECT SCOPE_IDENTITY();"; // DEVOLEME RAPIDAMENTE LA ID QUE ACABAS DE GENERAR
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (var sqlComando = new SqlCommand(insertQuery, connection)) {
 						sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
@@ -235,7 +235,7 @@ namespace ClinicaMedica {
 			return DictMedicos.Values.ToList();
 			// List<Medico> medicoList = new List<Medico>();
 			// string query = "SELECT * FROM Medico";
-			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+			// using (var connection = new SqlConnection(connectionString)) {
 				// connection.Open();
 				// using (var sqlComando = new SqlCommand(query, connection)) {
 					// using (var reader = sqlComando.ExecuteReader()) {
@@ -265,7 +265,7 @@ namespace ClinicaMedica {
 			return DictPacientes.Values.ToList();
 			// List<Paciente> pacienteList = new List<Paciente>();
 			// string query = "SELECT * FROM Paciente";
-			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+			// using (var connection = new SqlConnection(connectionString)) {
 				// connection.Open();
 				// using (var sqlComando = new SqlCommand(query, connection)) {
 					// using (var reader = sqlComando.ExecuteReader()) {
@@ -294,7 +294,7 @@ namespace ClinicaMedica {
 			return DictTurnos.Values.ToList();
 			// List<Turno> turnosList = new List<Turno>();
 			// string query = "SELECT * FROM Turno";
-			// using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+			// using (var connection = new SqlConnection(connectionString)) {
 				// connection.Open();
 				// using (var sqlComando = new SqlCommand(query, connection)) {
 					// using (var reader = sqlComando.ExecuteReader()) {
@@ -317,7 +317,7 @@ namespace ClinicaMedica {
 		public override bool UpdateMedico(Medico instancia, string originalDni) {
 			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Id = @Id";
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (var sqlComando = new SqlCommand(query, connection)) {
 						sqlComando.Parameters.AddWithValue("@Name", instancia.Name);
@@ -357,7 +357,7 @@ namespace ClinicaMedica {
 		public override bool UpdatePaciente(Paciente instancia, string originalDni) {
 			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Id = @Id";
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 						sqlComando.Parameters.AddWithValue("@Dni", instancia.Dni);
@@ -397,7 +397,7 @@ namespace ClinicaMedica {
 			//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
 			string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 				connection.Open();
 				using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 					sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
@@ -437,7 +437,7 @@ namespace ClinicaMedica {
 			string query = "DELETE FROM Medico WHERE Id = @Id";
 
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
@@ -463,7 +463,7 @@ namespace ClinicaMedica {
 		public override bool DeletePaciente(Paciente instancia) {
 			string query = "DELETE FROM Paciente WHERE Id = @Id";
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
@@ -489,7 +489,7 @@ namespace ClinicaMedica {
 		public override bool DeleteTurno(Turno instancia) {
 			string query = "DELETE FROM Turno WHERE Id = @Id";
 			try {
-				using (var connection = new SqlConnection(BaseDeDatosSQL.connectionString)) {
+				using (var connection = new SqlConnection(connectionString)) {
 					connection.Open();
 					using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 						sqlComando.Parameters.AddWithValue("@Id", instancia.Id);

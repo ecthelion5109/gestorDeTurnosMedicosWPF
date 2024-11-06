@@ -104,8 +104,8 @@ namespace ClinicaMedica {
 			SelectedTurno = (Turno)turnosListView.SelectedItem;
 			if (SelectedTurno != null){
 				buttonModificarTurno.IsEnabled = true;
-				SelectedPaciente = BaseDeDatosSQL.DictPacientes[SelectedTurno.PacienteId];
-				SelectedMedico = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId];
+				SelectedPaciente = BaseDeDatos.DictPacientes[SelectedTurno.PacienteId];
+				SelectedMedico = BaseDeDatos.DictMedicos[SelectedTurno.MedicoId];
 			}
 			else{
 				SelectedPaciente = null;

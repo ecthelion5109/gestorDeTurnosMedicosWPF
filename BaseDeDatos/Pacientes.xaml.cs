@@ -67,7 +67,7 @@ namespace ClinicaMedica
 		private void UpdateTurnoUI(){
 			if (SelectedTurno != null){
 				buttonModificarTurno.IsEnabled = true;
-				SelectedMedico = BaseDeDatosSQL.DictMedicos[SelectedTurno.MedicoId];
+				SelectedMedico = BaseDeDatos.DictMedicos[SelectedTurno.MedicoId];
 				UpdateMedicoUI();
 			}
 			else{

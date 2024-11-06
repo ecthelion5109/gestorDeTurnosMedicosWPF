@@ -44,21 +44,16 @@ namespace ClinicaMedica {
 		}
 
 		private void LLenarComboBoxes() {
-			using (var MiConexion = new SqlConnection(BaseDeDatosSQL.connectionString)) {
-				MiConexion.Open();
-				txtEspecialidades.ItemsSource = App.BaseDeDatos.ReadDistinctEspecialidades();
-				
-				txtPacientes.ItemsSource = App.BaseDeDatos.ReadPacientes();
-				txtPacientes.DisplayMemberPath = "Displayear";
-				
-				txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
-				txtMedicos.DisplayMemberPath = "Displayear";
+			txtEspecialidades.ItemsSource = App.BaseDeDatos.ReadDistinctEspecialidades();
 
-				// txtPacientes.SelectedValuePath = "Id";
-				// txtMedicos.SelectedValuePath = "Id";
-				
-				
-			}
+			txtPacientes.ItemsSource = App.BaseDeDatos.ReadPacientes();
+			txtPacientes.DisplayMemberPath = "Displayear";
+			
+			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
+			txtMedicos.DisplayMemberPath = "Displayear";
+
+			// txtPacientes.SelectedValuePath = "Id";
+			// txtMedicos.SelectedValuePath = "Id";
 		}
 
 		public bool FaltanCamposPorCompletar(){
