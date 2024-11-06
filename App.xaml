@@ -196,27 +196,27 @@
             </Setter>
         </Style>
 		<Style x:Key="ListViewLindo2" TargetType="ListView">
-			<!-- <Setter Property="Template"> -->
-				<!-- <Setter.Value> -->
-					<!-- <ControlTemplate TargetType="ListView"> -->
-						<!-- <Border CornerRadius="10" -->
-								<!-- BorderBrush="Black" -->
-								<!-- BorderThickness="2" -->
-								<!-- Background="White"> -->
-							<!-- <Border.Effect> -->
-								<!-- <DropShadowEffect Color="Black" -->
-										<!-- BlurRadius="30" -->
-										<!-- ShadowDepth="10"/> -->
-							<!-- </Border.Effect> -->
-							<!-- <ScrollViewer x:Name="PART_ScrollViewer" -->
-									<!-- Padding="5" -->
-									<!-- Focusable="false"> -->
-								<!-- <ItemsPresenter/> -->
-							<!-- </ScrollViewer> -->
-						<!-- </Border> -->
-					<!-- </ControlTemplate> -->
-				<!-- </Setter.Value> -->
-			<!-- </Setter> -->
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListView">
+						<Border CornerRadius="10"
+								BorderBrush="Black"
+								BorderThickness="2"
+								Background="White">
+							<Border.Effect>
+								<DropShadowEffect Color="Black"
+										BlurRadius="30"
+										ShadowDepth="10"/>
+							</Border.Effect>
+							<ScrollViewer x:Name="PART_ScrollViewer"
+									Padding="5"
+									Focusable="false">
+								<ItemsPresenter/>
+							</ScrollViewer>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
 		</Style>
 
 

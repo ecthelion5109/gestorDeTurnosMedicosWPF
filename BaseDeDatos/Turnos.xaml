@@ -27,6 +27,7 @@
                           SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
 
 		<ListView x:Name="turnosListView"
+					Style="{StaticResource ListViewLindo2}"
                           d:ItemsSource="{d:SampleData ItemCount=5}"
                           Margin="675,43,32,30"
                           SelectionChanged="listViewTurnos_SelectionChanged">
@@ -121,7 +122,7 @@
 		<ListView x:Name="medicosListView"
 					Width="Auto"
 					Height="Auto"
-					Margin="318,152,369,342"
+					Margin="315,92,357,430"
 					Style="{StaticResource ListViewLindo2}"
 					SelectionChanged="medicosListView_SelectionChanged"
 					Background="#A5FFFFFF"
@@ -152,7 +153,8 @@
 			  ItemsSource="{Binding PacientesList}"
 			  Width="Auto"
 			  Height="Auto"
-			  Margin="318,260,369,225"
+					Style="{StaticResource ListViewLindo2}"
+			  Margin="205,260,369,260"
 			  SelectionChanged="pacientesListView_SelectionChanged"
 			  d:ItemsSource="{d:SampleData ItemCount=5}"
 			>
@@ -182,5 +184,19 @@
 				</GridView>
 			</ListView.View>
 		</ListView>
+		<Label Content="Medico"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  FontSize="25"
+	  FontFamily="Ringbearer"
+	  Margin="434,43,0,0"
+	  FontWeight="Bold"/>
+		<Label Content="Paciente"
+	  HorizontalAlignment="Left"
+	  VerticalAlignment="Top"
+	  FontSize="25"
+	  FontFamily="Ringbearer"
+	  Margin="432,211,0,0"
+	  FontWeight="Bold"/>
 	</Grid>
 </Window>
