@@ -12,14 +12,9 @@ namespace ClinicaMedica {
 
 		public Medicos() {
 			InitializeComponent();
-			// this.DataContext = this;
-			// turnosListView.ItemsData = SelectedMedico;
 		}
-
-
-	
 		
-		//----------------------metodos-------------------//
+		//----------------------ClearMetohds-------------------//
 		private void ClearMedicoUI(){
 			buttonModificarMedico.IsEnabled = false;
 			SelectedMedico = null;
@@ -42,6 +37,7 @@ namespace ClinicaMedica {
 			txtPacienteTelefono.Text = "";
 		}
 
+		//----------------------LlenarMethods-------------------//
 		private void UpdateMedicoUI(){
 			if (SelectedMedico != null){
 				buttonModificarMedico.IsEnabled = true;

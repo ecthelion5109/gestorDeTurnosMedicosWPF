@@ -21,8 +21,6 @@ namespace ClinicaMedica {
 			InitializeComponent();
 			SelectedMedico = null;
 			txtDiasDeAtencion.ItemsSource = (new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }).Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
-			//botonMultiUso.Click += ButtonCrearMedico;
-			//botonMultiUso.Content = "Crear";
 		}
 
 		public MedicosModificar(Medico selectedMedico) //Modificar medico
@@ -41,8 +39,6 @@ namespace ClinicaMedica {
 			this.txtFechaIngreso.SelectedDate = SelectedMedico.FechaIngreso;
 			this.txtSueldoMinGarant.Text = SelectedMedico.SueldoMinimoGarantizado.ToString();
 			this.txtRealizaGuardia.IsChecked = SelectedMedico.Guardia;
-			//botonMultiUso.Click += ButtonModificarMedico;
-			//botonMultiUso.Content = "Modificar";
 		}
 		
 
