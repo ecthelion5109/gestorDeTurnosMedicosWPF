@@ -20,14 +20,22 @@
 			<ImageBrush ImageSource="/images/otroFondo.png"/>
 		</Grid.Background>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}"  Margin="40,113,784,292">
+		<ContentControl Style="{StaticResource ContentControlLindo}" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="15,104,0,0" Height="205" Width="210">
 			<Calendar x:Name="CalendarioTurnos"
                           HorizontalAlignment="Center"
 					  Background="Transparent"
-					  Margin = "5,5,5,5"
-					  BorderThickness="0"
+					  BorderThickness="10"
                           VerticalAlignment="Center"
-                          SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged"/>
+                          SelectedDatesChanged="CalendarioTurnos_SelectedDatesChanged">
+				<Calendar.BorderBrush>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFA3AEB9"/>
+						<GradientStop Color="#FF8399A9" Offset="0.375"/>
+						<GradientStop Color="#FF718597" Offset="0.375"/>
+						<GradientStop Color="#00617584" Offset="1"/>
+					</LinearGradientBrush>
+				</Calendar.BorderBrush>
+			</Calendar>
 		</ContentControl>
 
 		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="675,94,32,30">
@@ -128,6 +136,9 @@
 		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="257,104,592,206">
 			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
+			
+				
+				
 				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5" />
 				<TextBlock x:Name="txtMedicoDni" Margin="0,0,0,10" />
 
