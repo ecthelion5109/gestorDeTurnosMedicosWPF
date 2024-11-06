@@ -9,6 +9,7 @@ namespace ClinicaMedica {
 		//List<Medico> ReadMedicos();
 		//List<Paciente> ReadPacientes();
 		List<Turno> ReadTurnosWhereMedicoId(Medico instance);
+		List<Turno> ReadTurnosWherePacienteId(Paciente instance);
 		
 		
 		// List<Turno> ReadMedicosWhereTurnoId(Turno instance);

@@ -74,17 +74,17 @@ namespace ClinicaMedica {
 		}
 
 		//----------------------eventosRefresh-------------------//
-		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			SelectedMedico = (Medico)medicosListView.SelectedItem;
-			UpdateMedicoUI();
+		private void Window_Activated(object sender, EventArgs e) {	
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
+			ClearMedicoUI();  // Clear all selections and UI elements
 		}
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedTurno = (Turno)turnosListView.SelectedItem;
 			UpdateTurnoUI();
 		}
-		private void Window_Activated(object sender, EventArgs e) {	
-			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
-			ClearMedicoUI();  // Clear all selections and UI elements
+		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			SelectedMedico = (Medico)medicosListView.SelectedItem;
+			UpdateMedicoUI();
 		}
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
