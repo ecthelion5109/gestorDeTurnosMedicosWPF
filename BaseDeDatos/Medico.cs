@@ -40,12 +40,6 @@ namespace ClinicaMedica {
 		public DateTime? FechaIngreso { get; set; }
 		public double? SueldoMinimoGarantizado { get; set; }
 		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
-		public string JoinedName{
-			get
-			{
-				return $"{Dni} - {Name} {LastName}";
-			}
-		}
 
 	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }

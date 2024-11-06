@@ -3,15 +3,6 @@ using System.ComponentModel;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Pacientes-------------------------------//
-	public class ComboBoxItem{
-		public int Id { get; set; }
-		public string PacienteConcat { get; set; }
-	}
-	
-	
-	
-	
-	
 	public class Paciente : Entidad {
 		// public int Dni { get; set; }
 		public string ?Dni { get; set; }
@@ -24,12 +15,6 @@ namespace ClinicaMedica {
 		public string ?Domicilio { get; set; }
 		public string ?Localidad { get; set; }
 		public string ?Provincia { get; set; }
-		public string JoinedName{
-			get
-			{
-				return $"{Dni} - {Name} {LastName}";
-			}
-		}
 			
 			
 			

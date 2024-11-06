@@ -122,35 +122,35 @@
 
 	<!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,DatePickers,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="DatePickerLindo" TargetType="DatePicker">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DatePicker">
-                        <Border CornerRadius="5"
-                                Background="White"
-                                BorderBrush="Gray"
-                                BorderThickness="1">
-                            <Border.Effect>
-                                <DropShadowEffect Color="Black"
-                                                  BlurRadius="20"
-                                                  ShadowDepth="12"/>
-                            </Border.Effect>
-                            <Grid>
-                                <DatePickerTextBox x:Name="PART_TextBox"
-                                                   HorizontalAlignment="Stretch"
-                                                   VerticalAlignment="Center"
-                                                   Background="Transparent"
-                                                   IsReadOnly="True"/>
-                                <Button x:Name="PART_Button"
-                                        Content="▼"
-                                        Width="20"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Focusable="False"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <!-- <Setter Property="Template"> -->
+                <!-- <Setter.Value> -->
+                    <!-- <ControlTemplate TargetType="DatePicker"> -->
+                        <!-- <Border CornerRadius="5" -->
+                                <!-- Background="White" -->
+                                <!-- BorderBrush="Gray" -->
+                                <!-- BorderThickness="1"> -->
+                            <!-- <Border.Effect> -->
+                                <!-- <DropShadowEffect Color="Black" -->
+                                                  <!-- BlurRadius="20" -->
+                                                  <!-- ShadowDepth="12"/> -->
+                            <!-- </Border.Effect> -->
+                            <!-- <Grid> -->
+                                <!-- <DatePickerTextBox x:Name="PART_TextBox" -->
+                                                   <!-- HorizontalAlignment="Stretch" -->
+                                                   <!-- VerticalAlignment="Center" -->
+                                                   <!-- Background="Transparent" -->
+                                                   <!-- IsReadOnly="True"/> -->
+                                <!-- <Button x:Name="PART_Button" -->
+                                        <!-- Content="▼" -->
+                                        <!-- Width="20" -->
+                                        <!-- HorizontalAlignment="Right" -->
+                                        <!-- VerticalAlignment="Center" -->
+                                        <!-- Focusable="False"/> -->
+                            <!-- </Grid> -->
+                        <!-- </Border> -->
+                    <!-- </ControlTemplate> -->
+                <!-- </Setter.Value> -->
+            <!-- </Setter> -->
         </Style>
 
 

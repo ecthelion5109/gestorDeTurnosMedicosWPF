@@ -41,12 +41,6 @@ namespace ClinicaMedica {
 			this.txtId.Content = SelectedTurno.Id;
 			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
 			this.txtHora.Text = SelectedTurno.Hora;
-			
-			//this.txtMedicos.DataContext = selectedTurno;
-			// this.txtPacientes.SelectedItem = selectedTurno.PacienteConcat;
-			//this.txtPacientes.DataContext = selectedTurno;
-			// this.txtEspecialidades.SelectedItem = selectedTurno.Especialidad;
-			//this.txtEspecialidades.DataContext = selectedTurno;
 		}
 
 		private void LLenarComboBoxes() {

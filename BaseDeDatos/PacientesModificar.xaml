@@ -54,11 +54,11 @@
 				BorderBrush="Black"
 				Background="White"
 				FontFamily="Baskerville Old Face"/>
-		<Grid Margin="190,90,0,0"
+		<Grid Margin="190,74,0,0"
 				VerticalAlignment="Top"
 				HorizontalAlignment="Left"
 				MaxWidth="515"
-				Height="324"
+				Height="376"
 				Width="310">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -215,7 +215,7 @@
 		</Grid>
 		<Label Content="Paciente"
 			   HorizontalAlignment="Left"
-			   Margin="324,34,0,0"
+			   Margin="324,10,0,0"
 			   VerticalAlignment="Top"
 			   FontSize="32"
 			   FontFamily="Ringbearer"

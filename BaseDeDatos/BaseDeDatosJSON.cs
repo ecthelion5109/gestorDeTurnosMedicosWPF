@@ -46,9 +46,9 @@ namespace ClinicaMedica {
 				return this.MiDiccionario["turnos"].ContainsKey(key);
 			}
 			
-			//if (YaExiste(instancia.Dni)) {
-			//	return false;
-			//}
+			if (YaExiste(instancia.Id)) {
+				return false;
+			}
 			MessageBox.Show($"No se ha implementado esto en json");
 			return true;
 		}

@@ -10,7 +10,8 @@
       "FechaNacimiento": "2023-11-01T00:00:00",
       "Domicilio": "italia 555",
       "Localidad": "G. Catan",
-      "Provincia": "Bs Asires"
+      "Provincia": "Bs Asires",
+      "Id": null
     },
     "10350991": {
       "Dni": "10350991",
@@ -22,7 +23,8 @@
       "FechaNacimiento": "2023-11-01T00:00:00",
       "Domicilio": "titaltia 545",
       "Localidad": "Moron",
-      "Provincia": "Bs Asires"
+      "Provincia": "Bs Asires",
+      "Id": null
     },
     "2342342": {
       "Dni": "2342342",
@@ -33,8 +35,22 @@
       "Telefono": "54354343",
       "FechaNacimiento": "1997-11-04T00:00:00",
       "Domicilio": "CalleSinNombre 123",
-      "Localidad": "Merlo",
-      "Provincia": "Buenos Aires"
+      "Localidad": "MerloGomez",
+      "Provincia": "Buenos Aires",
+      "Id": null
+    },
+    "234234": {
+      "Dni": "234234",
+      "Name": "Rigoberta",
+      "LastName": "Menchu",
+      "FechaIngreso": "2024-11-29T00:00:00",
+      "Email": "rigob@gmail.com",
+      "Telefono": "3456345345",
+      "FechaNacimiento": "2024-11-05T00:00:00",
+      "Domicilio": "Mexico 12345",
+      "Localidad": "Gonzalez Pereiyraa",
+      "Provincia": "Buenos Aries",
+      "Id": null
     }
   },
   "medicos": {
@@ -59,7 +75,8 @@
           "Start": "12:00",
           "End": "19:00"
         }
-      }
+      },
+      "Id": null
     },
     "256543": {
       "Name": "Dr. Carlos",
@@ -82,7 +99,8 @@
           "Start": "10:00",
           "End": "14:00"
         }
-      }
+      },
+      "Id": null
     },
     "5769537": {
       "Name": "Dr. Miguel",
@@ -96,7 +114,8 @@
       "Guardia": false,
       "FechaIngreso": "2021-05-05T00:00:00",
       "SueldoMinimoGarantizado": 900000.0,
-      "DiasDeAtencion": {}
+      "DiasDeAtencion": {},
+      "Id": null
     },
     "1321452": {
       "Name": "Dr. Tocando",
@@ -119,7 +138,8 @@
           "Start": "07:00",
           "End": "16:00"
         }
-      }
+      },
+      "Id": null
     },
     "7354854": {
       "Name": "Dr. Tete",
@@ -142,19 +162,30 @@
           "Start": "19:00",
           "End": "23:00"
         }
-      }
+      },
+      "Id": null
     }
   },
   "turnos": {
-    "25654321_40350997": {
-      "MedicoPk": 25654321,
-      "PacientePk": 40350997,
-      "FechaYHoraAsignada": "2024-11-03T00:00:00"
+    "1": {
+      "PacienteConcat": "LoadPacienteConcatNotImplemented",
+      "MedicoConcat": "LoadMedicoConcatNotImplemented",
+      "Especialidad": "LoadEspecialidadConcatNotImplemented",
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null,
+      "Id": null
     },
-    "87654321_10350123": {
-      "MedicoPk": 87654321,
-      "PacientePk": 10350123,
-      "FechaYHoraAsignada": "2024-10-05T00:00:00"
+    "2": {
+      "PacienteConcat": "LoadPacienteConcatNotImplemented",
+      "MedicoConcat": "LoadMedicoConcatNotImplemented",
+      "Especialidad": "LoadEspecialidadConcatNotImplemented",
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null,
+      "Id": null
     }
   }
 }
