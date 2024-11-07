@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public partial class App : Application {
+		public static BaseDeDatosAbstracta BaseDeDatos;
 		public static bool UsuarioLogueado = false;
 		public static string UsuarioName = "Señor Gestor";
-		public static BaseDeDatosAbstracta BaseDeDatos;
 	}
     public static class WindowExtensions{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new(){

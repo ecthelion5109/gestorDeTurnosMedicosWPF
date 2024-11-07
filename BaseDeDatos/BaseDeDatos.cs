@@ -1,10 +1,9 @@
 namespace ClinicaMedica {
 	public abstract class BaseDeDatosAbstracta{
-		
 		// Public diccionarios
-		public static Dictionary<string, Turno> DictTurnos = new();
-		public static Dictionary<string, Medico> DictMedicos = new();
-		public static Dictionary<string, Paciente> DictPacientes = new();
+		public Dictionary<string, Turno> DictTurnos = new();
+		public Dictionary<string, Medico> DictMedicos = new();
+		public Dictionary<string, Paciente> DictPacientes = new();
 		
 		// Read methods
 		public abstract List<Medico> ReadMedicos();

@@ -17,7 +17,9 @@ using System.Windows.Shapes;
 
 namespace ClinicaMedica {
     public partial class TurnosModificar : Window {
-		private static Turno ?SelectedTurno;
+		private static Medico? SelectedMedico;
+		private static Turno? SelectedTurno;
+		private static Paciente? SelectedPaciente;
 		//---------------------public.constructors-------------------//
         public TurnosModificar() //Crear turno
 		{
@@ -35,9 +37,11 @@ namespace ClinicaMedica {
 		}
 
 		private void SetComboBoxSelections(){
-			this.txtMedicos.SelectedValue = SelectedTurno.MedicoId;
-			this.txtPacientes.SelectedValue = SelectedTurno.PacienteId;
-			//this.txtEspecialidades.SelectedItem = SelectedTurno.Especialidad;
+			SelectedPaciente = App.BaseDeDatos.DictPacientes[SelectedTurno.PacienteId];
+			SelectedMedico = App.BaseDeDatos.DictMedicos[SelectedTurno.MedicoId];
+			this.txtMedicos.SelectedValue = SelectedMedico.Id;
+			this.txtPacientes.SelectedValue = SelectedPaciente.Id;
+			this.txtEspecialidades.SelectedItem = SelectedMedico.Especialidad;
 			this.txtId.Content = SelectedTurno.Id;
 			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
 			this.txtHora.Text = SelectedTurno.Hora.ToString();
@@ -52,8 +56,8 @@ namespace ClinicaMedica {
 			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
 			txtMedicos.DisplayMemberPath = "Displayear";
 
-			// txtPacientes.SelectedValuePath = "Id";
-			// txtMedicos.SelectedValuePath = "Id";
+			txtPacientes.SelectedValuePath = "Id";
+			txtMedicos.SelectedValuePath = "Id";
 		}
 
 		public bool FaltanCamposPorCompletar(){

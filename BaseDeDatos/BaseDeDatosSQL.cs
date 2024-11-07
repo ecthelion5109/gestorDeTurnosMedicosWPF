@@ -16,7 +16,7 @@ namespace ClinicaMedica {
 
 		
 		//------------------------Private----------------------//
-		private static void CargarMedicos(){
+		private void CargarMedicos(){
 			using (var conexion = new SqlConnection(connectionString)){
 				conexion.Open();
 				string consulta = "SELECT * FROM Medico";
@@ -43,7 +43,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-		private static void CargarPacientes()
+		private void CargarPacientes()
 		{
 			using (var conexion = new SqlConnection(connectionString)){
 				conexion.Open();
@@ -73,7 +73,7 @@ namespace ClinicaMedica {
 			}
 		}
 
-		private static void CargarTurnos()
+		private void CargarTurnos()
 		{
 			using (var conexion = new SqlConnection(connectionString))
 			{
