@@ -133,7 +133,7 @@
                         Style="{StaticResource BotonRedondeado}"
                         FontWeight="Bold"
                         BorderBrush="#FF0E0D0D"
-                        Margin="42,483,0,0"
+                        Margin="35,435,0,0"
                         FontFamily="Baskerville Old Face">
 		</Button>
 
@@ -147,7 +147,7 @@
                         Style="{StaticResource BotonRedondeado}"
                         FontWeight="Bold"
                         BorderBrush="#FF0E0D0D"
-                        Margin="42,429,0,0"
+                        Margin="35,490,0,0"
                         FontFamily="Baskerville Old Face">
 		</Button>
 

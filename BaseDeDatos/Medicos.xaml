@@ -121,7 +121,7 @@
 				Style="{StaticResource BotonRedondeado}"
 				FontWeight="Bold"
 				BorderBrush="#FF0E0D0D"
-				Margin="30,502,0,0"
+				Margin="25,464,0,0"
 				FontFamily="Baskerville Old Face"/>
 		<Button
 				Content="Salir"
@@ -134,7 +134,7 @@
 				Style="{StaticResource BotonRedondeado}"
 				FontWeight="Bold"
 				BorderBrush="#FF0E0D0D"
-				Margin="30,455,0,0"
+				Margin="25,514,0,0"
 				FontFamily="Baskerville Old Face"/>
 
 

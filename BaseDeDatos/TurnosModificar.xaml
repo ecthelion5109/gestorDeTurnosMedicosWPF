@@ -146,7 +146,7 @@
 				Margin="0,128,0,0"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+				Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" SelectionChanged="txtEspecialidades_SelectionChanged"
 				/>
 		<ComboBox x:Name="txtMedicos"
 				HorizontalAlignment="Center"

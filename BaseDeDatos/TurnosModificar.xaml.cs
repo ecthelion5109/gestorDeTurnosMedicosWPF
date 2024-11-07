@@ -110,6 +110,13 @@ namespace ClinicaMedica {
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-		//------------------------Fin---------------------------//
-	}
+
+		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicosWhereEspecialidad(txtEspecialidades.SelectedItem.ToString());
+			txtMedicos.DisplayMemberPath = "Displayear";
+			txtMedicos.SelectedValuePath = "Id";
+
+        }
+        //------------------------Fin---------------------------//
+    }
 }

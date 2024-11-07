@@ -73,14 +73,18 @@ namespace ClinicaMedica {
 			}
 			return DictTurnos.Values.Where(t => t.PacienteId == instance.Id).ToList();
 		}
+
+		public List<Medico> ReadMedicosWhereEspecialidad(string especialidad) {
+			return DictMedicos.Values.Where(m => m.Especialidad == especialidad).ToList();
+		}
 		public List<string> ReadDistinctEspecialidades() {
 			return DictMedicos.Values
 								.Select(medico => medico.Especialidad)
 								.Distinct()
 								.ToList();
 		}
-		
-		
+
+
 	}
 	
 	

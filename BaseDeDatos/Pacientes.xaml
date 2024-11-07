@@ -136,7 +136,7 @@
 			Style="{StaticResource BotonRedondeado}"
 			FontWeight="Bold"
 			BorderBrush="#FF0E0D0D"
-			Margin="810,505,0,0"
+			Margin="810,446,0,0"
 			FontFamily="Baskerville Old Face"/>
 		<Button
 			Content="Salir"
@@ -149,7 +149,7 @@
 			Style="{StaticResource BotonRedondeado}"
 			FontWeight="Bold"
 			BorderBrush="#FF0E0D0D"
-			Margin="810,446,0,0"
+			Margin="810,501,0,0"
 			FontFamily="Baskerville Old Face"/>
 		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="255,17,534,165" Grid.RowSpan="2">
 			<StackPanel Orientation="Vertical" Background="Transparent">
