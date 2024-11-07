@@ -36,7 +36,7 @@ namespace ClinicaMedica {
 	}
 	
 	
-    public static class WindowExtensions{
+    public static class AtajosDeVentana{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new(){
 			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
 				App.UClickNoFun.Play();

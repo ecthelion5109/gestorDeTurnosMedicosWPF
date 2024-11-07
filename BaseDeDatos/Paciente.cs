@@ -1,10 +1,11 @@
 ﻿using System.Text.Json;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Pacientes-------------------------------//
-	public class Paciente : Entidad {
-		// public int Dni { get; set; }
+	public class Paciente {
+		public string ?Id { get; set; }
 		public string ?Dni { get; set; }
 		public string ?Name { get; set; }
 		public string ?LastName { get; set; }
@@ -15,8 +16,9 @@ namespace ClinicaMedica {
 		public string ?Domicilio { get; set; }
 		public string ?Localidad { get; set; }
 		public string ?Provincia { get; set; }
-			
-				
+
+
+		[JsonIgnore]
 		public string Displayear => $"{Id}: {Name} {LastName}";
 			
 		public Paciente() { }
@@ -54,6 +56,21 @@ namespace ClinicaMedica {
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
 			this.Provincia = window.txtProvincia.Text;
+		}
+		
+		
+		// Metodo para mostrarse en una ventana
+		public void MostrarseEnVentana(PacientesModificar ventana) {
+			ventana.txtDni.Text = this.Dni;
+			ventana.txtNombre.Text = this.Name;
+			ventana.txtApellido.Text = this.LastName;
+			ventana.txtFechaIngreso.SelectedDate = this.FechaIngreso;
+			ventana.txtEmail.Text = this.Email;
+			ventana.txtTelefono.Text = this.Telefono;
+			ventana.txtFechaNacimiento.SelectedDate = this.FechaNacimiento;
+			ventana.txtDomicilio.Text = this.Domicilio;
+			ventana.txtLocalidad.Text = this.Localidad;
+			ventana.txtProvincia.Text = this.Provincia;
 		}
 	}
 }

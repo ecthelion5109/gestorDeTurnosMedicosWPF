@@ -26,16 +26,8 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedPaciente = selectedPaciente;
-			this.txtDni.Text = SelectedPaciente.Dni;
-			this.txtNombre.Text = SelectedPaciente.Name;
-			this.txtApellido.Text = SelectedPaciente.LastName;
-			this.txtFechaIngreso.SelectedDate = SelectedPaciente.FechaIngreso;
-			this.txtEmail.Text = SelectedPaciente.Email;
-			this.txtTelefono.Text = SelectedPaciente.Telefono;
-			this.txtFechaNacimiento.SelectedDate = SelectedPaciente.FechaNacimiento;
-			this.txtDomicilio.Text = SelectedPaciente.Domicilio;
-			this.txtLocalidad.Text = SelectedPaciente.Localidad;
-			this.txtProvincia.Text = SelectedPaciente.Provincia;
+			SelectedPaciente.MostrarseEnVentana(this);
+			
 		}
 		
 

@@ -27,18 +27,7 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedMedico = selectedMedico;
-			this.txtDiasDeAtencion.ItemsSource = SelectedMedico.GetDiasDeAtencionListForUI();
-			this.txtNombre.Text = SelectedMedico.Name;
-			this.txtApellido.Text = SelectedMedico.LastName;
-			this.txtDni.Text = SelectedMedico.Dni;
-            this.txtTelefono.Text = SelectedMedico.Telefono;
-            this.txtProvincia.Text = SelectedMedico.Provincia;
-			this.txtDomicilio.Text = SelectedMedico.Domicilio;
-			this.txtLocalidad.Text = SelectedMedico.Localidad;
-			this.txtEspecialidad.Text = SelectedMedico.Especialidad;
-			this.txtFechaIngreso.SelectedDate = SelectedMedico.FechaIngreso;
-			this.txtSueldoMinGarant.Text = SelectedMedico.SueldoMinimoGarantizado.ToString();
-			this.txtRealizaGuardia.IsChecked = SelectedMedico.Guardia;
+			SelectedMedico.MostrarseEnVentana(this);
 		}
 		
 

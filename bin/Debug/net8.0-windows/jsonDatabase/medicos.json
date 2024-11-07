@@ -1,5 +1,6 @@
 {
   "1": {
+    "Id": "1",
     "Name": "Dr. Roxana",
     "LastName": "Gomez",
     "Dni": "876543",
@@ -20,11 +21,10 @@
         "Start": "12:00",
         "End": "19:00"
       }
-    },
-    "Displayear": "1: Masajista de genitales - Dr. Roxana Gomez",
-    "Id": "1"
+    }
   },
   "2": {
+    "Id": "2",
     "Name": "Dr. Carlos",
     "LastName": "Merkier",
     "Dni": "256543",
@@ -45,11 +45,10 @@
         "Start": "10:00",
         "End": "14:00"
       }
-    },
-    "Displayear": "2: Gastroenterologia - Dr. Carlos Merkier",
-    "Id": "2"
+    }
   },
   "3": {
+    "Id": "3",
     "Name": "Dr. Miguel",
     "LastName": "Dedo Gordo",
     "Dni": "5769537",
@@ -61,11 +60,10 @@
     "Guardia": true,
     "FechaIngreso": "2021-05-05T00:00:00",
     "SueldoMinimoGarantizado": 900000.0,
-    "DiasDeAtencion": {},
-    "Displayear": "3: Proctologia - Dr. Miguel Dedo Gordo",
-    "Id": "3"
+    "DiasDeAtencion": {}
   },
   "4": {
+    "Id": "4",
     "Name": "Dr. Tocando",
     "LastName": "Shells",
     "Dni": "1321452",
@@ -86,16 +84,15 @@
         "Start": "07:00",
         "End": "16:00"
       }
-    },
-    "Displayear": "4: Ginecologo - Dr. Tocando Shells",
-    "Id": "4"
+    }
   },
   "5": {
+    "Id": "5",
     "Name": "Ricardo",
     "LastName": "Lopez Murphy",
     "Dni": "7354854",
     "Provincia": "Buenos Aires",
-    "Domicilio": "Equiza 6654",
+    "Domicilio": "Equiza 66542",
     "Localidad": "Gonzalez Catan",
     "Especialidad": "Mistico de la economia",
     "Telefono": "54345334",
@@ -111,11 +108,10 @@
         "Start": "19:00",
         "End": "23:00"
       }
-    },
-    "Displayear": "5: Mistico de la economia - Ricardo Lopez Murphy",
-    "Id": "5"
+    }
   },
   "6": {
+    "Id": "6",
     "Name": "Carlos ",
     "LastName": "Corach",
     "Dni": "34534534",
@@ -127,8 +123,6 @@
     "Guardia": true,
     "FechaIngreso": "2024-11-13T00:00:00",
     "SueldoMinimoGarantizado": 9000000.0,
-    "DiasDeAtencion": {},
-    "Displayear": "6: Fan de Menem - Carlos  Corach",
-    "Id": "6"
+    "DiasDeAtencion": {}
   }
 }

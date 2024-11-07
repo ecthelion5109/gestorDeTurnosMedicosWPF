@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Horarios-------------------------------//
@@ -21,13 +22,10 @@ namespace ClinicaMedica {
 		public string ?InicioHorario { get; set; }
 		public string ?FinHorario { get; set; }
 	}
-	
-	public class Entidad {
-		public string ?Id { get; set; }
-	}
 
 	//---------------------------------Tablas.Medicos-------------------------------//
-	public class Medico: Entidad {
+	public class Medico {
+		public string ?Id { get; set; }
 		public string? Name { get; set; }
 		public string? LastName { get; set; }
 		public string? Dni { get; set; }
@@ -41,7 +39,7 @@ namespace ClinicaMedica {
 		public double? SueldoMinimoGarantizado { get; set; }
 		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
 			
-				
+		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
 
 	//---------------------------------Constructor.Vacio-------------------------------//
@@ -99,7 +97,7 @@ namespace ClinicaMedica {
 
 
 		// Metodo para devolver una lista con los horarios medicos para la interfaz gráfica.
-		public List<HorarioMedico> GetDiasDeAtencionListForUI() {
+		private List<HorarioMedico> GetDiasDeAtencionListForUI() {
 			var dias = new List<HorarioMedico> {
 				new() { DiaSemana = "Lunes" },
 				new() { DiaSemana = "Martes" },
@@ -128,6 +126,27 @@ namespace ClinicaMedica {
 				}
 			}
 		}
+		
+		
+		
+		
+		// Metodo para mostrarse en una ventana
+		public void MostrarseEnVentana(MedicosModificar ventana) {
+			ventana.txtDiasDeAtencion.ItemsSource = this.GetDiasDeAtencionListForUI();
+			ventana.txtNombre.Text = this.Name;
+			ventana.txtApellido.Text = this.LastName;
+			ventana.txtDni.Text = this.Dni;
+            ventana.txtTelefono.Text = this.Telefono;
+            ventana.txtProvincia.Text = this.Provincia;
+			ventana.txtDomicilio.Text = this.Domicilio;
+			ventana.txtLocalidad.Text = this.Localidad;
+			ventana.txtEspecialidad.Text = this.Especialidad;
+			ventana.txtFechaIngreso.SelectedDate = this.FechaIngreso;
+			ventana.txtSueldoMinGarant.Text = this.SueldoMinimoGarantizado.ToString();
+			ventana.txtRealizaGuardia.IsChecked = this.Guardia;
+		}
+		
+		
 		
 	}
 }

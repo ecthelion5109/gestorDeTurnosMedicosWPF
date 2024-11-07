@@ -17,35 +17,23 @@ using System.Windows.Shapes;
 
 namespace ClinicaMedica {
     public partial class TurnosModificar : Window {
-		private static Medico? SelectedMedico;
+		// private static Medico? SelectedMedico;
 		private static Turno? SelectedTurno;
-		private static Paciente? SelectedPaciente;
+		// private static Paciente? SelectedPaciente;
 		//---------------------public.constructors-------------------//
         public TurnosModificar() //Crear turno
 		{
             InitializeComponent();
-			SelectedTurno = null;
 			LLenarComboBoxes();
+			SelectedTurno = null;
 		}
 
 		public TurnosModificar(Turno selectedTurno)  //Modificar turno
 		{
 			InitializeComponent();
-			SelectedTurno = selectedTurno;
 			LLenarComboBoxes();
-			SetComboBoxSelections();
-		}
-
-		private void SetComboBoxSelections(){
-			App.BaseDeDatos.TryGetPaciente(SelectedTurno.PacienteId, out SelectedPaciente);
-			App.BaseDeDatos.TryGetMedico(SelectedTurno.MedicoId, out SelectedMedico);
-
-			this.txtMedicos.SelectedValue = SelectedMedico.Id;
-			this.txtPacientes.SelectedValue = SelectedPaciente.Id;
-			this.txtEspecialidades.SelectedItem = SelectedMedico.Especialidad;
-			this.txtId.Content = SelectedTurno.Id;
-			this.txtFecha.SelectedDate = SelectedTurno.Fecha;
-			this.txtHora.Text = SelectedTurno.Hora.ToString();
+			SelectedTurno = selectedTurno;
+			SelectedTurno.MostrarseEnVentana(this);
 		}
 
 		private void LLenarComboBoxes() {
@@ -53,11 +41,10 @@ namespace ClinicaMedica {
 
 			txtPacientes.ItemsSource = App.BaseDeDatos.ReadPacientes();
 			txtPacientes.DisplayMemberPath = "Displayear";
+			txtPacientes.SelectedValuePath = "Id";
 			
 			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
 			txtMedicos.DisplayMemberPath = "Displayear";
-
-			txtPacientes.SelectedValuePath = "Id";
 			txtMedicos.SelectedValuePath = "Id";
 		}
 
@@ -74,28 +61,11 @@ namespace ClinicaMedica {
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
-
-
-
-
-
-
-
-
-
 			// ---------AsegurarInput-----------//
 			if (FaltanCamposPorCompletar()) {
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				return;
 			}
-
-
-
-			// ---------DebugTest-----------//
-			// if (true) {
-				// MessageBox.Show($"txtMedicos.SelectedValue:{(this.txtMedicos.SelectedValue)}\ntxtPacientes.SelectedValue:{this.txtPacientes.SelectedValue}\ntxtHora.Text:{this.txtHora.Text}\ntxtFecha.SelectedDate:{this.txtFecha.SelectedDate}");
-			// }
-
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
 				var newturno = new Turno();

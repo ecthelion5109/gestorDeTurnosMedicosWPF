@@ -1,14 +1,11 @@
 ﻿using System.Text.Json;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Turnos-------------------------------//
-	public class Turno : Entidad, INotifyPropertyChanged {
-		public event PropertyChangedEventHandler PropertyChanged;
-		protected virtual void OnPropertyChanged(string propertyName){
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-	
+	public class Turno {
+		public string ?Id { get; set; }
 		public string ?PacienteId { get; set; }
 		public string ?MedicoId { get; set; }
 		public DateTime ?Fecha { get; set; }
@@ -34,11 +31,27 @@ namespace ClinicaMedica {
 			if (window.txtFecha.SelectedDate.HasValue) {
 				this.Fecha = window.txtFecha.SelectedDate.Value.Date; // Set as DateTime, keeping only the date part
 			}
-			else {
-				// Handle the case where no date is selected, if necessary
-				this.Fecha = DateTime.MinValue; // Or some other default value
-			}
+			// else {
+				// this.Fecha = DateTime.MinValue; // Or some other default value
+			// }
 			this.Hora = TimeSpan.Parse(window.txtHora.Text);
 		}
+		
+		
+		// Metodo para mostrarse en una ventana
+		public void MostrarseEnVentana(TurnosModificar ventana) {
+			Paciente pacienteRelacionado;
+			App.BaseDeDatos.TryGetPaciente(this.PacienteId, out pacienteRelacionado);
+			Medico medicoRelacionado;
+			App.BaseDeDatos.TryGetMedico(this.MedicoId, out medicoRelacionado);
+
+			ventana.txtMedicos.SelectedValue = medicoRelacionado.Id;
+			ventana.txtPacientes.SelectedValue = pacienteRelacionado.Id;
+			ventana.txtEspecialidades.SelectedItem = medicoRelacionado.Especialidad;
+			ventana.txtId.Content = this.Id;
+			ventana.txtFecha.SelectedDate = this.Fecha;
+			ventana.txtHora.Text = this.Hora.ToString();
+		}
+		
 	}
 }
