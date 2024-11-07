@@ -16,9 +16,9 @@ namespace ClinicaMedica {
 		public abstract bool CreateTurno(Turno instance);
 
 		// Update methods
-		public abstract bool UpdateMedico(Medico instance, string originalDni);	//El dni es mas que nada para jsonMode
-		public abstract bool UpdatePaciente(Paciente instance, string originalDni);//El dni es mas que nada para jsonMode
-		public abstract bool UpdateTurno(Turno instance);//El dni es mas que nada para jsonMode
+		public abstract bool UpdateMedico(Medico instance);
+		public abstract bool UpdatePaciente(Paciente instance);
+		public abstract bool UpdateTurno(Turno instance);
 
 		// Delete methods
 		public abstract bool DeleteMedico(Medico instance);

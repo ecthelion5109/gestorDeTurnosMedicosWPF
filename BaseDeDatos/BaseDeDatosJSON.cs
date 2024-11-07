@@ -16,43 +16,74 @@ namespace ClinicaMedica {
 		}
 		
 		
-		//------------------------CREATE----------------------//
-		public override bool CreateMedico(Medico instancia) {
-			bool YaExiste(string key){
-				return DictMedicos.ContainsKey(key);
-			}
 		
-			if (YaExiste(instancia.Dni)) {
+		
+		//------------------------Cosas que hace SQL por su cuenta----------------------//
+		private string GenerateNextId<T>(Dictionary<string, T> dictionary) {
+			int maxId = 0;
+
+			foreach (var key in dictionary.Keys) {
+				if (int.TryParse(key, out int numericId)) {
+					maxId = Math.Max(maxId, numericId);
+				}
+			}
+			return (maxId + 1).ToString();
+		}
+		//------------------------CREATE----------------------//
+
+		public override bool CreateMedico(Medico instancia) {
+			if (!DictMedicos.Values.Any(i => i.Dni == instancia.Dni)){
+				MessageBox.Show($"Error: Ya hay un medico con ese Dni.");
 				return false;
 			}
-			DictMedicos[instancia.Dni] = instancia;
+			instancia.Id = GenerateNextId( DictMedicos );
+			DictMedicos[instancia.Id] = instancia;
 			this.UpdateMedicosJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
 		public override bool CreatePaciente(Paciente instancia) {
-			bool YaExiste(string key){
-				return DictPacientes.ContainsKey(key);
-			}
-		
-			if (YaExiste(instancia.Dni)) {
+			if (!DictPacientes.Values.Any(i => i.Dni == instancia.Dni)){
+				MessageBox.Show($"Error: Ya hay un paciente con ese Dni.");
 				return false;
 			}
-			DictPacientes[instancia.Dni] = instancia;
+			instancia.Id = GenerateNextId(DictPacientes);
+			DictPacientes[instancia.Id] = instancia;
 			this.UpdatePacientesJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
-
-		public override bool CreateTurno(Turno instancia) {
-			bool YaExiste(string key){
-				return DictTurnos.ContainsKey(key);
+		
+		private bool ErroresDeConstraint(Turno instancia){
+			if (
+				DictTurnos.Values.Any(i => i.PacienteId == instancia.PacienteId)
+				|| DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId)
+				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
+			){
+				MessageBox.Show($"Error: Ya hay un turno entre ese paciente y ese medico en esa fecha.");
+				return true;
 			}
 			
-			if (YaExiste(instancia.Id)) {
+			if (
+				DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId)
+				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
+				|| DictTurnos.Values.Any(i => i.Hora == instancia.Hora)
+			){
+				MessageBox.Show($"Error: El medico ya tiene un turno ese dia a esa hora.");
+				return true;
+			}
+			return false;
+		}
+
+		public override bool CreateTurno(Turno instancia) {
+			if (ErroresDeConstraint(instancia)){
 				return false;
 			}
-			MessageBox.Show($"No se ha implementado esto en json");
+			
+			instancia.Id = GenerateNextId(DictTurnos);
+			DictTurnos[instancia.Id] = instancia;
+			this.UpdateTurnosJson();
+			MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id: {instancia.Id}");
 			return true;
 		}
 		//------------------------public.READ----------------------//
@@ -66,37 +97,28 @@ namespace ClinicaMedica {
             return DictTurnos.Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
-        public override bool UpdateMedico(Medico instancia, string originalDni){
+        public override bool UpdateMedico(Medico instancia){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
 			} 
-				
-			if (originalDni != instancia.Dni) {
-				DictMedicos.Remove(originalDni);
-				DictMedicos[instancia.Dni] = instancia;
-			}
 			this.UpdateMedicosJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
-        public override bool UpdatePaciente(Paciente instancia, string originalDni){
+        public override bool UpdatePaciente(Paciente instancia){
 			if (string.IsNullOrEmpty(instancia.Dni)) {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
 			} 
-				
-			if (originalDni != instancia.Dni) {
-				DictPacientes.Remove(originalDni);
-				DictPacientes[instancia.Dni] = instancia;
-			}
 			this.UpdatePacientesJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
         public override bool UpdateTurno(Turno instancia) {
-			MessageBox.Show($"Sin definir.");
-			return false;
+			this.UpdateTurnosJson(); // Guardar los cambios en el archivo JSON
+			MessageBox.Show($"Exito: Se han actualizado los datos del turno Id: {instancia.Id}");
+			return true;
 		}
 		//------------------------public.DELETE----------------------//
 		
@@ -125,8 +147,15 @@ namespace ClinicaMedica {
 		}
 
         public override bool DeleteTurno(Turno instancia) {
-			MessageBox.Show($"Sin implementar");
-			return false;
+			try {
+				DictTurnos.Remove(instancia.Id);
+				this.UpdateTurnosJson(); // Save changes to the database
+				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} del Json");
+				return true;
+			} catch (Exception ex) { 
+				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el turno", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
 		}
 		
 		

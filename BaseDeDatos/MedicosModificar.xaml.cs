@@ -64,10 +64,10 @@ namespace ClinicaMedica {
 			}
 			//---------Modificar-----------//
 			else {
-				string originalDni = SelectedMedico.Dni;
+				//string originalDni = SelectedMedico.Dni;
 				if (FaltanCamposPorCompletar()) {
 					SelectedMedico.AsignarDatosFromWindow(this);
-					App.BaseDeDatos.UpdateMedico(SelectedMedico, originalDni);
+					App.BaseDeDatos.UpdateMedico(SelectedMedico);
 				}
 				else {
 					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");

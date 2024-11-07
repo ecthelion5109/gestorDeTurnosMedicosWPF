@@ -314,7 +314,7 @@ namespace ClinicaMedica {
 			// return turnosList;
 		}
 		//------------------------UPDATE----------------------//
-		public override bool UpdateMedico(Medico instancia, string originalDni) {
+		public override bool UpdateMedico(Medico instancia) {
 			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(connectionString)) {
@@ -354,7 +354,7 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
-		public override bool UpdatePaciente(Paciente instancia, string originalDni) {
+		public override bool UpdatePaciente(Paciente instancia) {
 			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(connectionString)) {

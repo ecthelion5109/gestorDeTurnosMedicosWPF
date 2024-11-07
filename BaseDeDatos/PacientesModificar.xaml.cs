@@ -72,9 +72,9 @@ namespace ClinicaMedica {
 			}
 			//---------Modificar-----------//
 			else {
-				string originalDni = SelectedPaciente.Dni;
+				//string originalDni = SelectedPaciente.Dni;
 				SelectedPaciente.AsignarDatosFromWindow(this);
-				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente, originalDni)){
+				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente)){
 					this.Close();
 				}
 			}
