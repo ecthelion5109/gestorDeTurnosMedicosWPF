@@ -86,9 +86,6 @@ namespace ClinicaMedica {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
 			} 
-			if (ErroresDeConstraintDeMedicos(instancia)){
-				return false;
-			}
 			this.JsonUpdateMedicos(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
@@ -99,9 +96,6 @@ namespace ClinicaMedica {
 				MessageBox.Show($"Error: El DNI es un campo obligatorio.");
 				return false;
 			} 
-			if (ErroresDeConstraintDePacientes(instancia)){
-				return false;
-			}
 			this.JsonUpdatePacientes(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
