@@ -125,6 +125,10 @@ namespace ClinicaMedica {
 
 		//------------------------public.DELETE.Medico----------------------//
 		public override bool DeleteMedico(Medico instancia) {
+			if (ErroresDeConstraintDeMedicos(instancia)){
+				return false;
+			}
+			
 			try {
 				DictMedicos.Remove(instancia.Id);
 				this.JsonUpdateMedicos(); // Save changes to the database
@@ -138,6 +142,10 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.DELETE.Paciente----------------------//
 		public override bool DeletePaciente(Paciente instancia){
+			if (ErroresDeConstraintDePacientes(instancia)){
+				return false;
+			}
+			
 			try {
 				DictPacientes.Remove(instancia.Id);
 				this.JsonUpdatePacientes(); // Save changes to the database
@@ -261,7 +269,7 @@ namespace ClinicaMedica {
 				|| DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId)
 				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
 			) {
-				MessageBox.Show($"Error: Ya hay un turno entre ese paciente y ese medico en esa fecha.");
+				MessageBox.Show($"Error de integridad: Ya hay un turno entre ese paciente y ese medico en esa fecha.");
 				return true;
 			}
 
@@ -270,7 +278,7 @@ namespace ClinicaMedica {
 				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
 				|| DictTurnos.Values.Any(i => i.Hora == instancia.Hora)
 			) {
-				MessageBox.Show($"Error: El medico ya tiene un turno ese dia a esa hora.");
+				MessageBox.Show($"Error de integridad: El medico ya tiene un turno ese dia a esa hora.");
 				return true;
 			}
 			return false;
@@ -278,7 +286,7 @@ namespace ClinicaMedica {
 		//------------------------private.CONSTRAINTS.Paciente----------------------//
 		private bool ErroresDeConstraintDePacientes(Paciente instancia) {
 			if (DictTurnos.Values.Any(i => i.PacienteId == instancia.Id)) {
-				MessageBox.Show($"Error: El paciente tiene turnos asignados.");
+				MessageBox.Show($"Error de integridad: El paciente tiene turnos asignados.");
 				return true;
 			}
 			return false;
@@ -286,7 +294,7 @@ namespace ClinicaMedica {
 		//------------------------private.CONSTRAINTS.Medicos----------------------//
 		private bool ErroresDeConstraintDeMedicos(Medico instancia) {
 			if (DictTurnos.Values.Any(i => i.MedicoId == instancia.Id)) {
-				MessageBox.Show($"Error: El medico tiene turnos asignados.");
+				MessageBox.Show($"Error de integridad: El medico tiene turnos asignados.");
 				return true;
 			}
 			return false;
