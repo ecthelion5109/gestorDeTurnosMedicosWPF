@@ -32,6 +32,8 @@
 
 - **Restricciones de integridad en registros**: La base de datos SQL incluye restricciones únicas (`unique constraints`), y `BaseDeDatosJSON` define funciones para verificar integridad, previniendo, por ejemplo, la eliminación de instancias con turnos asignados o modificaciones que dejen turnos sin paciente o medico.
 
+- **Uso de expresiones lambda y LINQ**: En lugar de realizar consultas SQL directas, la clase `BaseDeDatosAbstracta` emplea expresiones lambda y consultas LINQ para filtrar y seleccionar objetos según sus propiedades, ya sea en el sistema JSON o en SQL. Esto permite poblar `ListViews` y `ComboBoxes` de manera dinámica en respuesta a eventos dentro de una ventana, logrando eficiencia y claridad con muy poco código.
+
 - **Uso de diccionarios**: Se emplean diccionarios para almacenar las instancias de las entidades en memoria. Las claves de estos diccionarios corresponden a las claves primarias de las tablas, lo que permite acceder rápidamente a las instancias de los objetos desde cualquier ventana sin necesidad de realizar consultas repetitivas a la base de datos. 
 
 - **Estilos personalizados (Styles)**: `App.xaml` define estilos para `Button`, `ContentControl` (creando secciones con bordes redondeados) y `TextBox`. Los archivos `.xaml` en toda la aplicación pueden crear y aplicar estos estilos para mantener coherencia visual.

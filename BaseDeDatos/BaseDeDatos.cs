@@ -78,10 +78,7 @@ namespace ClinicaMedica {
 			return DictMedicos.Values.Where(m => m.Especialidad == especialidad).ToList();
 		}
 		public List<string> ReadDistinctEspecialidades() {
-			return DictMedicos.Values
-								.Select(medico => medico.Especialidad)
-								.Distinct()
-								.ToList();
+			return DictMedicos.Values.Select(medico => medico.Especialidad).Distinct().ToList();
 		}
 
 
