@@ -9,96 +9,12 @@ namespace ClinicaMedica {
 		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 		
 		public BaseDeDatosSQL() {
-			CargarMedicos();
-			CargarPacientes();
-			CargarTurnos();
+			SQLCargarMedicos();
+			SQLCargarPacientes();
+			SQLCargarTurnos();
 		}
 
-		
-		//------------------------Private----------------------//
-		private void CargarMedicos(){
-			using (var conexion = new SqlConnection(connectionString)){
-				conexion.Open();
-				string consulta = "SELECT * FROM Medico";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader()){
-					while (reader.Read()){
-						var medico = new Medico{
-							Id = reader["Id"]?.ToString(),
-							Name = reader["Name"]?.ToString(),
-							LastName = reader["LastName"]?.ToString(),
-							Dni = reader["Dni"]?.ToString(),
-							Provincia = reader["Provincia"]?.ToString(),
-							Domicilio = reader["Domicilio"]?.ToString(),
-							Localidad = reader["Localidad"]?.ToString(),
-							Especialidad = reader["Especialidad"]?.ToString(),
-							Telefono = reader["Telefono"]?.ToString(),
-							Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
-							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-							SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
-						};
-						DictMedicos[medico.Id] = medico;
-					}
-				}
-			}
-		}
-
-		private void CargarPacientes()
-		{
-			using (var conexion = new SqlConnection(connectionString)){
-				conexion.Open();
-				string consulta = "SELECT * FROM Paciente";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						var paciente = new Paciente
-						{
-								Id = reader["Id"]?.ToString(),
-								Dni = reader["Dni"]?.ToString(),
-								Name = reader["Name"]?.ToString(),
-								LastName = reader["LastName"]?.ToString(),
-								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								Email = reader["Email"]?.ToString(),
-								Telefono = reader["Telefono"]?.ToString(),
-								FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
-								Domicilio = reader["Domicilio"]?.ToString(),
-								Localidad = reader["Localidad"]?.ToString(),
-								Provincia = reader["Provincia"]?.ToString()
-						};
-						DictPacientes[paciente.Id] = paciente;
-					}
-				}
-			}
-		}
-
-		private void CargarTurnos()
-		{
-			using (var conexion = new SqlConnection(connectionString))
-			{
-				conexion.Open();
-				string consulta = "SELECT * FROM Turno";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						var turno = new Turno
-						{
-								Id = reader["Id"]?.ToString(),
-								PacienteId = reader["PacienteId"]?.ToString(),
-								MedicoId = reader["MedicoId"]?.ToString(),
-								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-								Hora = TimeSpan.Parse(reader["Hora"].ToString()),
-						};
-						DictTurnos[turno.Id] = turno;
-					}
-				}
-			}
-		}
-
-		//------------------------CREATE.Medico----------------------//
+		//------------------------public.CREATE.Medico----------------------//
 		public override bool CreateMedico(Medico instancia) {
 			string insertQuery = @"
 				INSERT INTO Medico (Name, LastName, Dni, Provincia, Domicilio, Localidad, Especialidad, Telefono, Guardia, FechaIngreso, SueldoMinimoGarantizado) 
@@ -145,7 +61,7 @@ namespace ClinicaMedica {
 		}
 		
 		
-		//------------------------CREATE.Paciente----------------------//
+		//------------------------public.CREATE.Paciente----------------------//
 		public override bool CreatePaciente(Paciente instancia) {
 			string insertQuery = @"
 				INSERT INTO Paciente (Dni, Name, LastName, FechaIngreso, Email, Telefono, FechaNacimiento, Domicilio, Localidad, Provincia) 
@@ -191,7 +107,7 @@ namespace ClinicaMedica {
 		}
 
 
-		//------------------------CREATE.Turno----------------------//
+		//------------------------public.CREATE.Turno----------------------//
 		public override bool CreateTurno(Turno instancia) {
 			string insertQuery = @"
 				INSERT INTO Turno (PacienteId, MedicoId, Fecha, Hora) 
@@ -230,90 +146,30 @@ namespace ClinicaMedica {
 		}
 
 
-		//------------------------READ----------------------//
+		//------------------------public.READ----------------------//
 		public override List<Medico> ReadMedicos() {
 			return DictMedicos.Values.ToList();
-			// List<Medico> medicoList = new List<Medico>();
-			// string query = "SELECT * FROM Medico";
-			// using (var connection = new SqlConnection(connectionString)) {
-				// connection.Open();
-				// using (var sqlComando = new SqlCommand(query, connection)) {
-					// using (var reader = sqlComando.ExecuteReader()) {
-						// while (reader.Read()) {
-							// Medico instancia = new Medico {
-								// Name = reader["Name"]?.ToString(),
-								// LastName = reader["LastName"]?.ToString(),
-								// Dni = reader["Dni"]?.ToString(),
-								// Provincia = reader["Provincia"]?.ToString(),
-								// Domicilio = reader["Domicilio"]?.ToString(),
-								// Localidad = reader["Localidad"]?.ToString(),
-								// Especialidad = reader["Especialidad"]?.ToString(),
-								// Telefono = reader["Telefono"]?.ToString(),
-								// Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
-								// FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								// SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
-							// };
-							// medicoList.Add(instancia);
-						// }
-					// }
-				// }
-			// }
-			// return medicoList;
 		}
 
 		public override List<Paciente> ReadPacientes() {
 			return DictPacientes.Values.ToList();
-			// List<Paciente> pacienteList = new List<Paciente>();
-			// string query = "SELECT * FROM Paciente";
-			// using (var connection = new SqlConnection(connectionString)) {
-				// connection.Open();
-				// using (var sqlComando = new SqlCommand(query, connection)) {
-					// using (var reader = sqlComando.ExecuteReader()) {
-						// while (reader.Read()) {
-							// Paciente instancia = new Paciente {
-								// Dni = reader["Dni"]?.ToString(),
-								// Name = reader["Name"]?.ToString(),
-								// LastName = reader["LastName"]?.ToString(),
-								// FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								// Email = reader["Email"]?.ToString(),
-								// Telefono = reader["Telefono"]?.ToString(),
-								// FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
-								// Domicilio = reader["Domicilio"]?.ToString(),
-								// Localidad = reader["Localidad"]?.ToString(),
-								// Provincia = reader["Provincia"]?.ToString()
-							// };
-							// pacienteList.Add(instancia);
-						// }
-					// }
-				// }
-			// }
-			// return pacienteList;
 		}
 
 		public override List<Turno> ReadTurnos() {
 			return DictTurnos.Values.ToList();
-			// List<Turno> turnosList = new List<Turno>();
-			// string query = "SELECT * FROM Turno";
-			// using (var connection = new SqlConnection(connectionString)) {
-				// connection.Open();
-				// using (var sqlComando = new SqlCommand(query, connection)) {
-					// using (var reader = sqlComando.ExecuteReader()) {
-						// while (reader.Read()) {
-							// Turno instancia = new Turno {
-								// Id = reader["Id"]?.ToString(),
-								// PacienteId = reader["PacienteId"]?.ToString(),
-								// MedicoId = reader["MedicoId"]?.ToString(),
-								// Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-								// Hora = TimeSpan.Parse(reader["Hora"].ToString()),
-							// };
-							// turnosList.Add(instancia);
-						// }
-					// }
-				// }
-			// }
-			// return turnosList;
 		}
-		//------------------------UPDATE----------------------//
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//------------------------public.UPDATE.Medico----------------------//
 		public override bool UpdateMedico(Medico instancia) {
 			string query = "UPDATE Medico SET Name = @Name, LastName = @LastName, Dni = @Dni, Provincia = @Provincia, Domicilio = @Domicilio, Localidad = @Localidad, Especialidad = @Especialidad, Telefono = @Telefono, Guardia = @Guardia, FechaIngreso = @FechaIngreso, SueldoMinimoGarantizado = @SueldoMinimoGarantizado WHERE Id = @Id";
 			try {
@@ -354,6 +210,7 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
+		//------------------------public.UPDATE.Paciente----------------------//
 		public override bool UpdatePaciente(Paciente instancia) {
 			string query = "UPDATE Paciente SET Dni = @Dni, Name = @Name, LastName = @LastName, FechaIngreso = @FechaIngreso, Email = @Email, Telefono = @Telefono, FechaNacimiento = @FechaNacimiento, Domicilio = @Domicilio, Localidad = @Localidad, Provincia = @Provincia WHERE Id = @Id";
 			try {
@@ -393,6 +250,7 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
+		//------------------------public.UPDATE.Turno----------------------//
 		public override bool UpdateTurno(Turno instancia) {
 			//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
 			string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
@@ -432,7 +290,12 @@ namespace ClinicaMedica {
 
 
 
-		//------------------------DELETE----------------------//
+
+
+
+
+
+		//------------------------public.DELETE.Medico----------------------//
 		public override bool DeleteMedico(Medico instancia) {
 			string query = "DELETE FROM Medico WHERE Id = @Id";
 
@@ -460,6 +323,7 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
+		//------------------------public.DELETE.Paciente----------------------//
 		public override bool DeletePaciente(Paciente instancia) {
 			string query = "DELETE FROM Paciente WHERE Id = @Id";
 			try {
@@ -486,6 +350,7 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
+		//------------------------public.DELETE.Turno----------------------//
 		public override bool DeleteTurno(Turno instancia) {
 			string query = "DELETE FROM Turno WHERE Id = @Id";
 			try {
@@ -516,6 +381,103 @@ namespace ClinicaMedica {
 			}
 			return false;
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//------------------------private.LOAD.Medicos----------------------//
+		private void SQLCargarMedicos(){
+			using (var conexion = new SqlConnection(connectionString)){
+				conexion.Open();
+				string consulta = "SELECT * FROM Medico";
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader()){
+					while (reader.Read()){
+						var medico = new Medico{
+							Id = reader["Id"]?.ToString(),
+							Name = reader["Name"]?.ToString(),
+							LastName = reader["LastName"]?.ToString(),
+							Dni = reader["Dni"]?.ToString(),
+							Provincia = reader["Provincia"]?.ToString(),
+							Domicilio = reader["Domicilio"]?.ToString(),
+							Localidad = reader["Localidad"]?.ToString(),
+							Especialidad = reader["Especialidad"]?.ToString(),
+							Telefono = reader["Telefono"]?.ToString(),
+							Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
+							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+							SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
+						};
+						DictMedicos[medico.Id] = medico;
+					}
+				}
+			}
+		}
+		//------------------------private.LOAD.Pacientes----------------------//
+		private void SQLCargarPacientes(){
+			using (var conexion = new SqlConnection(connectionString)){
+				conexion.Open();
+				string consulta = "SELECT * FROM Paciente";
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var paciente = new Paciente
+						{
+								Id = reader["Id"]?.ToString(),
+								Dni = reader["Dni"]?.ToString(),
+								Name = reader["Name"]?.ToString(),
+								LastName = reader["LastName"]?.ToString(),
+								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								Email = reader["Email"]?.ToString(),
+								Telefono = reader["Telefono"]?.ToString(),
+								FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+								Domicilio = reader["Domicilio"]?.ToString(),
+								Localidad = reader["Localidad"]?.ToString(),
+								Provincia = reader["Provincia"]?.ToString()
+						};
+						DictPacientes[paciente.Id] = paciente;
+					}
+				}
+			}
+		}
+		//------------------------private.LOAD.Turnos----------------------//
+		private void SQLCargarTurnos(){
+			using (var conexion = new SqlConnection(connectionString))
+			{
+				conexion.Open();
+				string consulta = "SELECT * FROM Turno";
+				using (var sqlComando = new SqlCommand(consulta, conexion))
+				using (var reader = sqlComando.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var turno = new Turno
+						{
+								Id = reader["Id"]?.ToString(),
+								PacienteId = reader["PacienteId"]?.ToString(),
+								MedicoId = reader["MedicoId"]?.ToString(),
+								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
+								Hora = TimeSpan.Parse(reader["Hora"].ToString()),
+						};
+						DictTurnos[turno.Id] = turno;
+					}
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		//------------------------Fin.BaseDeDatosSQL----------------------//
 	}
 }

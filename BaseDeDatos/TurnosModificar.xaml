@@ -11,7 +11,7 @@
 		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen"
 		Padding="10,10,10,10">
-	<Grid>
+	<Grid Width="801">
 		<Label Content="Turno "
 				HorizontalAlignment="Left"
 				Margin="258,5,0,0"
@@ -27,8 +27,6 @@
 				HorizontalAlignment="Left"
 				Margin="148,174,0,0"
 				VerticalAlignment="Top"
-				Height="33"
-				Width="132"
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
@@ -37,8 +35,6 @@
 				HorizontalAlignment="Left"
 				Margin="148,225,0,0"
 				VerticalAlignment="Top"
-				Height="33"
-				Width="132"
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
@@ -47,8 +43,6 @@
 				HorizontalAlignment="Left"
 				Margin="148,273,0,0"
 				VerticalAlignment="Top"
-				Height="32"
-				Width="132"
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
@@ -59,14 +53,12 @@
 					VerticalAlignment="Top"
 					Width="284"
 					Height="32"
-				HorizontalContentAlignment="Left"
+				HorizontalContentAlignment="Right"
 				Background="White"/>
 		<Label Content="ID Turno"
 				HorizontalAlignment="Left"
 				Margin="148,83,0,0"
 				VerticalAlignment="Top"
-				Height="33"
-				Width="132"
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
@@ -112,8 +104,6 @@
 				HorizontalAlignment="Left"
 				Margin="148,329,0,0"
 				VerticalAlignment="Top"
-				Height="33"
-				Width="132"
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
@@ -124,14 +114,14 @@
 				TextWrapping="Wrap"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="33"/>
+				Height="33" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Padding="15,0,15,0"/>
 		<ComboBox 
 				x:Name="txtPacientes"
 				HorizontalAlignment="Center"
 				Margin="0,174,0,0"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="33"
+				Height="33" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
 				/>
 		<Label x:Name="txtId"
 				HorizontalAlignment="Center"
@@ -142,7 +132,7 @@
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
-				Background="#FFECECEC"/>
+				Background="#FFECECEC" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
 		<Label Content="Especialidad"
 				HorizontalAlignment="Left"
 				Margin="148,129,0,0"
@@ -156,14 +146,14 @@
 				Margin="0,128,0,0"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="32"
+				Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
 				/>
 		<ComboBox x:Name="txtMedicos"
 				HorizontalAlignment="Center"
 				Margin="0,225,0,0"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="33"/>
+				Height="33" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
 	</Grid>
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>

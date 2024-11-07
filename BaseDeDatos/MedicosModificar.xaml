@@ -191,7 +191,6 @@
 				   VerticalAlignment="Center"/>
 			<DatePicker Grid.Row="9"
 						Grid.Column="1"
-				Style="{StaticResource DatePickerLindo}" 
 						x:Name="txtFechaIngreso"
 						Margin="5,5,5,5"
 						Grid.ColumnSpan="2"/>

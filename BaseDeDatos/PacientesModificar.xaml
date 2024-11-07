@@ -184,7 +184,6 @@
 				   HorizontalAlignment="Right"
 					VerticalAlignment="Center"/>
 			<DatePicker Grid.Row="9"
-				Style="{StaticResource DatePickerLindo}" 
 						Grid.Column="1"
 						x:Name="txtFechaNacimiento"
 						Margin="5,5,5,5"
@@ -198,7 +197,6 @@
 					Margin="0,1,0,0"/>
 			<DatePicker Grid.Row="12"
 						Grid.Column="1"
-				Style="{StaticResource DatePickerLindo}" 
 						x:Name="txtFechaIngreso"
 						Margin="5,0,5,0"/>
 			<Label Content="Email"
