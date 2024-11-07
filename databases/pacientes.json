@@ -1,0 +1,93 @@
+{
+  "1": {
+    "Id": "1",
+    "Dni": "40350997",
+    "Name": "Armando",
+    "LastName": "Fasitos",
+    "FechaIngreso": "2024-10-07T00:00:00",
+    "Email": "xanderseling@gmail.com",
+    "Telefono": "11 3883 0130",
+    "FechaNacimiento": "2023-11-01T00:00:00",
+    "Domicilio": "italia 555",
+    "Localidad": "G. Catan",
+    "Provincia": "Bs Asires"
+  },
+  "2": {
+    "Id": "2",
+    "Dni": "10350991",
+    "Name": "Fatima",
+    "LastName": "Porro",
+    "FechaIngreso": "2024-10-07T00:00:00",
+    "Email": "vivalaviolencia@sevilla.com",
+    "Telefono": "23434554",
+    "FechaNacimiento": "2023-11-01T00:00:00",
+    "Domicilio": "titaltia 545",
+    "Localidad": "Moron",
+    "Provincia": "Bs Asires"
+  },
+  "3": {
+    "Id": "3",
+    "Dni": "2342342",
+    "Name": "Enrique",
+    "LastName": "Travieso",
+    "FechaIngreso": "2024-10-31T00:00:00",
+    "Email": "aye@ghmail.com",
+    "Telefono": "54354343",
+    "FechaNacimiento": "1997-11-04T00:00:00",
+    "Domicilio": "CalleSinNombre 123",
+    "Localidad": "MerloGomez",
+    "Provincia": "Buenos Aires"
+  },
+  "4": {
+    "Id": "4",
+    "Dni": "234234",
+    "Name": "Rigoberta",
+    "LastName": "Menchu",
+    "FechaIngreso": "2024-11-29T00:00:00",
+    "Email": "rigob@gmail.com",
+    "Telefono": "3456345345",
+    "FechaNacimiento": "2024-11-05T00:00:00",
+    "Domicilio": "Mexico 12345",
+    "Localidad": "Gonzalez Pereiyraa",
+    "Provincia": "Buenos Aries"
+  },
+  "5": {
+    "Id": "5",
+    "Dni": "43442342",
+    "Name": "Felipe",
+    "LastName": "Tirabuzon",
+    "FechaIngreso": "2024-11-15T00:00:00",
+    "Email": "iggu@gmail.com",
+    "Telefono": "84343434",
+    "FechaNacimiento": "2024-10-30T00:00:00",
+    "Domicilio": "Tagitisu 12343",
+    "Localidad": "Gonca Petu",
+    "Provincia": "Buenos Aires"
+  },
+  "6": {
+    "Id": "6",
+    "Dni": "56789012",
+    "Name": "Catalina",
+    "LastName": "Montero",
+    "FechaIngreso": "2024-11-20T00:00:00",
+    "Email": "carla.montes@gmail.com",
+    "Telefono": "98765432",
+    "FechaNacimiento": "1990-06-15T00:00:00",
+    "Domicilio": "Calle Ficticia 987",
+    "Localidad": "Rosario",
+    "Provincia": "Santa Fe"
+  },
+  "7": {
+    "Id": "7",
+    "Dni": "67890123",
+    "Name": "Luis",
+    "LastName": "Ríos",
+    "FechaIngreso": "2024-11-25T00:00:00",
+    "Email": "luis.rios@gmail.com",
+    "Telefono": "12398745",
+    "FechaNacimiento": "1985-03-25T00:00:00",
+    "Domicilio": "Av. Libertad 456",
+    "Localidad": "Córdoba",
+    "Provincia": "Córdoba"
+  }
+}
