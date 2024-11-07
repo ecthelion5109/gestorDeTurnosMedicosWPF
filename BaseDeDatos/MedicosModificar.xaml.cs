@@ -55,7 +55,7 @@ namespace ClinicaMedica {
 				if (FaltanCamposPorCompletar()) {
 					SelectedMedico = new Medico(this);
 					if ( App.BaseDeDatos.CreateMedico(SelectedMedico)){
-						this.Close();
+						this.Cerrar();
 					}						
 				}
 				else {
@@ -93,12 +93,12 @@ namespace ClinicaMedica {
 			}
 			//---------Eliminar-----------//
 			if (App.BaseDeDatos.DeleteMedico(SelectedMedico)){
-				this.Close(); // this.NavegarA<Medicos>();
+				this.Cerrar(); // this.NavegarA<Medicos>();
 			}
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
-			this.Close(); // this.NavegarA<Medicos>();
+			this.Cerrar(); // this.NavegarA<Medicos>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {

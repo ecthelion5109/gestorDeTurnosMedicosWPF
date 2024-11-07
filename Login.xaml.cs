@@ -13,8 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Media;
-using System.Windows.Media;
+// using System.Media;
+// using System.Windows.Media;
 
 namespace ClinicaMedica {
 	public partial class Login : Window {
@@ -22,21 +22,21 @@ namespace ClinicaMedica {
 			InitializeComponent();
 		}
 		
-		private void MouseHoverEvento(object sender, System.Windows.Input.MouseEventArgs e) {
-			MediaPlayer mediaPlayer = new MediaPlayer();
-			mediaPlayer.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-			mediaPlayer.Play();
-		}
+		// private void MouseHoverEvento(object sender, System.Windows.Input.MouseEventArgs e) {
+			// MediaPlayer mediaPlayer = new MediaPlayer();
+			// mediaPlayer.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
+			// mediaPlayer.Play();
+		// }
 
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
-			MediaPlayer mediaPlayer = new MediaPlayer();
-			mediaPlayer.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
-			mediaPlayer.Play();
+			// MediaPlayer mediaPlayer = new MediaPlayer();
+			// mediaPlayer.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
+			// mediaPlayer.Play();
 
 			if (checkboxJSON.IsChecked == true) {
 				App.BaseDeDatos = new BaseDeDatosJSON();
 				App.UsuarioLogueado = true;
-				this.Close();
+				this.Cerrar();
 				return;
 			}
 
@@ -50,13 +50,13 @@ namespace ClinicaMedica {
 					App.UsuarioName = labelUsuario.Text;
 					App.BaseDeDatos = new BaseDeDatosSQL();
 					App.UsuarioLogueado = true;
-					this.Close();
+					this.Cerrar();
 					return;
 				}
 				catch (Exception ex) {
 					MessageBox.Show($"{ex}");
 					App.UsuarioLogueado = false;
-					this.Close();
+					this.Cerrar();
 					return;
 				}
 			}
@@ -64,13 +64,13 @@ namespace ClinicaMedica {
 				try {
 					App.BaseDeDatos = new BaseDeDatosSQL();
 					App.UsuarioLogueado = true;
-					this.Close();
+					this.Cerrar();
 					return;
 				}
 				catch (Exception ex) {
 					MessageBox.Show($"{ex}");
 					App.UsuarioLogueado = false;
-					this.Close();
+					this.Cerrar();
 					return;
 				}
 			}
@@ -81,7 +81,7 @@ namespace ClinicaMedica {
 		}
 
 		private void MetodoBotonCancelar(object sender, RoutedEventArgs e) {
-			this.Close();
+			this.Cerrar();
 		}
 
 		private void ComboBoxBaseDeDatos_SelectionChanged(object sender, SelectionChangedEventArgs e) {

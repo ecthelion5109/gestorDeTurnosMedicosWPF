@@ -226,9 +226,10 @@
 
 
         <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
-        <Style x:Key="BotonRedondeado"
-                TargetType="{x:Type Button}">
-            <Setter Property="Foreground"
+        <Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
+			<EventSetter Event="MouseEnter" Handler="Button_MouseEnter"/>
+			<!-- <EventSetter Event="MouseDoubleClick" Handler="Button_Click"/> -->
+			<Setter Property="Foreground"
                     Value="Black"/>
             <Setter Property="BorderThickness"
                     Value="0"/>

@@ -101,14 +101,14 @@ namespace ClinicaMedica {
 				var newturno = new Turno();
 				newturno.AsignarDatosFromWindow(this);
 				if ( App.BaseDeDatos.CreateTurno(newturno) ) {
-					this.Close();
+					this.Cerrar();
 				}
 			}
 			//---------Modificar-----------//
 			else {
 				SelectedTurno.AsignarDatosFromWindow(this);
 				if ( App.BaseDeDatos.UpdateTurno(SelectedTurno) ) {
-					this.Close();
+					this.Cerrar();
 				}
 			}
 		}
@@ -129,12 +129,12 @@ namespace ClinicaMedica {
 			}
 			//---------Eliminar-----------//
 			if (App.BaseDeDatos.DeleteTurno(SelectedTurno)){
-				this.Close();
+				this.Cerrar();
 			}
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
-			this.Close(); // this.NavegarA<Turnos>();
+			this.Cerrar(); // this.NavegarA<Turnos>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {

@@ -67,7 +67,7 @@ namespace ClinicaMedica {
 			if (SelectedPaciente is null) {
 				var nuevpacoiente = new Paciente(this);
 				if (App.BaseDeDatos.CreatePaciente(nuevpacoiente)){
-					this.Close();
+					this.Cerrar();
 				}
 			}
 			//---------Modificar-----------//
@@ -75,7 +75,7 @@ namespace ClinicaMedica {
 				//string originalDni = SelectedPaciente.Dni;
 				SelectedPaciente.AsignarDatosFromWindow(this);
 				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente)){
-					this.Close();
+					this.Cerrar();
 				}
 			}
 		}
@@ -98,12 +98,12 @@ namespace ClinicaMedica {
 			}
 			//---------Eliminar-----------//
 			if (App.BaseDeDatos.DeletePaciente(SelectedPaciente)) {
-				this.Close(); // this.NavegarA<Medicos>();
+				this.Cerrar(); // this.NavegarA<Medicos>();
 			}
 		}
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
-			this.Close(); // this.NavegarA<Pacientes>();
+			this.Cerrar(); // this.NavegarA<Pacientes>();
 		}
 
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
