@@ -45,10 +45,10 @@
 												Width="25"/>
 							<GridViewColumn Header="Dni"
 												DisplayMemberBinding="{Binding Dni}"
-												Width="65"/>
+												Width="60"/>
 							<GridViewColumn Header="Nombre"
 												DisplayMemberBinding="{Binding Name}"
-												Width="70"/>
+												Width="65"/>
 							<GridViewColumn Header="Apellido"
 												DisplayMemberBinding="{Binding LastName}"
 												Width="70"/>
@@ -57,7 +57,7 @@
 												Width="80"/>
 							<GridViewColumn Header="Teléfono"
 												DisplayMemberBinding="{Binding Telefono}"
-												Width="75"/>
+												Width="70"/>
 							<GridViewColumn Header="Guardia"
 												DisplayMemberBinding="{Binding Guardia}"
 												Width="45"/>

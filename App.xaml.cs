@@ -94,6 +94,15 @@ namespace ClinicaMedica {
 			previousWindow.NavegarA<MainWindow>();
 		}
 		public static void Salir(this Window previousWindow){
+			if (MessageBox.Show($"¿Está seguro que desea salir de la aplicacion?",
+				"Confirmar ciere",
+				MessageBoxButton.OKCancel,
+				MessageBoxImage.Question
+			) != MessageBoxResult.OK) {
+				return;
+			}
+			//---------confirmacion-----------//
+			
 			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
 				App.UClickNoFun.Play();
 			Application.Current.Shutdown();  // Apagar la aplicación

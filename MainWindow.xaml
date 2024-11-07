@@ -18,7 +18,7 @@
 		</Grid.Background>
 
 		<Label Content="Clinica Medica" Margin="0,10,0,0" FontSize="34" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="412" VerticalAlignment="Top" Foreground="#FF1B1B67" Height="67" />
-		<Label x:Name="labelBienvenidoSenor" Content="Bienvenido Señor Gestor" Margin="0,169,0,0" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="51"/>
+		<Label Content="Bienvenido al Sistema Gestor de Turnos" Margin="0,169,0,0" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="51" FontWeight="Bold"/>
 		<Label Content="`Mala Praxis SXXI´" Margin="333,82,0,0" FontSize="24" HorizontalAlignment="Left" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="380" VerticalAlignment="Top" Foreground="#FF333363" Height="57" />
 		<Button
 	  Content="Salir"
