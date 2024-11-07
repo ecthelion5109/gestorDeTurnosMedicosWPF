@@ -7,12 +7,9 @@
 
 
 # Archivos generados por la compilación
-/bin/debug/net8.0-windows/*
-/bin/release/*
-!/bin/debug/net8.0-windows/sonidos
-!/bin/debug/net8.0-windows/jsonDatabase
 
 obj/
+bin/
 
 # Información de usuario específica de Visual Studio
 *.user
