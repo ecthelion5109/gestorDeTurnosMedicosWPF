@@ -58,25 +58,29 @@
 					<ListView.View>
 						<GridView>
 							<!-- Dni Column -->
+							<GridViewColumn Header="Id"
+										DisplayMemberBinding="{Binding Id}"
+										Width="25"/>
+										
 							<GridViewColumn Header="Dni"
 										DisplayMemberBinding="{Binding Dni}"
-										Width="auto"/>
+										Width="50"/>
 							<!-- Name Column -->
 							<GridViewColumn Header="Nombre"
 										DisplayMemberBinding="{Binding Name}"
-										Width="auto"/>
+										Width="60"/>
 
 							<GridViewColumn Header="Apellido"
 										DisplayMemberBinding="{Binding LastName}"
-										Width="auto"/>
+										Width="70"/>
 
 							<GridViewColumn Header="Email"
 										DisplayMemberBinding="{Binding Email}"
-										Width="auto"/>
+										Width="120"/>
 
 							<GridViewColumn Header="Teléfono"
 										DisplayMemberBinding="{Binding Telefono}"
-										Width="auto"/>
+										Width="90"/>
 
 						</GridView>
 					</ListView.View>

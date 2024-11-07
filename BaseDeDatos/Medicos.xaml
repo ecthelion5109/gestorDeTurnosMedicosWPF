@@ -202,7 +202,7 @@
 							<GridView>
 								<GridViewColumn Header="Id"
 						   DisplayMemberBinding="{Binding Id}"
-						   Width="30"/>
+						   Width="25"/>
 								<GridViewColumn Header="Fecha"
 						   DisplayMemberBinding="{Binding Fecha}"
 						   Width="70"/>
