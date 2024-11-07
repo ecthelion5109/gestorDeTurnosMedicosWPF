@@ -64,6 +64,21 @@
         </Style>
 
 
+        <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,LABELS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
+		<Style x:Key="LabelLindo" TargetType="Label">
+			<Setter Property="Effect">
+				<Setter.Value>
+					<DropShadowEffect Color="Black" 
+									  Direction="270" 
+									  ShadowDepth="5" 
+									  BlurRadius="8" 
+									  Opacity="0.7"/>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+
+
         <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
 			<EventSetter Event="MouseEnter" Handler="Button_MouseEnter"/>
@@ -135,11 +150,14 @@
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect Color="Black"
-                            BlurRadius="10"
-                            ShadowDepth="5"/>
+                            BlurRadius="15"
+                                Opacity="1" 
+                            ShadowDepth="10"/>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
 
 
 

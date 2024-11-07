@@ -22,12 +22,6 @@
 
 	<Grid Height="auto"
 			Width="auto">
-		<!-- <Grid.ColumnDefinitions> -->
-		<!-- <ColumnDefinition Width="133*"/> -->
-		<!-- <ColumnDefinition Width="148*"/> -->
-		<!-- </Grid.ColumnDefinitions> -->
-
-
 
 		<Label Content="Médico"
 			   HorizontalAlignment="Left"

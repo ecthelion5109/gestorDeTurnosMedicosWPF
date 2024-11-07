@@ -93,6 +93,8 @@ namespace ClinicaMedica {
 		
 		//----------------------eventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
+			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
+			
 			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
 			// MessageBox.Show("Hola");
 			ClearMedicoUI();  // Clear all selections and UI elements

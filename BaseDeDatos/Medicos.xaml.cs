@@ -77,6 +77,8 @@ namespace ClinicaMedica {
 
 		//----------------------eventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
+			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
+			
 			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
 			ClearMedicoUI();  // Clear all selections and UI elements
 		}

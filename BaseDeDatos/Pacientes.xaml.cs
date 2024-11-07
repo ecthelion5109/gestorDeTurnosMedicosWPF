@@ -92,6 +92,8 @@ namespace ClinicaMedica
 
 		//----------------------eventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
+			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
+			
 			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes();
 			ClearPacienteUI();  // Clear all selections and UI elements
 			ClearTurnoUI();

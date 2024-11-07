@@ -23,15 +23,6 @@
 		</Grid.Background>
 
 
-
-		<Grid.RowDefinitions>
-			<RowDefinition Height="32*"/>
-			<RowDefinition Height="263*"/>
-		</Grid.RowDefinitions>
-		<!-- Título -->
-
-
-
 		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="512,17,22,180" Grid.RowSpan="2">
 
 			<StackPanel Orientation="Vertical" Background="Transparent">
@@ -39,14 +30,12 @@
 
 
 				<Label Content="Pacientes"
-							HorizontalAlignment="Left"
-							VerticalAlignment="Top"
+							HorizontalAlignment="Center"
 							FontSize="72"
 							Height="125"
-							Width="374"
 							FontFamily="Ringbearer"
 							Grid.RowSpan="2"
-							FontWeight="Bold"/>
+							FontWeight="Bold" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
 				<ListView Name="pacientesListView"
 							  ItemsSource="{Binding PacientesList}"
 							  Width="Auto"
@@ -61,7 +50,7 @@
 							<GridViewColumn Header="Id"
 										DisplayMemberBinding="{Binding Id}"
 										Width="25"/>
-										
+
 							<GridViewColumn Header="Dni"
 										DisplayMemberBinding="{Binding Dni}"
 										Width="50"/>
@@ -147,10 +136,8 @@
 			Style="{StaticResource BotonRedondeado}"
 			FontWeight="Bold"
 			BorderBrush="#FF0E0D0D"
-			Margin="55,386,0,0"
-			FontFamily="Baskerville Old Face"
-				Grid.Row="1">
-		</Button>
+			Margin="810,505,0,0"
+			FontFamily="Baskerville Old Face"/>
 		<Button
 			Content="Salir"
 			HorizontalAlignment="Left"
@@ -162,10 +149,8 @@
 			Style="{StaticResource BotonRedondeado}"
 			FontWeight="Bold"
 			BorderBrush="#FF0E0D0D"
-			Margin="55,441,0,0"
-			FontFamily="Baskerville Old Face"
-				Grid.Row="1">
-		</Button>
+			Margin="810,446,0,0"
+			FontFamily="Baskerville Old Face"/>
 		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="255,17,534,165" Grid.RowSpan="2">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
@@ -263,6 +248,17 @@
 
 			</StackPanel>
 		</ContentControl>
-		<!-- DataGrid insertado aquí -->
+
+
+
+
+		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="49,471,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
+
+
+
+
+
+
+
 	</Grid>
 </Window>

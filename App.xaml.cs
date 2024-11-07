@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Data.SqlClient;
 using System.Windows.Media;
 using System.Media;
+using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class App : Application {
@@ -32,6 +33,18 @@ namespace ClinicaMedica {
 			// Application.Current.Dispatcher.Invoke(() => {
 				UClickNoFun.Play();
 			// });
+		}
+		
+		
+		
+		public static void UpdateLabelDataBaseModo(Label label) {
+			if (App.BaseDeDatos is BaseDeDatosJSON ) {
+				label.Content = "Modo JSON";
+			} else if (App.BaseDeDatos is BaseDeDatosSQL) {
+				label.Content = "Modo SQL";
+			} else {
+				label.Content = "Elegir DB Modo";
+			}
 		}
 	}
 	

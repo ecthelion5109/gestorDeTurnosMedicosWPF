@@ -47,7 +47,7 @@
 			</StackPanel>
 		</ContentControl>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="443,30,246,76">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="443,30,246,105">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
                        FontSize="65"
@@ -58,7 +58,7 @@
 					  Background="Transparent"
 					  BorderThickness="0"
 							 
-							SelectionChanged="listViewTurnos_SelectionChanged" Height="280">
+							SelectionChanged="listViewTurnos_SelectionChanged" Height="251">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Header="Id"
@@ -73,10 +73,10 @@
 						</GridView>
 					</ListView.View>
 				</ListView>
-				
-				
-				
-				
+
+
+
+
 
 
 
@@ -111,15 +111,15 @@
 				</StackPanel>
 
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
+
+
+
 			</StackPanel>
 		</ContentControl>
 
@@ -133,7 +133,7 @@
                         Style="{StaticResource BotonRedondeado}"
                         FontWeight="Bold"
                         BorderBrush="#FF0E0D0D"
-                        Margin="55,449,0,0"
+                        Margin="42,483,0,0"
                         FontFamily="Baskerville Old Face">
 		</Button>
 
@@ -147,7 +147,7 @@
                         Style="{StaticResource BotonRedondeado}"
                         FontWeight="Bold"
                         BorderBrush="#FF0E0D0D"
-                        Margin="55,504,0,0"
+                        Margin="42,429,0,0"
                         FontFamily="Baskerville Old Face">
 		</Button>
 
@@ -178,10 +178,10 @@
 
 				<TextBlock Text="Especialidad:" FontWeight="Bold" Margin="0,5,0,5" />
 				<TextBlock x:Name="txtMedicoEspecialidad" Margin="0,0,0,10" />
-				
-				
-				
-				
+
+
+
+
 				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button x:Name="buttonModificarMedico"
 				  Content="Modificar"
@@ -197,12 +197,12 @@
 				  IsEnabled="False" Margin="25,15,25,15" Width="110"
 						/>
 				</StackPanel>
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
 			</StackPanel>
 			<!-- </Expander> -->
 		</ContentControl>
@@ -243,5 +243,10 @@
 				</StackPanel>
 			</StackPanel>
 		</ContentControl>
+
+
+		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="679,475,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
+
+
 	</Grid>
 </Window>
