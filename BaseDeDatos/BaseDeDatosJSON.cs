@@ -5,9 +5,9 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : BaseDeDatosAbstracta{
-		static string medicosPath = "jsonDatabase/medicos.json";
-		static string pacientesPath = "jsonDatabase/pacientes.json";
-		static string turnosPath = "jsonDatabase/turnos.json";
+		static string medicosPath = "databases/medicos.json";
+		static string pacientesPath = "databases/pacientes.json";
+		static string turnosPath = "databases/turnos.json";
 		
 		public BaseDeDatosJSON() {
 			JsonCargarMedicos(medicosPath);
