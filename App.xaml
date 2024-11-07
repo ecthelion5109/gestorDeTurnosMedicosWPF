@@ -412,6 +412,12 @@
             </Setter>
         </Style>
 
+        <!-- Sonidos -->
+        <Style TargetType="Button">
+            <EventSetter Event="MouseEnter" Handler="Button_MouseEnter"/>
+            <EventSetter Event="Click" Handler="Button_Click"/>
+        </Style>
+
 
 
     </Application.Resources>
