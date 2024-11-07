@@ -61,15 +61,15 @@
 							SelectionChanged="listViewTurnos_SelectionChanged" Height="280">
 					<ListView.View>
 						<GridView>
-							<GridViewColumn Header="Número"
+							<GridViewColumn Header="Id"
 																DisplayMemberBinding="{Binding Id}"
-																Width="auto"/>
+																Width="35"/>
 							<GridViewColumn Header="Fecha"
 																DisplayMemberBinding="{Binding Fecha}"
-																Width="auto"/>
+																Width="150"/>
 							<GridViewColumn Header="Hora"
 																DisplayMemberBinding="{Binding Hora}"
-																Width="auto"/>
+																Width="90"/>
 						</GridView>
 					</ListView.View>
 				</ListView>

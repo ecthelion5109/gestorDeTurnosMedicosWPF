@@ -56,8 +56,10 @@ namespace ClinicaMedica {
 		private void UpdateCalendarUI(){
 			if (SelectedTurno != null){
 				txtCalendario.SelectedDate = SelectedTurno.Fecha;
+				txtCalendario.DisplayDate  = (DateTime) SelectedTurno.Fecha;
 			}
 			else{
+				txtCalendario.DisplayDate = DateTime.MinValue;
 				txtCalendario.SelectedDate = null;
 			}
 		}

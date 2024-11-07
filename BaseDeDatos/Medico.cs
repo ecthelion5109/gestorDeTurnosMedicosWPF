@@ -49,9 +49,10 @@ namespace ClinicaMedica {
 
 		// Constructor de Medico para JSON
 		public Medico(string jsonElementKey, JsonElement jsonElement) {
+			Id = jsonElement.GetProperty(nameof(Id)).GetString();
+			Dni = jsonElement.GetProperty(nameof(Dni)).GetString();
 			Name = jsonElement.GetProperty(nameof(Name)).GetString();
 			LastName = jsonElement.GetProperty(nameof(LastName)).GetString();
-			Dni = jsonElementKey;
 			Provincia = jsonElement.GetProperty(nameof(Provincia)).GetString();
 			Domicilio = jsonElement.GetProperty(nameof(Domicilio)).GetString();
 			Localidad = jsonElement.GetProperty(nameof(Localidad)).GetString();

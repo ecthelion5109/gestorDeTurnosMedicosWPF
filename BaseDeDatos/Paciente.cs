@@ -23,6 +23,7 @@ namespace ClinicaMedica {
 		
 		// Constructor de PAciente para JSON
 		public Paciente(JsonElement json){
+			Id = json.GetProperty(nameof(Id)).GetString();
 			Dni = json.GetProperty(nameof(Dni)).GetString();
 			Name = json.GetProperty(nameof(Name)).GetString();
 			LastName = json.GetProperty(nameof(LastName)).GetString();

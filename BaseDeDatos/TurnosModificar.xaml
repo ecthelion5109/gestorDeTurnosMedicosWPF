@@ -54,14 +54,12 @@
 				FontWeight="Bold"
 				VerticalContentAlignment="Center"/>
 		<DatePicker x:Name="txtFecha"
-				Style="{StaticResource DatePickerLindo}" 
 					HorizontalAlignment="Center"
 					Margin="0,273,0,0"
 					VerticalAlignment="Top"
 					Width="284"
 					Height="32"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"
+				HorizontalContentAlignment="Left"
 				Background="White"/>
 		<Label Content="ID Turno"
 				HorizontalAlignment="Left"
@@ -126,19 +124,14 @@
 				TextWrapping="Wrap"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="33"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"/>
+				Height="33"/>
 		<ComboBox 
-				Style="{StaticResource ComboBoxLindo}" 
 				x:Name="txtPacientes"
 				HorizontalAlignment="Center"
 				Margin="0,174,0,0"
 				VerticalAlignment="Top"
 				Width="284"
 				Height="33"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"
 				/>
 		<Label x:Name="txtId"
 				HorizontalAlignment="Center"
@@ -149,9 +142,7 @@
 				FontSize="14"
 				Foreground="Black"
 				FontWeight="Bold"
-				Background="#FFECECEC"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"/>
+				Background="#FFECECEC"/>
 		<Label Content="Especialidad"
 				HorizontalAlignment="Left"
 				Margin="148,129,0,0"
@@ -161,24 +152,18 @@
 				FontWeight="Bold"
 				VerticalContentAlignment="Center"/>
 		<ComboBox x:Name="txtEspecialidades"
-				Style="{StaticResource ComboBoxLindo}" 
 				HorizontalAlignment="Center"
 				Margin="0,128,0,0"
 				VerticalAlignment="Top"
 				Width="284"
 				Height="32"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"
 				/>
 		<ComboBox x:Name="txtMedicos"
-				Style="{StaticResource ComboBoxLindo}" 
 				HorizontalAlignment="Center"
 				Margin="0,225,0,0"
 				VerticalAlignment="Top"
 				Width="284"
-				Height="33"
-				HorizontalContentAlignment="Center"
-				VerticalContentAlignment="Center"/>
+				Height="33"/>
 	</Grid>
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg"/>
