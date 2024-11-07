@@ -55,7 +55,7 @@ namespace ClinicaMedica {
 			else {
 				//string originalDni = SelectedMedico.Dni;
 				if (FaltanCamposPorCompletar()) {
-					SelectedMedico.AsignarDatosFromWindow(this);
+					SelectedMedico.TomarDatosDesdeVentana(this);
 					App.BaseDeDatos.UpdateMedico(SelectedMedico);
 				}
 				else {

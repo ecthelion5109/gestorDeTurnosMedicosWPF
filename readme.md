@@ -1,12 +1,9 @@
-# Trabajo Práctico Nº2
 ## Interfaz Grafica con C# WPF
-
-- Sistema Gestor de una Clinica Medica.
-- Base de datos local en Json.
-- Entidades para CRUD: Medicos / Pacientes / Turnos.
+- Programacion II - UTN Avellaneda - CUDI
+- Sistema Gestor de Turnos de una Clinica Medica.
+- Base de datos local en Json y en servidor local con Microsoft SQL Server.
 
 ### Integrantes
-
 1. Sanchez Justo Pastor
 2. Seling Alexander
 3. Pereira Ayelen Maria Rocio
@@ -17,20 +14,22 @@
 8. Esperon Denise
 9. Soberon Daira
 
-### Planeado hacer:
-1. Terminar el CRUD para Pacientes y Turnos.
-2. Encapsular y parametrizar base de datos Json, abriendo posibilidad de usar base SQL.
-3. Implementar base de datos relacional con MySQL.
-4. Usar objetos Paginas dentro de la misma ventana para consistencia en tamaño y optimizacion.
-5. Agregar bindings para integridad de datos (caracteres maximos, solo numeros, ingresos obligatorios, etc)
-6. Pedir iniciar sesión una sola vez para poder utilizar los botones de Crear, Modificar y Eliminar.
-7. Mejorar diseño a nivel practico y estetico. Utilizar styles.
+### Cuenta con:
+- CRUD para entidades Paciente / Medico / Turnos, donde esta ultima relaciona las dos primeras.
+- Uso de Clases para las entidades de la base de datos, las cuales cuentan con metodos publicos para operaciones como llenar una ventana o leer datos de ella, constructores sobrecargados para la instanciacion desde JSON o desde SQL y metodos estaticos para instanciacion previo chequeo de integridad de datos del formulario.
+- Uso de Encapsulamiento: Todas las ventanas de extension .xaml.cs no cuentan con logica de CRUD, pero si pueden utilizar los metodos publicos de "App.BaseDeDatos", y para navegar entre ventanas, llaman a la clase estatica "AtajosDeVentana".
+- Uso de Templates. En AtajosDeVentana se definieron funciones aplicables para cualquier tipo de ventana, permitiendo trasladarse a otra ventana al parametrizar el nombre de la clase de ventana y usando la synthaxis "this." sobre la ventana actual.
+- Uso de Poliformismo: BaseDeDatosSQL y BaseDeDatosJSON heredan de BaseDeDatosAbstracta, la cual las obliga a definir metodos publicos utilizados a lo largo de la aplicacion.
+- Uso de restricciones de integridad de Registros: En la base de datos de SQL Server se definieron unique constraints, y en la clase BaseDeDatosJSON se definieron funciones para checkear integridad (imposibilidad de eliminar instancias que tengan turnos asignados, o de crear duplicados o hacer un modificacion que deje un turno sin paciente o sin medico).
+- Uso de Diccionarios: para leer la base de datos (en forma de Objetos) en la memoria y evitar consultas SQL repetitivas, facilitando la referencia entre ventanas y el display de entidades según foreignk keys.
+- Uso de Styles: En App.xaml se definieron stylos aplicados a Buttons, ContentControls (para crear secciones con bordes redondeados) y TextBoxs. A lo largo de la aplicacion, los archivos .xaml pueden crear objetos que apliquen esos estilos.
+- Checkeo de integridad de datos ingresados: caracteres maximos coinciden con la definicion en la base de datos y no se puede guardar cambios en una ventana de agregar/modificar habiendo campos vacios (a menos que sean opcionales).
+- Inicio de sesión que permite establecer una conexión a la base de datos (de microsoft SQL Server) o utilizar los archivos .json.
+- Script para crear la Base de datos completa en cualquier computadora. 
 
-### Como correr:
+### Descargas:
 1. Ir a releases: https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF/releases
-2. Bajar a la seccion de assets y descargar "TP2_GrupoC_2024-10-10_compiladoPara-win64.rar" para ejecutar en cualquier sistema operativo win-x64.
-3. Alternativamente, "Source code(zip)" para descargar el codigo del repositorio al momento de la entrega.
-
+2. Buscar la ultima entrega del proyecto. (Hubo una entrega para el TP2 y la final para el TP3)
 
 
 #### Comandos Git:
