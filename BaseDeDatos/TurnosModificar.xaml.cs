@@ -37,8 +37,9 @@ namespace ClinicaMedica {
 		}
 
 		private void SetComboBoxSelections(){
-			SelectedPaciente = App.BaseDeDatos.DictPacientes[SelectedTurno.PacienteId];
-			SelectedMedico = App.BaseDeDatos.DictMedicos[SelectedTurno.MedicoId];
+			App.BaseDeDatos.TryGetPaciente(SelectedTurno.PacienteId, out SelectedPaciente);
+			App.BaseDeDatos.TryGetMedico(SelectedTurno.MedicoId, out SelectedMedico);
+
 			this.txtMedicos.SelectedValue = SelectedMedico.Id;
 			this.txtPacientes.SelectedValue = SelectedPaciente.Id;
 			this.txtEspecialidades.SelectedItem = SelectedMedico.Especialidad;

@@ -51,10 +51,12 @@ namespace ClinicaMedica {
 		private void UpdateTurnoUI(){
 			if (SelectedTurno != null){
 				buttonModificarTurno.IsEnabled = true;
-				SelectedPaciente = App.BaseDeDatos.DictPacientes[SelectedTurno.PacienteId];
-				UpdatePacienteUI();
+				if (App.BaseDeDatos.TryGetPaciente(SelectedTurno.PacienteId, out SelectedPaciente)) {
+					UpdatePacienteUI();
+				}
+
 			}
-			else{
+			else {
 				ClearTurnoUI();
 			}
 		}

@@ -13,6 +13,20 @@
     "Displayear": "1: Alexander Seling",
     "Id": "1"
   },
+  "2": {
+    "Dni": "10350991",
+    "Name": "Enrique",
+    "LastName": "Pereyra",
+    "FechaIngreso": "2024-10-07T00:00:00",
+    "Email": "vivalaviolencia@sevilla.com",
+    "Telefono": "23434554",
+    "FechaNacimiento": "2023-11-01T00:00:00",
+    "Domicilio": "titaltia 545",
+    "Localidad": "Moron",
+    "Provincia": "Bs Asires",
+    "Displayear": ": Enrique Pereyra",
+    "Id": "2"
+  },
   "3": {
     "Dni": "2342342",
     "Name": "Aylen",
