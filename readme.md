@@ -14,18 +14,19 @@
 8. Esperon Denise
 9. Soberon Daira
 
-### Cuenta con:
-- CRUD para entidades Paciente / Medico / Turnos, donde esta ultima relaciona las dos primeras.
-- Uso de Clases para las entidades de la base de datos, las cuales cuentan con metodos publicos para operaciones como llenar una ventana o leer datos de ella, constructores sobrecargados para la instanciacion desde JSON o desde SQL y metodos estaticos para instanciacion previo chequeo de integridad de datos del formulario.
-- Uso de Encapsulamiento: Todas las ventanas de extension .xaml.cs no cuentan con logica de CRUD, pero si pueden utilizar los metodos publicos de "App.BaseDeDatos", y para navegar entre ventanas, llaman a la clase estatica "AtajosDeVentana".
-- Uso de Templates. En AtajosDeVentana se definieron funciones aplicables para cualquier tipo de ventana, permitiendo trasladarse a otra ventana al parametrizar el nombre de la clase de ventana y usando la synthaxis "this." sobre la ventana actual.
-- Uso de Poliformismo: BaseDeDatosSQL y BaseDeDatosJSON heredan de BaseDeDatosAbstracta, la cual las obliga a definir metodos publicos utilizados a lo largo de la aplicacion.
-- Uso de restricciones de integridad de Registros: En la base de datos de SQL Server se definieron unique constraints, y en la clase BaseDeDatosJSON se definieron funciones para checkear integridad (imposibilidad de eliminar instancias que tengan turnos asignados, o de crear duplicados o hacer un modificacion que deje un turno sin paciente o sin medico).
-- Uso de Diccionarios: para leer la base de datos (en forma de Objetos) en la memoria y evitar consultas SQL repetitivas, facilitando la referencia entre ventanas y el display de entidades según foreignk keys.
-- Uso de Styles: En App.xaml se definieron stylos aplicados a Buttons, ContentControls (para crear secciones con bordes redondeados) y TextBoxs. A lo largo de la aplicacion, los archivos .xaml pueden crear objetos que apliquen esos estilos.
-- Checkeo de integridad de datos ingresados: caracteres maximos coinciden con la definicion en la base de datos y no se puede guardar cambios en una ventana de agregar/modificar habiendo campos vacios (a menos que sean opcionales).
-- Inicio de sesión que permite establecer una conexión a la base de datos (de microsoft SQL Server) o utilizar los archivos .json.
-- Script para crear la Base de datos completa en cualquier computadora. 
+### Funcionalidades:
+- **CRUD completo para Paciente, Medico y Turno**: Incluye operaciones de creación, lectura, actualización y eliminación. La entidad Turno actúa como vínculo entre Paciente y Medico.
+- **Modelado de entidades con clases**: Cada entidad de la base de datos (Paciente, Medico, Turno) está representada por una clase que cuenta con métodos públicos para interactuar con las ventanas (llenado de datos y lectura), constructores sobrecargados para instanciación desde JSON o SQL, y métodos estáticos que verifican la integridad de datos en formularios antes de crear instancias.
+- **Encapsulamiento**: La lógica de CRUD no reside en las ventanas `.xaml.cs`, sino que estas utilizan los métodos públicos de `App.BaseDeDatos` para realizar operaciones. Para la navegación entre ventanas, se emplea la clase estática `AtajosDeVentana`.
+- **Templates reutilizables**: En `AtajosDeVentana`, se definieron funciones aplicables a cualquier ventana, permitiendo una navegación flexible a través de parámetros que especifican el nombre de la clase de destino. La sintaxis `this.` facilita el uso de la ventana actual en estas transiciones.
+- **Polimorfismo**: `BaseDeDatosSQL` y `BaseDeDatosJSON` heredan de `BaseDeDatosAbstracta`, una clase abstracta que obliga a ambas a implementar métodos públicos comunes, asegurando consistencia en el acceso a datos.
+- **Restricciones de integridad en registros**: La base de datos SQL incluye restricciones únicas (`unique constraints`), y `BaseDeDatosJSON` define funciones para verificar integridad, previniendo, por ejemplo, la eliminación de instancias con turnos asignados o modificaciones que dejen turnos sin paciente o medico.
+- **Uso de diccionarios**: La base de datos se carga en memoria como objetos, utilizando diccionarios para evitar consultas SQL redundantes, facilitar la referencia entre ventanas y optimizar la visualización de entidades relacionadas mediante claves externas.
+- **Estilos personalizados (Styles)**: `App.xaml` define estilos para `Button`, `ContentControl` (creando secciones con bordes redondeados) y `TextBox`. Los archivos `.xaml` en toda la aplicación pueden crear y aplicar estos estilos para mantener coherencia visual.
+- **Validación de integridad de datos ingresados**: Las longitudes máximas de los campos coinciden con las definiciones de la base de datos, y no se permite guardar cambios en ventanas de agregar/modificar si hay campos obligatorios vacíos.
+- **Inicio de sesión y conexión de base de datos**: El sistema permite al usuario iniciar sesión para establecer una conexión con Microsoft SQL Server o, alternativamente, trabajar con archivos locales en formato JSON.
+- **Script de instalación de base de datos**: Se incluye un script que permite crear la base de datos completa en cualquier equipo, facilitando la instalación y configuración en diferentes entornos.
+
 
 ### Descargas:
 1. Ir a releases: https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF/releases
