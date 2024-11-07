@@ -5,13 +5,14 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : BaseDeDatosAbstracta{
-		public string medicosPath = "jsonDatabase/Medicos.json";
-		public string pacientesPath = "jsonDatabase/Pacientes.json";
-		public string turnosPath = "jsonDatabase/Turnos.json";
+		public string medicosPath = "jsonDatabase/medicos.json";
+		public string pacientesPath = "jsonDatabase/pacientes.json";
+		public string turnosPath = "jsonDatabase/turnos.json";
+		
 		public BaseDeDatosJSON() {
-			CargarMedicos();
-			CargarPacientes();
-			CargarTurnos();
+			CargarMedicos(medicosPath);
+			CargarPacientes(pacientesPath);
+			CargarTurnos(turnosPath);
 		}
 		
 		
@@ -131,46 +132,65 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------Private----------------------//
-		private void CargarMedicos() {
-			if (File.Exists(medicosPath)) {
+		private void CargarMedicos(string file_path) {
+			if (File.Exists(file_path)) {
 				try {
-					string jsonString = File.ReadAllText(medicosPath);
-					DictMedicos = JsonConvert.DeserializeObject<Dictionary<string, Medico>>(jsonString);
+					// Read JSON file
+					string jsonString = File.ReadAllText(file_path);
+
+					// Deserialize to a dictionary of string to raw JSON objects
+					var rawMedicosData = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
+					
+					// Initialize the dictionary to store Medico instances
+					var medicos = new Dictionary<string, Medico>();
+
+					foreach (var medicoEntry in rawMedicosData) {
+						// Parse each JSON element and create a Medico instance with the key and parsed data
+						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoEntry.Value.ToString()).RootElement;
+						var medicoInstance = new Medico(medicoEntry.Key, medicoJsonElement);
+						
+						medicos[medicoEntry.Key] = medicoInstance;
+					}
+
+					// Assign to DictMedicos
+					DictMedicos = medicos;
 				} 
 				catch (JsonException ex) {
-					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
+					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
 				}
 			} 
 			else {
-				MessageBox.Show("Error: File not found.");
+				MessageBox.Show($"Error: {file_path} no se encontró.");
 			}
 		}
-		private void CargarPacientes(){
+
+
+		private void CargarPacientes(string file_path){
 			if (File.Exists(pacientesPath)) {
 				try {
 					string jsonString = File.ReadAllText(pacientesPath);
 					DictPacientes = JsonConvert.DeserializeObject<Dictionary<string, Paciente>>(jsonString);
 				} 
 				catch (JsonException ex) {
-					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
+					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
 				}
 			} 
 			else {
-				MessageBox.Show("Error: File not found.");
+				MessageBox.Show($"Error: {file_path} no se encontró.");
 			}
 		}
-		private void CargarTurnos(){
+		private void CargarTurnos(string file_path){
 			if (File.Exists(turnosPath)) {
 				try {
 					string jsonString = File.ReadAllText(turnosPath);
 					DictTurnos = JsonConvert.DeserializeObject<Dictionary<string, Turno>>(jsonString);
 				} 
 				catch (JsonException ex) {
-					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
+					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
 				}
 			} 
 			else {
-				MessageBox.Show("Error: File not found.");
+				MessageBox.Show($"Error: {file_path} no se encontró.");
 			}
 		}
 		
