@@ -44,13 +44,13 @@ namespace ClinicaMedica {
 		bool FaltanCamposPorCompletar(){
 			return (
 					 string.IsNullOrEmpty(this.txtDni.Text) ||
-					 //string.IsNullOrEmpty(this.txtNombre.Text) ||
-					 //string.IsNullOrEmpty(this.txtApellido.Text) ||
-					 //string.IsNullOrEmpty(this.txtEmail.Text) ||
-					 //string.IsNullOrEmpty(this.txtTelefono.Text) ||
-					 //string.IsNullOrEmpty(this.txtDomicilio.Text) ||
-					 //string.IsNullOrEmpty(this.txtLocalidad.Text) ||
-					 //string.IsNullOrEmpty(this.txtProvincia.Text) ||
+					 string.IsNullOrEmpty(this.txtNombre.Text) ||
+					 string.IsNullOrEmpty(this.txtApellido.Text) ||
+					 string.IsNullOrEmpty(this.txtEmail.Text) ||
+					 string.IsNullOrEmpty(this.txtTelefono.Text) ||
+					 string.IsNullOrEmpty(this.txtDomicilio.Text) ||
+					 string.IsNullOrEmpty(this.txtLocalidad.Text) ||
+					 string.IsNullOrEmpty(this.txtProvincia.Text) ||
 					 
 					 this.txtFechaIngreso.SelectedDate is null ||
 					 this.txtFechaNacimiento.SelectedDate is null

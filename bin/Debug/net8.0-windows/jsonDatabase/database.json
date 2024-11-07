@@ -1,0 +1,16 @@
+ {
+    "1": {
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null,
+      "Id": null
+    },
+    "2": {
+      "PacienteId": null,
+      "MedicoId": null,
+      "Fecha": null,
+      "Hora": null,
+      "Id": null
+    }
+}

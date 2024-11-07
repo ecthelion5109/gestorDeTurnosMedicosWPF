@@ -5,44 +5,47 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : BaseDeDatosAbstracta{
-		public string archivoPath = "database.json";
-		public Dictionary<string, Dictionary<string, object>> MiDiccionario;
-		
+		public string medicosPath = "jsonDatabase/Medicos.json";
+		public string pacientesPath = "jsonDatabase/Pacientes.json";
+		public string turnosPath = "jsonDatabase/Turnos.json";
 		public BaseDeDatosJSON() {
-			this.LLenarMiDiccionarioConNewtonsoftJson();
+			CargarMedicos();
+			CargarPacientes();
+			CargarTurnos();
 		}
+		
 		
 		//------------------------CREATE----------------------//
 		public override bool CreateMedico(Medico instancia) {
 			bool YaExiste(string key){
-				return this.MiDiccionario["medicos"].ContainsKey(key);
+				return DictMedicos.ContainsKey(key);
 			}
 		
 			if (YaExiste(instancia.Dni)) {
 				return false;
 			}
-			this.MiDiccionario["medicos"][instancia.Dni] = instancia;
-			this.GuardarJson();
+			DictMedicos[instancia.Dni] = instancia;
+			this.UpdateMedicosJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
 		public override bool CreatePaciente(Paciente instancia) {
 			bool YaExiste(string key){
-				return this.MiDiccionario["pacientes"].ContainsKey(key);
+				return DictPacientes.ContainsKey(key);
 			}
 		
 			if (YaExiste(instancia.Dni)) {
 				return false;
 			}
-			this.MiDiccionario["pacientes"][instancia.Dni] = instancia;
-			this.GuardarJson();
+			DictPacientes[instancia.Dni] = instancia;
+			this.UpdatePacientesJson();
 			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
 
 		public override bool CreateTurno(Turno instancia) {
 			bool YaExiste(string key){
-				return this.MiDiccionario["turnos"].ContainsKey(key);
+				return DictTurnos.ContainsKey(key);
 			}
 			
 			if (YaExiste(instancia.Id)) {
@@ -53,13 +56,13 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.READ----------------------//
 		public override List<Medico> ReadMedicos() {
-			return this.MiDiccionario["medicos"].Values.Cast<Medico>().ToList();
+			return DictMedicos.Values.Cast<Medico>().ToList();
 		}
         public override List<Paciente> ReadPacientes() {
-            return this.MiDiccionario["pacientes"].Values.Cast<Paciente>().ToList();
+            return DictPacientes.Values.Cast<Paciente>().ToList();
         }
         public override List<Turno> ReadTurnos() {
-            return this.MiDiccionario["turnos"].Values.Cast<Turno>().ToList();
+            return DictTurnos.Values.Cast<Turno>().ToList();
         }
         //------------------------public.UPDATE----------------------//
         public override bool UpdateMedico(Medico instancia, string originalDni){
@@ -69,10 +72,10 @@ namespace ClinicaMedica {
 			} 
 				
 			if (originalDni != instancia.Dni) {
-				this.MiDiccionario["medicos"].Remove(originalDni);
-				this.MiDiccionario["medicos"][instancia.Dni] = instancia;
+				DictMedicos.Remove(originalDni);
+				DictMedicos[instancia.Dni] = instancia;
 			}
-			this.GuardarJson(); // Guardar los cambios en el archivo JSON
+			this.UpdateMedicosJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
@@ -83,10 +86,10 @@ namespace ClinicaMedica {
 			} 
 				
 			if (originalDni != instancia.Dni) {
-				this.MiDiccionario["pacientes"].Remove(originalDni);
-				this.MiDiccionario["pacientes"][instancia.Dni] = instancia;
+				DictPacientes.Remove(originalDni);
+				DictPacientes[instancia.Dni] = instancia;
 			}
-			this.GuardarJson(); // Guardar los cambios en el archivo JSON
+			this.UpdatePacientesJson(); // Guardar los cambios en el archivo JSON
 			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
 			return true;
 		}
@@ -98,8 +101,8 @@ namespace ClinicaMedica {
 		
 		public override bool DeleteMedico(Medico instancia) {
 			try {
-				this.MiDiccionario["medicos"].Remove(instancia.Id);
-				this.GuardarJson(); // Save changes to the database
+				DictMedicos.Remove(instancia.Id);
+				this.UpdateMedicosJson(); // Save changes to the database
 				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} del Json");
 				return true;
 			} catch (Exception ex) {
@@ -110,8 +113,8 @@ namespace ClinicaMedica {
 		}
 		public override bool DeletePaciente(Paciente instancia){
 			try {
-				this.MiDiccionario["pacientes"].Remove(instancia.Id);
-				this.GuardarJson(); // Save changes to the database
+				DictPacientes.Remove(instancia.Id);
+				this.UpdatePacientesJson(); // Save changes to the database
 				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} del Json");
 				return true;
 			} catch (Exception ex) { 
@@ -128,57 +131,57 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------Private----------------------//
-		private void LLenarMiDiccionarioConNewtonsoftJson(){
-			MiDiccionario = new Dictionary<string, Dictionary<string, object>>();
-			if (File.Exists(archivoPath)){
-				string jsonString = File.ReadAllText(archivoPath);
-				var database = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(jsonString);
-				if (database.ContainsKey("pacientes")){
-					var pacientes = new Dictionary<string, object>();
-					foreach (var pacienteElement in database["pacientes"])
-					{
-						var instancia = JsonConvert.DeserializeObject<Paciente>(pacienteElement.Value.ToString());
-						pacientes[pacienteElement.Key] = instancia;
-					}
-					MiDiccionario["pacientes"] = pacientes;
+		private void CargarMedicos() {
+			if (File.Exists(medicosPath)) {
+				try {
+					string jsonString = File.ReadAllText(medicosPath);
+					DictMedicos = JsonConvert.DeserializeObject<Dictionary<string, Medico>>(jsonString);
+				} 
+				catch (JsonException ex) {
+					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
 				}
-
-				// MessageBox.Show("11, testing");
-				if (database.ContainsKey("medicos"))
-				{
-					var medicos = new Dictionary<string, object>();
-					foreach (var medicoElement in database["medicos"])
-					{
-						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoElement.Value.ToString()).RootElement;
-						var instancia = new Medico(medicoElement.Key, medicoJsonElement);
-						medicos[medicoElement.Key] = instancia;
-					}
-					MiDiccionario["medicos"] = medicos;
-				}
-
-				// MessageBox.Show("22, testing");
-
-				// Check and convert "turnos"
-				if (database.ContainsKey("turnos")){
-					var turnos = new Dictionary<string, object>();
-					foreach (var turnoElement in database["turnos"])
-					{
-						// Deserialize each entry as a Turno object
-						var instancia = JsonConvert.DeserializeObject<Turno>(turnoElement.Value.ToString());
-						turnos[turnoElement.Key] = instancia;
-					}
-					MiDiccionario["turnos"] = turnos;
-				}
+			} 
+			else {
+				MessageBox.Show("Error: File not found.");
 			}
-			else
-			{
+		}
+		private void CargarPacientes(){
+			if (File.Exists(pacientesPath)) {
+				try {
+					string jsonString = File.ReadAllText(pacientesPath);
+					DictPacientes = JsonConvert.DeserializeObject<Dictionary<string, Paciente>>(jsonString);
+				} 
+				catch (JsonException ex) {
+					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
+				}
+			} 
+			else {
+				MessageBox.Show("Error: File not found.");
+			}
+		}
+		private void CargarTurnos(){
+			if (File.Exists(turnosPath)) {
+				try {
+					string jsonString = File.ReadAllText(turnosPath);
+					DictTurnos = JsonConvert.DeserializeObject<Dictionary<string, Turno>>(jsonString);
+				} 
+				catch (JsonException ex) {
+					MessageBox.Show($"Error parsing JSON file: {ex.Message}");
+				}
+			} 
+			else {
 				MessageBox.Show("Error: File not found.");
 			}
 		}
 		
-		private void GuardarJson(){ 
-			string jsonString = JsonConvert.SerializeObject(MiDiccionario, Formatting.Indented);
-			File.WriteAllText(archivoPath, jsonString);
+		private void UpdatePacientesJson(){ 
+			File.WriteAllText(pacientesPath, JsonConvert.SerializeObject(DictPacientes, Formatting.Indented));
+		}
+		private void UpdateMedicosJson(){ 
+			File.WriteAllText(medicosPath, JsonConvert.SerializeObject(DictMedicos, Formatting.Indented));
+		}
+		private void UpdateTurnosJson(){ 
+			File.WriteAllText(turnosPath, JsonConvert.SerializeObject(DictTurnos, Formatting.Indented));
 		}
 		
 		

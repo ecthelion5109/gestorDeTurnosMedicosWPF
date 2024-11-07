@@ -10,10 +10,7 @@
 /bin/debug/net8.0-windows/*
 /bin/release/*
 !/bin/debug/net8.0-windows/sonidos
-!/bin/debug/net8.0-windows/database.json
-!/bin/debug/net8.0-windows/medico.json
-!/bin/debug/net8.0-windows/turno.json
-!/bin/debug/net8.0-windows/paciente.json
+!/bin/debug/net8.0-windows/jsonDatabase
 
 obj/
 
