@@ -54,12 +54,10 @@
 				BorderBrush="Black"
 				Background="White"
 				FontFamily="Baskerville Old Face"/>
-		<Grid Margin="190,74,0,0"
+		<Grid
 				VerticalAlignment="Top"
-				HorizontalAlignment="Left"
-				MaxWidth="515"
-				Height="376"
-				Width="310">
+				HorizontalAlignment="Center"
+				MaxWidth="515" Width="344">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="*"/>
@@ -76,105 +74,157 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
 
 			</Grid.RowDefinitions>
 
-			<Label Content="Nombre"
+
+
+			<Label Content="Paciente"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center"
 				   Grid.Row="0"
 				   Grid.Column="0"
-				   HorizontalAlignment="Right"
-				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtNombre"
-					Style="{StaticResource TextBoxLindo2}" 
-					 Grid.Row="0"
-					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+			   FontSize="32"
+			   FontFamily="Ringbearer" Grid.ColumnSpan="2"/>
+					 
+					 
+					 
+					 
 
-			<Label Content="Apellido"
+			<Label Content="Nombre"
 				   Grid.Row="1"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtApellido"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtNombre"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="1"
 					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+					 Margin="15,5,15,5" Height="30"/>
+					 
+					 
+					 
+					 
 
-			<Label Content="DNI"
+			<Label Content="Apellido"
 				   Grid.Row="2"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtDni"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtApellido"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="2"
 					 Grid.Column="1"
-					 Width="Auto"
-					  MaxLength="8"
-					 Margin="5,5,5,5"/>
+					 Margin="15,5,15,5" Height="30"/>
 
-			<Label Content="Teléfono"
+
+
+
+
+			<Label Content="DNI"
 				   Grid.Row="3"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtTelefono"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtDni"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="3"
 					 Grid.Column="1"
-					  MaxLength="20"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+					  MaxLength="8"
+					 Margin="15,5,15,5" Height="30"/>
 
-			<Label Content="Provincia"
+
+
+
+
+
+			<Label Content="Teléfono"
 				   Grid.Row="4"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtProvincia"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtTelefono"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="4"
 					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+					  MaxLength="20"
+					 Margin="15,5,15,5" Height="30"/>
 
-			<Label Content="Domicilio"
+
+
+
+
+
+			<Label Content="Provincia"
 				   Grid.Row="5"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtDomicilio"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtProvincia"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="5"
 					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+					 Margin="15,5,15,5" Height="30"/>
 
-			<Label Content="Localidad"
+
+
+
+
+
+			<Label Content="Domicilio"
 				   Grid.Row="6"
 				   Grid.Column="0"
 				   HorizontalAlignment="Right"
 				   Width="Auto"
-					VerticalAlignment="Center"/>
-			<TextBox x:Name="txtLocalidad"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtDomicilio"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="6"
 					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,5,5,5"/>
+					 Margin="15,5,15,5" Height="30"/>
+
+
+
+
+
+
+			<Label Content="Localidad"
+				   Grid.Row="7"
+				   Grid.Column="0"
+				   HorizontalAlignment="Right"
+				   Width="Auto"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtLocalidad"
+					Style="{StaticResource TextBoxLindo2}" 
+					 Grid.Row="7"
+					 Grid.Column="1"
+					 Margin="15,5,15,5" Height="30"/>
+
+
+
+
+
+			<Label Content="Email"
+				   Grid.Row="8"
+					 Grid.Column="0"
+				   HorizontalAlignment="Center"
+				   Width="130"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+			<TextBox x:Name="txtEmail"
+					Style="{StaticResource TextBoxLindo2}" 
+					 Grid.Row="8"
+					 Grid.Column="1"
+					 Margin="15,5,15,5" Height="30"/>
+
+
+
+
+
 
 			<Label Content="Fecha de Nacimiento"
 				   Grid.Row="9"
@@ -182,45 +232,39 @@
 				   Width="Auto"
 				   Height="Auto"
 				   HorizontalAlignment="Right"
-					VerticalAlignment="Center"/>
+					VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
 			<DatePicker Grid.Row="9"
 						Grid.Column="1"
 						x:Name="txtFechaNacimiento"
-						Margin="5,5,5,5"
-						Grid.ColumnSpan="2"/>
+						Margin="15,5,15,5"
+						Grid.ColumnSpan="2" Height="30"/>
+
+
+
+
+
+
+
+
 			<Label Content="Fecha de Ingreso"
-				   Grid.Row="12"
-				   Width="Auto"
+				   Grid.Row="10"
+				   Width="130"
 				   Height="Auto"
-				   HorizontalAlignment="Center"
-					VerticalAlignment="Top"
-					Margin="0,1,0,0"/>
-			<DatePicker Grid.Row="12"
+				   HorizontalAlignment="Right"
+					VerticalAlignment="Center" HorizontalContentAlignment="Right"/>
+			<DatePicker Grid.Row="10"
 						Grid.Column="1"
 						x:Name="txtFechaIngreso"
-						Margin="5,0,5,0"/>
-			<Label Content="Email"
-				   Grid.Row="13"
-				   HorizontalAlignment="Left"
-				   Width="Auto"
-					VerticalAlignment="Center"
-					Margin="56,0,0,0"/>
-			<TextBox x:Name="txtEmail"
-					Style="{StaticResource TextBoxLindo2}" 
-					 Grid.Row="13"
-					 Grid.Column="1"
-					 Width="Auto"
-					 Margin="5,0,5,0"
-					Grid.RowSpan="2"/>
+						Margin="15,5,15,5" Height="30"/>
+
+
+
+
+
+
+
+
 		</Grid>
-		<Label Content="Paciente"
-			   HorizontalAlignment="Left"
-			   Margin="324,10,0,0"
-			   VerticalAlignment="Top"
-			   FontSize="32"
-			   FontFamily="Ringbearer"
-			   Height="51"
-				Width="176"/>
 
 	</Grid>
 </Window>
