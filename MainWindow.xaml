@@ -17,84 +17,89 @@
 			<ImageBrush ImageSource="/images/fondo.jpg"/>
 		</Grid.Background>
 
-		<Label Content="Clinica Medica" Margin="0,10,0,0" FontSize="34" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="412" VerticalAlignment="Top" Foreground="#FF1B1B67" Height="67" />
-		<Label Content="Bienvenido al Sistema Gestor de Turnos" Margin="0,169,0,0" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Top" Foreground="#FF0F0A2B" Height="51" FontWeight="Bold"/>
-		<Label Content="`Mala Praxis SXXI´" Margin="333,82,0,0" FontSize="24" HorizontalAlignment="Left" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" Width="380" VerticalAlignment="Top" Foreground="#FF333363" Height="57" />
-		<Button
-	  Content="Salir"
-	  HorizontalAlignment="Center"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="ButtonSalir"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="0,489,0,0"
-	  FontFamily="Baskerville Old Face">
-		</Button>
-		<Button
-	  Content="Ver Pacientes"
-	  HorizontalAlignment="Center"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="MetodoBotonPacientes"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="0,354,0,0"
-	  FontFamily="Baskerville Old Face">
-		</Button>
-		<Button
-	  Content="Ver Médicos"
-	  HorizontalAlignment="Center"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="MetodoBotonMedicos"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="0,305,0,0"
-	  FontFamily="Baskerville Old Face">
-		</Button>
-		<Button
-	  Content="Iniciar Sesión"
-	  HorizontalAlignment="Center"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="MetodoBotonLogin"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="0,225,0,0"
-	  FontFamily="Baskerville Old Face">
-		</Button>
-		<Button x:Name="buttonVerTurnos"
-	  Content="Ver Turnos"
-	  HorizontalAlignment="Center"
-	  VerticalAlignment="Top"
-	  Height="37"
-	  Width="170"
-	  Click="MetodoBotonTurnos"
-	  FontSize="20"
-	  Style="{StaticResource BotonRedondeado}"
-	  FontWeight="Bold"
-	  BorderBrush="#FF0E0D0D"
-	  Margin="0,405,0,0"
-	  FontFamily="Baskerville Old Face">
-		</Button>
-
 
 
 		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="24,474,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
+
+		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30">
+			<Label Content="Clinica Medica" FontSize="34" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" VerticalAlignment="Center" Foreground="#FF1B1B67" Margin="0,15,0,15" />
+			<Label Content="Bienvenido al Sistema Gestor de Turnos" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Center" Foreground="#FF0F0A2B" FontWeight="Bold"/>
+			<Label Content="`Mala Praxis SXXI´" FontSize="24" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" VerticalAlignment="Center" Foreground="#FF333363" />
+			
+			<Button
+			  Content="Iniciar Sesión"
+			  HorizontalAlignment="Center"
+			  VerticalAlignment="Top"
+			  Height="37"
+			  Width="170"
+			  Click="MetodoBotonLogin"
+			  FontSize="20"
+			  Style="{StaticResource BotonRedondeado}"
+			  FontWeight="Bold"
+			  BorderBrush="#FF0E0D0D"
+			  FontFamily="Baskerville Old Face" Margin="0,20,0,20">
+			</Button>
+			
+			
+			<Button
+			  Content="Ver Médicos"
+			  HorizontalAlignment="Center"
+			  VerticalAlignment="Top"
+			  Height="37"
+			  Width="170"
+			  Click="MetodoBotonMedicos"
+			  FontSize="20"
+			  Style="{StaticResource BotonRedondeado}"
+			  FontWeight="Bold"
+			  BorderBrush="#FF0E0D0D"
+			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
+			</Button>
+			
+			<Button
+			  Content="Ver Pacientes"
+			  HorizontalAlignment="Center"
+			  VerticalAlignment="Top"
+			  Height="37"
+			  Width="170"
+			  Click="MetodoBotonPacientes"
+			  FontSize="20"
+			  Style="{StaticResource BotonRedondeado}"
+			  FontWeight="Bold"
+			  BorderBrush="#FF0E0D0D"
+			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
+			</Button>
+			
+			<Button x:Name="buttonVerTurnos"
+			  Content="Ver Turnos"
+			  HorizontalAlignment="Center"
+			  VerticalAlignment="Top"
+			  Height="37"
+			  Width="170"
+			  Click="MetodoBotonTurnos"
+			  FontSize="20"
+			  Style="{StaticResource BotonRedondeado}"
+			  FontWeight="Bold"
+			  BorderBrush="#FF0E0D0D"
+			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
+			</Button>
+			
+			<Button
+			  Content="Salir"
+			  HorizontalAlignment="Center"
+			  VerticalAlignment="Top"
+			  Height="37"
+			  Width="170"
+			  Click="ButtonSalir"
+			  FontSize="20"
+			  Style="{StaticResource BotonRedondeado}"
+			  FontWeight="Bold"
+			  BorderBrush="#FF0E0D0D"
+			  FontFamily="Baskerville Old Face" Margin="0,20,0,20">
+			</Button>
 		
+		
+		
+		</StackPanel>
 		
 	</Grid>
 
