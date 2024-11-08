@@ -31,24 +31,31 @@ namespace ClinicaMedica {
 	public partial class Login : Window {
 		public Login() {
 			InitializeComponent();
+			
+			//if (BaseDeDatosSQL.connectionString == null){
+			//	iniciarSesionButton.Content = "Iniciar sesión con credenciales";
+			//} else {
+			//	iniciarSesionButton.Content = "Iniciar sesión con app.config";
+			//}
+			
 		}
+		
+		private bool datos_completados(){
+			return string.IsNullOrEmpty(labelServidor.Text) && string.IsNullOrEmpty(labelUsuario.Text) && string.IsNullOrEmpty(labelPassword.Text); 
+		}
+		
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
 			if (checkboxJSON.IsChecked == true) {
 				App.BaseDeDatos = new BaseDeDatosJSON();
+			} else if ( datos_completados() ) {
+				App.BaseDeDatos = new BaseDeDatosSQL();
 			} else {
-				if (
-					(string.IsNullOrEmpty(labelServidor.Text) 
-					&& string.IsNullOrEmpty(labelUsuario.Text) 
-					&& string.IsNullOrEmpty(labelPassword.Text)) 
-				) {
-					App.BaseDeDatos = new BaseDeDatosSQL();
-				} else {
-					App.BaseDeDatos = new BaseDeDatosSQL($"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};");
-				}
+				App.BaseDeDatos = new BaseDeDatosSQL($"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};");
 			}
 			App.UsuarioLogueado = App.BaseDeDatos.ConectadaExitosamente;
-			this.Cerrar();
-			return;
+			if (App.UsuarioLogueado) {
+				this.Cerrar();
+			}
 		}
 
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {
