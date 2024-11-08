@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.IO;
 using Newtonsoft.Json;
-using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : BaseDeDatosAbstracta{

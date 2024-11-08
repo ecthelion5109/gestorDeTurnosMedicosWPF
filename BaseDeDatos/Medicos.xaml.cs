@@ -1,7 +1,4 @@
-﻿using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ClinicaMedica {

@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-using System.ComponentModel;
-using Newtonsoft.Json;
+﻿using SystemTextJson = System.Text.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Turnos-------------------------------//
@@ -14,7 +12,7 @@ namespace ClinicaMedica {
 		public Turno() { }
 		
 		// Constructor de PAciente para JSON
-		public Turno(JsonElement json){
+		public Turno(SystemTextJson.JsonElement json){
 		}
 
 		// Constructor de PAciente en base a una ventana

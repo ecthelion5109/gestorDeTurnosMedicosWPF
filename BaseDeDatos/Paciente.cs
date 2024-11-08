@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.ComponentModel;
+﻿using SystemTextJson = System.Text.Json;
 using Newtonsoft.Json;
 
 namespace ClinicaMedica {
@@ -24,7 +23,7 @@ namespace ClinicaMedica {
 		public Paciente() { }
 		
 		// Constructor de PAciente para JSON
-		public Paciente(JsonElement json){
+		public Paciente(SystemTextJson.JsonElement json){
 			Id = json.GetProperty(nameof(Id)).GetString();
 			Dni = json.GetProperty(nameof(Dni)).GetString();
 			Name = json.GetProperty(nameof(Name)).GetString();

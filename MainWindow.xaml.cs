@@ -1,9 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Windows;
 
 namespace ClinicaMedica{
 	public partial class MainWindow : Window {
@@ -48,8 +43,6 @@ namespace ClinicaMedica{
 				}
 			}
 		}
-		
-		
 		
 		private void Window_Activated(object sender, EventArgs e) {
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);

@@ -1,4 +1,17 @@
 {
+  "1": {
+    "Id": "1",
+    "Dni": "20350997",
+    "Name": "Armando",
+    "LastName": "Fasitos",
+    "FechaIngreso": "2024-10-07T00:00:00",
+    "Email": "armandoasdas@gmail.com",
+    "Telefono": "11 3883 0130",
+    "FechaNacimiento": "2023-11-01T00:00:00",
+    "Domicilio": "lapepa 123",
+    "Localidad": "G. Catan",
+    "Provincia": "Bs Asires"
+  },
   "2": {
     "Id": "2",
     "Dni": "10350991",

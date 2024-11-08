@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.ComponentModel;
+﻿using SystemTextJson = System.Text.Json;
 using Newtonsoft.Json;
 
 namespace ClinicaMedica {
@@ -11,7 +10,7 @@ namespace ClinicaMedica {
 			this.Start = Start;
 			this.End = End;
 		}
-		public Horario(JsonElement Start, JsonElement End) {
+		public Horario(SystemTextJson.JsonElement Start, SystemTextJson.JsonElement End) {
 			this.Start = Start.GetString();
 			this.End = End.GetString();
 		}
@@ -46,7 +45,7 @@ namespace ClinicaMedica {
 		public Medico() { }
 
 		// Constructor de Medico para JSON
-		public Medico(string jsonElementKey, JsonElement jsonElement) {
+		public Medico(string jsonElementKey, SystemTextJson.JsonElement jsonElement) {
 			Id = jsonElement.GetProperty(nameof(Id)).GetString();
 			Dni = jsonElement.GetProperty(nameof(Dni)).GetString();
 			Name = jsonElement.GetProperty(nameof(Name)).GetString();
@@ -60,10 +59,10 @@ namespace ClinicaMedica {
 			FechaIngreso = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaIngreso)).GetString(), out var fecha) ? fecha : (DateTime?)null;
 			SueldoMinimoGarantizado = jsonElement.GetProperty(nameof(SueldoMinimoGarantizado)).GetDouble();
 
-			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out JsonElement diasDeAtencionElement)) {
+			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out SystemTextJson.JsonElement diasDeAtencionElement)) {
 				foreach (var dia in diasDeAtencionElement.EnumerateObject()) {
 					var diaKey = dia.Name;
-					if (dia.Value.TryGetProperty("Start", out JsonElement startElement) && dia.Value.TryGetProperty("End", out var endElement)) {
+					if (dia.Value.TryGetProperty("Start", out SystemTextJson.JsonElement startElement) && dia.Value.TryGetProperty("End", out var endElement)) {
 						DiasDeAtencion[diaKey] = new Horario(startElement, endElement);
 					}
 				}
