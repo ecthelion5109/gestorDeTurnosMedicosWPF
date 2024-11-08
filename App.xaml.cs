@@ -35,7 +35,6 @@ namespace ClinicaMedica {
 		}
 		
 		
-		
 		public static void UpdateLabelDataBaseModo(Label label) {
 			if (App.BaseDeDatos is BaseDeDatosJSON ) {
 				label.Content = "Modo JSON";

@@ -8,60 +8,61 @@
         Title="Clinica Medica - Login" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="600" MaxHeight="400" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Icon="images/icono.png" WindowStartupLocation="CenterScreen">
 
 
-    <Grid VerticalAlignment="Center" Height="600" Width="1024" HorizontalAlignment="Center">
-        <Grid.Background>
-            <ImageBrush ImageSource="/images/otroFondo.png"/>
-        </Grid.Background>
+	<Grid VerticalAlignment="Center" Height="600" Width="1024" HorizontalAlignment="Center">
+		<Grid.Background>
+			<ImageBrush ImageSource="/images/otroFondo.png"/>
+		</Grid.Background>
 
-        <TextBox x:Name="labelServidor" 
+		<TextBox x:Name="labelServidor" 
 					Style="{StaticResource TextBoxLindo2}" 
 					HorizontalAlignment="Left" Margin="427,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="30" TextAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="labelUsuario" 
+		<TextBox x:Name="labelUsuario" 
 					Style="{StaticResource TextBoxLindo2}" 
 					HorizontalAlignment="Left" Margin="427,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="32" TextAlignment="Center" FontSize="16"/>
-        <TextBox x:Name="labelPassword" 
+		<TextBox x:Name="labelPassword" 
 					Style="{StaticResource TextBoxLindo2}" 
 					HorizontalAlignment="Left" Margin="427,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Height="31" TextAlignment="Center" FontSize="16"/>
 
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="30" FontFamily="Bahnschrift Light" Margin="344,77,0,0" Foreground="Black">
-            <TextBlock.Background>
-                <LinearGradientBrush EndPoint="3,1" StartPoint="5,0">
-                    <GradientStop Color="Transparent" Offset="1"/>
-                    <GradientStop Color="#7FFFFFFF" Offset="0"/>
-                </LinearGradientBrush>
-            </TextBlock.Background>
+		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="43" Width="346" FontSize="30" FontFamily="Bahnschrift Light" Margin="344,77,0,0" Foreground="Black">
+			<TextBlock.Background>
+				<LinearGradientBrush EndPoint="3,1" StartPoint="5,0">
+					<GradientStop Color="Transparent" Offset="1"/>
+					<GradientStop Color="#7FFFFFFF" Offset="0"/>
+				</LinearGradientBrush>
+			</TextBlock.Background>
             <Run Language="es-ar" Text="Iniciar sesion"/>
-        </TextBlock>
+		</TextBlock>
 
-        <TextBlock Margin="489,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
+		<TextBlock Margin="489,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
             <Run Language="es-ar" Text="Servidor"/>
-        </TextBlock>
-        <TextBlock Margin="490,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
+		</TextBlock>
+		<TextBlock Margin="490,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
             <Run Language="es-ar" Text="Usuario"/>
-        </TextBlock>
+		</TextBlock>
 
-        <!-- <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face" MouseEnter="MouseHoverEvento"    /> -->
-        <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face"  />
-        <Button Content="Salir" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,525,0,0" VerticalAlignment="Top" Height="32" Width="87" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonSalir" FontFamily="Baskerville Old Face" FontSize="20"/>
-        <Button Content="Cancelar" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,468,0,0" VerticalAlignment="Top" Height="32" Width="88" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonCancelar" FontFamily="Baskerville Old Face" FontSize="20"/>
+		<!-- <Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face" MouseEnter="MouseHoverEvento"    /> -->
+		<Button x:Name="iniciarSesionButton" Content="Iniciar sesión" HorizontalAlignment="Left" Margin="417,447,0,0" VerticalAlignment="Top" Height="50" Style="{StaticResource BotonRedondeado}" Width="220" Click="MetodoBotonIniciarSesion" FontSize="24" Background="#FF7FC7FA" IsDefault="True" Cursor="Hand" FontFamily="Baskerville Old Face"  />
+		<Button Content="Salir" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,525,0,0" VerticalAlignment="Top" Height="32" Width="87" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonSalir" FontFamily="Baskerville Old Face" FontSize="20"/>
+		<Button Content="Cancelar" Style="{StaticResource BotonRedondeado}" HorizontalAlignment="Left" Margin="35,468,0,0" VerticalAlignment="Top" Height="32" Width="88" Background="#FFCDE6FA" BorderBrush="Black" Click="MetodoBotonCancelar" FontFamily="Baskerville Old Face" FontSize="20"/>
 
-        <TextBlock Margin="355,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="26" FontSize="22" HorizontalAlignment="Left" FontFamily="Bahnschrift Light" Width="324">
-            <TextBlock.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#7FFFFFFF"/>
-                    <GradientStop Color="Transparent" Offset="1"/>
-                </LinearGradientBrush>
-            </TextBlock.Background>
+		<TextBlock Margin="355,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="26" FontSize="22" HorizontalAlignment="Left" FontFamily="Bahnschrift Light" Width="324">
+			<TextBlock.Background>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="#7FFFFFFF"/>
+					<GradientStop Color="Transparent" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBlock.Background>
             <Run Language="es-ar" Text="Elija motor de la Base de Datos"/>
-        </TextBlock>
+		</TextBlock>
 
-        <TextBlock Margin="476,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
+		<TextBlock Margin="476,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
             <Run Text="Contraseñ"/>
             <Run Language="es-es" Text="a"/>
-        </TextBlock>
-
-        <RadioButton x:Name="checkboxSQL" Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" Margin="405,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonSQLChecked" Background="{x:Null}" Height="25" Width="105" FontFamily="Bahnschrift Light"/>
-        <RadioButton x:Name="checkboxJSON" Content="Modo Json" HorizontalAlignment="Left" Margin="550,192,0,0" VerticalAlignment="Top" FontSize="20" Checked="radioButtonJSONChecked" FontFamily="Bahnschrift Light"/>
-    </Grid>
+		</TextBlock>
+		<StackPanel Margin="355,187,0,362" Orientation="Horizontal" HorizontalAlignment="Left" >
+			<RadioButton GroupName="grupomodobase" Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
+			<RadioButton x:Name="checkboxJSON" GroupName="grupomodobase" Content="Modo JSON" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
+		</StackPanel>
+	</Grid>
 </Window>
 

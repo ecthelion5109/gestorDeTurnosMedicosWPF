@@ -5,14 +5,16 @@ using System.Data.SqlClient;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosJSON : BaseDeDatosAbstracta{
-		static string medicosPath = "databases/medicos.json";
-		static string pacientesPath = "databases/pacientes.json";
-		static string turnosPath = "databases/turnos.json";
+		static readonly string medicosPath = "databases/medicos.json";
+		static readonly string pacientesPath = "databases/pacientes.json";
+		static readonly string turnosPath = "databases/turnos.json";
 		
 		public BaseDeDatosJSON() {
-			JsonCargarMedicos(medicosPath);
-			JsonCargarPacientes(pacientesPath);
-			JsonCargarTurnos(turnosPath);
+			ConectadaExitosamente = (
+				JsonCargarMedicosExitosamente(medicosPath)
+				&& JsonCargarPacientesExitosamente(pacientesPath)
+				&& JsonCargarTurnosExitosamente(turnosPath)
+			);
 		}
 		
 		
@@ -171,39 +173,33 @@ namespace ClinicaMedica {
 
 
 		//------------------------private.LOAD.Medicos----------------------//
-		private void JsonCargarMedicos(string file_path) {
+		private bool JsonCargarMedicosExitosamente(string file_path) {
 			if (File.Exists(file_path)) {
 				try {
-					// Read JSON file
 					string jsonString = File.ReadAllText(file_path);
-
-					// Deserialize to a dictionary of string to raw JSON objects
 					var rawMedicosData = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
-					
-					// Initialize the dictionary to store Medico instances
 					var medicos = new Dictionary<string, Medico>();
 
 					foreach (var medicoEntry in rawMedicosData) {
-						// Parse each JSON element and create a Medico instance with the key and parsed data
 						var medicoJsonElement = System.Text.Json.JsonDocument.Parse(medicoEntry.Value.ToString()).RootElement;
 						var medicoInstance = new Medico(medicoEntry.Key, medicoJsonElement);
-						
 						medicos[medicoEntry.Key] = medicoInstance;
 					}
-
-					// Assign to DictMedicos
 					DictMedicos = medicos;
 				} 
 				catch (JsonException ex) {
 					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
+					return false;
 				}
 			} 
 			else {
 				MessageBox.Show($"Error: {file_path} no se encontró.");
+				return false;
 			}
+			return true;
 		}
 		//------------------------private.LOAD.Pacientes----------------------//
-		private void JsonCargarPacientes(string file_path){
+		private bool JsonCargarPacientesExitosamente(string file_path){
 			if (File.Exists(pacientesPath)) {
 				try {
 					string jsonString = File.ReadAllText(pacientesPath);
@@ -211,14 +207,17 @@ namespace ClinicaMedica {
 				} 
 				catch (JsonException ex) {
 					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
+					return false;
 				}
 			} 
 			else {
 				MessageBox.Show($"Error: {file_path} no se encontró.");
+				return false;
 			}
+			return true;
 		}
 		//------------------------private.LOAD.Turnos----------------------//
-		private void JsonCargarTurnos(string file_path){
+		private bool JsonCargarTurnosExitosamente(string file_path){
 			if (File.Exists(turnosPath)) {
 				try {
 					string jsonString = File.ReadAllText(turnosPath);
@@ -226,11 +225,14 @@ namespace ClinicaMedica {
 				} 
 				catch (JsonException ex) {
 					MessageBox.Show($"Error parseando el archivo Json {file_path}: {ex.Message}");
+					return false;
 				}
 			} 
 			else {
 				MessageBox.Show($"Error: {file_path} no se encontró.");
+				return false;
 			}
+			return true;
 		}
 		
 		

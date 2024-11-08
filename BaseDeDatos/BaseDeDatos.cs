@@ -5,8 +5,9 @@ namespace ClinicaMedica {
 		protected Dictionary<string, Turno> DictTurnos = new();
 		protected Dictionary<string, Medico> DictMedicos = new();
 		protected Dictionary<string, Paciente> DictPacientes = new();
-		
-		
+		public virtual bool ConectadaExitosamente { get; protected set; } = false;
+
+
 		public bool TryGetPaciente(string pacienteId, out Paciente instance) {
 			if (DictPacientes.ContainsKey(pacienteId)) {
 				instance = DictPacientes[pacienteId];

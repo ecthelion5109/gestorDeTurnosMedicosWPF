@@ -7,42 +7,59 @@ using System.IO;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : BaseDeDatosAbstracta{
-		static public string connectionString; //= ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+		private string connectionString;
 		
 		public BaseDeDatosSQL() {
-			MessageBox.Show("$Inicniando BaseDeDatosSQL");
+			try {
+				connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+			} catch (Exception ex) {
+				MessageBox.Show($"No se pudo leer la cadena de conexion desde el archivo ''App.config o ClinicaMedica.dll.config''. Existe ese archivo? \n Mas info: \n {ex}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
+			ConectadaExitosamente = (
+				CadenaDeConexionEsValida()
+				&& AsegurarQueExisteClinicaMedica()
+				&& SQLCargarMedicosExitosamente()
+				&& SQLCargarPacientesExitosamente()
+				&& SQLCargarTurnosExitosamente()
+			);
 			
-			// string connectionString = "Server=YourServerName;Database=master;User Id=YourUsername;Password=YourPassword;";
-
-			EnsureDatabaseExists();
-		
-		
-			SQLCargarMedicos();
-			SQLCargarPacientes();
-			SQLCargarTurnos();
+		}
+		public BaseDeDatosSQL(string connection_string) {
+			connectionString = connection_string;
+			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
+			ConectadaExitosamente = (
+				CadenaDeConexionEsValida()
+				&& AsegurarQueExisteClinicaMedica()
+				&& SQLCargarMedicosExitosamente()
+				&& SQLCargarPacientesExitosamente()
+				&& SQLCargarTurnosExitosamente()
+			);
 		}
 
-		public void EnsureDatabaseExists(){
+		public bool AsegurarQueExisteClinicaMedica(){
 			if (!DatabaseExists("ClinicaMedica")){
-				MessageBox.Show("Database 'ClinicaMedica' does not exist. Creating the database...");
-				ExecuteSqlScript("CREATE DATABASE ClinicaMedica;");
-				
-				MessageBox.Show("Database created successfully.");
-				BaseDeDatosSQL.connectionString = BaseDeDatosSQL.connectionString.Replace("Database=master", "Database=ClinicaMedica");
-				
-				MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
-				ExecuteSqlScript(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
+				if (MessageBox.Show($"Database 'ClinicaMedica'no exuiste. Desea crearla?",
+					"Confirmar creación",
+					MessageBoxButton.OKCancel,
+					MessageBoxImage.Warning
+				) != MessageBoxResult.OK) {
+					return false;
+				}
+				EjecutarScriptExitosamente("CREATE DATABASE ClinicaMedica;");
+				// MessageBox.Show("Database created successfully.");
+				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
+				// MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
+				EjecutarScriptExitosamente(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
 			}
-			else
-			{
-				MessageBox.Show("Database 'ClinicaMedica' already exists.");
-				
-				
-				
+			else{
+				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
 			}
+			return true;
 		}
 
-		private void ExecuteSqlScript(string script){
+		private void EjecutarScriptExitosamente(string script){
 			using (SqlConnection connection = new SqlConnection(connectionString)){
 				connection.Open();
 
@@ -52,18 +69,57 @@ namespace ClinicaMedica {
 				}
 			}
 		}
+		public bool CadenaDeConexionEsValida(){
+			try{
+				using (var connection = new SqlConnection(connectionString)){
+					connection.Open(); 
+				}
+				return true;
+			}
+			catch (SqlException ex) when (ex.Number == 4060)
+			{
+				MessageBox.Show("The database 'ClinicaMedica' could not be opened. Please check that it exists and that the login credentials are correct.", 
+								"Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			catch (SqlException ex) when (ex.Number == 53 || ex.Number == 40)
+			{
+				MessageBox.Show("SERVIDOR MAL TIPEADO?. A network-related or instance-specific error occurred while establishing a connection to SQL Server. " +
+								"Please check the server name, network connectivity, and that the SQL Server instance is running.",
+								"Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			catch (SqlException ex) when (ex.Number == 18456)
+			{
+				// Handling for incorrect login credentials
+				MessageBox.Show("CREDENCIALES INCORRECTAS? Login failed. Please verify that the username and password are correct.",
+								"Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Cadena de conexion invalida ``{connectionString}´´. Tal vez se ingreso mal algun dato?\n Mas informacion: \n{ex.Message}", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false; 
+			}
+		}
 
 		private bool DatabaseExists(string databaseName){
-			using (SqlConnection connection = new SqlConnection(connectionString)){
-				connection.Open();
+			try {
+				using (SqlConnection connection = new SqlConnection(connectionString)){
+					connection.Open();
 
-				string query = $"SELECT COUNT(*) FROM sys.databases WHERE name = @databaseName";
-				using (SqlCommand command = new SqlCommand(query, connection))
-				{
-					command.Parameters.AddWithValue("@databaseName", databaseName);
-					int count = (int)command.ExecuteScalar();
-					return count > 0;
+					string query = $"SELECT COUNT(*) FROM sys.databases WHERE name = @databaseName";
+					using (SqlCommand command = new SqlCommand(query, connection))
+					{
+						command.Parameters.AddWithValue("@databaseName", databaseName);
+						int count = (int)command.ExecuteScalar();
+						return count > 0;
+					}
 				}
+				return true;
+			} catch (Exception ex) {
+				MessageBox.Show($"No se pudo establecer la conexion", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
 			}
 		}
 
@@ -447,84 +503,95 @@ namespace ClinicaMedica {
 		
 		
 		//------------------------private.LOAD.Medicos----------------------//
-		private void SQLCargarMedicos(){
-			using (var conexion = new SqlConnection(connectionString)){
-				conexion.Open();
-				string consulta = "SELECT * FROM Medico";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader()){
-					while (reader.Read()){
-						var medico = new Medico{
-							Id = reader["Id"]?.ToString(),
-							Name = reader["Name"]?.ToString(),
-							LastName = reader["LastName"]?.ToString(),
-							Dni = reader["Dni"]?.ToString(),
-							Provincia = reader["Provincia"]?.ToString(),
-							Domicilio = reader["Domicilio"]?.ToString(),
-							Localidad = reader["Localidad"]?.ToString(),
-							Especialidad = reader["Especialidad"]?.ToString(),
-							Telefono = reader["Telefono"]?.ToString(),
-							Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
-							FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-							SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
-						};
-						DictMedicos[medico.Id] = medico;
-					}
-				}
-			}
-		}
-		//------------------------private.LOAD.Pacientes----------------------//
-		private void SQLCargarPacientes(){
-			using (var conexion = new SqlConnection(connectionString)){
-				conexion.Open();
-				string consulta = "SELECT * FROM Paciente";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						var paciente = new Paciente
-						{
+		private bool SQLCargarMedicosExitosamente(){
+			try {
+				using (var conexion = new SqlConnection(connectionString)){
+					conexion.Open();
+					string consulta = "SELECT * FROM Medico";
+					using (var sqlComando = new SqlCommand(consulta, conexion))
+					using (var reader = sqlComando.ExecuteReader()){
+						while (reader.Read()){
+							var medico = new Medico{
 								Id = reader["Id"]?.ToString(),
-								Dni = reader["Dni"]?.ToString(),
 								Name = reader["Name"]?.ToString(),
 								LastName = reader["LastName"]?.ToString(),
-								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
-								Email = reader["Email"]?.ToString(),
-								Telefono = reader["Telefono"]?.ToString(),
-								FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+								Dni = reader["Dni"]?.ToString(),
+								Provincia = reader["Provincia"]?.ToString(),
 								Domicilio = reader["Domicilio"]?.ToString(),
 								Localidad = reader["Localidad"]?.ToString(),
-								Provincia = reader["Provincia"]?.ToString()
-						};
-						DictPacientes[paciente.Id] = paciente;
+								Especialidad = reader["Especialidad"]?.ToString(),
+								Telefono = reader["Telefono"]?.ToString(),
+								Guardia = reader["Guardia"] != DBNull.Value ? Convert.ToBoolean(reader["Guardia"]) : false,
+								FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+								SueldoMinimoGarantizado = reader["SueldoMinimoGarantizado"] != DBNull.Value ? Convert.ToDouble(reader["SueldoMinimoGarantizado"]) : 0.0
+							};
+							DictMedicos[medico.Id] = medico;
+						}
 					}
 				}
+			} catch (Exception ex) {
+				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
 			}
+			return true;
+		}
+		//------------------------private.LOAD.Pacientes----------------------//
+		private bool SQLCargarPacientesExitosamente(){
+			try {
+				using (var conexion = new SqlConnection(connectionString)){
+					conexion.Open();
+					string consulta = "SELECT * FROM Paciente";
+					using (var sqlComando = new SqlCommand(consulta, conexion))
+					using (var reader = sqlComando.ExecuteReader()){
+						while (reader.Read()){
+							var paciente = new Paciente{
+									Id = reader["Id"]?.ToString(),
+									Dni = reader["Dni"]?.ToString(),
+									Name = reader["Name"]?.ToString(),
+									LastName = reader["LastName"]?.ToString(),
+									FechaIngreso = reader["FechaIngreso"] != DBNull.Value ? Convert.ToDateTime(reader["FechaIngreso"]) : (DateTime?)null,
+									Email = reader["Email"]?.ToString(),
+									Telefono = reader["Telefono"]?.ToString(),
+									FechaNacimiento = reader["FechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["FechaNacimiento"]) : (DateTime?)null,
+									Domicilio = reader["Domicilio"]?.ToString(),
+									Localidad = reader["Localidad"]?.ToString(),
+									Provincia = reader["Provincia"]?.ToString()
+							};
+							DictPacientes[paciente.Id] = paciente;
+						}
+					}
+				}
+			} catch (Exception ex) {
+				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			return true;
 		}
 		//------------------------private.LOAD.Turnos----------------------//
-		private void SQLCargarTurnos(){
-			using (var conexion = new SqlConnection(connectionString))
-			{
-				conexion.Open();
-				string consulta = "SELECT * FROM Turno";
-				using (var sqlComando = new SqlCommand(consulta, conexion))
-				using (var reader = sqlComando.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						var turno = new Turno
-						{
-								Id = reader["Id"]?.ToString(),
-								PacienteId = reader["PacienteId"]?.ToString(),
-								MedicoId = reader["MedicoId"]?.ToString(),
-								Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-								Hora = TimeSpan.Parse(reader["Hora"].ToString()),
-						};
-						DictTurnos[turno.Id] = turno;
+		private bool SQLCargarTurnosExitosamente(){
+			try {
+				using (var conexion = new SqlConnection(connectionString)){
+					conexion.Open();
+					string consulta = "SELECT * FROM Turno";
+					using (var sqlComando = new SqlCommand(consulta, conexion))
+					using (var reader = sqlComando.ExecuteReader()){
+						while (reader.Read()){
+							var turno = new Turno{
+									Id = reader["Id"]?.ToString(),
+									PacienteId = reader["PacienteId"]?.ToString(),
+									MedicoId = reader["MedicoId"]?.ToString(),
+									Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
+									Hora = TimeSpan.Parse(reader["Hora"].ToString()),
+							};
+							DictTurnos[turno.Id] = turno;
+						}
 					}
 				}
+			} catch (Exception ex) {
+				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
 			}
+			return true;
 		}
 		
 		
