@@ -42,26 +42,35 @@
 
 
         <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,TEXTBOXS,,,,,,,,,,,,,,,,,,,,,,,,,, -->
-        <Style x:Key="TextBoxLindo2" TargetType="TextBox">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border CornerRadius="5"
-                                Background="White"
-                                BorderBrush="Gray"
-                                BorderThickness="1"
-                                Padding="5">
-                            <Border.Effect>
-                                <DropShadowEffect Color="Black"
-                                                  BlurRadius="20"
-                                                  ShadowDepth="12"/>
-                            </Border.Effect>
-                            <ScrollViewer x:Name="PART_ContentHost"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+		<Style x:Key="TextBoxLindo2" TargetType="TextBox">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Border x:Name="BorderElement"
+								CornerRadius="5"
+								Background="White"
+								BorderBrush="Gray"
+								BorderThickness="1"
+								Padding="5">
+							<Border.Effect>
+								<DropShadowEffect Color="Black"
+												  BlurRadius="20"
+												  ShadowDepth="12"/>
+							</Border.Effect>
+							<ScrollViewer x:Name="PART_ContentHost"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsEnabled" Value="False">
+								<!-- Change the opacity and background when disabled -->
+								<Setter TargetName="BorderElement" Property="Opacity" Value="0.9"/>
+								<Setter TargetName="BorderElement" Property="Background" Value="#FFF3F3F3"/>
+								<Setter TargetName="BorderElement" Property="BorderBrush" Value="Gray"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 
 
         <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,LABELS,,,,,,,,,,,,,,,,,,,,,,,,,, -->

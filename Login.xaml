@@ -55,13 +55,10 @@
             <Run Language="es-ar" Text="Elija motor de la Base de Datos"/>
 		</TextBlock>
 
-		<TextBlock Margin="476,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light">
-            <Run Text="Contraseñ"/>
-            <Run Language="es-es" Text="a"/>
-		</TextBlock>
+		<TextBlock Margin="476,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" Height="24" FontSize="20" HorizontalAlignment="Left" FontFamily="Bahnschrift Light" Text="Contraseña"/>
 		<StackPanel Margin="355,187,0,362" Orientation="Horizontal" HorizontalAlignment="Left" >
-			<RadioButton GroupName="grupomodobase" Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
-			<RadioButton x:Name="checkboxJSON" GroupName="grupomodobase" Content="Modo JSON" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
+			<RadioButton GroupName="grupomodobase" Checked="radioButtonSQLChecked" Content="Modo SQL" IsChecked="true" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
+			<RadioButton x:Name="checkboxJSON" GroupName="grupomodobase" Checked="radioButtonJSONChecked" Content="Modo JSON" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontFamily="Bahnschrift Light" Margin="25,0,25,0"/>
 		</StackPanel>
 	</Grid>
 </Window>
