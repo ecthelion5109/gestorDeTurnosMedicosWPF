@@ -47,7 +47,7 @@ namespace ClinicaMedica {
 				) {
 					App.BaseDeDatos = new BaseDeDatosSQL();
 				} else {
-					App.BaseDeDatos = new BaseDeDatosSQL($"Server={labelServidor.Text};Database=master;User ID={labelUsuario.Text};Password={labelPassword.Text};");
+					App.BaseDeDatos = new BaseDeDatosSQL($"Server={labelServidor.Text};Database=ClinicaMedica;User ID={labelUsuario.Text};Password={labelPassword.Text};");
 				}
 			}
 			App.UsuarioLogueado = App.BaseDeDatos.ConectadaExitosamente;

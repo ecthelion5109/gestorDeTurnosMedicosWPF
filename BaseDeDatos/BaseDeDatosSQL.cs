@@ -19,7 +19,6 @@ namespace ClinicaMedica {
 			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
 			ConectadaExitosamente = (
 				CadenaDeConexionEsValida()
-				&& AsegurarQueExisteClinicaMedica()
 				&& SQLCargarMedicosExitosamente()
 				&& SQLCargarPacientesExitosamente()
 				&& SQLCargarTurnosExitosamente()
@@ -31,35 +30,13 @@ namespace ClinicaMedica {
 			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
 			ConectadaExitosamente = (
 				CadenaDeConexionEsValida()
-				&& AsegurarQueExisteClinicaMedica()
 				&& SQLCargarMedicosExitosamente()
 				&& SQLCargarPacientesExitosamente()
 				&& SQLCargarTurnosExitosamente()
 			);
 		}
 
-		public bool AsegurarQueExisteClinicaMedica(){
-			if (!DatabaseExists("ClinicaMedica")){
-				if (MessageBox.Show($"Database 'ClinicaMedica'no exuiste. Desea crearla?",
-					"Confirmar creación",
-					MessageBoxButton.OKCancel,
-					MessageBoxImage.Warning
-				) != MessageBoxResult.OK) {
-					return false;
-				}
-				EjecutarScriptExitosamente("CREATE DATABASE ClinicaMedica;");
-				// MessageBox.Show("Database created successfully.");
-				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
-				// MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
-				EjecutarScriptExitosamente(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
-			}
-			else{
-				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
-			}
-			return true;
-		}
-
-		private void EjecutarScriptExitosamente(string script){
+		private void EjecutarScript(string script){
 			using (SqlConnection connection = new SqlConnection(connectionString)){
 				connection.Open();
 
@@ -78,9 +55,17 @@ namespace ClinicaMedica {
 			}
 			catch (SqlException ex) when (ex.Number == 4060)
 			{
-				MessageBox.Show("The database 'ClinicaMedica' could not be opened. Please check that it exists and that the login credentials are correct.", 
-								"Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
+				if (MessageBox.Show($"Database 'ClinicaMedica'no exuiste. Desea crearla?\n Se va a conectar a master y se la va a crear. Despues se va a volver a parar en ClinicaMedica y ahi va a crear las tablas con algunos inserts.", "Confirmar creación", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) {
+					return false;
+				}
+				connectionString = connectionString.Replace("Database=ClinicaMedica", "Database=master");
+				EjecutarScript("CREATE DATABASE ClinicaMedica;");
+				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
+				// MessageBox.Show("Database created successfully.");
+				// MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
+				EjecutarScript(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
+				CadenaDeConexionEsValida();
+				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 53 || ex.Number == 40)
 			{
@@ -100,26 +85,6 @@ namespace ClinicaMedica {
 			{
 				MessageBox.Show($"Cadena de conexion invalida ``{connectionString}´´. Tal vez se ingreso mal algun dato?\n Mas informacion: \n{ex.Message}", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false; 
-			}
-		}
-
-		private bool DatabaseExists(string databaseName){
-			try {
-				using (SqlConnection connection = new SqlConnection(connectionString)){
-					connection.Open();
-
-					string query = $"SELECT COUNT(*) FROM sys.databases WHERE name = @databaseName";
-					using (SqlCommand command = new SqlCommand(query, connection))
-					{
-						command.Parameters.AddWithValue("@databaseName", databaseName);
-						int count = (int)command.ExecuteScalar();
-						return count > 0;
-					}
-				}
-				return true;
-			} catch (Exception ex) {
-				MessageBox.Show($"No se pudo establecer la conexion", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
 			}
 		}
 
