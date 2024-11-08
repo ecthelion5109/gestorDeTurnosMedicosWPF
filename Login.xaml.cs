@@ -16,11 +16,6 @@ using System.Windows.Shapes;
 // using System.Media;
 // using System.Windows.Media;
 
-namespace ClinicaMedica {
-	public partial class Login : Window {
-		public Login() {
-			InitializeComponent();
-		}
 		
 		// private void MouseHoverEvento(object sender, System.Windows.Input.MouseEventArgs e) {
 			// MediaPlayer mediaPlayer = new MediaPlayer();
@@ -32,10 +27,11 @@ namespace ClinicaMedica {
 		// }
 		
 		
-		
-		
-		
-
+namespace ClinicaMedica {
+	public partial class Login : Window {
+		public Login() {
+			InitializeComponent();
+		}
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
 			if (checkboxJSON.IsChecked == true) {
 				App.BaseDeDatos = new BaseDeDatosJSON();

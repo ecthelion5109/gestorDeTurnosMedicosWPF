@@ -7,16 +7,13 @@ using System.IO;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : BaseDeDatosAbstracta{
-		private string connectionString;
+		private string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"]?.ConnectionString;
 		
 		public BaseDeDatosSQL() {
-			try {
-				connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
-			} catch (Exception ex) {
+			if (connectionString == null){
 				MessageBox.Show($"No se pudo leer la cadena de conexion desde el archivo ''App.config o ClinicaMedica.dll.config''. Existe ese archivo? \n Mas info: \n {ex}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
 			ConectadaExitosamente = (
 				CadenaDeConexionEsValida()
 				&& SQLCargarMedicosExitosamente()
@@ -27,7 +24,6 @@ namespace ClinicaMedica {
 		}
 		public BaseDeDatosSQL(string connection_string) {
 			connectionString = connection_string;
-			// MessageBox.Show($"Inicniando BaseDeDatosSQL con cadena: {connectionString}");
 			ConectadaExitosamente = (
 				CadenaDeConexionEsValida()
 				&& SQLCargarMedicosExitosamente()
@@ -40,8 +36,7 @@ namespace ClinicaMedica {
 			using (SqlConnection connection = new SqlConnection(connectionString)){
 				connection.Open();
 
-				using (SqlCommand command = new SqlCommand(script, connection))
-				{
+				using (SqlCommand command = new SqlCommand(script, connection)){
 					command.ExecuteNonQuery();
 				}
 			}
@@ -53,37 +48,30 @@ namespace ClinicaMedica {
 				}
 				return true;
 			}
-			catch (SqlException ex) when (ex.Number == 4060)
-			{
+			catch (SqlException ex) when (ex.Number == 4060){
 				if (MessageBox.Show($"Database 'ClinicaMedica'no exuiste. Desea crearla?\n Se va a conectar a master y se la va a crear. Despues se va a volver a parar en ClinicaMedica y ahi va a crear las tablas con algunos inserts.", "Confirmar creación", MessageBoxButton.OKCancel, MessageBoxImage.Warning) != MessageBoxResult.OK) {
 					return false;
 				}
 				connectionString = connectionString.Replace("Database=ClinicaMedica", "Database=master");
 				EjecutarScript("CREATE DATABASE ClinicaMedica;");
 				connectionString = connectionString.Replace("Database=master", "Database=ClinicaMedica");
-				// MessageBox.Show("Database created successfully.");
-				// MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
 				EjecutarScript(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
 				CadenaDeConexionEsValida();
 				return true;
 			}
-			catch (SqlException ex) when (ex.Number == 53 || ex.Number == 40)
-			{
+			catch (SqlException ex) when (ex.Number == 53 || ex.Number == 40){
 				MessageBox.Show("SERVIDOR MAL TIPEADO?. A network-related or instance-specific error occurred while establishing a connection to SQL Server. " +
 								"Please check the server name, network connectivity, and that the SQL Server instance is running.",
 								"Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
-			catch (SqlException ex) when (ex.Number == 18456)
-			{
-				// Handling for incorrect login credentials
+			catch (SqlException ex) when (ex.Number == 18456){
 				MessageBox.Show("CREDENCIALES INCORRECTAS? Login failed. Please verify that the username and password are correct.",
 								"Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
-			catch (Exception ex)
-			{
-				MessageBox.Show($"Cadena de conexion invalida ``{connectionString}´´. Tal vez se ingreso mal algun dato?\n Mas informacion: \n{ex.Message}", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
+			catch (Exception ex){
+				MessageBox.Show($"Error no esperado. Cadena de conexion invalida ``{connectionString}´´. \n Mas informacion: \n{ex.Message}", "Error de conexion", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false; 
 			}
 		}
