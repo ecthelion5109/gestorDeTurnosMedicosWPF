@@ -22,16 +22,20 @@ namespace ClinicaMedica {
 		public static MediaPlayer UClickNoFun = new MediaPlayer();
 		public static MediaPlayer UClickJewel = new MediaPlayer();
 
-		public void Button_MouseEnter(object sender, System.Windows.RoutedEventArgs e){
-			// UClickJewel.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
+		public void StyleButton_MouseEnter(object sender, System.Windows.RoutedEventArgs e){
 			// UClickJewel.Play();
 		}
 
-		public void Button_Click(object sender, System.Windows.RoutedEventArgs e) {
-			UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
+		public void StyleButton_Click(object sender, System.Windows.RoutedEventArgs e) {
+			UClickNoFun.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
 			// Application.Current.Dispatcher.Invoke(() => {
-				UClickNoFun.Play();
+			UClickNoFun.Play();
 			// });
+		}
+
+		static public void PlayClickJewel() {
+			UClickNoFun.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
+			UClickNoFun.Play();
 		}
 		
 		
@@ -49,18 +53,14 @@ namespace ClinicaMedica {
 	
     public static class AtajosDeVentana{
 		public static void NavegarA<T>(this Window previousWindow) where T : Window, new(){
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
-			
+			App.PlayClickJewel();
 			T nuevaVentana = new();
 			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 			nuevaVentana.Show();  // Mostrar la nueva ventana
 			previousWindow.Close();  // Cerrar la ventana actual
 		}
 		public static void NavegarA<T>(this Window previousWindow, object optionalArg) where T : Window, new(){
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
-				
+			App.PlayClickJewel();
 			T nuevaVentana = (T)Activator.CreateInstance(typeof(T), optionalArg);
 			Application.Current.MainWindow = nuevaVentana;  // Establecer la nueva ventana como la principal
 			nuevaVentana.Show();  // Mostrar la nueva ventana
@@ -68,30 +68,25 @@ namespace ClinicaMedica {
 		}
 		
 		public static void AbrirComoDialogo<T>(this Window previousWindow) where T : Window, new(){
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
-				
+			App.PlayClickJewel();
 			T nuevaVentana = new();
 			Application.Current.MainWindow = nuevaVentana;
 			nuevaVentana.ShowDialog();
 		}
 
 		public static void AbrirComoDialogo<T>(this Window previousWindow, object optionalArg) where T : Window{
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
-				
+			App.PlayClickJewel();
 			T nuevaVentana = (T)Activator.CreateInstance(typeof(T), optionalArg);
 			Application.Current.MainWindow = nuevaVentana;
 			nuevaVentana.ShowDialog();
 		}
 		
 		public static void VolverAHome(this Window previousWindow){
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
-				
+			App.PlayClickJewel();
 			previousWindow.NavegarA<MainWindow>();
 		}
 		public static void Salir(this Window previousWindow){
+			App.PlayClickJewel();
 			if (MessageBox.Show($"¿Está seguro que desea salir de la aplicacion?",
 				"Confirmar ciere",
 				MessageBoxButton.OKCancel,
@@ -99,15 +94,13 @@ namespace ClinicaMedica {
 			) != MessageBoxResult.OK) {
 				return;
 			}
+			App.PlayClickJewel();
 			//---------confirmacion-----------//
 			
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
 			Application.Current.Shutdown();  // Apagar la aplicación
 		}
 		public static void Cerrar(this Window previousWindow){
-			App.UClickNoFun.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
-				App.UClickNoFun.Play();
+			App.PlayClickJewel();
 			previousWindow.Close();
 		}
 	}

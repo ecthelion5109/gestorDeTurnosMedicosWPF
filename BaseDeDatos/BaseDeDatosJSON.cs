@@ -20,7 +20,7 @@ namespace ClinicaMedica {
 		
 		//------------------------public.CREATE.Medico----------------------//
 		public override bool CreateMedico(Medico instancia) {
-			if (!DictMedicos.Values.Any(i => i.Dni == instancia.Dni)){
+			if (DictMedicos.Values.Any(i => i.Dni == instancia.Dni)){
 				MessageBox.Show($"Error: Ya hay un medico con ese Dni.");
 				return false;
 			}
@@ -32,7 +32,7 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.CREATE.Paciente----------------------//
 		public override bool CreatePaciente(Paciente instancia) {
-			if (!DictPacientes.Values.Any(i => i.Dni == instancia.Dni)){
+			if (DictPacientes.Values.Any(i => i.Dni == instancia.Dni)){
 				MessageBox.Show($"Error: Ya hay un paciente con ese Dni.");
 				return false;
 			}

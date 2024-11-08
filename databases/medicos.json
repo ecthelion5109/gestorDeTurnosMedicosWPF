@@ -79,7 +79,7 @@
     "Provincia": "Santa Fe",
     "Domicilio": "Boulevard 456",
     "Localidad": "Rosario",
-    "Especialidad": "Ginecóloga",
+    "Especialidad": "Ginecólogia",
     "Telefono": "+456789012",
     "Guardia": true,
     "FechaIngreso": "2019-11-03T00:00:00",
@@ -166,5 +166,20 @@
         "End": "18:00"
       }
     }
+  },
+  "8": {
+    "Id": "8",
+    "Name": "Pepe",
+    "LastName": "Falopa",
+    "Dni": "44331111",
+    "Provincia": "buenos aire",
+    "Domicilio": "54345",
+    "Localidad": "gons",
+    "Especialidad": "Pederasta",
+    "Telefono": "4234234234234",
+    "Guardia": false,
+    "FechaIngreso": "2024-11-06T00:00:00",
+    "SueldoMinimoGarantizado": 432423423423.0,
+    "DiasDeAtencion": {}
   }
 }

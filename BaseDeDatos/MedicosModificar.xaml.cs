@@ -39,6 +39,7 @@ namespace ClinicaMedica {
 					 this.txtRealizaGuardia.IsChecked is null);
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			//---------Crear-----------//
 			if (SelectedMedico is null) {
 				if (FaltanCamposPorCompletar()) {
@@ -67,6 +68,7 @@ namespace ClinicaMedica {
 
 		//---------------------botones.Eliminar-------------------//
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			//---------Checknulls-----------//
 			if (SelectedMedico is null || SelectedMedico.Dni is null) {
 				MessageBox.Show($"No hay item seleccionado.");

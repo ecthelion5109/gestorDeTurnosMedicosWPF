@@ -61,6 +61,7 @@ namespace ClinicaMedica {
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
 			if (FaltanCamposPorCompletar()) {
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
@@ -84,6 +85,7 @@ namespace ClinicaMedica {
 		}
 
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			//---------Checknulls-----------//
 			if (SelectedTurno is null) {
 				MessageBox.Show($"No hay item seleccionado.");

@@ -9,7 +9,7 @@
 		Icon="../images/icono.png"
 		WindowStartupLocation="CenterScreen"
 		Width="725"
-		Height="480">
+		Height="505">
 	<Window.Background>
 		<ImageBrush ImageSource="/images/MedicosFondo.jpg"
 				Stretch="UniformToFill"/>

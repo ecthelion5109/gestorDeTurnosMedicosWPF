@@ -81,8 +81,9 @@
 
         <!-- ,,,,,,,,,,,,,,,,,,,,,,,,,,BOTONES,,,,,,,,,,,,,,,,,,,,,,,,,, -->
         <Style x:Key="BotonRedondeado" TargetType="{x:Type Button}">
-			<EventSetter Event="MouseEnter" Handler="Button_MouseEnter"/>
-			<!-- <EventSetter Event="MouseDoubleClick" Handler="Button_Click"/> -->
+			<EventSetter Event="MouseEnter" Handler="StyleButton_MouseEnter"/>
+			<!-- <EventSetter Event="Click" Handler="StyleButton_Click"/> --> 
+			<!-- Anda con retraso. Mas vale ponerlo en los metodos de los botones directamente. Aprovechar mi clase AtajosDeVentana -->
 			<Setter Property="Foreground"
                     Value="Black"/>
             <Setter Property="BorderThickness"

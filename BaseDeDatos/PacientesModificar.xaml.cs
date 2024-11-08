@@ -33,7 +33,7 @@ namespace ClinicaMedica {
 
 
 		//---------------------botones.GuardarCambios-------------------//
-		bool FaltanCamposPorCompletar(){
+		private bool FaltanCamposPorCompletar(){
 			return (
 					 string.IsNullOrEmpty(this.txtDni.Text) ||
 					 string.IsNullOrEmpty(this.txtNombre.Text) ||
@@ -49,6 +49,7 @@ namespace ClinicaMedica {
 					 );
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
 			if (FaltanCamposPorCompletar()){
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
@@ -75,6 +76,7 @@ namespace ClinicaMedica {
 
 		//---------------------botones.Eliminar-------------------//
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
+			App.PlayClickJewel();
 			//---------Checknulls-----------//
 			if (SelectedPaciente is null || SelectedPaciente.Dni is null) {
 				MessageBox.Show($"No hay item seleccionado.");

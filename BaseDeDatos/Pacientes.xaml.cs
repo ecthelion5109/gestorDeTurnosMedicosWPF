@@ -16,19 +16,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
 
-namespace ClinicaMedica
-{
-    /// <summary>
-    /// Lógica de interacción para Pacientes.xaml
-    /// </summary>
+namespace ClinicaMedica{
     public partial class Pacientes : Window {
 		private static Medico? SelectedMedico;
 		private static Turno? SelectedTurno;
 		private static Paciente? SelectedPaciente;
 
-
-		public Pacientes()
-        {
+		public Pacientes(){
             InitializeComponent();
 		}
 
