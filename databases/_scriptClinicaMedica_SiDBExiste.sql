@@ -1,28 +1,4 @@
-﻿-- Set the database to SINGLE_USER mode to disconnect existing connections
-IF EXISTS (SELECT * FROM sys.databases WHERE name = 'ClinicaMedica')
-BEGIN
-    ALTER DATABASE ClinicaMedica SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-END
-
--- Drop the database if it exists
-IF EXISTS (SELECT * FROM sys.databases WHERE name = 'ClinicaMedica')
-BEGIN
-    DROP DATABASE ClinicaMedica;
-END
-
--- Create the database
-CREATE DATABASE ClinicaMedica;
-GO  -- Ensure the batch completes before moving to the next command
-
--- Switch to the database context
-USE ClinicaMedica;
-
--- Drop tables if they already exist
-IF OBJECT_ID('dbo.Medico', 'U') IS NOT NULL DROP TABLE dbo.Medico;
-IF OBJECT_ID('dbo.Paciente', 'U') IS NOT NULL DROP TABLE dbo.Paciente;
-IF OBJECT_ID('dbo.Turno', 'U') IS NOT NULL DROP TABLE dbo.Turno;
-
--- Create Medico table
+﻿-- Create Medico table
 CREATE TABLE Medico (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Dni NCHAR(8) NOT NULL UNIQUE,

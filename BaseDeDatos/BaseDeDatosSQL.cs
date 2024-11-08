@@ -2,17 +2,73 @@ using System.Windows;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.IO;
 
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : BaseDeDatosAbstracta{
-		static public string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
+		static public string connectionString; //= ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 		
 		public BaseDeDatosSQL() {
+			MessageBox.Show("$Inicniando BaseDeDatosSQL");
+			
+			// string connectionString = "Server=YourServerName;Database=master;User Id=YourUsername;Password=YourPassword;";
+
+			EnsureDatabaseExists();
+		
+		
 			SQLCargarMedicos();
 			SQLCargarPacientes();
 			SQLCargarTurnos();
 		}
+
+		public void EnsureDatabaseExists(){
+			if (!DatabaseExists("ClinicaMedica")){
+				MessageBox.Show("Database 'ClinicaMedica' does not exist. Creating the database...");
+				ExecuteSqlScript("CREATE DATABASE ClinicaMedica;");
+				
+				MessageBox.Show("Database created successfully.");
+				BaseDeDatosSQL.connectionString = BaseDeDatosSQL.connectionString.Replace("Database=master", "Database=ClinicaMedica");
+				
+				MessageBox.Show("Conectando con ClinicaMedica. Vamos a crear las tablas y algunos inserts.");
+				ExecuteSqlScript(File.ReadAllText("databases/_scriptClinicaMedica_SiDBExiste.sql"));
+			}
+			else
+			{
+				MessageBox.Show("Database 'ClinicaMedica' already exists.");
+				
+				
+				
+			}
+		}
+
+		private void ExecuteSqlScript(string script){
+			using (SqlConnection connection = new SqlConnection(connectionString)){
+				connection.Open();
+
+				using (SqlCommand command = new SqlCommand(script, connection))
+				{
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		private bool DatabaseExists(string databaseName){
+			using (SqlConnection connection = new SqlConnection(connectionString)){
+				connection.Open();
+
+				string query = $"SELECT COUNT(*) FROM sys.databases WHERE name = @databaseName";
+				using (SqlCommand command = new SqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@databaseName", databaseName);
+					int count = (int)command.ExecuteScalar();
+					return count > 0;
+				}
+			}
+		}
+
+
+
 
 		//------------------------public.CREATE.Medico----------------------//
 		public override bool CreateMedico(Medico instancia) {

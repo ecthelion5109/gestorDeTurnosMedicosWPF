@@ -27,6 +27,11 @@ namespace ClinicaMedica {
 			// mediaPlayer.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
 			// mediaPlayer.Play();
 		// }
+		
+		
+		
+		
+		
 
 		private void MetodoBotonIniciarSesion(object sender, RoutedEventArgs e) {
 			// MediaPlayer mediaPlayer = new MediaPlayer();
@@ -38,42 +43,37 @@ namespace ClinicaMedica {
 				App.UsuarioLogueado = true;
 				this.Cerrar();
 				return;
-			}
-
-			if (
-				!(string.IsNullOrEmpty(labelServidor.Text)
-				&& string.IsNullOrEmpty(labelUsuario.Text)
-				&& string.IsNullOrEmpty(labelPassword.Text))
-			) {
+			} 
+			
+			
+			if ((string.IsNullOrEmpty(labelServidor.Text) && string.IsNullOrEmpty(labelUsuario.Text) && string.IsNullOrEmpty(labelPassword.Text)) ) {
 				try {
-					BaseDeDatosSQL.connectionString = $"Server={labelPassword.Text};";
-					App.UsuarioName = labelUsuario.Text;
+					BaseDeDatosSQL.connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"].ConnectionString;
 					App.BaseDeDatos = new BaseDeDatosSQL();
 					App.UsuarioLogueado = true;
 					this.Cerrar();
-					return;
 				}
 				catch (Exception ex) {
-					MessageBox.Show($"{ex}");
+					MessageBox.Show($"Fallo inicio de sesión desde ''App.config''. \nCadena:\n >>{BaseDeDatosSQL.connectionString}<< \n Error: {ex}");
 					App.UsuarioLogueado = false;
 					this.Cerrar();
-					return;
 				}
-			}
-			else {
+				
+			} else {
 				try {
+					BaseDeDatosSQL.connectionString = $"Server={labelServidor.Text};Database=master;User ID={labelUsuario.Text};Password={labelPassword.Text};";
 					App.BaseDeDatos = new BaseDeDatosSQL();
 					App.UsuarioLogueado = true;
 					this.Cerrar();
-					return;
 				}
 				catch (Exception ex) {
-					MessageBox.Show($"{ex}");
+					MessageBox.Show($"Fallo inicio de sesión desde con cadena {BaseDeDatosSQL.connectionString}. Error: {ex}");
 					App.UsuarioLogueado = false;
 					this.Cerrar();
-					return;
 				}
+				
 			}
+			
 		}
 
 		public void MetodoBotonSalir(object sender, RoutedEventArgs e) {

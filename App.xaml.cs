@@ -15,7 +15,6 @@ namespace ClinicaMedica {
 	public partial class App : Application {
 		public static BaseDeDatosAbstracta BaseDeDatos;
 		public static bool UsuarioLogueado = false;
-		public static string UsuarioName = "Señor Gestor";
 		// public static SoundPlayer UClick = new SoundPlayer("sonidos\\uclick.wav");
         // public static SoundPlayer UClickNoFun = new SoundPlayer("sonidos\\uclicknofun.wav");
 		// public static SoundPlayer UClickJewel = new SoundPlayer("sonidos\\uclick_jewel.wav");
