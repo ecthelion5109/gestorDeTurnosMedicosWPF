@@ -44,7 +44,6 @@ namespace ClinicaMedica{
 			) != MessageBoxResult.OK) {
 				return;
 			}
-			App.PlayClickJewel();
 			//---------confirmacion-----------//
 			
 			Application.Current.Shutdown();  // Apagar la aplicación

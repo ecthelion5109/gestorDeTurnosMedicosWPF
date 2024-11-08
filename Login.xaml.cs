@@ -34,19 +34,18 @@ namespace ClinicaMedica {
 			this.Cerrar();
 		}
 
-		private void ComboBoxBaseDeDatos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+		private void checkboxJSON_Checked(object sender, RoutedEventArgs e)
+		{
+			if (labelPassword != null) labelPassword.IsEnabled = false;
+			if (labelServidor != null) labelServidor.IsEnabled = false;
+			if (labelUsuario != null) labelUsuario.IsEnabled = false;
 		}
 
-		private void radioButtonJSONChecked(object sender, RoutedEventArgs e) {
-			labelPassword.IsEnabled = false;
-			labelServidor.IsEnabled = false;
-			labelUsuario.IsEnabled = false;
-		}
-
-		private void radioButtonSQLChecked(object sender, RoutedEventArgs e) {
-			labelPassword.IsEnabled = true;
-			labelServidor.IsEnabled = true;
-			labelUsuario.IsEnabled = true;
+		private void checkboxSQL_Checked(object sender, RoutedEventArgs e)
+		{
+			if (labelPassword != null) labelPassword.IsEnabled = true;
+			if (labelServidor != null) labelServidor.IsEnabled = true;
+			if (labelUsuario != null) labelUsuario.IsEnabled = true;
 		}
 	}
 }
