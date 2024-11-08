@@ -7,7 +7,6 @@ using System.IO;
 
 namespace ClinicaMedica {
 	public class BaseDeDatosSQL : BaseDeDatosAbstracta{
-		private string connectionString = ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"]?.ConnectionString;
 		// private string Server;
 		// private string User;
 		// private string Password;
@@ -16,16 +15,18 @@ namespace ClinicaMedica {
 			// Server = server;
 			// User = user;
 			// Password = password;
-		public BaseDeDatosSQL() {
-			if (connectionString == null){
-				MessageBox.Show($"No se pudo leer la cadena de conexion desde el archivo ''App.config o ClinicaMedica.dll.config''. Existe ese archivo?", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+			
+		private string connectionString;
+		
+		public BaseDeDatosSQL(string? customConnectionString = null) {
+			connectionString = customConnectionString ?? ConfigurationManager.ConnectionStrings["ConexionAClinicaMedica"]?.ConnectionString;
+
+			if (connectionString == null) {
+				MessageBox.Show("No se pudo leer la cadena de conexion desde el archivo ''App.config o ClinicaMedica.dll.config''. Existe ese archivo?", 
+								"Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
-			ConectadaExitosamente = Conectar();
-			
-		}
-		public BaseDeDatosSQL(string connection_string) {
-			connectionString = connection_string;
+
 			ConectadaExitosamente = Conectar();
 		}
 		

@@ -26,11 +26,6 @@ using System.Windows.Shapes;
 			// mediaPlayer.Play();
 		// }
 		
-		
-namespace ClinicaMedica {
-	public partial class Login : Window {
-		public Login() {
-			InitializeComponent();
 			
 			//if (BaseDeDatosSQL.connectionString == null){
 			//	iniciarSesionButton.Content = "Iniciar sesión con credenciales";
@@ -38,6 +33,11 @@ namespace ClinicaMedica {
 			//	iniciarSesionButton.Content = "Iniciar sesión con app.config";
 			//}
 			
+		
+namespace ClinicaMedica {
+	public partial class Login : Window {
+		public Login() {
+			InitializeComponent();
 		}
 		
 		private bool datos_completados(){
