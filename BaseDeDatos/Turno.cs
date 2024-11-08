@@ -7,7 +7,7 @@ namespace ClinicaMedica {
 		public string ?PacienteId { get; set; }
 		public string ?MedicoId { get; set; }
 		public DateTime ?Fecha { get; set; }
-		public TimeSpan ?Hora { get; set; }
+		public TimeOnly ?Hora { get; set; }
 
 		public Turno() { }
 		
@@ -25,14 +25,8 @@ namespace ClinicaMedica {
 			this.Id = window.txtId.Content?.ToString() ?? this.Id;
 			this.PacienteId = window.txtPacientes.SelectedValue.ToString();
 			this.MedicoId = window.txtMedicos.SelectedValue.ToString();
-			//this.Fecha = ((DateTime) window.txtFecha.SelectedDate).Date.ToString("yyyy-MM-dd");
-			if (window.txtFecha.SelectedDate.HasValue) {
-				this.Fecha = window.txtFecha.SelectedDate.Value.Date; // Set as DateTime, keeping only the date part
-			}
-			// else {
-				// this.Fecha = DateTime.MinValue; // Or some other default value
-			// }
-			this.Hora = TimeSpan.Parse(window.txtHora.Text);
+			this.Fecha = window.txtFecha.SelectedDate.Value.Date; // Set as DateTime, keeping only the date part
+			this.Hora = TimeOnly.Parse(window.txtHora.Text);
 		}
 		
 		

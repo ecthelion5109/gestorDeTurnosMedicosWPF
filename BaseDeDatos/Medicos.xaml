@@ -19,7 +19,7 @@
 		</Grid.Background>
 		<!-- Definicion del grid -->
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="10,17,479,147" Grid.RowSpan="2">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="4,17,468,135">
 
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Médicos"
@@ -31,8 +31,7 @@
 						   FontFamily="Ringbearer"
 							Grid.RowSpan="2"/>
 				<ListView Name="medicosListView"
-							  Width="495"
-							  Height="215"
+							  Height="205"
 							 
 							  Background="Transparent"
 							  BorderThickness="0"
@@ -63,7 +62,7 @@
 												Width="45"/>
 							<GridViewColumn Header="Sueldo"
 												DisplayMemberBinding="{Binding SueldoMinimoGarantizado}"
-												Width="55"/>
+												Width="70"/>
 						</GridView>
 					</ListView.View>
 				</ListView>
@@ -71,7 +70,7 @@
 
 
 
-				<StackPanel Orientation="Horizontal" Background="Transparent" Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button
 							Content="Agregar nuevo"
 							HorizontalAlignment="Left"
@@ -83,7 +82,7 @@
 							Style="{StaticResource BotonRedondeado}"
 							FontWeight="Bold"
 							BorderBrush="#FF0E0D0D"
-							FontFamily="Baskerville Old Face" Margin="25,0,25,5"
+							FontFamily="Baskerville Old Face" Margin="25,10,25,25"
 							>
 					</Button>
 					<Button x:Name="buttonModificarMedico"
@@ -97,7 +96,7 @@
 								FontWeight="Bold"
 								BorderBrush="#FF0E0D0D"
 								FontFamily="Baskerville Old Face"
-								IsEnabled="False" Margin="25,0,25,0" Width="150"
+								IsEnabled="False" Margin="25,10,25,25" Width="150"
 								/>
 				</StackPanel>
 
@@ -141,11 +140,13 @@
 
 
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="814,17,10,165" Grid.RowSpan="2">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="799,17,15,155">
 			<!-- </Expander> -->
 			<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
+			
 				<Label Content="Paciente" FontSize="25" FontFamily="Ringbearer" FontWeight="Bold" HorizontalAlignment="Center"/>
+				
 				<TextBlock Text="DNI:" FontWeight="Bold" Margin="0,5,0,5"/>
 				<TextBlock x:Name="txtPacienteDni" Margin="0,0,0,10" />
 
@@ -161,34 +162,37 @@
 				<TextBlock Text="Telefono:" FontWeight="Bold" Margin="0,5,0,5" />
 				<TextBlock x:Name="txtPacienteTelefono" Margin="0,0,0,10" />
 
-				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Center" Width="184">
 					<Button x:Name="buttonModificarPaciente"
-									Content="Modificar"
-									HorizontalAlignment="Left"
-									VerticalAlignment="Top"
-									Height="30"
-									Click="ButtonModificarPaciente"
-									FontSize="20"
-									Style="{StaticResource BotonRedondeado}"
-									FontWeight="Bold"
-									BorderBrush="#FF0E0D0D"
-									FontFamily="Baskerville Old Face"
-									IsEnabled="False" Margin="25,15,25,15" Width="120"
-						/>
+						Content="Modificar"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top"
+						Height="30"
+						Click="ButtonModificarPaciente"
+						FontSize="20"
+						Style="{StaticResource BotonRedondeado}"
+						FontWeight="Bold"
+						BorderBrush="#FF0E0D0D"
+						FontFamily="Baskerville Old Face"
+						IsEnabled="False" Margin="25,10,25,25" Width="120"
+					/>
 				</StackPanel>
 			</StackPanel>
 		</ContentControl>
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="562,17,227,165" Grid.RowSpan="2">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="573,17,241,155">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
-			   FontSize="35"
-			   FontFamily="Ringbearer"
-			   FontWeight="Bold" HorizontalAlignment="Center"/>
+				   FontSize="35"
+				   FontFamily="Ringbearer"
+				   FontWeight="Bold" HorizontalAlignment="Center"/>
+
+
+
+
 				<ListView x:Name="turnosListView"
-			   Background="Transparent"
-			   BorderThickness="0"
-							 
-			   SelectionChanged="listViewTurnos_SelectionChanged" Height="245">
+					Background="Transparent"
+					BorderThickness="0"
+					SelectionChanged="listViewTurnos_SelectionChanged" Height="250">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Header="Id"
@@ -196,20 +200,20 @@
 						   Width="25"/>
 							<GridViewColumn Header="Fecha"
 						   DisplayMemberBinding="{Binding Fecha}"
-						   Width="70"/>
+						   Width="73"/>
 							<GridViewColumn Header="Hora"
 						   DisplayMemberBinding="{Binding Hora}"
-						   Width="60"/>
+						   Width="63"/>
 						</GridView>
 					</ListView.View>
 				</ListView>
 
 
 
-				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Center" Width="188">
 					<Button x:Name="buttonModificarTurno"
 								Content="Modificar"
-								VerticalAlignment="Top"
+								VerticalAlignment="Center"
 								Height="30"
 								Click="ButtonModificarTurno"
 								FontSize="20"
@@ -217,7 +221,7 @@
 								FontWeight="Bold"
 								BorderBrush="#FF0E0D0D"
 								FontFamily="Baskerville Old Face"
-								IsEnabled="False" Margin="25,15,25,15" Width="130"
+								IsEnabled="False" Margin="25,10,25,25" Width="120" HorizontalAlignment="Center"
 					/>
 				</StackPanel>
 
@@ -230,5 +234,8 @@
 
 		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="708,480,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
 
+
 	</Grid>
+
+
 </Window>

@@ -20,36 +20,45 @@ namespace ClinicaMedica {
 		
 
 		//---------------------botones.GuardarCambios-------------------//
-		bool FaltanCamposPorCompletar(){
-			return !(string.IsNullOrEmpty(this.txtSueldoMinGarant.Text) ||
-					 string.IsNullOrEmpty(this.txtDni.Text) ||
-					 this.txtFechaIngreso.SelectedDate is null ||
-					 this.txtRealizaGuardia.IsChecked is null);
+		private bool CamposCompletadosCorrectamente(){
+			if (
+				this.txtSueldoMinGarant.Text is null 
+				|| this.txtDni.Text is null 
+				|| this.txtFechaIngreso.SelectedDate is null 
+				|| this.txtRealizaGuardia.IsChecked is null
+			) {
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+				return false;
+			 }
+					 
+			if (!Int64.TryParse(this.txtDni.Text, out _)){
+                MessageBox.Show($"El dni no es un numero entero valido.");
+				return false;
+            }
+					 
+			if (!Double.TryParse(this.txtSueldoMinGarant.Text, out _)) {
+				MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
+				return false;
+			}
+			return true;
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
-			//---------Crear-----------//
-			if (SelectedMedico is null) {
-				if (FaltanCamposPorCompletar()) {
-					SelectedMedico = new Medico(this);
-					if ( App.BaseDeDatos.CreateMedico(SelectedMedico)){
-						this.Cerrar();
-					}						
-				}
-				else {
-					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
-				}
+			if (!CamposCompletadosCorrectamente()) {
+				return;
 			}
-			//---------Modificar-----------//
+			
+			if (SelectedMedico is null) {
+				SelectedMedico = new Medico(this);
+				if ( App.BaseDeDatos.CreateMedico(SelectedMedico)){
+					this.Cerrar();
+				}						
+			}
 			else {
-				//string originalDni = SelectedMedico.Dni;
-				if (FaltanCamposPorCompletar()) {
-					SelectedMedico.TomarDatosDesdeVentana(this);
-					App.BaseDeDatos.UpdateMedico(SelectedMedico);
-				}
-				else {
-					MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
-				}
+				SelectedMedico.TomarDatosDesdeVentana(this);
+				if ( App.BaseDeDatos.UpdateMedico(SelectedMedico)){
+					this.Cerrar();
+				}			
 			}
 		}
 

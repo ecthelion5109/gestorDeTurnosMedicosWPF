@@ -474,7 +474,7 @@ namespace ClinicaMedica {
 									PacienteId = reader["PacienteId"]?.ToString(),
 									MedicoId = reader["MedicoId"]?.ToString(),
 									Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-									Hora = TimeSpan.Parse(reader["Hora"].ToString()),
+									Hora = TimeOnly.Parse(reader["Hora"].ToString()),
 							};
 							DictTurnos[turno.Id] = turno;
 						}

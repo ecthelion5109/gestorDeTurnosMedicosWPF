@@ -21,7 +21,7 @@ namespace ClinicaMedica {
 
 
 		//---------------------botones.GuardarCambios-------------------//
-		private bool FaltanCamposPorCompletar(){
+		private bool CamposCompletadosCorrectamente(){
 			return (
 					 string.IsNullOrEmpty(this.txtDni.Text) ||
 					 string.IsNullOrEmpty(this.txtNombre.Text) ||
@@ -39,7 +39,7 @@ namespace ClinicaMedica {
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
-			if (FaltanCamposPorCompletar()){
+			if (CamposCompletadosCorrectamente()){
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
 				return;
 			}

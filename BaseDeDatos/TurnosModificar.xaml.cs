@@ -34,23 +34,29 @@ namespace ClinicaMedica {
 			txtMedicos.SelectedValuePath = "Id";
 		}
 
-		public bool FaltanCamposPorCompletar(){
-			return (
-				//string.IsNullOrEmpty(this.txtId.Content.ToString()) ||
+		private bool CamposCompletadosCorrectamente(){
+			if (
+				this.txtPacientes.SelectedValue is null 
+				|| this.txtMedicos.SelectedValue is null 
+				|| this.txtFecha.SelectedDate is null 
+				|| string.IsNullOrEmpty(this.txtHora.Text)
+			) {
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar");
+				return false;
+			} 
 
-				this.txtPacientes.SelectedValue is null ||
-				this.txtMedicos.SelectedValue is null ||
-
-				this.txtFecha.SelectedDate is null ||
-				string.IsNullOrEmpty(this.txtHora.Text)
-			);
+			if (TimeOnly.TryParse(this.txtHora.Text, out _)){
+				return true;
+			} else {
+                MessageBox.Show($"No se pudo guardar la hora. \n Ingrese un string con formato valido (hh:mm)");
+				return false;
+            }
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
-			if (FaltanCamposPorCompletar()) {
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+			if (!CamposCompletadosCorrectamente()) {
 				return;
 			}
 			//---------Crear-----------//
