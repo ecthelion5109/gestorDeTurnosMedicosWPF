@@ -9,7 +9,7 @@ namespace ClinicaMedica {
 		public string ?PacienteId { get; set; }
 		public string ?MedicoId { get; set; }
 		public DateTime ?Fecha { get; set; }
-		public TimeOnly ?Hora { get; set; }
+		public TimeSpan ?Hora { get; set; }
 
 		public Turno() { }
 		
@@ -54,7 +54,7 @@ namespace ClinicaMedica {
 			this.PacienteId = window.txtPacientes.SelectedValue.ToString();
 			this.MedicoId = window.txtMedicos.SelectedValue.ToString();
 			this.Fecha = window.txtFecha.SelectedDate.Value.Date; // Set as DateTime, keeping only the date part
-			this.Hora = TimeOnly.Parse(window.txtHora.Text);
+			this.Hora = TimeSpan.Parse(window.txtHora.Text);
 		}
 		
 		

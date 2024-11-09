@@ -130,7 +130,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos[instancia.Id] = instancia;
-				// MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con id: {instancia.Id} entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -257,23 +257,21 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.UPDATE.Turno----------------------//
 		public override bool UpdateTurno(Turno instancia) {
-			//string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
-			string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
+			string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId, Fecha = @Fecha, Hora = @Hora WHERE Id = @Id";
+			// string query = "UPDATE Turno SET PacienteId = @PacienteId, MedicoId = @MedicoId WHERE Id = @Id";
 			try {
 				using (var connection = new SqlConnection(connectionString)) {
 				connection.Open();
 				using (SqlCommand sqlComando = new SqlCommand(query, connection)) {
 					sqlComando.Parameters.AddWithValue("@PacienteId", instancia.PacienteId);
 					sqlComando.Parameters.AddWithValue("@MedicoId", instancia.MedicoId);
-					//sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.Date ?? (object)DBNull.Value);
-					//sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha?.ToString("yyyy-MM-dd") ?? (object)DBNull.Value);
-
-					//sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
+					sqlComando.Parameters.AddWithValue("@Fecha", instancia.Fecha);
+					sqlComando.Parameters.AddWithValue("@Hora", instancia.Hora);
 					sqlComando.Parameters.AddWithValue("@Id", instancia.Id);
 					sqlComando.ExecuteNonQuery();
 					}
 				}
-				// MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -474,7 +472,7 @@ namespace ClinicaMedica {
 									PacienteId = reader["PacienteId"]?.ToString(),
 									MedicoId = reader["MedicoId"]?.ToString(),
 									Fecha = reader["Fecha"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha"]) : (DateTime?)null,
-									Hora = TimeOnly.Parse(reader["Hora"].ToString()),
+									Hora = TimeSpan.Parse(reader["Hora"].ToString()),
 							};
 							DictTurnos[turno.Id] = turno;
 						}
