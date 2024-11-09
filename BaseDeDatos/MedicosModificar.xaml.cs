@@ -21,16 +21,26 @@ namespace ClinicaMedica {
 
 		//---------------------Erroraogsfa-------------------//
 		public bool CheckHorasFormato() {
-			if (this.txtDiasDeAtencion.ItemsSource is not List<HorarioMedico> diasFromUI) {
+			 if (this.txtDiasDeAtencion.ItemsSource is not List<HorarioMedico> diasFromUI) {
 				throw new InvalidOperationException("ItemsSource is not set or is not a List of HorarioMedico.");
 			}
 
 			foreach (var dia in diasFromUI) {
 				// Check if HoraInicio and HoraFin have valid TimeOnly values
-				if (!string.IsNullOrWhiteSpace(dia.DiaSemana)) {
-					if (dia.HoraInicio == null && dia.HoraFin == null){
+				// if (!string.IsNullOrWhiteSpace(dia.DiaSemana)) {
+					if ( 
+						Convert.ToInt8(dia.HoraInicio == null) + Convert.ToInt8(dia.HoraFin == null) == 1
+					){
+						MessageBox.Show($"Error. Si se opta por inicio, .");
+					} 
+					
+					else if (
+						(dia.HoraInicio == null)
+						&& (dia.HoraFin == null)
+					) {
 						continue;
 					}
+					
 					
 					if (dia.HoraInicio == null) {
 						MessageBox.Show(
@@ -51,7 +61,7 @@ namespace ClinicaMedica {
 						);
 						return false;
 					}
-				}
+				// }
 			}
 
 			// If all times are valid, return true
