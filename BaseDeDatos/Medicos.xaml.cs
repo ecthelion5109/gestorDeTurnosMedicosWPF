@@ -3,89 +3,50 @@ using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class Medicos : Window {
-		private static Medico? SelectedMedico;
-		private static Turno? SelectedTurno;
-		private static Paciente? SelectedPaciente;
+		private static Medico? SelectedMedico = null;
+		private static Turno? SelectedTurno = null;
 
 		public Medicos() {
 			InitializeComponent();
 		}
-		
-		//----------------------ClearMetohds-------------------//
-		private void ClearMedicoUI(){
-			buttonModificarMedico.IsEnabled = false;
-			SelectedMedico = null;
-			turnosListView.ItemsSource = null;
-			ClearTurnoUI();
-		}
 
-		private void ClearTurnoUI(){
-			buttonModificarTurno.IsEnabled = false;
-			SelectedTurno = null;
-			ClearPacienteUI();
+		//----------------------ActualizarSecciones-------------------//
+		private void UpdateMedicoUI() {
+			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
+			buttonModificarMedico.IsEnabled = SelectedMedico != null;
 		}
-
-		private void ClearPacienteUI(){
-			buttonModificarPaciente.IsEnabled = false;
-			txtPacienteDni.Text = "";
-			txtPacienteNombre.Text = "";
-			txtPacienteApellido.Text = "";
-			txtPacienteEmail.Text = "";
-			txtPacienteTelefono.Text = "";
-		}
-
-		//----------------------LlenarMethods-------------------//
-		private void UpdateMedicoUI(){
-			if (SelectedMedico != null){
-				buttonModificarMedico.IsEnabled = true;
-				turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
-			}
-			else{
-				ClearMedicoUI();
-			}
-		}
-
 		private void UpdateTurnoUI(){
-			if (SelectedTurno != null){
-				buttonModificarTurno.IsEnabled = true;
-				if (App.BaseDeDatos.TryGetPaciente(SelectedTurno.PacienteId, out SelectedPaciente)) {
-					UpdatePacienteUI();
-				}
-
-			}
-			else {
-				ClearTurnoUI();
-			}
+			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
+			buttonModificarTurno.IsEnabled = SelectedTurno != null;
 		}
 
 		private void UpdatePacienteUI(){
-			if (SelectedPaciente != null){
-				txtPacienteDni.Text = SelectedPaciente.Dni;
-				txtPacienteNombre.Text = SelectedPaciente.Name;
-				txtPacienteApellido.Text = SelectedPaciente.LastName;
-				txtPacienteEmail.Text = SelectedPaciente.Email;
-				txtPacienteTelefono.Text = SelectedPaciente.Telefono;
-				buttonModificarPaciente.IsEnabled = true;
-			}
-			else{
-				ClearPacienteUI();
-			}
+			txtPacienteDni.Text = SelectedTurno?.PacienteRelacionado.Dni;
+			txtPacienteNombre.Text = SelectedTurno?.PacienteRelacionado.Name;
+			txtPacienteApellido.Text = SelectedTurno?.PacienteRelacionado.LastName;
+			txtPacienteEmail.Text = SelectedTurno?.PacienteRelacionado.Email;
+			txtPacienteTelefono.Text = SelectedTurno?.PacienteRelacionado.Telefono;
+			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
 
-		//----------------------eventosRefresh-------------------//
+		//----------------------EeventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
-			
-			medicosListView.ItemsSource = App.BaseDeDatos.ReadMedicos();
-			ClearMedicoUI();  // Clear all selections and UI elements
+			UpdateMedicoUI();
+			UpdateTurnoUI();
+			UpdatePacienteUI();
 		}
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedTurno = (Turno)turnosListView.SelectedItem;
+			UpdateMedicoUI();
 			UpdateTurnoUI();
+			UpdatePacienteUI();
 		}
 		private void medicosListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedMedico = (Medico)medicosListView.SelectedItem;
 			UpdateMedicoUI();
+			UpdateTurnoUI();
+			UpdatePacienteUI();
 		}
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
@@ -99,8 +60,8 @@ namespace ClinicaMedica {
 			}
 		}
 		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
-			if (SelectedPaciente != null) {
-				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
+			if (SelectedTurno?.PacienteRelacionado != null) {
+				this.AbrirComoDialogo<PacientesModificar>(SelectedTurno?.PacienteRelacionado);
 			}
 		}
 		//------------------botonesParaCrear------------------//
@@ -108,7 +69,7 @@ namespace ClinicaMedica {
 			this.AbrirComoDialogo<MedicosModificar>(); 
 		}
 		private void ButtonAgregarPaciente(object sender, RoutedEventArgs e) {
-			this.AbrirComoDialogo<PacientesModificar>(); // this.NavegarA<PacientesModificar>();
+			this.AbrirComoDialogo<PacientesModificar>();
 		}
 		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 

@@ -1,4 +1,5 @@
-﻿using SystemTextJson = System.Text.Json;
+﻿using Newtonsoft.Json;
+using SystemTextJson = System.Text.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Turnos-------------------------------//
@@ -20,6 +21,12 @@ namespace ClinicaMedica {
 			TomarDatosDesdeVentana(window);
 		}
 		
+		[JsonIgnore]
+		public Medico MedicoRelacionado => App.BaseDeDatos.DictMedicos[MedicoId];
+		
+		[JsonIgnore]
+		public Paciente PacienteRelacionado => App.BaseDeDatos.DictPacientes[PacienteId];
+		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void TomarDatosDesdeVentana(TurnosModificar window) {
 			this.Id = window.txtId.Content?.ToString() ?? this.Id;
@@ -32,14 +39,9 @@ namespace ClinicaMedica {
 		
 		// Metodo para mostrarse en una ventana
 		public void MostrarseEnVentana(TurnosModificar ventana) {
-			Paciente pacienteRelacionado;
-			App.BaseDeDatos.TryGetPaciente(this.PacienteId, out pacienteRelacionado);
-			Medico medicoRelacionado;
-			App.BaseDeDatos.TryGetMedico(this.MedicoId, out medicoRelacionado);
-
-			ventana.txtMedicos.SelectedValue = medicoRelacionado.Id;
-			ventana.txtPacientes.SelectedValue = pacienteRelacionado.Id;
-			ventana.txtEspecialidades.SelectedItem = medicoRelacionado.Especialidad;
+			ventana.txtMedicos.SelectedValue = MedicoId;
+			ventana.txtPacientes.SelectedValue = PacienteId;
+			ventana.txtEspecialidades.SelectedItem = MedicoRelacionado.Especialidad;
 			ventana.txtId.Content = this.Id;
 			ventana.txtFecha.SelectedDate = this.Fecha;
 			ventana.txtHora.Text = this.Hora.ToString();

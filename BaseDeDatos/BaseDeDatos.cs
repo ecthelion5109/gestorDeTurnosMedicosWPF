@@ -2,9 +2,9 @@ using System.Windows;
 
 namespace ClinicaMedica {
 	public abstract class BaseDeDatosAbstracta{
-		protected Dictionary<string, Turno> DictTurnos = new();
-		protected Dictionary<string, Medico> DictMedicos = new();
-		protected Dictionary<string, Paciente> DictPacientes = new();
+		public Dictionary<string, Turno> DictTurnos = new();
+		public Dictionary<string, Medico> DictMedicos = new();
+		public Dictionary<string, Paciente> DictPacientes = new();
 		public virtual bool ConectadaExitosamente { get; protected set; } = false;
 
 

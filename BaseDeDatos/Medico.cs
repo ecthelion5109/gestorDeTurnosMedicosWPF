@@ -29,7 +29,7 @@ namespace ClinicaMedica {
 			
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
-
+		
 	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }
 

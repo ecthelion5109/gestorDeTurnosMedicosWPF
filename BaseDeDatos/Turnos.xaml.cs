@@ -3,101 +3,51 @@ using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class Turnos : Window {
-		private static Medico? SelectedMedico;
-		private static Turno? SelectedTurno;
-		private static Paciente? SelectedPaciente;
+		private static Turno? SelectedTurno = null;
 		
 		public Turnos() {
             InitializeComponent();
 		}
 
-		//----------------------ClearMetohds-------------------//
-		private void ClearMedicoUI(){
-			buttonModificarMedico.IsEnabled = false;
-			txtMedicoDni.Text = "";
-			txtMedicoNombre.Text = "";
-			txtMedicoApellido.Text = "";
-			txtMedicoEspecialidad.Text = "";
-		}
-
-		private void ClearTurnoUI(){
-			buttonModificarTurno.IsEnabled = false;
-			SelectedMedico = null;
-			SelectedPaciente = null;
-			turnosListView.ItemsSource = null;
-		}
-
-		private void ClearPacienteUI(){
-			buttonModificarPaciente.IsEnabled = false;
-			txtPacienteDni.Text = "";
-			txtPacienteNombre.Text = "";
-			txtPacienteApellido.Text = "";
-			txtPacienteEmail.Text = "";
-			txtPacienteTelefono.Text = "";
-		}
-
-		
-		//----------------------LlenarMethods-------------------//
-		private void UpdateCalendarUI(){
-			if (SelectedTurno != null){
-				txtCalendario.SelectedDate = SelectedTurno.Fecha;
-				txtCalendario.DisplayDate  = (DateTime) SelectedTurno.Fecha;
-			}
-			else{
-				txtCalendario.DisplayDate = DateTime.MinValue;
-				txtCalendario.SelectedDate = null;
-			}
+		//----------------------ActualizarSecciones-------------------//
+		private void UpdateCalendarUI() {
+			txtCalendario.SelectedDate = SelectedTurno?.Fecha;
+			txtCalendario.DisplayDate = SelectedTurno?.Fecha ?? DateTime.Today;
 		}
 		private void UpdateMedicoUI(){
-			if (SelectedMedico != null){
-				txtMedicoDni.Text = SelectedMedico.Dni;
-				txtMedicoNombre.Text = SelectedMedico.Name;
-				txtMedicoApellido.Text = SelectedMedico.LastName;
-				txtMedicoEspecialidad.Text = SelectedMedico.Especialidad;
-				buttonModificarMedico.IsEnabled = true;
-			}
-			else{
-				ClearMedicoUI();
-			}
+			txtMedicoDni.Text = SelectedTurno?.MedicoRelacionado?.Dni;
+			txtMedicoNombre.Text = SelectedTurno?.MedicoRelacionado?.Name;
+			txtMedicoApellido.Text = SelectedTurno?.MedicoRelacionado?.LastName;
+			txtMedicoEspecialidad.Text = SelectedTurno?.MedicoRelacionado?.Especialidad;
+			buttonModificarMedico.IsEnabled = SelectedTurno?.MedicoRelacionado != null;
 		}
 
+		private void UpdateTurnoUI(){
+			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
+			SelectedTurno = (Turno)turnosListView.SelectedItem;
+			buttonModificarTurno.IsEnabled = SelectedTurno != null;
+			
+		}
 		private void UpdatePacienteUI(){
-			if (SelectedPaciente != null){
-				txtPacienteDni.Text = SelectedPaciente.Dni;
-				txtPacienteNombre.Text = SelectedPaciente.Name;
-				txtPacienteApellido.Text = SelectedPaciente.LastName;
-				txtPacienteEmail.Text = SelectedPaciente.Email;
-				txtPacienteTelefono.Text = SelectedPaciente.Telefono;
-				buttonModificarPaciente.IsEnabled = true;
-			}
-			else{
-				ClearPacienteUI();
-			}
+			txtPacienteDni.Text = SelectedTurno?.PacienteRelacionado.Dni;
+			txtPacienteNombre.Text = SelectedTurno?.PacienteRelacionado.Name;
+			txtPacienteApellido.Text = SelectedTurno?.PacienteRelacionado.LastName;
+			txtPacienteEmail.Text = SelectedTurno?.PacienteRelacionado.Email;
+			txtPacienteTelefono.Text = SelectedTurno?.PacienteRelacionado.Telefono;
+			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
 		
-		
-		//----------------------eventosRefresh-------------------//
+		//----------------------EeventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
-			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
-			ClearMedicoUI(); 
-			ClearPacienteUI();
-		}
-		
-		private void CalendarioTurnos_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) {
+			UpdateTurnoUI();
+			UpdateCalendarUI();
+			UpdateMedicoUI();
+			UpdatePacienteUI();
 		}
 		
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			SelectedTurno = (Turno)turnosListView.SelectedItem;
-			if (SelectedTurno != null){
-				buttonModificarTurno.IsEnabled = true;
-				App.BaseDeDatos.TryGetPaciente(SelectedTurno.PacienteId, out SelectedPaciente);
-				App.BaseDeDatos.TryGetMedico(SelectedTurno.MedicoId, out SelectedMedico);
-			}
-			else{
-				SelectedPaciente = null;
-				SelectedMedico = null;
-			}
+			UpdateTurnoUI();
 			UpdateCalendarUI();
 			UpdateMedicoUI();
 			UpdatePacienteUI();
@@ -109,13 +59,13 @@ namespace ClinicaMedica {
 			}
 		}
 		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
-			if (SelectedMedico != null) {
-				this.AbrirComoDialogo<MedicosModificar>(SelectedMedico);
+			if (SelectedTurno?.MedicoRelacionado != null) {
+				this.AbrirComoDialogo<MedicosModificar>(SelectedTurno?.MedicoRelacionado);
 			}
 		}
 		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
-			if (SelectedPaciente != null) {
-				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
+			if (SelectedTurno?.PacienteRelacionado != null) {
+				this.AbrirComoDialogo<PacientesModificar>(SelectedTurno?.PacienteRelacionado);
 			}
 		}
 		
