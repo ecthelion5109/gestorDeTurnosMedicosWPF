@@ -26,7 +26,7 @@ namespace ClinicaMedica {
 			instancia.Id = GenerateNextId( DictMedicos );
 			DictMedicos[instancia.Id] = instancia;
 			this.JsonUpdateMedicos();
-			MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.CREATE.Paciente----------------------//
@@ -38,7 +38,7 @@ namespace ClinicaMedica {
 			instancia.Id = GenerateNextId(DictPacientes);
 			DictPacientes[instancia.Id] = instancia;
 			this.JsonUpdatePacientes();
-			MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.CREATE.Turno----------------------//
@@ -50,7 +50,7 @@ namespace ClinicaMedica {
 			instancia.Id = GenerateNextId(DictTurnos);
 			DictTurnos[instancia.Id] = instancia;
 			this.JsonUpdateTurnos();
-			MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id: {instancia.Id}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id: {instancia.Id}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		
@@ -88,7 +88,7 @@ namespace ClinicaMedica {
 				return false;
 			} 
 			this.JsonUpdateMedicos(); // Guardar los cambios en el archivo JSON
-			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.UPDATE.Paciente----------------------//
@@ -98,13 +98,13 @@ namespace ClinicaMedica {
 				return false;
 			} 
 			this.JsonUpdatePacientes(); // Guardar los cambios en el archivo JSON
-			MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.UPDATE.Turno----------------------//
         public override bool UpdateTurno(Turno instancia) {
 			this.JsonUpdateTurnos(); // Guardar los cambios en el archivo JSON
-			MessageBox.Show($"Exito: Se han actualizado los datos del turno Id: {instancia.Id}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+			// MessageBox.Show($"Exito: Se han actualizado los datos del turno Id: {instancia.Id}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 
@@ -127,7 +127,7 @@ namespace ClinicaMedica {
 			try {
 				DictMedicos.Remove(instancia.Id);
 				this.JsonUpdateMedicos(); // Save changes to the database
-				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} catch (Exception ex) {
 				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el medico", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -144,7 +144,7 @@ namespace ClinicaMedica {
 			try {
 				DictPacientes.Remove(instancia.Id);
 				this.JsonUpdatePacientes(); // Save changes to the database
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} catch (Exception ex) { 
 				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el paciente", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -156,7 +156,7 @@ namespace ClinicaMedica {
 			try {
 				DictTurnos.Remove(instancia.Id);
 				this.JsonUpdateTurnos(); // Save changes to the database
-				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} del Json", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} catch (Exception ex) { 
 				MessageBox.Show($"Error: {ex.Message}", "Error al querer eliminar el turno", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -5,7 +5,6 @@ namespace ClinicaMedica {
 	public partial class Medicos : Window {
 		private static Medico? SelectedMedico = null;
 		private static Turno? SelectedTurno = null;
-
 		public Medicos() {
 			InitializeComponent();
 		}
@@ -29,7 +28,7 @@ namespace ClinicaMedica {
 			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
 
-		//----------------------EeventosRefresh-------------------//
+		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
 			UpdateMedicoUI();

@@ -10,23 +10,19 @@ namespace ClinicaMedica {
 		}
 
 		//----------------------ActualizarSecciones-------------------//
-		private void UpdateCalendarUI() {
+		private void UpdateTurnoUI(){
+			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
+			buttonModificarTurno.IsEnabled = SelectedTurno != null;
 			txtCalendario.SelectedDate = SelectedTurno?.Fecha;
 			txtCalendario.DisplayDate = SelectedTurno?.Fecha ?? DateTime.Today;
 		}
+		
 		private void UpdateMedicoUI(){
 			txtMedicoDni.Text = SelectedTurno?.MedicoRelacionado?.Dni;
 			txtMedicoNombre.Text = SelectedTurno?.MedicoRelacionado?.Name;
 			txtMedicoApellido.Text = SelectedTurno?.MedicoRelacionado?.LastName;
 			txtMedicoEspecialidad.Text = SelectedTurno?.MedicoRelacionado?.Especialidad;
 			buttonModificarMedico.IsEnabled = SelectedTurno?.MedicoRelacionado != null;
-		}
-
-		private void UpdateTurnoUI(){
-			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnos();
-			SelectedTurno = (Turno)turnosListView.SelectedItem;
-			buttonModificarTurno.IsEnabled = SelectedTurno != null;
-			
 		}
 		private void UpdatePacienteUI(){
 			txtPacienteDni.Text = SelectedTurno?.PacienteRelacionado.Dni;
@@ -36,19 +32,18 @@ namespace ClinicaMedica {
 			txtPacienteTelefono.Text = SelectedTurno?.PacienteRelacionado.Telefono;
 			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
-		
-		//----------------------EeventosRefresh-------------------//
+
+		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
 			UpdateTurnoUI();
-			UpdateCalendarUI();
 			UpdateMedicoUI();
 			UpdatePacienteUI();
 		}
 		
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			SelectedTurno = (Turno)turnosListView.SelectedItem;
 			UpdateTurnoUI();
-			UpdateCalendarUI();
 			UpdateMedicoUI();
 			UpdatePacienteUI();
 		}

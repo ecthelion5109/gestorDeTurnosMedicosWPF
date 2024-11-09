@@ -45,7 +45,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictMedicos[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -91,7 +91,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictPacientes[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -130,7 +130,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -196,7 +196,7 @@ namespace ClinicaMedica {
 						sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -236,7 +236,7 @@ namespace ClinicaMedica {
 						sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -273,7 +273,7 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -313,7 +313,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictMedicos.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -340,7 +340,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictPacientes.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -367,7 +367,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				// MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code

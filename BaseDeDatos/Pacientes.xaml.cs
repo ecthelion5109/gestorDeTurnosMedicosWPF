@@ -9,7 +9,6 @@ namespace ClinicaMedica{
             InitializeComponent();
 		}
 
-
 		//----------------------LlenarMethods-------------------//
 		private void UpdatePacienteUI() {
 			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes();
@@ -29,18 +28,18 @@ namespace ClinicaMedica{
 			buttonModificarMedico.IsEnabled = SelectedTurno?.MedicoRelacionado != null;
 		}
 
-		//----------------------eventosRefresh-------------------//
+		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
-			UpdateMedicoUI();
-			UpdateTurnoUI();
 			UpdatePacienteUI();
+			UpdateTurnoUI();
+			UpdateMedicoUI();
 		}
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedTurno = (Turno)turnosListView.SelectedItem;
-			UpdateMedicoUI();
-			UpdateTurnoUI();
 			UpdatePacienteUI();
+			UpdateTurnoUI();
+			UpdateMedicoUI();
 		}
 		private void pacientesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedPaciente = (Paciente)pacientesListView.SelectedItem;
