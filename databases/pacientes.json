@@ -64,6 +64,19 @@
     "Localidad": "Gonca Petu",
     "Provincia": "Buenos Aires"
   },
+  "6": {
+    "Id": "6",
+    "Dni": "56789012",
+    "Name": "Catalina",
+    "LastName": "Montero",
+    "FechaIngreso": "2024-11-20T00:00:00",
+    "Email": "carla.montes@gmail.com",
+    "Telefono": "98765432",
+    "FechaNacimiento": "1990-06-15T00:00:00",
+    "Domicilio": "Calle Ficticia 987",
+    "Localidad": "Rosario",
+    "Provincia": "Santa Fe"
+  },
   "7": {
     "Id": "7",
     "Dni": "67890123",
