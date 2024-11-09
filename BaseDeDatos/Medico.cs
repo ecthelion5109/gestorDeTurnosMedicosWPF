@@ -9,8 +9,13 @@ namespace ClinicaMedica {
 		public string DiaSemana { get; set; }
 		public TimeOnly ?HoraInicio { get; set; }
 		public TimeOnly ?HoraFin { get; set; }
+		
+		public static List<HorarioMedico> DiasDeLaSemanaComoLista() {
+			return new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }.Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
+		}
+		
 	}
-
+	
 	//---------------------------------Tablas.Medicos-------------------------------//
 	public class Medico {
 		public string ?Id { get; set; }
@@ -25,7 +30,7 @@ namespace ClinicaMedica {
 		public bool? Guardia { get; set; }
 		public DateTime? FechaIngreso { get; set; }
 		public double? SueldoMinimoGarantizado { get; set; }
-		//public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
+		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = new();
 			
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";

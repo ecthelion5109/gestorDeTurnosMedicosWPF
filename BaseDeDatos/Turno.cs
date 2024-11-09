@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Windows;
 using SystemTextJson = System.Text.Json;
 
 namespace ClinicaMedica {
