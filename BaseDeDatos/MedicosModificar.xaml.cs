@@ -19,7 +19,48 @@ namespace ClinicaMedica {
 		}
 		
 
-		//---------------------botones.GuardarCambios-------------------//
+		//---------------------Erroraogsfa-------------------//
+		public bool CheckHorasFormato() {
+			if (this.txtDiasDeAtencion.ItemsSource is not List<HorarioMedico> diasFromUI) {
+				throw new InvalidOperationException("ItemsSource is not set or is not a List of HorarioMedico.");
+			}
+
+			foreach (var dia in diasFromUI) {
+				// Check if HoraInicio and HoraFin have valid TimeOnly values
+				if (!string.IsNullOrWhiteSpace(dia.DiaSemana)) {
+					if (dia.HoraInicio == null && dia.HoraFin == null){
+						continue;
+					}
+					
+					if (dia.HoraInicio == null) {
+						MessageBox.Show(
+							$"Formato inválido en HoraInicio para el día {dia.DiaSemana}. Asegúrese de que es un valor de tiempo válido.",
+							"Error de Formato",
+							MessageBoxButton.OK,
+							MessageBoxImage.Error
+						);
+						return false;
+					}
+
+					if (dia.HoraFin == null) {
+						MessageBox.Show(
+							$"Formato inválido en HoraFin para el día {dia.DiaSemana}. Asegúrese de que es un valor de tiempo válido.",
+							"Error de Formato",
+							MessageBoxButton.OK,
+							MessageBoxImage.Error
+						);
+						return false;
+					}
+				}
+			}
+
+			// If all times are valid, return true
+			return true;
+		}
+
+
+
+
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				this.txtSueldoMinGarant.Text is null 
@@ -40,21 +81,13 @@ namespace ClinicaMedica {
 				MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
 				return false;
 			}
-			
-			//List<HorarioMedico> diasFromUI = (List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource;
-			// foreach (var dia in diasFromUI) {
-			// if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
-			// DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
-			// }
-			// if (!TimeOnly.TryParse(this.txtDiasDeAtencion.Text, out _)) {
-			// MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
-			// return false;
-			// }
-			// }
-
-
-			return true;
+					 
+			return CheckHorasFormato();
 		}
+		
+		
+		
+		//---------------------botones.GuardarCambios-------------------//
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			if (!CamposCompletadosCorrectamente()) {

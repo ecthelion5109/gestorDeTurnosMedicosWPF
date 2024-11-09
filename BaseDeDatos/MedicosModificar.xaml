@@ -234,7 +234,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding InicioHorario, UpdateSourceTrigger=PropertyChanged}"
+									<TextBox Text="{Binding HoraInicio, UpdateSourceTrigger=PropertyChanged}"
 											 Margin="1,1,1,1"
 											 Width="100"/>
 								</DataTemplate>
@@ -244,7 +244,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding FinHorario, UpdateSourceTrigger=PropertyChanged}"
+									<TextBox Text="{Binding HoraFin, UpdateSourceTrigger=PropertyChanged}"
 											 Width="100"
 											 Margin="1,1,1,1"/>
 								</DataTemplate>
