@@ -1,16 +1,4 @@
-﻿-- Create HorarioMedico table
-CREATE TABLE HorarioMedico (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    MedicoId INT,
-    DiaSemana NVARCHAR(12),
-    HoraInicio TIME,
-    HoraFin TIME,
-    FOREIGN KEY (MedicoId) REFERENCES Medico(Id)
-);
-
-
-
--- Create Medico table
+﻿-- Create Medico table
 CREATE TABLE Medico (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Dni NCHAR(8) NOT NULL UNIQUE,

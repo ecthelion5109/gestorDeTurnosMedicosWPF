@@ -8,7 +8,7 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedMedico = null;
-			txtDiasDeAtencion.ItemsSource = HorarioMedico.DiasDeLaSemanaComoLista();
+			txtDiasDeAtencion.ItemsSource = (new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }).Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
 		}
 
 		public MedicosModificar(Medico selectedMedico) //Modificar medico
@@ -19,58 +19,7 @@ namespace ClinicaMedica {
 		}
 		
 
-		//---------------------Erroraogsfa-------------------//
-		public bool CheckHorasFormato() {
-			 if (this.txtDiasDeAtencion.ItemsSource is not List<HorarioMedico> diasFromUI) {
-				throw new InvalidOperationException("ItemsSource is not set or is not a List of HorarioMedico.");
-			}
-
-			foreach (var dia in diasFromUI) {
-				// Check if HoraInicio and HoraFin have valid TimeOnly values
-				// if (!string.IsNullOrWhiteSpace(dia.DiaSemana)) {
-					if ( 
-						Convert.ToInt8(dia.HoraInicio == null) + Convert.ToInt8(dia.HoraFin == null) == 1
-					){
-						MessageBox.Show($"Error. Si se opta por inicio, .");
-					} 
-					
-					else if (
-						(dia.HoraInicio == null)
-						&& (dia.HoraFin == null)
-					) {
-						continue;
-					}
-					
-					
-					if (dia.HoraInicio == null) {
-						MessageBox.Show(
-							$"Formato inválido en HoraInicio para el día {dia.DiaSemana}. Asegúrese de que es un valor de tiempo válido.",
-							"Error de Formato",
-							MessageBoxButton.OK,
-							MessageBoxImage.Error
-						);
-						return false;
-					}
-
-					if (dia.HoraFin == null) {
-						MessageBox.Show(
-							$"Formato inválido en HoraFin para el día {dia.DiaSemana}. Asegúrese de que es un valor de tiempo válido.",
-							"Error de Formato",
-							MessageBoxButton.OK,
-							MessageBoxImage.Error
-						);
-						return false;
-					}
-				// }
-			}
-
-			// If all times are valid, return true
-			return true;
-		}
-
-
-
-
+		//---------------------botones.GuardarCambios-------------------//
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				this.txtSueldoMinGarant.Text is null 
@@ -92,7 +41,7 @@ namespace ClinicaMedica {
 				return false;
 			}
 					 
-			return CheckHorasFormato();
+			return true;
 		}
 		
 		

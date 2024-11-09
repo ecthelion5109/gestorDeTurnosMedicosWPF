@@ -14,19 +14,172 @@
     "SueldoMinimoGarantizado": 180000.0,
     "DiasDeAtencion": {
       "Lunes": {
-        "Id": "1",
-        "DiaSemana": "Lunes",
-        "MedicoId": "1",
-        "HoraInicio": "08:00",
-        "HoraFin": "12:00"
+        "Start": "08:00",
+        "End": "12:00"
       },
       "Viernes": {
-        "Id": "2",
-        "DiaSemana": "Viernes",
-        "MedicoId": "1",
-        "HoraInicio": "09:00",
-        "HoraFin": "13:00"
+        "Start": "09:00",
+        "End": "13:00"
       }
     }
+  },
+  "2": {
+    "Id": "2",
+    "Name": "Dr. Alicia",
+    "LastName": "Mendoza",
+    "Dni": "76543210",
+    "Provincia": "Córdoba",
+    "Domicilio": "Calle 123",
+    "Localidad": "Villa Carlos Paz",
+    "Especialidad": "Pediatra",
+    "Telefono": "+234567890",
+    "Guardia": false,
+    "FechaIngreso": "2015-08-15T00:00:00",
+    "SueldoMinimoGarantizado": 150000.0,
+    "DiasDeAtencion": {
+      "Martes": {
+        "Start": "10:00",
+        "End": "14:00"
+      },
+      "Jueves": {
+        "Start": "08:00",
+        "End": "12:00"
+      }
+    }
+  },
+  "3": {
+    "Id": "3",
+    "Name": "Dr. Mario",
+    "LastName": "Socolinsky",
+    "Dni": "11223344",
+    "Provincia": "Mendoza",
+    "Domicilio": "Ruta 40 Km 12",
+    "Localidad": "Godoy Cruz",
+    "Especialidad": "Traumatólogo",
+    "Telefono": "+345678901",
+    "Guardia": true,
+    "FechaIngreso": "2012-06-20T00:00:00",
+    "SueldoMinimoGarantizado": 200000.0,
+    "DiasDeAtencion": {
+      "Lunes": {
+        "Start": "10:00",
+        "End": "14:00"
+      },
+      "Miércoles": {
+        "Start": "13:00",
+        "End": "17:00"
+      }
+    }
+  },
+  "4": {
+    "Id": "4",
+    "Name": "Dr. Natalia",
+    "LastName": "Vega",
+    "Dni": "22334455",
+    "Provincia": "Santa Fe",
+    "Domicilio": "Boulevard 456",
+    "Localidad": "Rosario",
+    "Especialidad": "Ginecóloga",
+    "Telefono": "+456789012",
+    "Guardia": true,
+    "FechaIngreso": "2019-11-03T00:00:00",
+    "SueldoMinimoGarantizado": 190000.0,
+    "DiasDeAtencion": {
+      "Martes": {
+        "Start": "09:00",
+        "End": "13:00"
+      },
+      "Viernes": {
+        "Start": "14:00",
+        "End": "18:00"
+      }
+    }
+  },
+  "5": {
+    "Id": "5",
+    "Name": "Dr. Raúl",
+    "LastName": "Gómez",
+    "Dni": "33445566",
+    "Provincia": "Salta",
+    "Domicilio": "Calle San Martín 100",
+    "Localidad": "Salta",
+    "Especialidad": "Neurólogo",
+    "Telefono": "+567890123",
+    "Guardia": false,
+    "FechaIngreso": "2017-07-15T00:00:00",
+    "SueldoMinimoGarantizado": 220000.0,
+    "DiasDeAtencion": {
+      "Miércoles": {
+        "Start": "08:00",
+        "End": "12:00"
+      },
+      "Jueves": {
+        "Start": "10:00",
+        "End": "14:00"
+      }
+    }
+  },
+  "6": {
+    "Id": "6",
+    "Name": "Dr. Beatriz",
+    "LastName": "Moreno",
+    "Dni": "44556677",
+    "Provincia": "Buenos Aires",
+    "Domicilio": "Av. Libertad 987",
+    "Localidad": "La Plata",
+    "Especialidad": "Dermatóloga",
+    "Telefono": "+678901234",
+    "Guardia": true,
+    "FechaIngreso": "2013-09-30T00:00:00",
+    "SueldoMinimoGarantizado": 160000.0,
+    "DiasDeAtencion": {
+      "Martes": {
+        "Start": "10:00",
+        "End": "14:00"
+      },
+      "Viernes": {
+        "Start": "09:00",
+        "End": "13:00"
+      }
+    }
+  },
+  "7": {
+    "Id": "7",
+    "Name": "Dr. Héctor",
+    "LastName": "Ramírez",
+    "Dni": "55667788",
+    "Provincia": "CABA",
+    "Domicilio": "Calle 789",
+    "Localidad": "Buenos Aires",
+    "Especialidad": "Cirujano",
+    "Telefono": "+789012345",
+    "Guardia": true,
+    "FechaIngreso": "2011-03-21T00:00:00",
+    "SueldoMinimoGarantizado": 250000.0,
+    "DiasDeAtencion": {
+      "Lunes": {
+        "Start": "07:00",
+        "End": "11:00"
+      },
+      "Jueves": {
+        "Start": "14:00",
+        "End": "18:00"
+      }
+    }
+  },
+  "8": {
+    "Id": "8",
+    "Name": "Pepe",
+    "LastName": "Falopa",
+    "Dni": "44331111",
+    "Provincia": "buenos aire",
+    "Domicilio": "54345",
+    "Localidad": "gons",
+    "Especialidad": "Pederasta",
+    "Telefono": "4234234234234",
+    "Guardia": false,
+    "FechaIngreso": "2024-11-06T00:00:00",
+    "SueldoMinimoGarantizado": 432423423423.0,
+    "DiasDeAtencion": {}
   }
 }

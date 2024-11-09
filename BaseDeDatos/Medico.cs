@@ -1,32 +1,27 @@
 ﻿using SystemTextJson = System.Text.Json;
 using Newtonsoft.Json;
-using System.Windows;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Horarios-------------------------------//
-	public class HorarioMedico {
-		public string ?Id { get; set; }
-		public string ?MedicoId { get; set; }
-		public string DiaSemana { get; set; }
-		public TimeOnly ?HoraInicio { get; set; }
-		public TimeOnly ?HoraFin { get; set; }
-		
-		public static List<HorarioMedico> DiasDeLaSemanaComoLista() {
-			return new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }.Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
+	public class Horario{
+		public string ?Start { get; set; }
+		public string ?End { get; set; }
+		public Horario(string Start, string End) {
+			this.Start = Start;
+			this.End = End;
 		}
-		
-		public static Dictionary<string, HorarioMedico> DiasDeLaSemanaComoDiccionario(){
-			return new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }.ToDictionary(dia => dia, dia => new HorarioMedico { DiaSemana = dia });
+		public Horario(SystemTextJson.JsonElement Start, SystemTextJson.JsonElement End) {
+			this.Start = Start.GetString();
+			this.End = End.GetString();
 		}
-
-		public override string ToString() {
-			return $"Id: {Id ?? "N/A"}, MedicoId: {MedicoId ?? "N/A"}, DiaSemana: {DiaSemana}, " +
-				   $"HoraInicio: {(HoraInicio.HasValue ? HoraInicio.Value.ToString("HH:mm") : "N/A")}, " +
-				   $"HoraFin: {(HoraFin.HasValue ? HoraFin.Value.ToString("HH:mm") : "N/A")}";
-		}
-		
 	}
 	
+	public class HorarioMedico {
+		public required string DiaSemana { get; set; }
+		public string ?InicioHorario { get; set; }
+		public string ?FinHorario { get; set; }
+	}
+
 	//---------------------------------Tablas.Medicos-------------------------------//
 	public class Medico {
 		public string ?Id { get; set; }
@@ -41,11 +36,11 @@ namespace ClinicaMedica {
 		public bool? Guardia { get; set; }
 		public DateTime? FechaIngreso { get; set; }
 		public double? SueldoMinimoGarantizado { get; set; }
-		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = HorarioMedico.DiasDeLaSemanaComoDiccionario();
+		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
 			
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
-		
+
 	//---------------------------------Constructor.Vacio-------------------------------//
 		public Medico() { }
 
@@ -63,21 +58,13 @@ namespace ClinicaMedica {
 			Guardia = jsonElement.GetProperty(nameof(Guardia)).GetBoolean();
 			FechaIngreso = DateTime.TryParse(jsonElement.GetProperty(nameof(FechaIngreso)).GetString(), out var fecha) ? fecha : (DateTime?)null;
 			SueldoMinimoGarantizado = jsonElement.GetProperty(nameof(SueldoMinimoGarantizado)).GetDouble();
-			
-			
+
 			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out SystemTextJson.JsonElement diasDeAtencionElement)) {
 				foreach (var dia in diasDeAtencionElement.EnumerateObject()) {
-					string diaSemana = dia.Value.GetProperty("DiaSemana").GetString();
-
-					HorarioMedico horariomedico = new HorarioMedico {
-						Id = dia.Value.GetProperty("Id").GetString(),
-						DiaSemana = diaSemana,
-						MedicoId = dia.Value.GetProperty("MedicoId").GetString(),
-						HoraInicio = TimeOnly.Parse(dia.Value.GetProperty("HoraInicio").GetString()),
-						HoraFin = TimeOnly.Parse(dia.Value.GetProperty("HoraFin").GetString()),
-					};
-					MessageBox.Show($"{horariomedico}");
-					DiasDeAtencion[diaSemana] = horariomedico;
+					var diaKey = dia.Name;
+					if (dia.Value.TryGetProperty("Start", out SystemTextJson.JsonElement startElement) && dia.Value.TryGetProperty("End", out var endElement)) {
+						DiasDeAtencion[diaKey] = new Horario(startElement, endElement);
+					}
 				}
 			}
 		}
@@ -89,35 +76,35 @@ namespace ClinicaMedica {
 
 
 		// Metodo para devolver una lista con los horarios medicos para la interfaz gráfica.
-		// private List<HorarioMedico> GetDiasDeAtencionListForUI() {
-			// var dias = new List<HorarioMedico> {
-				// new() { DiaSemana = "Lunes" },
-				// new() { DiaSemana = "Martes" },
-				// new() { DiaSemana = "Miercoles" },
-				// new() { DiaSemana = "Jueves" },
-				// new() { DiaSemana = "Viernes" },
-				// new() { DiaSemana = "Sabado" },
-				// new() { DiaSemana = "Domingo" }
-			// };
-			// foreach (var dia in dias) {
-				// if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios)) {
-					// dia.InicioHorario = horarios.Start;
-					// dia.FinHorario = horarios.End;
-				// }
-			// }
-			// return dias;
-		// }
+		private List<HorarioMedico> GetDiasDeAtencionListForUI() {
+			var dias = new List<HorarioMedico> {
+				new() { DiaSemana = "Lunes" },
+				new() { DiaSemana = "Martes" },
+				new() { DiaSemana = "Miercoles" },
+				new() { DiaSemana = "Jueves" },
+				new() { DiaSemana = "Viernes" },
+				new() { DiaSemana = "Sabado" },
+				new() { DiaSemana = "Domingo" }
+			};
+			foreach (var dia in dias) {
+				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios)) {
+					dia.InicioHorario = horarios.Start;
+					dia.FinHorario = horarios.End;
+				}
+			}
+			return dias;
+		}
 		
 
 		// Metodo para actualizar los dias de atencion en base a la ventana
-		// private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
-			// DiasDeAtencion.Clear();
-			// foreach (var dia in diasFromUI) {
-				// if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
-					// DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
-				// }
-			// }
-		// }
+		private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
+			DiasDeAtencion.Clear();
+			foreach (var dia in diasFromUI) {
+				if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
+					DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
+				}
+			}
+		}
 		
 		
 		
@@ -139,12 +126,12 @@ namespace ClinicaMedica {
 			} else {
 				this.SueldoMinimoGarantizado = 0; // Set a default value if parsing fails
 			}
-			// UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
+			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
 		}
 		
 		// Metodo para mostrarse en una ventana
 		public void MostrarseEnVentana(MedicosModificar ventana) {
-			// ventana.txtDiasDeAtencion.ItemsSource = this.GetDiasDeAtencionListForUI();
+			ventana.txtDiasDeAtencion.ItemsSource = this.GetDiasDeAtencionListForUI();
 			ventana.txtNombre.Text = this.Name;
 			ventana.txtApellido.Text = this.LastName;
 			ventana.txtDni.Text = this.Dni;
@@ -156,8 +143,6 @@ namespace ClinicaMedica {
 			ventana.txtFechaIngreso.SelectedDate = this.FechaIngreso;
 			ventana.txtSueldoMinGarant.Text = this.SueldoMinimoGarantizado.ToString();
 			ventana.txtRealizaGuardia.IsChecked = this.Guardia;
-			
-			ventana.txtDiasDeAtencion.ItemsSource = this.DiasDeAtencion.Values.ToList();
 		}
 		
 		
