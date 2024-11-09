@@ -6,40 +6,6 @@ namespace ClinicaMedica {
 		public Dictionary<string, Medico> DictMedicos = new();
 		public Dictionary<string, Paciente> DictPacientes = new();
 		public virtual bool ConectadaExitosamente { get; protected set; } = false;
-
-
-		public bool TryGetPaciente(string pacienteId, out Paciente instance) {
-			if (DictPacientes.ContainsKey(pacienteId)) {
-				instance = DictPacientes[pacienteId];
-				return true;
-			} else {
-				instance = null;
-				MessageBox.Show("Error de integridad. No existe paciente con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
-			}
-		}
-		public bool TryGetMedico(string medicoId, out Medico instance) {
-			if (DictMedicos.ContainsKey(medicoId)) {
-				instance = DictMedicos[medicoId];
-				return true;
-			} else {
-				instance = null;
-				MessageBox.Show("Error de integridad. No existe medico con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
-			}
-		}
-		public bool TryGetTurno(string turnoId, out Turno instance) {
-			if (DictTurnos.ContainsKey(turnoId)) {
-				instance = DictTurnos[turnoId];
-				return true;
-			} else {
-				instance = null;
-				MessageBox.Show("Error de integridad. No existe turno con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
-			}
-		}
-		
-		
 		
 		// Read methods
 		public abstract List<Medico> ReadMedicos();

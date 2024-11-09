@@ -22,10 +22,30 @@ namespace ClinicaMedica {
 		}
 		
 		[JsonIgnore]
-		public Medico MedicoRelacionado => App.BaseDeDatos.DictMedicos[MedicoId];
+		public Medico MedicoRelacionado{
+			get{
+				if (App.BaseDeDatos.DictMedicos.TryGetValue(MedicoId, out Medico medicoRelacionado)){
+					return medicoRelacionado;
+				}
+				else{
+					MessageBox.Show("Error de integridad. No existe medico con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+					return null; 
+				}
+			}
+		}
 		
 		[JsonIgnore]
-		public Paciente PacienteRelacionado => App.BaseDeDatos.DictPacientes[PacienteId];
+		public Paciente PacienteRelacionado{
+			get{
+				if (App.BaseDeDatos.DictPacientes.TryGetValue(PacienteId, out Paciente pacienteRelacionado)){
+					return pacienteRelacionado;
+				}
+				else{
+					MessageBox.Show("Error de integridad. No existe paciente con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+					return null; 
+				}
+			}
+		}
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void TomarDatosDesdeVentana(TurnosModificar window) {
