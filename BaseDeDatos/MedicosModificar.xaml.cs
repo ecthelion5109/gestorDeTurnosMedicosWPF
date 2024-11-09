@@ -40,6 +40,19 @@ namespace ClinicaMedica {
 				MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
 				return false;
 			}
+			
+			//List<HorarioMedico> diasFromUI = (List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource;
+			// foreach (var dia in diasFromUI) {
+			// if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
+			// DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
+			// }
+			// if (!TimeOnly.TryParse(this.txtDiasDeAtencion.Text, out _)) {
+			// MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
+			// return false;
+			// }
+			// }
+
+
 			return true;
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
