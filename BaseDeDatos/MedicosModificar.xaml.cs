@@ -27,17 +27,17 @@ namespace ClinicaMedica {
 				|| this.txtFechaIngreso.SelectedDate is null 
 				|| this.txtRealizaGuardia.IsChecked is null
 			) {
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Error de ingreso.", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			 }
 					 
 			if (!Int64.TryParse(this.txtDni.Text, out _)){
-                MessageBox.Show($"El dni no es un numero entero valido.");
+                MessageBox.Show($"Error: El dni no es un numero entero valido.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
             }
 					 
 			if (!Double.TryParse(this.txtSueldoMinGarant.Text, out _)) {
-				MessageBox.Show("El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.");
+				MessageBox.Show("Error: El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			}
 					 

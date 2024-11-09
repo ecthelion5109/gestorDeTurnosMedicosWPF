@@ -22,25 +22,32 @@ namespace ClinicaMedica {
 
 		//---------------------botones.GuardarCambios-------------------//
 		private bool CamposCompletadosCorrectamente(){
-			return (
-					 string.IsNullOrEmpty(this.txtDni.Text) ||
-					 string.IsNullOrEmpty(this.txtNombre.Text) ||
-					 string.IsNullOrEmpty(this.txtApellido.Text) ||
-					 string.IsNullOrEmpty(this.txtEmail.Text) ||
-					 string.IsNullOrEmpty(this.txtTelefono.Text) ||
-					 string.IsNullOrEmpty(this.txtDomicilio.Text) ||
-					 string.IsNullOrEmpty(this.txtLocalidad.Text) ||
-					 string.IsNullOrEmpty(this.txtProvincia.Text) ||
+			if (
+				 string.IsNullOrEmpty(this.txtDni.Text) ||
+				 string.IsNullOrEmpty(this.txtNombre.Text) ||
+				 string.IsNullOrEmpty(this.txtApellido.Text) ||
+				 string.IsNullOrEmpty(this.txtEmail.Text) ||
+				 string.IsNullOrEmpty(this.txtTelefono.Text) ||
+				 string.IsNullOrEmpty(this.txtDomicilio.Text) ||
+				 string.IsNullOrEmpty(this.txtLocalidad.Text) ||
+				 string.IsNullOrEmpty(this.txtProvincia.Text) ||
+				 this.txtFechaIngreso.SelectedDate is null ||
+				 this.txtFechaNacimiento.SelectedDate is null
+			) {
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return false;
+			 }
 					 
-					 this.txtFechaIngreso.SelectedDate is null ||
-					 this.txtFechaNacimiento.SelectedDate is null
-					 );
+			if (!Int64.TryParse(this.txtDni.Text, out _)){
+                MessageBox.Show($"Error: El dni no es un numero entero valido.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
+				return false;
+            }
+			return true;
 		}
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
-			if (CamposCompletadosCorrectamente()){
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+			if (!CamposCompletadosCorrectamente()){
 				return;
 			}
 			
@@ -53,7 +60,6 @@ namespace ClinicaMedica {
 			}
 			//---------Modificar-----------//
 			else {
-				//string originalDni = SelectedPaciente.Dni;
 				SelectedPaciente.TomarDatosDesdeVentana(this);
 				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente)){
 					this.Cerrar();
