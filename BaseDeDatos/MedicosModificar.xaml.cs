@@ -27,7 +27,7 @@ namespace ClinicaMedica {
 				|| this.txtFechaIngreso.SelectedDate is null 
 				|| this.txtRealizaGuardia.IsChecked is null
 			) {
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			 }
 					 
@@ -85,11 +85,7 @@ namespace ClinicaMedica {
 				return;
 			}
 			//---------confirmacion-----------//
-			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}",
-				"Confirmar Eliminación",
-				MessageBoxButton.OKCancel,
-				MessageBoxImage.Warning
-			) != MessageBoxResult.OK) {
+			if (MessageBox.Show($"¿Está seguro que desea eliminar este médico? {SelectedMedico.Name}", "Confirmar Eliminación", MessageBoxButton.OKCancel, MessageBoxImage.Warning ) != MessageBoxResult.OK) {
 				return;
 			}
 			//---------Eliminar-----------//

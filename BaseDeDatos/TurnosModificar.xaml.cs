@@ -41,7 +41,7 @@ namespace ClinicaMedica {
 				|| this.txtFecha.SelectedDate is null 
 				|| string.IsNullOrEmpty(this.txtHora.Text)
 			) {
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar");
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			} 
 

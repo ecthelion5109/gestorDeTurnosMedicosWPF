@@ -45,7 +45,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictMedicos[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}");
+				MessageBox.Show($"Exito: Se ha creado la instancia de Medico: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -60,7 +60,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -91,7 +91,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictPacientes[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}");
+				MessageBox.Show($"Exito: Se ha creado la instancia de Paciente: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -106,7 +106,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -130,7 +130,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}");
+				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con Id {instancia.Id} entre: {instancia.PacienteId} {instancia.MedicoId} en la fecha {instancia.Fecha}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -145,7 +145,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -196,7 +196,7 @@ namespace ClinicaMedica {
 						sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			} 
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -211,7 +211,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -236,7 +236,7 @@ namespace ClinicaMedica {
 						sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}");
+				MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -251,7 +251,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -273,7 +273,7 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}");
+				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -288,7 +288,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -313,7 +313,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictMedicos.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el medico con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -324,7 +324,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -340,7 +340,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictPacientes.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el paciente con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 547) // SQL Server foreign key violation error code
@@ -351,7 +351,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Data Base", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -367,7 +367,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos.Remove(instancia.Id);
-				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} de la Base de Datos SQL");
+				MessageBox.Show($"Exito: Se ha eliminado el turno con id: {instancia.Id} de la Base de Datos SQL", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -382,7 +382,7 @@ namespace ClinicaMedica {
 				MessageBox.Show($"SQL error: {ex.Message}", "Error de Base de Datos", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			catch (Exception ex) {
-				MessageBox.Show($"Error no esperado: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado: {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 			return false;
 		}
@@ -518,7 +518,7 @@ namespace ClinicaMedica {
 				return false;
 			}
 			catch (Exception ex){
-				MessageBox.Show($"Error no esperado. Verificar usuario. \n Cadena de conexion: {connectionString}. \n Mas informacion: \n{ex.Message}", "Error inesperado", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error no esperado. Verificar usuario. \n Cadena de conexion: {connectionString}. \n Mas informacion: \n{ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false; 
 			}
 		}
@@ -544,7 +544,7 @@ namespace ClinicaMedica {
 					}
 				}
 			} catch (Exception ex) {
-                MessageBox.Show($"Error inesperado. {ex.Message}", "Error de ejceucion de script");
+                MessageBox.Show($"Error inesperado. {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 			return true;

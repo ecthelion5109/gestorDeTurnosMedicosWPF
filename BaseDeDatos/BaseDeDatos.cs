@@ -14,7 +14,7 @@ namespace ClinicaMedica {
 				return true;
 			} else {
 				instance = null;
-				MessageBox.Show("Error de integridad. No existe paciente con esa ID");
+				MessageBox.Show("Error de integridad. No existe paciente con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 		}
@@ -24,7 +24,7 @@ namespace ClinicaMedica {
 				return true;
 			} else {
 				instance = null;
-				MessageBox.Show("Error de integridad. No existe medico con esa ID");
+				MessageBox.Show("Error de integridad. No existe medico con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 		}
@@ -34,7 +34,7 @@ namespace ClinicaMedica {
 				return true;
 			} else {
 				instance = null;
-				MessageBox.Show("Error de integridad. No existe turno con esa ID");
+				MessageBox.Show("Error de integridad. No existe turno con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 		}

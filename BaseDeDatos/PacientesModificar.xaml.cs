@@ -40,7 +40,7 @@ namespace ClinicaMedica {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
 			if (CamposCompletadosCorrectamente()){
-				MessageBox.Show($"Error: Faltan datos obligatorios por completar.");
+				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
 			}
 			
