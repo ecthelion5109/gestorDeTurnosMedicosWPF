@@ -25,6 +25,17 @@ namespace ClinicaMedica {
 		}
 		
 		
+		
+		public static bool TryParseHoraField(string campo){
+			if (TimeOnly.TryParse(campo, out _)){
+				return true;
+			} else {
+                MessageBox.Show($"Error: No se reconoce la hora. \n Ingrese un string con formato valido (hh:mm)");
+				return false;
+            }
+		}
+			
+		
 		public static void UpdateLabelDataBaseModo(Label label) {
 			if (App.BaseDeDatos is BaseDeDatosJSON ) {
 				label.Content = "Modo JSON";

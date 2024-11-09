@@ -40,6 +40,9 @@ namespace ClinicaMedica {
 				MessageBox.Show("Error: El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			}
+			// for (campo in this.txtDiasDeAtencion){
+				// return App.TryParseHoraField(this.txtHora.Text);
+			// }
 					 
 			return true;
 		}

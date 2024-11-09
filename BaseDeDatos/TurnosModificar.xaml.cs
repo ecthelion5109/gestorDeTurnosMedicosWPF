@@ -45,12 +45,8 @@ namespace ClinicaMedica {
 				return false;
 			} 
 
-			if (TimeOnly.TryParse(this.txtHora.Text, out _)){
-				return true;
-			} else {
-                MessageBox.Show($"No se pudo guardar la hora. \n Ingrese un string con formato valido (hh:mm)");
-				return false;
-            }
+	
+			return App.TryParseHoraField(this.txtHora.Text);
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {

@@ -234,7 +234,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding InicioHorario, UpdateSourceTrigger=PropertyChanged}"
+									<TextBox Text="{Binding InicioHorario}"
 											 Margin="1,1,1,1"
 											 Width="100"/>
 								</DataTemplate>
@@ -244,7 +244,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding FinHorario, UpdateSourceTrigger=PropertyChanged}"
+									<TextBox Text="{Binding FinHorario}"
 											 Width="100"
 											 Margin="1,1,1,1"/>
 								</DataTemplate>
@@ -300,85 +300,5 @@
 				BorderBrush="Black"
 				Background="White"
 				FontFamily="Baskerville Old Face"/>
-
-
-		<!-- 
-		<DataGrid x:Name="txtDiasDeAtencion"
-          AutoGenerateColumns="False"
-          CanUserAddRows="False"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Top"
-          Width="348"
-          Height="202"
-          Margin="10,155,0,0" >
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Día de la Semana"
-                            Width="*"
-                            Binding="{Binding DiaSemana}"/>
-				<DataGridTextColumn Header="Inicio Horario"
-                            Width="*"
-                            Binding="{Binding InicioHorario}"/>
-				<DataGridTextColumn Header="Fin Horario"
-                            Width="*"
-                            Binding="{Binding FinHorario}"/>
-			</DataGrid.Columns>
-		</DataGrid>
- -->
-
-
-
-
-		<!-- 
-		<StackPanel HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Width="348"
-            Height="202"
-            Margin="372,37,0,0">
-			<StackPanel Orientation="Horizontal" Margin="5">
-				<TextBlock Text="Día de la Semana" Width="100" FontWeight="Bold"/>
-				<TextBlock Text="Inicio Horario" Width="90" FontWeight="Bold" Margin="5,0"/>
-				<TextBlock Text="Fin Horario" Width="90" FontWeight="Bold" Margin="5,0"/>
-			</StackPanel>
-			<ListBox x:Name="txtDiasDeAtencion2" ItemsSource="{Binding}">
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Orientation="Horizontal" Margin="5">
-							<TextBlock Text="{Binding DiaSemana}" 
-                               VerticalAlignment="Center"
-                               Width="100"/>
-							<TextBox Text="{Binding InicioHorario, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="90"
-                             Margin="5,0"/>
-							<TextBox Text="{Binding FinHorario, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="90"
-                             Margin="5,0"/>
-						</StackPanel>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
-		</StackPanel>
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- <xctk:TimePicker Value="13:45:00" Format="Custom" FormatString="HH:mm" Margin="142,195,798,228" /> -->
-
 	</Grid>
 </Window>
