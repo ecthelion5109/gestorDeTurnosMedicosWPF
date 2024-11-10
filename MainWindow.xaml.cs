@@ -6,8 +6,7 @@ namespace ClinicaMedica{
 		
 		public MainWindow() {
 			InitializeComponent();
-			soundCheckBox.IsChecked = true;
-			// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
+			soundCheckBox.IsChecked = App.SoundOn;
 		}
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<Login>();

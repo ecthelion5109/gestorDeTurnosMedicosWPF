@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace ClinicaMedica {
 	public partial class App : Application {
-		public static bool SoundOn = true;
+		public static bool SoundOn = false; // DEFAULT MODE // true;
 		public static BaseDeDatosAbstracta BaseDeDatos;
 		public static bool UsuarioLogueado = false;
 		public static MediaPlayer Sonidito = new MediaPlayer();
