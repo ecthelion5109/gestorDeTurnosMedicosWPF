@@ -17,15 +17,13 @@
 			<ImageBrush ImageSource="/images/fondo.jpg"/>
 		</Grid.Background>
 
-
-
 		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="24,474,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
 
 		<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="564">
 			<Label Content="Clinica Medica" FontSize="34" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" VerticalAlignment="Center" Foreground="#FF1B1B67" Margin="0,15,0,15" />
 			<Label Content="Bienvenido al Sistema Gestor de Turnos" FontSize="26" HorizontalAlignment="Center" FontFamily="Palatino Linotype" Background="{x:Null}" Width="Auto" VerticalAlignment="Center" Foreground="#FF0F0A2B" FontWeight="Bold"/>
 			<Label Content="`Mala Praxis SXXI´" FontSize="24" HorizontalAlignment="Center" FontFamily="SachaWynterTight Linotype" Background="{x:Null}" VerticalAlignment="Center" Foreground="#FF333363" />
-			
+
 			<Button
 			  Content="Iniciar Sesión"
 			  HorizontalAlignment="Center"
@@ -39,8 +37,8 @@
 			  BorderBrush="#FF0E0D0D"
 			  FontFamily="Baskerville Old Face" Margin="0,20,0,20">
 			</Button>
-			
-			
+
+
 			<Button
 			  Content="Ver Médicos"
 			  HorizontalAlignment="Center"
@@ -54,7 +52,7 @@
 			  BorderBrush="#FF0E0D0D"
 			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
 			</Button>
-			
+
 			<Button
 			  Content="Ver Pacientes"
 			  HorizontalAlignment="Center"
@@ -68,7 +66,7 @@
 			  BorderBrush="#FF0E0D0D"
 			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
 			</Button>
-			
+
 			<Button x:Name="buttonVerTurnos"
 			  Content="Ver Turnos"
 			  HorizontalAlignment="Center"
@@ -82,7 +80,7 @@
 			  BorderBrush="#FF0E0D0D"
 			  FontFamily="Baskerville Old Face" Margin="0,7,0,7">
 			</Button>
-			
+
 			<Button
 			  Content="Salir"
 			  HorizontalAlignment="Center"
@@ -96,11 +94,54 @@
 			  BorderBrush="#FF0E0D0D"
 			  FontFamily="Baskerville Old Face" Margin="0,20,0,20">
 			</Button>
-		
-		
-		
+
+
+
 		</StackPanel>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+
+			<Label Width="65" Height="65" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Margin="0,14,125,505">
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="0.089"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Label.RenderTransform>
+				<Label.Style>
+					<Style TargetType="{x:Type Label}">
+						<Style.Triggers>
+							<!-- Condición basada en el estado del CheckBox -->
+							<DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="True">
+								<Setter Property="Content">
+									<Setter.Value>
+										<Image Source="/images/sonidoOn.png" Stretch="Uniform" />
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+							<DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="False">
+								<Setter Property="Content">
+									<Setter.Value>
+										<Image Source="/images/sonidoOff.png" Stretch="Uniform" />
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Label.Style>
+			</Label>
+			
+		<CheckBox x:Name="soundCheckBox" Content="" HorizontalAlignment="Left" Margin="905,39,0,0" VerticalAlignment="Top" Click="CheckBoxClicked" RenderTransformOrigin="-1.252,0.665"/>
+
 	</Grid>
 
 </Window>

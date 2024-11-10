@@ -51,5 +51,10 @@ namespace ClinicaMedica{
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
+
+		private void CheckBoxClicked(object sender, RoutedEventArgs e) {
+			App.SoundOn = (bool) soundCheckBox.IsChecked;
+			
+		}
 	}
 }
