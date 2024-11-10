@@ -1,10 +1,12 @@
 ﻿using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace ClinicaMedica{
 	public partial class MainWindow : Window {
 		
 		public MainWindow() {
 			InitializeComponent();
+			soundCheckBox.IsChecked = true;
 		}
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<Login>();
@@ -53,7 +55,16 @@ namespace ClinicaMedica{
 		}
 
 		private void CheckBoxClicked(object sender, RoutedEventArgs e) {
-			App.SoundOn = (bool) soundCheckBox.IsChecked;
+			if (soundCheckBox.IsChecked == true) {
+				volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
+				App.SoundOn = true;
+				App.PlayClickJewel();
+			}
+			else {
+				volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOff.png"));
+				App.SoundOn = false;
+			}
+			// App.SoundOn = (bool) soundCheckBox.IsChecked;
 			
 		}
 	}

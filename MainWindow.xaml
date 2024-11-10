@@ -98,49 +98,23 @@
 
 
 		</StackPanel>
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-			<Label Width="65" Height="65" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Margin="0,14,125,505">
-				<Label.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform/>
-						<SkewTransform/>
-						<RotateTransform Angle="0.089"/>
-						<TranslateTransform/>
-					</TransformGroup>
-				</Label.RenderTransform>
-				<Label.Style>
-					<Style TargetType="{x:Type Label}">
-						<Style.Triggers>
-							<!-- Condición basada en el estado del CheckBox -->
-							<DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="True">
-								<Setter Property="Content">
-									<Setter.Value>
-										<Image Source="/images/sonidoOn.png" Stretch="Uniform" />
-									</Setter.Value>
-								</Setter>
-							</DataTrigger>
-							<DataTrigger Binding="{Binding IsChecked, ElementName=checkBox}" Value="False">
-								<Setter Property="Content">
-									<Setter.Value>
-										<Image Source="/images/sonidoOff.png" Stretch="Uniform" />
-									</Setter.Value>
-								</Setter>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</Label.Style>
-			</Label>
-			
-		<CheckBox x:Name="soundCheckBox" Content="" HorizontalAlignment="Left" Margin="905,39,0,0" VerticalAlignment="Top" Click="CheckBoxClicked" RenderTransformOrigin="-1.252,0.665"/>
+
+
+
+
+
+
+
+		<StackPanel HorizontalAlignment="Left" Margin="810,39,0,0" VerticalAlignment="Top" Height="65" Width="75"/>
+		<Image x:Name="volumeIcoImage" Source="pack://application:,,,/images/sonidoOn.png" Stretch="Uniform" Margin="772,77,198,450"/>
+		<CheckBox x:Name="soundCheckBox" Content="" Click="CheckBoxClicked" Background="{x:Null}" Margin="860,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="50">
+			<CheckBox.Foreground>
+				<ImageBrush ImageSource="/images/sonidoOff.png"/>
+			</CheckBox.Foreground>
+		</CheckBox>
+
+
 
 	</Grid>
 
