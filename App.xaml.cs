@@ -16,11 +16,13 @@ namespace ClinicaMedica {
 		public void StyleButton_MouseEnter(object sender, System.Windows.RoutedEventArgs e){
 			//Es muy molesto.
 			// Sonidito.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
+			Sonidito.Open(new Uri("sonidos\\PIU!.wav", UriKind.Relative));
 			Sonidito.Play();
 		}
 
 		static public void PlayClickJewel() {
-			Sonidito.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
+			// Sonidito.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
+			Sonidito.Open(new Uri("sonidos\\ULTRAPEEOOU!.wav", UriKind.Relative));
 			Sonidito.Play();
 		}
 		
