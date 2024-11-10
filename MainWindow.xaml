@@ -98,21 +98,41 @@
 
 
 		</StackPanel>
+		<!-- <Image x:Name="volumeIcoImage" Stretch="Uniform" Margin="772,77,198,450"/> -->
+		<!-- <CheckBox x:Name="soundCheckBox" Content="Sonidito?" Click="CheckBoxClicked" Margin="860,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="50"> </CheckBox> -->
 
 
 
 
+		<CheckBox x:Name="soundCheckBox" Content="Soniditos?" Click="CheckBoxClicked" Margin="865,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="149" FontFamily="SachaWynterTight" FontSize="10">
+			<CheckBox.Template>
+				<ControlTemplate TargetType="CheckBox">
+					<StackPanel Orientation="Horizontal">
+						<Image Width="40" Height="40">
+							<Image.Style>
+								<Style TargetType="Image">
+									<Style.Triggers>
+										<!-- Use sonidoOn.png when the CheckBox is checked -->
+										<DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True">
+											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOn.png"/>
+										</DataTrigger>
+										<!-- Use sonidoOff.png when the CheckBox is unchecked -->
+										<DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="False">
+											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOff.png"/>
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
 
-
-
-
-		<StackPanel HorizontalAlignment="Left" Margin="810,39,0,0" VerticalAlignment="Top" Height="65" Width="75"/>
-		<Image x:Name="volumeIcoImage" Source="pack://application:,,,/images/sonidoOn.png" Stretch="Uniform" Margin="772,77,198,450"/>
-		<CheckBox x:Name="soundCheckBox" Content="" Click="CheckBoxClicked" Background="{x:Null}" Margin="860,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="50">
-			<CheckBox.Foreground>
-				<ImageBrush ImageSource="/images/sonidoOff.png"/>
-			</CheckBox.Foreground>
+						<!-- Display optional text content next to the image -->
+						<ContentPresenter VerticalAlignment="Center" Margin="5,0,0,0"/>
+					</StackPanel>
+				</ControlTemplate>
+			</CheckBox.Template>
 		</CheckBox>
+
+
 
 
 

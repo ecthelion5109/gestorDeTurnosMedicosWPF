@@ -7,6 +7,7 @@ namespace ClinicaMedica{
 		public MainWindow() {
 			InitializeComponent();
 			soundCheckBox.IsChecked = true;
+			// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
 		}
 		public void MetodoBotonLogin(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<Login>();
@@ -56,15 +57,14 @@ namespace ClinicaMedica{
 
 		private void CheckBoxClicked(object sender, RoutedEventArgs e) {
 			if (soundCheckBox.IsChecked == true) {
-				volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
+				// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
 				App.SoundOn = true;
 				App.PlayClickJewel();
 			}
 			else {
-				volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOff.png"));
+				// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOff.png"));
 				App.SoundOn = false;
 			}
-			// App.SoundOn = (bool) soundCheckBox.IsChecked;
 			
 		}
 	}
