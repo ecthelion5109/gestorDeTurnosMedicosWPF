@@ -112,14 +112,33 @@
 							<Image.Style>
 								<Style TargetType="Image">
 									<Style.Triggers>
-										<!-- Use sonidoOn.png when the CheckBox is checked -->
+										<!-- Checked state without hover -->
 										<DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True">
 											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOn.png"/>
 										</DataTrigger>
-										<!-- Use sonidoOff.png when the CheckBox is unchecked -->
+
+										<!-- Unchecked state without hover -->
 										<DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="False">
 											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOff.png"/>
 										</DataTrigger>
+
+										<!-- Checked state with hover -->
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True"/>
+												<Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True"/>
+											</MultiDataTrigger.Conditions>
+											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOn_hover.png"/>
+										</MultiDataTrigger>
+
+										<!-- Unchecked state with hover -->
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="False"/>
+												<Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=CheckBox}}" Value="True"/>
+											</MultiDataTrigger.Conditions>
+											<Setter Property="Source" Value="pack://application:,,,/images/sonidoOff_hover.png"/>
+										</MultiDataTrigger>
 									</Style.Triggers>
 								</Style>
 							</Image.Style>
