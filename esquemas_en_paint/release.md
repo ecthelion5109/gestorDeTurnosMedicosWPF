@@ -1,3 +1,7 @@
+# Gestor De Turnos Médicos WPF
+
+Version final del Trabajo Practico Nº3 del Grupo C de Programacion II. En esta versión, los datos de las bases de datos son inmediatamente convertidos en objetos y los botones solamente actualizan la base de datos. Los SELECT y los filtros son ejecutados por codigo C#. Las entidades relacionadas se acceden por properties en base a diccionarios de objetos con el mismo nombre que las tablas en el heap.
+
 ## Interfaz Grafica con C# WPF
 - Programacion II - UTN Avellaneda - CUDI
 - Grupo C, Comision 2º C, Cohorte 2024.
@@ -15,10 +19,39 @@
 8. Esperon Denise
 9. Soberon Daira
 
+## Enlace a los videos sobre funcionalidad del codigo:
+https://docs.google.com/document/d/1R1Uncca1tvTWpxoTXGpD2wEjuVOVX_QbNvkO2SDBQxQ/edit?tab=t.0
 
-### Descargas:
-1. Ir a releases: https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF/releases
-2. Buscar la ultima entrega del proyecto. (Hubo una entrega para el TP2 y la final para el TP3)
+## Instrucciones para ejecución desde la aplicación compilada:
+1. Descargar el comprimido "ClinicaMedicaPublish.zip" y extraer. 
+2. Abrir la carpeta publish, ejecutar ClinicaMedica.exe.
+3. Una vez en la aplicacion, intentar logearse con las credenciales de SQL server local. Cuando se detecte que no existe la base de datos "ClinicaMedica", se ofrecerá generarlas. Al aceptar se creara la base de datos con una docena de INSERTS por tabla.
+4. Opcional: para evitar tener que escribir las credenciales en casa sesión, se puede editar el archivo el archivo `ClinicaMedica.dll.config`, y reemplazar NOMBRE_DEL_SERVIDOR por el nombre del servidor SQL Server local donde se montó la base de datos, generalmente es el nombre de la computadora.
+   ``` <connectionStrings>
+    <add name="ConexionAClinicaMedica"
+         connectionString="Server=NOMBRE_DEL_SERVIDOR;Database=ClinicaMedica;Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>
+</configuration>
+	```
+
+## Instrucciones para ejecución desde el codigo fuente:
+1. Descargar el comprimido "Source code(zip)" que aparece en esta entrega y extraer su contenido para obtener el codigo fuente del repositorio al momento de la entrega.
+2. Abrir el proyecto WPF con Visual Studio y correr la aplicacion con el botón de iniciar. O sino, ejecutar el siguiente comando en cualquier consola o terminal:
+```dotnet run```
+3. Una vez en la aplicacion, intentar logearse con las credenciales de SQL server local. Cuando se detecte que no existe la base de datos "ClinicaMedica", se ofrecerá generarlas. Al aceptar se creara la base de datos con una docena de INSERTS por tabla.
+4. Opcional: para evitar tener que escribir las credenciales en casa sesión, se puede editar el archivo el archivo `App.config`, y reemplazar NOMBRE_DEL_SERVIDOR por el nombre del servidor SQL Server local donde se montó la base de datos, generalmente es el nombre de la computadora.
+   ``` <connectionStrings>
+    <add name="ConexionAClinicaMedica"
+         connectionString="Server=NOMBRE_DEL_SERVIDOR;Database=ClinicaMedica;Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>
+</configuration>
+	```
+5. Opcional: Para compilar la aplicación en un solo archivo, ejecutar el siguiente comando de consola.
+```dotnet publish -c Release -r win-x64 --self-contained /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true```
+
+
 
 ### Funcionalidades:
 - **CRUD completo para Paciente, Medico y Turno**: Incluye operaciones de creación, lectura, actualización y eliminación. La entidad Turno actúa como vínculo entre Paciente y Medico.
@@ -46,26 +79,3 @@
 - **Script de instalación de base de datos**: Se incluye un script autoejecutables (si la base de datos no existe) que permite crear la base de datos completa en cualquier equipo con una docena de Inserts predeterminados, facilitando el testeo en Modo SQL.
 
 - **Librerias utilizadas**: Newtonsonft.Json y System.Data.SqlCliente.
-
-
-#### Comandos Git:
-* `git clone "link del repo tipo HTTPS"` Para descargar el repositorio en mi computadora
-* `git pull` Para tirar/descargar los commits del repositorio de GitHub.
-* `git add *` Agregar/marcar todos los archivos.
-* `git commit -m "mensaje"` Hacer un commit local con una descripcion de que hice.
-* `git push` Empujar mi commit al repositorio de GitHub.
-* `git stash`Almacenar temporalmente los cambios sin hacer commit.
-* `git stash push -m "mensaje"` Stashear los cambios con un nombre específico.
-* `git stash pop`  Volver a aplicar los cambios stasheados.
-* `git reset --hard`  Eliminar los cambios locales y quedar igual que en el repositorio remoto.
-* `git log`  Para ver el historial de commits en un formato básico (de arriba para abajo).
-* `git log --reverse --oneline`  Ver el historial de commits de abajo hacia arriba en una sola línea.
-* `git log --reverse --pretty=format:"%h %an - %ar: %s"` Ver el historial de commits en un formato más legible y compacto.
-* `git remote set-url origin https://github.com/ecthelion5109/gestorDeTurnosMedicosWPF.git` Para cambiar el link del repo.
-
-
-#### Comandos DotNet:
-* `dotnet publish -c Release -r win-x64 --self-contained`
-* `dotnet publish -c Release -r win-x64 --self-contained /p:PublishSingleFile=true`
-* `dotnet publish -c Release -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:IncludeAllContentForSelfExtract=true --self-contained`
-* `dotnet run`
