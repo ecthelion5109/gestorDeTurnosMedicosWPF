@@ -7,6 +7,20 @@ namespace ClinicaMedica {
 		public string DiaSemana { get; set; }
 		public string ?HoraInicio { get; set; }
 		public string ?HoraFin { get; set; }
+		
+		public static List<HorarioMedico> GetDiasDeLaSemana(){
+			return new List<HorarioMedico> {
+				new() { DiaSemana = "Lunes" },
+				new() { DiaSemana = "Martes" },
+				new() { DiaSemana = "Miércoles" },
+				new() { DiaSemana = "Jueves" },
+				new() { DiaSemana = "Viernes" },
+				new() { DiaSemana = "Sábado" },
+				new() { DiaSemana = "Domingo" }
+			};
+		}
+		
+		
 	}
 
 	//---------------------------------Tablas.Medicos-------------------------------//
@@ -67,15 +81,7 @@ namespace ClinicaMedica {
 
 		// Metodo para devolver una lista con los horarios medicos para la interfaz gráfica.
 		private List<HorarioMedico> GetDiasDeAtencionListForUI() {
-			var dias = new List<HorarioMedico> {
-				new() { DiaSemana = "Lunes" },
-				new() { DiaSemana = "Martes" },
-				new() { DiaSemana = "Miercoles" },
-				new() { DiaSemana = "Jueves" },
-				new() { DiaSemana = "Viernes" },
-				new() { DiaSemana = "Sabado" },
-				new() { DiaSemana = "Domingo" }
-			};
+			var dias = HorarioMedico.GetDiasDeLaSemana();
 			foreach (var dia in dias) {
 				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios)) {
 					dia.HoraInicio = horarios.HoraInicio;

@@ -8,7 +8,7 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedMedico = null;
-			txtDiasDeAtencion.ItemsSource = (new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" }).Select(dia => new HorarioMedico { DiaSemana = dia }).ToList();
+			txtDiasDeAtencion.ItemsSource = HorarioMedico.GetDiasDeLaSemana();
 		}
 
 		public MedicosModificar(Medico selectedMedico) //Modificar medico
