@@ -24,8 +24,8 @@ namespace ClinicaMedica {
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				 string.IsNullOrEmpty(this.txtDni.Text) ||
-				 string.IsNullOrEmpty(this.txtNombre.Text) ||
-				 string.IsNullOrEmpty(this.txtApellido.Text) ||
+				 string.IsNullOrEmpty(this.txtName.Text) ||
+				 string.IsNullOrEmpty(this.txtLastName.Text) ||
 				 string.IsNullOrEmpty(this.txtEmail.Text) ||
 				 string.IsNullOrEmpty(this.txtTelefono.Text) ||
 				 string.IsNullOrEmpty(this.txtDomicilio.Text) ||

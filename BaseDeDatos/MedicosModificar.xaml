@@ -60,7 +60,7 @@
 				   HorizontalAlignment="Right"
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
-			<TextBox x:Name="txtNombre"
+			<TextBox x:Name="txtName"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="0"
 					 Grid.Column="1"
@@ -73,7 +73,7 @@
 				   HorizontalAlignment="Right"
 				   Width="Auto"
 				   VerticalAlignment="Center"/>
-			<TextBox x:Name="txtApellido"
+			<TextBox x:Name="txtLastName"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="1"
 					 Grid.Column="1"
@@ -167,7 +167,7 @@
 				   HorizontalContentAlignment="Center"
 				   HorizontalAlignment="Right"
 				   VerticalAlignment="Center"/>
-			<TextBox x:Name="txtSueldoMinGarant"
+			<TextBox x:Name="txtSueldoMinimoGarantizado"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="8"
 					 Grid.Column="1"
@@ -193,7 +193,7 @@
 				   Height="Auto"
 				   HorizontalAlignment="Right"
 				   VerticalAlignment="Center"/>
-			<CheckBox x:Name="txtRealizaGuardia"
+			<CheckBox x:Name="txtGuardia"
 					  Grid.Row="10"
 					  Grid.Column="1"
 					  HorizontalAlignment="Center"

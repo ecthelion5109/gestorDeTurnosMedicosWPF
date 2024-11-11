@@ -8,7 +8,7 @@ namespace ClinicaMedica {
 		public string ?HoraInicio { get; set; }
 		public string ?HoraFin { get; set; }
 		
-		public static List<HorarioMedico> GetDiasDeLaSemana(){
+		public static List<HorarioMedico> GetDiasDeLaSemanaAsList(){
 			return new List<HorarioMedico> {
 				new() { DiaSemana = "Lunes" },
 				new() { DiaSemana = "Martes" },
@@ -19,8 +19,17 @@ namespace ClinicaMedica {
 				new() { DiaSemana = "Domingo" }
 			};
 		}
-		
-		
+		public static Dictionary<string, HorarioMedico> GetDiasDeLaSemanaAsDict(){
+			return new Dictionary<string, HorarioMedico> {
+				{ "Lunes", new HorarioMedico { DiaSemana = "Lunes" } },
+				{ "Martes", new HorarioMedico { DiaSemana = "Martes" } },
+				{ "Miércoles", new HorarioMedico { DiaSemana = "Miércoles" } },
+				{ "Jueves", new HorarioMedico { DiaSemana = "Jueves" } },
+				{ "Viernes", new HorarioMedico { DiaSemana = "Viernes" } },
+				{ "Sábado", new HorarioMedico { DiaSemana = "Sábado" } },
+				{ "Domingo", new HorarioMedico { DiaSemana = "Domingo" } }
+			};
+		}
 	}
 
 	//---------------------------------Tablas.Medicos-------------------------------//
@@ -37,13 +46,18 @@ namespace ClinicaMedica {
 		public bool? Guardia { get; set; }
 		public DateTime? FechaIngreso { get; set; }
 		public double? SueldoMinimoGarantizado { get; set; }
-		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = new ();
+		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = HorarioMedico.GetDiasDeLaSemanaAsDict();
 			
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
 
-	//---------------------------------Constructor.Vacio-------------------------------//
+	//---------------------------------Constructores-------------------------------//
 		public Medico() { }
+
+		// Constructor de mEDICO en base a una ventana
+		public Medico(MedicosModificar window){
+			TomarDatosDesdeVentana(window);
+		}
 
 		// Constructor de Medico para JSON
 		public Medico(string jsonElementKey, SystemTextJson.JsonElement jsonElement) {
@@ -63,76 +77,40 @@ namespace ClinicaMedica {
 			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out SystemTextJson.JsonElement diasDeAtencionElement)) {
 				foreach (var dia in diasDeAtencionElement.EnumerateObject()) {
 					var diaKey = dia.Name;
-					if (dia.Value.TryGetProperty("HoraInicio", out SystemTextJson.JsonElement startElement) && dia.Value.TryGetProperty("HoraFin", out var endElement)) {
-						DiasDeAtencion[diaKey] = new HorarioMedico {
-							HoraInicio = startElement.ToString(),
-							HoraFin = endElement.ToString()
-						};
+					if (
+						dia.Value.TryGetProperty("HoraInicio", out var startElement) 
+						&& dia.Value.TryGetProperty("HoraFin", out var endElement)
+					) {
+						DiasDeAtencion[diaKey].HoraInicio = startElement.ToString();
+						DiasDeAtencion[diaKey].HoraFin = endElement.ToString();
 					}
 				}
 			}
 		}
-
-		// Constructor de PAciente en base a una ventana
-		public Medico(MedicosModificar window){
-			TomarDatosDesdeVentana(window);
-		}
-
-
-		// Metodo para devolver una lista con los horarios medicos para la interfaz gráfica.
-		private List<HorarioMedico> GetDiasDeAtencionListForUI() {
-			var dias = HorarioMedico.GetDiasDeLaSemana();
-			foreach (var dia in dias) {
-				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios)) {
-					dia.HoraInicio = horarios.HoraInicio;
-					dia.HoraFin = horarios.HoraFin;
-				}
-			}
-			return dias;
-		}
 		
 
-		// Metodo para actualizar los dias de atencion en base a la ventana
-		private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
-			DiasDeAtencion.Clear();
-			foreach (var dia in diasFromUI) {
-				if (!string.IsNullOrWhiteSpace(dia.HoraInicio) && !string.IsNullOrWhiteSpace(dia.HoraFin)) {
-					DiasDeAtencion[dia.DiaSemana] = new HorarioMedico{
-						HoraInicio = dia.HoraInicio,
-						HoraFin = dia.HoraFin
-					};
-				}
-			}
-		}
-		
-		
-		
-
+		//---------------------------------PUBLICOS-------------------------------//
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void TomarDatosDesdeVentana(MedicosModificar window) {
-			this.Name = window.txtNombre.Text;
-			this.LastName = window.txtApellido.Text;
+			this.Name = window.txtName.Text;
+			this.LastName = window.txtLastName.Text;
 			this.Dni = window.txtDni.Text;
             this.Telefono = window.txtTelefono.Text;
             this.Provincia = window.txtProvincia.Text;
 			this.Domicilio = window.txtDomicilio.Text;
 			this.Localidad = window.txtLocalidad.Text;
 			this.Especialidad = window.txtEspecialidad.Text;
-			this.Guardia = (bool)window.txtRealizaGuardia.IsChecked;
 			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
-			if (double.TryParse(window.txtSueldoMinGarant.Text, out double sueldo)){
-				this.SueldoMinimoGarantizado = sueldo;
-			} else {
-				this.SueldoMinimoGarantizado = 0; // Set a default value if parsing fails
-			}
-			UpdateDiasDeAtencionFromUI((List<HorarioMedico>)window.txtDiasDeAtencion.ItemsSource);
+			this.Guardia = (bool)window.txtGuardia.IsChecked;
+			this.SueldoMinimoGarantizado = double.Parse(window.txtSueldoMinimoGarantizado.Text);
+			//this.DiasDeAtencion = //Al haber pasado los datos como List de HorariosMedicos, los objetos originales fueron modificados in-place. Assi que aca no hay que hacer nada.
+			
 		}
 		
 		// Metodo para mostrarse en una ventana
 		public void MostrarseEnVentana(MedicosModificar ventana) {
-			ventana.txtDiasDeAtencion.ItemsSource = this.GetDiasDeAtencionListForUI();
-			ventana.txtNombre.Text = this.Name;
-			ventana.txtApellido.Text = this.LastName;
+			ventana.txtName.Text = this.Name;
+			ventana.txtLastName.Text = this.LastName;
 			ventana.txtDni.Text = this.Dni;
             ventana.txtTelefono.Text = this.Telefono;
             ventana.txtProvincia.Text = this.Provincia;
@@ -140,8 +118,9 @@ namespace ClinicaMedica {
 			ventana.txtLocalidad.Text = this.Localidad;
 			ventana.txtEspecialidad.Text = this.Especialidad;
 			ventana.txtFechaIngreso.SelectedDate = this.FechaIngreso;
-			ventana.txtSueldoMinGarant.Text = this.SueldoMinimoGarantizado.ToString();
-			ventana.txtRealizaGuardia.IsChecked = this.Guardia;
+			ventana.txtGuardia.IsChecked = this.Guardia;
+			ventana.txtSueldoMinimoGarantizado.Text = this.SueldoMinimoGarantizado.ToString();
+			ventana.txtDiasDeAtencion.ItemsSource = this.DiasDeAtencion.Values.ToList();
 		}
 		
 		

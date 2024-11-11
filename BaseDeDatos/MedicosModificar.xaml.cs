@@ -8,7 +8,7 @@ namespace ClinicaMedica {
 		{
 			InitializeComponent();
 			SelectedMedico = null;
-			txtDiasDeAtencion.ItemsSource = HorarioMedico.GetDiasDeLaSemana();
+			txtDiasDeAtencion.ItemsSource = HorarioMedico.GetDiasDeLaSemanaAsList();
 		}
 
 		public MedicosModificar(Medico selectedMedico) //Modificar medico
@@ -22,10 +22,10 @@ namespace ClinicaMedica {
 		//---------------------botones.GuardarCambios-------------------//
 		private bool CamposCompletadosCorrectamente(){
 			if (
-				this.txtSueldoMinGarant.Text is null 
+				this.txtSueldoMinimoGarantizado.Text is null 
 				|| this.txtDni.Text is null 
 				|| this.txtFechaIngreso.SelectedDate is null 
-				|| this.txtRealizaGuardia.IsChecked is null
+				|| this.txtGuardia.IsChecked is null
 			) {
 				MessageBox.Show($"Error: Faltan datos obligatorios por completar.", "Error de ingreso.", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
@@ -36,7 +36,7 @@ namespace ClinicaMedica {
 				return false;
             }
 					 
-			if (!Double.TryParse(this.txtSueldoMinGarant.Text, out _)) {
+			if (!Double.TryParse(this.txtSueldoMinimoGarantizado.Text, out _)) {
 				MessageBox.Show("Error: El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			}

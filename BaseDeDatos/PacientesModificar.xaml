@@ -97,7 +97,7 @@
 				   HorizontalAlignment="Right"
 				   Width="Auto"
 					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-			<TextBox x:Name="txtNombre"
+			<TextBox x:Name="txtName"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="1"
 					 Grid.Column="1"
@@ -113,7 +113,7 @@
 				   HorizontalAlignment="Right"
 				   Width="Auto"
 					VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
-			<TextBox x:Name="txtApellido"
+			<TextBox x:Name="txtLastName"
 					Style="{StaticResource TextBoxLindo2}" 
 					 Grid.Row="2"
 					 Grid.Column="1"

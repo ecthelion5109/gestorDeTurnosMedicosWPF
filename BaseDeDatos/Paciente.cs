@@ -46,8 +46,8 @@ namespace ClinicaMedica {
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
 		public void TomarDatosDesdeVentana(PacientesModificar window) {
 			this.Dni = window.txtDni.Text;
-			this.Name = window.txtNombre.Text;
-			this.LastName = window.txtApellido.Text;
+			this.Name = window.txtName.Text;
+			this.LastName = window.txtLastName.Text;
 			this.FechaIngreso = (DateTime)window.txtFechaIngreso.SelectedDate;
 			this.Email = window.txtEmail.Text;
 			this.Telefono = window.txtTelefono.Text;
@@ -61,8 +61,8 @@ namespace ClinicaMedica {
 		// Metodo para mostrarse en una ventana
 		public void MostrarseEnVentana(PacientesModificar ventana) {
 			ventana.txtDni.Text = this.Dni;
-			ventana.txtNombre.Text = this.Name;
-			ventana.txtApellido.Text = this.LastName;
+			ventana.txtName.Text = this.Name;
+			ventana.txtLastName.Text = this.LastName;
 			ventana.txtFechaIngreso.SelectedDate = this.FechaIngreso;
 			ventana.txtEmail.Text = this.Email;
 			ventana.txtTelefono.Text = this.Telefono;
