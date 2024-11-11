@@ -99,12 +99,11 @@
 
 		</StackPanel>
 		<!-- <Image x:Name="volumeIcoImage" Stretch="Uniform" Margin="772,77,198,450"/> -->
-		<!-- <CheckBox x:Name="soundCheckBox" Content="Sonidito?" Click="CheckBoxClicked" Margin="860,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="50"> </CheckBox> -->
 
 
 
 
-		<CheckBox x:Name="soundCheckBox" Content="Soniditos?" Click="CheckBoxClicked" Margin="865,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="149" FontFamily="SachaWynterTight" FontSize="10">
+		<CheckBox x:Name="soundCheckBox" Content="Soniditos?" Click="soundCheckBox_Checked" Margin="865,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="48" Width="149" FontFamily="SachaWynterTight" FontSize="10">
 			<CheckBox.Template>
 				<ControlTemplate TargetType="CheckBox">
 					<StackPanel Orientation="Horizontal">

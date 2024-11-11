@@ -54,17 +54,19 @@ namespace ClinicaMedica{
 			this.Salir();
 		}
 
-		private void CheckBoxClicked(object sender, RoutedEventArgs e) {
+		private void soundCheckBox_Checked(object sender, RoutedEventArgs e) {
 			if (soundCheckBox.IsChecked == true) {
-				// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOn.png"));
 				App.SoundOn = true;
 				App.PlayClickJewel();
 			}
 			else {
-				// volumeIcoImage.Source = new BitmapImage(new Uri("pack://application:,,,/images/sonidoOff.png"));
 				App.SoundOn = false;
 			}
-			
 		}
+		
+		
+		
+		
+		
 	}
 }

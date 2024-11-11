@@ -6,6 +6,7 @@ namespace ClinicaMedica {
 	public partial class Login : Window {
 		public Login() {
 			InitializeComponent();
+			soundCheckBox.IsChecked = App.SoundOn;
 		}
 		
 		private bool datos_completados(){
@@ -47,5 +48,20 @@ namespace ClinicaMedica {
 			if (labelServidor != null) labelServidor.IsEnabled = true;
 			if (labelUsuario != null) labelUsuario.IsEnabled = true;
 		}
-	}
+
+		private void soundCheckBox_Checked(object sender, RoutedEventArgs e) {
+			if (soundCheckBox.IsChecked == true) {
+				App.SoundOn = true;
+				App.PlayClickJewel();
+			}
+			else {
+				App.SoundOn = false;
+			}
+        }
+		
+		
+		
+		
+		
+    }
 }

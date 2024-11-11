@@ -192,17 +192,17 @@
 				<ListView x:Name="turnosListView"
 					Background="Transparent"
 					BorderThickness="0"
-					SelectionChanged="listViewTurnos_SelectionChanged" Height="250">
+					SelectionChanged="listViewTurnos_SelectionChanged" Height="250" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
 					<ListView.View>
 						<GridView>
 							<GridViewColumn Header="Id"
 						   DisplayMemberBinding="{Binding Id}"
 						   Width="25"/>
 							<GridViewColumn Header="Fecha"
-						   DisplayMemberBinding="{Binding Fecha}"
+						   DisplayMemberBinding="{Binding Fecha, StringFormat={}{0:dd/MM/yyyy}}"
 						   Width="73"/>
 							<GridViewColumn Header="Hora"
-						   DisplayMemberBinding="{Binding Hora}"
+						   DisplayMemberBinding="{Binding Hora, StringFormat={}{0:hh\\:mm}}"
 						   Width="63"/>
 						</GridView>
 					</ListView.View>

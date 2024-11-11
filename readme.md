@@ -42,7 +42,7 @@
 
 - **Inicio de sesión y conexión de base de datos**: El sistema permite al usuario iniciar sesión para establecer una conexión con Microsoft SQL Server o, alternativamente, trabajar con archivos locales en formato JSON.
 
-- **Script de instalación de base de datos**: Se incluye un script que permite crear la base de datos completa en cualquier equipo, facilitando la instalación y configuración en diferentes entornos.
+- **Script de instalación de base de datos**: Se incluye un script autoejecutables (si la base de datos no existe) que permite crear la base de datos completa en cualquier equipo con una docena de Inserts predeterminados, facilitando el testeo en Modo SQL.
 
 
 #### Comandos Git:

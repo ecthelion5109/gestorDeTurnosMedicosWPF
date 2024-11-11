@@ -20,7 +20,7 @@ namespace ClinicaMedica {
 		//------------------------public.CREATE.Medico----------------------//
 		public override bool CreateMedico(Medico instancia) {
 			if (DictMedicos.Values.Any(i => i.Dni == instancia.Dni)){
-				MessageBox.Show($"Error: Ya hay un medico con ese Dni.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error de integridad: Ya hay un medico con ese Dni.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			instancia.Id = GenerateNextId( DictMedicos );
@@ -32,7 +32,7 @@ namespace ClinicaMedica {
 		//------------------------public.CREATE.Paciente----------------------//
 		public override bool CreatePaciente(Paciente instancia) {
 			if (DictPacientes.Values.Any(i => i.Dni == instancia.Dni)){
-				MessageBox.Show($"Error: Ya hay un paciente con ese Dni.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show($"Error de integridad: Ya hay un paciente con ese Dni.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			instancia.Id = GenerateNextId(DictPacientes);
@@ -43,7 +43,13 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.CREATE.Turno----------------------//
 		public override bool CreateTurno(Turno instancia) {
-			if (ErroresDeConstraintDeTurnos(instancia)){
+			if (DictTurnos.Values.Any(i => i.PacienteId == instancia.PacienteId && i.MedicoId == instancia.MedicoId && i.Fecha == instancia.Fecha)) {
+				MessageBox.Show($"Error de integridad: Ya hay un turno entre ese paciente y ese medico en esa fecha.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+
+			if (DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId && i.Fecha == instancia.Fecha && i.Hora == instancia.Hora)) {
+				MessageBox.Show($"Error de integridad: El medico ya tiene un turno ese dia a esa hora.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			
@@ -83,26 +89,44 @@ namespace ClinicaMedica {
 		
 		//------------------------public.UPDATE.Medico----------------------//
         public override bool UpdateMedico(Medico instancia){
-			if (string.IsNullOrEmpty(instancia.Dni)) {
-				MessageBox.Show($"Error: El DNI es un campo obligatorio.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+			// if (string.IsNullOrEmpty(instancia.Dni)) {
+				// MessageBox.Show($"Error: El DNI es un campo obligatorio.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+				// return false;
+			// } 
+			if (DictMedicos.Values.Count(i => i.Dni == instancia.Dni) > 1){
+				MessageBox.Show($"Error de integridad: Ya hay un medico con ese Dni.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
-			} 
+			}
 			this.JsonUpdateMedicos(); // Guardar los cambios en el archivo JSON
 			// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.UPDATE.Paciente----------------------//
         public override bool UpdatePaciente(Paciente instancia){
-			if (string.IsNullOrEmpty(instancia.Dni)) {
-				MessageBox.Show($"Error: El DNI es un campo obligatorio.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+			// if (string.IsNullOrEmpty(instancia.Dni)) {
+				// MessageBox.Show($"Error: El DNI es un campo obligatorio.", "Faltan datos.", MessageBoxButton.OK, MessageBoxImage.Warning);
+				// return false;
+			// } 
+			if (DictPacientes.Values.Count(i => i.Dni == instancia.Dni) > 1){
+				MessageBox.Show($"Error de integridad: Ya hay un paciente con ese Dni. \n No se guardarán los cambios.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
-			} 
+			}
 			this.JsonUpdatePacientes(); // Guardar los cambios en el archivo JSON
 			// MessageBox.Show($"Exito: Se han actualizado los datos de: {instancia.Name} {instancia.LastName}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
 		}
 		//------------------------public.UPDATE.Turno----------------------//
         public override bool UpdateTurno(Turno instancia) {
+			if (DictTurnos.Values.Count(i => i.PacienteId == instancia.PacienteId && i.MedicoId == instancia.MedicoId && i.Fecha == instancia.Fecha) > 1) {
+				MessageBox.Show($"Error de integridad: Ya hay un turno entre ese paciente y ese medico en esa fecha.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+
+			if (DictTurnos.Values.Count(i => i.MedicoId == instancia.MedicoId && i.Fecha == instancia.Fecha && i.Hora == instancia.Hora) > 1) {
+				MessageBox.Show($"Error de integridad: El medico ya tiene un turno ese dia a esa hora.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
+			
 			this.JsonUpdateTurnos(); // Guardar los cambios en el archivo JSON
 			// MessageBox.Show($"Exito: Se han actualizado los datos del turno Id: {instancia.Id}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 			return true;
@@ -120,7 +144,8 @@ namespace ClinicaMedica {
 
 		//------------------------public.DELETE.Medico----------------------//
 		public override bool DeleteMedico(Medico instancia) {
-			if (ErroresDeConstraintDeMedicos(instancia)){
+			if (DictTurnos.Values.Any(i => i.MedicoId == instancia.Id)) {
+				MessageBox.Show($"Error de integridad: El medico tiene turnos asignados.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			
@@ -137,7 +162,8 @@ namespace ClinicaMedica {
 		}
 		//------------------------public.DELETE.Paciente----------------------//
 		public override bool DeletePaciente(Paciente instancia){
-			if (ErroresDeConstraintDePacientes(instancia)){
+			if (DictTurnos.Values.Any(i => i.PacienteId == instancia.Id)) {
+				MessageBox.Show($"Error de integridad: El paciente tiene turnos asignados.\n No se guardarán los cambios.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return false;
 			}
 			
@@ -256,43 +282,6 @@ namespace ClinicaMedica {
 				}
 			}
 			return (maxId + 1).ToString();
-		}
-		//------------------------private.CONSTRAINTS.Turnos----------------------//
-		private bool ErroresDeConstraintDeTurnos(Turno instancia) {
-			if (
-				DictTurnos.Values.Any(i => i.PacienteId == instancia.PacienteId)
-				|| DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId)
-				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
-			) {
-				MessageBox.Show($"Error de integridad: Ya hay un turno entre ese paciente y ese medico en esa fecha.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return true;
-			}
-
-			if (
-				DictTurnos.Values.Any(i => i.MedicoId == instancia.MedicoId)
-				|| DictTurnos.Values.Any(i => i.Fecha == instancia.Fecha)
-				|| DictTurnos.Values.Any(i => i.Hora == instancia.Hora)
-			) {
-				MessageBox.Show($"Error de integridad: El medico ya tiene un turno ese dia a esa hora.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return true;
-			}
-			return false;
-		}
-		//------------------------private.CONSTRAINTS.Paciente----------------------//
-		private bool ErroresDeConstraintDePacientes(Paciente instancia) {
-			if (DictTurnos.Values.Any(i => i.PacienteId == instancia.Id)) {
-				MessageBox.Show($"Error de integridad: El paciente tiene turnos asignados.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return true;
-			}
-			return false;
-		}
-		//------------------------private.CONSTRAINTS.Medicos----------------------//
-		private bool ErroresDeConstraintDeMedicos(Medico instancia) {
-			if (DictTurnos.Values.Any(i => i.MedicoId == instancia.Id)) {
-				MessageBox.Show($"Error de integridad: El medico tiene turnos asignados.", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
-				return true;
-			}
-			return false;
 		}
 		//------------------------Fin.BaseDeDatosJSON----------------------//
 	}

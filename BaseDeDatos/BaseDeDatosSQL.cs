@@ -130,7 +130,7 @@ namespace ClinicaMedica {
 					}
 				}
 				DictTurnos[instancia.Id] = instancia;
-				MessageBox.Show($"Exito: Se ha creado la instancia de Turno con id: {instancia.Id} entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				//MessageBox.Show($"Exito: Se ha creado la instancia de Turno con id: {instancia.Id} entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code
@@ -271,7 +271,7 @@ namespace ClinicaMedica {
 					sqlComando.ExecuteNonQuery();
 					}
 				}
-				MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+				//MessageBox.Show($"Exito: Se han actualizado los datos del turno con id: {instancia.Id}. Ahora entre {instancia.PacienteId} {instancia.MedicoId} el dia {instancia.Fecha} a las {instancia.Hora}", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 2627) // Unique constraint violation error code

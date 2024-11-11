@@ -18,15 +18,16 @@ namespace ClinicaMedica {
 			//Es muy molesto.
 			// Sonidito.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
 			if (SoundOn) {
-				Sonidito.Open(new Uri("sonidos\\PIU!.wav", UriKind.Relative));
+				// Sonidito.Open(new Uri("sonidos\\PIU!.wav", UriKind.Relative));
+				Sonidito.Open(new Uri("sonidos\\uclicknofun.wav", UriKind.Relative));
 				Sonidito.Play();
 			}
 		}
 
 		static public void PlayClickJewel() {
-			// Sonidito.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
 			if (SoundOn) {
-				Sonidito.Open(new Uri("sonidos\\ULTRAPEEOOU!.wav", UriKind.Relative));
+				// Sonidito.Open(new Uri("sonidos\\ULTRAPEEOOU!.wav", UriKind.Relative));
+				Sonidito.Open(new Uri("sonidos\\uclick_jewel.wav", UriKind.Relative));
 				Sonidito.Play();
 			}
 		}

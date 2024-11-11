@@ -47,7 +47,7 @@
 			</StackPanel>
 		</ContentControl>
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="443,30,246,105">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="443,30,246,96">
 			<StackPanel Orientation="Vertical" Background="Transparent">
 				<Label Content="Turnos"
                        FontSize="65"
@@ -58,18 +58,49 @@
 					  Background="Transparent"
 					  BorderThickness="0"
 							 
-							SelectionChanged="listViewTurnos_SelectionChanged" Height="251">
+							SelectionChanged="listViewTurnos_SelectionChanged" Height="196" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center">
 					<ListView.View>
 						<GridView>
-							<GridViewColumn Header="Id"
-																DisplayMemberBinding="{Binding Id}"
-																Width="35"/>
-							<GridViewColumn Header="Fecha"
-																DisplayMemberBinding="{Binding Fecha}"
-																Width="150"/>
-							<GridViewColumn Header="Hora"
-																DisplayMemberBinding="{Binding Hora}"
-																Width="90"/>
+							<GridViewColumn Header="Id" Width="35">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Id}" TextAlignment="Center"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+
+							<GridViewColumn Header="Fecha" Width="60">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Fecha, StringFormat={}{0:dd/MM/yyyy}}" TextAlignment="Center"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+
+							<GridViewColumn Header="Hora" Width="50">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Hora, StringFormat={}{0:hh\\:mm}}" TextAlignment="Center"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+
+							<GridViewColumn Header="Medico" Width="60">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding MedicoId}" TextAlignment="Center"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+
+							<GridViewColumn Header="Paciente" Width="60">
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding PacienteId}" TextAlignment="Center"/>
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+
 						</GridView>
 					</ListView.View>
 				</ListView>
@@ -80,21 +111,7 @@
 
 
 
-				<StackPanel Orientation="Horizontal" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-					<Button
-							Content="Agregar nuevo"
-							HorizontalAlignment="Left"
-							VerticalAlignment="Top"
-							Height="30"
-							Width="125"
-							Click="ButtonAgregarTurno"
-							FontSize="20"
-							Style="{StaticResource BotonRedondeado}"
-							FontWeight="Bold"
-							BorderBrush="#FF0E0D0D"
-							FontFamily="Baskerville Old Face" Margin="10,15,10,15"
-							>
-					</Button>
+				<StackPanel Orientation="Vertical" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
 					<Button x:Name="buttonModificarTurno"
 								Content="Modificar"
 								HorizontalAlignment="Left"
@@ -106,8 +123,22 @@
 								FontWeight="Bold"
 								BorderBrush="#FF0E0D0D"
 								FontFamily="Baskerville Old Face"
-								IsEnabled="False" Width="125" Margin="10,15,10,15"
+								IsEnabled="False" Width="125" Margin="25,10,25,25"
 								/>
+					<Button
+							Content="Agregar nuevo"
+							HorizontalAlignment="Left"
+							VerticalAlignment="Top"
+							Height="30"
+							Width="125"
+							Click="ButtonAgregarTurno"
+							FontSize="20"
+							Style="{StaticResource BotonRedondeado}"
+							FontWeight="Bold"
+							BorderBrush="#FF0E0D0D"
+							FontFamily="Baskerville Old Face" Margin="25,10,25,25"
+							>
+					</Button>
 				</StackPanel>
 
 
@@ -154,7 +185,7 @@
 
 
 
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="249,30,599,204">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="249,30,599,190">
 			<!-- <Expander Header="Información del Médico" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
 
@@ -194,7 +225,7 @@
 				  FontWeight="Bold"
 				  BorderBrush="#FF0E0D0D"
 				  FontFamily="Baskerville Old Face"
-				  IsEnabled="False" Margin="25,15,25,15" Width="110"
+				  IsEnabled="False" Margin="25,10,25,25" Width="110"
 						/>
 				</StackPanel>
 
@@ -206,7 +237,7 @@
 			</StackPanel>
 			<!-- </Expander> -->
 		</ContentControl>
-		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="795,30,29,152">
+		<ContentControl Style="{StaticResource ContentControlLindo}" Margin="795,30,29,130">
 			<!-- </Expander> -->
 			<!-- <Expander Header="Información del Paciente" IsExpanded="True" Background="Transparent" BorderThickness="0"> -->
 			<StackPanel Orientation="Vertical" Background="Transparent">
@@ -238,14 +269,14 @@
 				  FontWeight="Bold"
 				  BorderBrush="#FF0E0D0D"
 				  FontFamily="Baskerville Old Face"
-				  IsEnabled="False" Margin="25,15,25,15" Width="120"
+				  IsEnabled="False" Margin="25,10,25,25" Width="120"
 						/>
 				</StackPanel>
 			</StackPanel>
 		</ContentControl>
 
 
-		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="679,475,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
+		<Label Style="{StaticResource LabelLindo}"  x:Name="labelBaseDeDatosModo" Content="Elegir DB Modo" Margin="679,488,0,0" FontSize="35" HorizontalAlignment="Left" FontFamily="Palatino Linotype" VerticalAlignment="Top" Foreground="#FF0F0A2B" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10,10,10,10" Width="316"/>
 
 
 	</Grid>

@@ -14,19 +14,39 @@
     "SueldoMinimoGarantizado": 180000.0,
     "DiasDeAtencion": {
       "Lunes": {
-        "DiaSemana": null,
+        "DiaSemana": "Lunes",
         "HoraInicio": "08:00",
         "HoraFin": "12:00"
       },
       "Martes": {
-        "DiaSemana": null,
-        "HoraInicio": "asd",
-        "HoraFin": "hgf"
+        "DiaSemana": "Martes",
+        "HoraInicio": "",
+        "HoraFin": ""
+      },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Jueves": {
+        "DiaSemana": "Jueves",
+        "HoraInicio": null,
+        "HoraFin": null
       },
       "Viernes": {
-        "DiaSemana": null,
+        "DiaSemana": "Viernes",
         "HoraInicio": "09:00",
         "HoraFin": "13:00"
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -44,15 +64,40 @@
     "FechaIngreso": "2015-08-15T00:00:00",
     "SueldoMinimoGarantizado": 150000.0,
     "DiasDeAtencion": {
+      "Lunes": {
+        "DiaSemana": "Lunes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Martes": {
-        "DiaSemana": null,
+        "DiaSemana": "Martes",
         "HoraInicio": "10:00",
         "HoraFin": "14:00"
       },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Jueves": {
-        "DiaSemana": null,
+        "DiaSemana": "Jueves",
         "HoraInicio": "08:00",
         "HoraFin": "12:00"
+      },
+      "Viernes": {
+        "DiaSemana": "Viernes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -71,14 +116,39 @@
     "SueldoMinimoGarantizado": 200000.0,
     "DiasDeAtencion": {
       "Lunes": {
-        "DiaSemana": null,
+        "DiaSemana": "Lunes",
         "HoraInicio": "10:00",
         "HoraFin": "14:00"
       },
+      "Martes": {
+        "DiaSemana": "Martes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Miércoles": {
-        "DiaSemana": null,
+        "DiaSemana": "Miércoles",
         "HoraInicio": "13:00",
         "HoraFin": "17:00"
+      },
+      "Jueves": {
+        "DiaSemana": "Jueves",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Viernes": {
+        "DiaSemana": "Viernes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -96,15 +166,40 @@
     "FechaIngreso": "2019-11-03T00:00:00",
     "SueldoMinimoGarantizado": 190000.0,
     "DiasDeAtencion": {
+      "Lunes": {
+        "DiaSemana": "Lunes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Martes": {
-        "DiaSemana": null,
+        "DiaSemana": "Martes",
         "HoraInicio": "09:00",
         "HoraFin": "13:00"
       },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Jueves": {
+        "DiaSemana": "Jueves",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Viernes": {
-        "DiaSemana": null,
+        "DiaSemana": "Viernes",
         "HoraInicio": "14:00",
         "HoraFin": "18:00"
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -122,15 +217,40 @@
     "FechaIngreso": "2017-07-15T00:00:00",
     "SueldoMinimoGarantizado": 220000.0,
     "DiasDeAtencion": {
+      "Lunes": {
+        "DiaSemana": "Lunes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Martes": {
+        "DiaSemana": "Martes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Miércoles": {
-        "DiaSemana": null,
+        "DiaSemana": "Miércoles",
         "HoraInicio": "08:00",
         "HoraFin": "12:00"
       },
       "Jueves": {
-        "DiaSemana": null,
+        "DiaSemana": "Jueves",
         "HoraInicio": "10:00",
         "HoraFin": "14:00"
+      },
+      "Viernes": {
+        "DiaSemana": "Viernes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -148,15 +268,40 @@
     "FechaIngreso": "2013-09-30T00:00:00",
     "SueldoMinimoGarantizado": 160000.0,
     "DiasDeAtencion": {
+      "Lunes": {
+        "DiaSemana": "Lunes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Martes": {
-        "DiaSemana": null,
+        "DiaSemana": "Martes",
         "HoraInicio": "10:00",
         "HoraFin": "14:00"
       },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Jueves": {
+        "DiaSemana": "Jueves",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Viernes": {
-        "DiaSemana": null,
+        "DiaSemana": "Viernes",
         "HoraInicio": "09:00",
         "HoraFin": "13:00"
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
@@ -175,30 +320,91 @@
     "SueldoMinimoGarantizado": 250000.0,
     "DiasDeAtencion": {
       "Lunes": {
-        "DiaSemana": null,
+        "DiaSemana": "Lunes",
         "HoraInicio": "07:00",
         "HoraFin": "11:00"
       },
+      "Martes": {
+        "DiaSemana": "Martes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
       "Jueves": {
-        "DiaSemana": null,
+        "DiaSemana": "Jueves",
         "HoraInicio": "14:00",
         "HoraFin": "18:00"
+      },
+      "Viernes": {
+        "DiaSemana": "Viernes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
       }
     }
   },
   "8": {
     "Id": "8",
-    "Name": "Pepe",
-    "LastName": "Falopa",
-    "Dni": "44331111",
-    "Provincia": "buenos aire",
-    "Domicilio": "54345",
-    "Localidad": "gons",
-    "Especialidad": "Pederasta",
-    "Telefono": "4234234234234",
+    "Name": "Alfonsin",
+    "LastName": "Corazon",
+    "Dni": "57345783",
+    "Provincia": "uensos ",
+    "Domicilio": "548fdsf",
+    "Localidad": "goanzalfghds",
+    "Especialidad": "Cardiologo",
+    "Telefono": "578345748",
     "Guardia": false,
-    "FechaIngreso": "2024-11-06T00:00:00",
-    "SueldoMinimoGarantizado": 432423423423.0,
-    "DiasDeAtencion": {}
+    "FechaIngreso": "2024-11-08T00:00:00",
+    "SueldoMinimoGarantizado": 654654654654.0,
+    "DiasDeAtencion": {
+      "Lunes": {
+        "DiaSemana": "Lunes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Martes": {
+        "DiaSemana": "Martes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Miércoles": {
+        "DiaSemana": "Miércoles",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Jueves": {
+        "DiaSemana": "Jueves",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Viernes": {
+        "DiaSemana": "Viernes",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Sábado": {
+        "DiaSemana": "Sábado",
+        "HoraInicio": null,
+        "HoraFin": null
+      },
+      "Domingo": {
+        "DiaSemana": "Domingo",
+        "HoraInicio": null,
+        "HoraFin": null
+      }
+    }
   }
 }
