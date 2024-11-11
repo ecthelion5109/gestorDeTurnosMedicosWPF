@@ -3,23 +3,10 @@ using Newtonsoft.Json;
 
 namespace ClinicaMedica {
 	//---------------------------------Tablas.Horarios-------------------------------//
-	public class Horario{
-		public string ?Start { get; set; }
-		public string ?End { get; set; }
-		public Horario(string Start, string End) {
-			this.Start = Start;
-			this.End = End;
-		}
-		public Horario(SystemTextJson.JsonElement Start, SystemTextJson.JsonElement End) {
-			this.Start = Start.GetString();
-			this.End = End.GetString();
-		}
-	}
-	
 	public class HorarioMedico {
-		public required string DiaSemana { get; set; }
-		public string ?InicioHorario { get; set; }
-		public string ?FinHorario { get; set; }
+		public string DiaSemana { get; set; }
+		public string ?HoraInicio { get; set; }
+		public string ?HoraFin { get; set; }
 	}
 
 	//---------------------------------Tablas.Medicos-------------------------------//
@@ -36,7 +23,7 @@ namespace ClinicaMedica {
 		public bool? Guardia { get; set; }
 		public DateTime? FechaIngreso { get; set; }
 		public double? SueldoMinimoGarantizado { get; set; }
-		public Dictionary<string, Horario> DiasDeAtencion { get; set; } = new Dictionary<string, Horario>();
+		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = new ();
 			
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
@@ -62,8 +49,11 @@ namespace ClinicaMedica {
 			if (jsonElement.TryGetProperty(nameof(DiasDeAtencion), out SystemTextJson.JsonElement diasDeAtencionElement)) {
 				foreach (var dia in diasDeAtencionElement.EnumerateObject()) {
 					var diaKey = dia.Name;
-					if (dia.Value.TryGetProperty("Start", out SystemTextJson.JsonElement startElement) && dia.Value.TryGetProperty("End", out var endElement)) {
-						DiasDeAtencion[diaKey] = new Horario(startElement, endElement);
+					if (dia.Value.TryGetProperty("HoraInicio", out SystemTextJson.JsonElement startElement) && dia.Value.TryGetProperty("HoraFin", out var endElement)) {
+						DiasDeAtencion[diaKey] = new HorarioMedico {
+							HoraInicio = startElement.ToString(),
+							HoraFin = endElement.ToString()
+						};
 					}
 				}
 			}
@@ -88,8 +78,8 @@ namespace ClinicaMedica {
 			};
 			foreach (var dia in dias) {
 				if (DiasDeAtencion.TryGetValue(dia.DiaSemana, out var horarios)) {
-					dia.InicioHorario = horarios.Start;
-					dia.FinHorario = horarios.End;
+					dia.HoraInicio = horarios.HoraInicio;
+					dia.HoraFin = horarios.HoraFin;
 				}
 			}
 			return dias;
@@ -100,8 +90,11 @@ namespace ClinicaMedica {
 		private void UpdateDiasDeAtencionFromUI(List<HorarioMedico> diasFromUI) {
 			DiasDeAtencion.Clear();
 			foreach (var dia in diasFromUI) {
-				if (!string.IsNullOrWhiteSpace(dia.InicioHorario) && !string.IsNullOrWhiteSpace(dia.FinHorario)) {
-					DiasDeAtencion[dia.DiaSemana] = new Horario(dia.InicioHorario, dia.FinHorario);
+				if (!string.IsNullOrWhiteSpace(dia.HoraInicio) && !string.IsNullOrWhiteSpace(dia.HoraFin)) {
+					DiasDeAtencion[dia.DiaSemana] = new HorarioMedico{
+						HoraInicio = dia.HoraInicio,
+						HoraFin = dia.HoraFin
+					};
 				}
 			}
 		}

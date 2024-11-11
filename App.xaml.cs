@@ -37,7 +37,6 @@ namespace ClinicaMedica {
 			if (TimeOnly.TryParse(campo, out _)){
 				return true;
 			} else {
-                MessageBox.Show($"Error: No se reconoce la hora. \n Ingrese un string con formato valido (hh:mm)");
 				return false;
             }
 		}

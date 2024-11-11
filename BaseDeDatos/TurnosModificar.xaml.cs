@@ -45,8 +45,11 @@ namespace ClinicaMedica {
 				return false;
 			} 
 
-	
-			return App.TryParseHoraField(this.txtHora.Text);
+			if ( !App.TryParseHoraField(this.txtHora.Text) ){
+				MessageBox.Show($"Error: No se reconoce la hora. \n Ingrese un string con formato valido (hh:mm)");
+				return false;
+			}
+			return true;
 		}
 
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {

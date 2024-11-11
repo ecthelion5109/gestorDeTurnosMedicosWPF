@@ -234,7 +234,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding InicioHorario}"
+									<TextBox Text="{Binding HoraInicio}"
 											 Margin="1,1,1,1"
 											 Width="100"/>
 								</DataTemplate>
@@ -244,7 +244,7 @@
 										Width="120">
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
-									<TextBox Text="{Binding FinHorario}"
+									<TextBox Text="{Binding HoraFin}"
 											 Width="100"
 											 Margin="1,1,1,1"/>
 								</DataTemplate>

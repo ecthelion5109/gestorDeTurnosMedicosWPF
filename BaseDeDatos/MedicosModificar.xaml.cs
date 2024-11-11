@@ -40,9 +40,18 @@ namespace ClinicaMedica {
 				MessageBox.Show("Error: El sueldo minimo no es un número decimal válido. Use la coma (,) como separador decimal.", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return false;
 			}
-			// for (campo in this.txtDiasDeAtencion){
-				// return App.TryParseHoraField(this.txtHora.Text);
-			// }
+			foreach (HorarioMedico campo in this.txtDiasDeAtencion.ItemsSource as List<HorarioMedico>){
+				if(  string.IsNullOrEmpty(campo.HoraInicio) && string.IsNullOrEmpty(campo.HoraFin) ){
+					continue;
+				} 
+				if( App.TryParseHoraField(campo.HoraInicio) && App.TryParseHoraField(campo.HoraFin) ){
+					continue;
+				} 
+				else{	
+					MessageBox.Show($"Error: No se reconoce el horario del día {campo.DiaSemana}. \nIngrese un string con formato valido (hh:mm)", "Error de ingreso", MessageBoxButton.OK, MessageBoxImage.Warning);
+					return false;
+				}
+			}
 					 
 			return true;
 		}
