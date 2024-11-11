@@ -19,7 +19,7 @@ namespace ClinicaMedica {
 
 		// Constructor de PAciente en base a una ventana
 		public Turno(TurnosModificar window){
-			TomarDatosDesdeVentana(window);
+			LeerDesdeVentana(window);
 		}
 		
 		[JsonIgnore]
@@ -49,7 +49,7 @@ namespace ClinicaMedica {
 		}
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
-		public void TomarDatosDesdeVentana(TurnosModificar window) {
+		public void LeerDesdeVentana(TurnosModificar window) {
 			this.Id = window.txtId.Content?.ToString() ?? this.Id;
 			this.PacienteId = window.txtPacientes.SelectedValue.ToString();
 			this.MedicoId = window.txtMedicos.SelectedValue.ToString();

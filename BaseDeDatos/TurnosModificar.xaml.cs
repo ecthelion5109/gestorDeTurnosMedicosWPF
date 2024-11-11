@@ -61,14 +61,14 @@ namespace ClinicaMedica {
 			//---------Crear-----------//
 			if (SelectedTurno is null) {
 				var newturno = new Turno();
-				newturno.TomarDatosDesdeVentana(this);
+				newturno.LeerDesdeVentana(this);
 				if ( App.BaseDeDatos.CreateTurno(newturno) ) {
 					this.Cerrar();
 				}
 			}
 			//---------Modificar-----------//
 			else {
-				SelectedTurno.TomarDatosDesdeVentana(this);
+				SelectedTurno.LeerDesdeVentana(this);
 				if ( App.BaseDeDatos.UpdateTurno(SelectedTurno) ) {
 					this.Cerrar();
 				}

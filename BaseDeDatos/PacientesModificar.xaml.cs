@@ -60,7 +60,7 @@ namespace ClinicaMedica {
 			}
 			//---------Modificar-----------//
 			else {
-				SelectedPaciente.TomarDatosDesdeVentana(this);
+				SelectedPaciente.LeerDesdeVentana(this);
 				if (App.BaseDeDatos.UpdatePaciente(SelectedPaciente)){
 					this.Cerrar();
 				}

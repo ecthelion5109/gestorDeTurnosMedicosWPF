@@ -48,6 +48,7 @@ namespace ClinicaMedica {
 		public double? SueldoMinimoGarantizado { get; set; }
 		public Dictionary<string, HorarioMedico> DiasDeAtencion { get; set; } = HorarioMedico.GetDiasDeLaSemanaAsDict();
 			
+		//usado por comboboxes para mostrar varios campos en un solo place.
 		[JsonIgnore]
 		public string Displayear => $"{Id}: {Especialidad} - {Name} {LastName}";
 
@@ -56,7 +57,7 @@ namespace ClinicaMedica {
 
 		// Constructor de mEDICO en base a una ventana
 		public Medico(MedicosModificar window){
-			TomarDatosDesdeVentana(window);
+			LeerDesdeVentana(window);
 		}
 
 		// Constructor de Medico para JSON
@@ -91,7 +92,7 @@ namespace ClinicaMedica {
 
 		//---------------------------------PUBLICOS-------------------------------//
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
-		public void TomarDatosDesdeVentana(MedicosModificar window) {
+		public void LeerDesdeVentana(MedicosModificar window) {
 			this.Name = window.txtName.Text;
 			this.LastName = window.txtLastName.Text;
 			this.Dni = window.txtDni.Text;

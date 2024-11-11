@@ -39,12 +39,12 @@ namespace ClinicaMedica {
 
 		// Constructor de PAciente en base a una ventana
 		public Paciente(PacientesModificar window){
-			TomarDatosDesdeVentana(window);
+			LeerDesdeVentana(window);
 		}
 		
 		
 		// Metodo para aplicarle los cambios de una ventana a una instancia de medico existente.
-		public void TomarDatosDesdeVentana(PacientesModificar window) {
+		public void LeerDesdeVentana(PacientesModificar window) {
 			this.Dni = window.txtDni.Text;
 			this.Name = window.txtName.Text;
 			this.LastName = window.txtLastName.Text;
