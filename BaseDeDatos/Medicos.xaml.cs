@@ -18,7 +18,6 @@ namespace ClinicaMedica {
 			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWhereMedicoId(SelectedMedico);
 			buttonModificarTurno.IsEnabled = SelectedTurno != null;
 		}
-
 		private void UpdatePacienteUI(){
 			txtPacienteDni.Text = SelectedTurno?.PacienteRelacionado.Dni;
 			txtPacienteNombre.Text = SelectedTurno?.PacienteRelacionado.Name;
@@ -27,6 +26,8 @@ namespace ClinicaMedica {
 			txtPacienteTelefono.Text = SelectedTurno?.PacienteRelacionado.Telefono;
 			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
+
+
 
 		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
@@ -47,6 +48,10 @@ namespace ClinicaMedica {
 			UpdateTurnoUI();
 			UpdatePacienteUI();
 		}
+		
+		
+		
+		
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
 			if (SelectedTurno != null) {
@@ -63,6 +68,9 @@ namespace ClinicaMedica {
 				this.AbrirComoDialogo<PacientesModificar>(SelectedTurno?.PacienteRelacionado);
 			}
 		}
+		
+		
+		
 		//------------------botonesParaCrear------------------//
 		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
@@ -73,6 +81,10 @@ namespace ClinicaMedica {
 		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
 		}
+		
+		
+		
+		
 		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();

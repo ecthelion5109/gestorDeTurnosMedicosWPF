@@ -16,7 +16,6 @@ namespace ClinicaMedica {
 			txtCalendario.SelectedDate = SelectedTurno?.Fecha;
 			txtCalendario.DisplayDate = SelectedTurno?.Fecha ?? DateTime.Today;
 		}
-		
 		private void UpdateMedicoUI(){
 			txtMedicoDni.Text = SelectedTurno?.MedicoRelacionado?.Dni;
 			txtMedicoNombre.Text = SelectedTurno?.MedicoRelacionado?.Name;
@@ -33,6 +32,9 @@ namespace ClinicaMedica {
 			buttonModificarPaciente.IsEnabled = SelectedTurno?.PacienteRelacionado != null;
 		}
 
+
+
+
 		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
 			App.UpdateLabelDataBaseModo(this.labelBaseDeDatosModo);
@@ -40,13 +42,16 @@ namespace ClinicaMedica {
 			UpdateMedicoUI();
 			UpdatePacienteUI();
 		}
-		
 		private void listViewTurnos_SelectionChanged(object sender, SelectionChangedEventArgs e) {
 			SelectedTurno = (Turno)turnosListView.SelectedItem;
 			UpdateTurnoUI();
 			UpdateMedicoUI();
 			UpdatePacienteUI();
 		}
+		
+		
+		
+		
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
 			if (SelectedTurno != null) {
@@ -65,6 +70,7 @@ namespace ClinicaMedica {
 		}
 		
 		
+		
 		//------------------botonesParaCrear------------------//
 		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
@@ -75,6 +81,11 @@ namespace ClinicaMedica {
 		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<TurnosModificar>(); 
 		}
+		
+		
+		
+		
+		
 		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
@@ -82,8 +93,6 @@ namespace ClinicaMedica {
 		private void ButtonHome(object sender, RoutedEventArgs e) {
 			this.VolverAHome();
 		}
-
-
 		//------------------------Fin.Turnos----------------------//
 	}
 }

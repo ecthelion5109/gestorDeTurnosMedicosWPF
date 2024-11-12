@@ -4,23 +4,21 @@ namespace ClinicaMedica {
     public partial class PacientesModificar : Window {
 		private static Paciente? SelectedPaciente;
 		//---------------------public.constructors-------------------//
-		public PacientesModificar() //Crear medico
+		public PacientesModificar() //Constructor vacio ==> Crear.
 		{
 			InitializeComponent();
 			SelectedPaciente = null;
 		}
 
-		public PacientesModificar(Paciente selectedPaciente) //Modificar medico
+		public PacientesModificar(Paciente selectedPaciente) //Constructor con un objeto como parametro ==> Modificarlo.
 		{
 			InitializeComponent();
 			SelectedPaciente = selectedPaciente;
 			SelectedPaciente.MostrarseEnVentana(this);
-			
 		}
 		
 
-
-		//---------------------botones.GuardarCambios-------------------//
+		//--------------------AsegurarInput-------------------//
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				 string.IsNullOrEmpty(this.txtDni.Text) ||
@@ -44,6 +42,9 @@ namespace ClinicaMedica {
             }
 			return true;
 		}
+		
+
+		//---------------------botones.GuardarCambios-------------------//
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//

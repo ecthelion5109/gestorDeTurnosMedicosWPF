@@ -3,18 +3,17 @@ using System.Windows.Controls;
 
 namespace ClinicaMedica {
     public partial class TurnosModificar : Window {
-		// private static Medico? SelectedMedico;
 		private static Turno? SelectedTurno;
-		// private static Paciente? SelectedPaciente;
+
 		//---------------------public.constructors-------------------//
-        public TurnosModificar() //Crear turno
+        public TurnosModificar() //Constructor vacio ==> Crear.
 		{
             InitializeComponent();
 			LLenarComboBoxes();
 			SelectedTurno = null;
 		}
 
-		public TurnosModificar(Turno selectedTurno)  //Modificar turno
+		public TurnosModificar(Turno selectedTurno) //Constructor con un objeto como parametro ==> Modificarlo.
 		{
 			InitializeComponent();
 			LLenarComboBoxes();
@@ -22,18 +21,24 @@ namespace ClinicaMedica {
 			SelectedTurno.MostrarseEnVentana(this);
 		}
 
-		private void LLenarComboBoxes() {
+
+		//---------------------Visualizacion-comboboxes-------------------//
+		private void LLenarComboBoxes()  //por defecto llenamos todos los comboboxes
+		{
 			txtEspecialidades.ItemsSource = App.BaseDeDatos.ReadDistinctEspecialidades();
 
 			txtPacientes.ItemsSource = App.BaseDeDatos.ReadPacientes();
-			txtPacientes.DisplayMemberPath = "Displayear";
-			txtPacientes.SelectedValuePath = "Id";
+			txtPacientes.DisplayMemberPath = "Displayear";	//Property de cada Objeto para mostrarse como una union de dni nombre y apellido. 
 			
 			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicos();
-			txtMedicos.DisplayMemberPath = "Displayear";
-			txtMedicos.SelectedValuePath = "Id";
+			txtMedicos.DisplayMemberPath = "Displayear";	//Property de cada Objeto para mostrarse como una union de dni nombre y apellido. 
 		}
+		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicosWhereEspecialidad(txtEspecialidades.SelectedItem.ToString());
+			txtMedicos.DisplayMemberPath = "Displayear";	//Property de cada Objeto para mostrarse como una union de dni nombre y apellido. 
+        }
 
+		//--------------------AsegurarInput-------------------//
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				this.txtPacientes.SelectedValue is null 
@@ -52,6 +57,7 @@ namespace ClinicaMedica {
 			return true;
 		}
 
+		//---------------------botones.GuardarCambios-------------------//
 		private void ButtonGuardar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			// ---------AsegurarInput-----------//
@@ -74,7 +80,10 @@ namespace ClinicaMedica {
 				}
 			}
 		}
-
+		
+		
+		
+		//---------------------botones.Eliminar-------------------//
 		private void ButtonEliminar(object sender, RoutedEventArgs e) {
 			App.PlayClickJewel();
 			//---------Checknulls-----------//
@@ -95,21 +104,15 @@ namespace ClinicaMedica {
 				this.Cerrar();
 			}
 		}
+		
+		
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
 			this.Cerrar(); // this.NavegarA<Turnos>();
 		}
-
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();
 		}
-
-		private void txtEspecialidades_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-			txtMedicos.ItemsSource = App.BaseDeDatos.ReadMedicosWhereEspecialidad(txtEspecialidades.SelectedItem.ToString());
-			txtMedicos.DisplayMemberPath = "Displayear";
-			txtMedicos.SelectedValuePath = "Id";
-
-        }
         //------------------------Fin---------------------------//
     }
 }

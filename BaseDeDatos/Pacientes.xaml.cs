@@ -8,18 +8,16 @@ namespace ClinicaMedica{
 		public Pacientes(){
             InitializeComponent();
 		}
-
-		//----------------------LlenarMethods-------------------//
+		
+		//----------------------ActualizarSecciones-------------------//
 		private void UpdatePacienteUI() {
 			pacientesListView.ItemsSource = App.BaseDeDatos.ReadPacientes();
 			buttonModificarPaciente.IsEnabled = SelectedPaciente != null;
 		}
-
 		private void UpdateTurnoUI(){
 			turnosListView.ItemsSource = App.BaseDeDatos.ReadTurnosWherePacienteId(SelectedPaciente);
 			buttonModificarTurno.IsEnabled = SelectedTurno != null;
 		}
-		
 		private void UpdateMedicoUI() {
 			txtMedicoDni.Text = SelectedTurno?.MedicoRelacionado.Dni;
 			txtMedicoNombre.Text = SelectedTurno?.MedicoRelacionado.Name;
@@ -27,6 +25,9 @@ namespace ClinicaMedica{
 			txtMedicoEspecialidad.Text = SelectedTurno?.MedicoRelacionado.Especialidad;
 			buttonModificarMedico.IsEnabled = SelectedTurno?.MedicoRelacionado != null;
 		}
+
+
+
 
 		//----------------------EventosRefresh-------------------//
 		private void Window_Activated(object sender, EventArgs e) {	
@@ -47,6 +48,10 @@ namespace ClinicaMedica{
 			UpdateTurnoUI();
 			UpdatePacienteUI();
 		}
+		
+		
+		
+		
 		//---------------------botonesDeModificar-------------------//
 		private void ButtonModificarTurno(object sender, RoutedEventArgs e) {
 			if (SelectedTurno != null) {
@@ -55,7 +60,7 @@ namespace ClinicaMedica{
 		}
 		private void ButtonModificarMedico(object sender, RoutedEventArgs e) {
 			if (SelectedTurno?.MedicoRelacionado != null) {
-				this.AbrirComoDialogo<MedicosModificar>(SelectedTurno?.MedicoRelacionado);
+				this.AbrirComoDialogo<MedicosModificar>(SelectedTurno?.MedicoRelacionado!);
 			}
 		}
 		private void ButtonModificarPaciente(object sender, RoutedEventArgs e) {
@@ -63,6 +68,11 @@ namespace ClinicaMedica{
 				this.AbrirComoDialogo<PacientesModificar>(SelectedPaciente);
 			}
 		}
+		
+		
+		
+		
+		
 		//------------------botonesParaCrear------------------//
 		private void ButtonAgregarMedico(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
@@ -73,6 +83,11 @@ namespace ClinicaMedica{
 		private void ButtonAgregarTurno(object sender, RoutedEventArgs e) {
 			this.AbrirComoDialogo<MedicosModificar>(); 
 		}
+		
+		
+		
+		
+		
 		//---------------------botonesDeVolver-------------------//
 		private void ButtonSalir(object sender, RoutedEventArgs e) {
 			this.Salir();

@@ -4,14 +4,14 @@ namespace ClinicaMedica {
 	public partial class MedicosModificar : Window {
 		private static Medico? SelectedMedico;
 		//---------------------public.constructors-------------------//
-		public MedicosModificar() //Crear medico
+		public MedicosModificar() //Constructor con un objeto como parametro ==> Modificarlo.
 		{
 			InitializeComponent();
 			SelectedMedico = null;
 			txtDiasDeAtencion.ItemsSource = HorarioMedico.GetDiasDeLaSemanaAsList();
 		}
 
-		public MedicosModificar(Medico selectedMedico) //Modificar medico
+		public MedicosModificar(Medico selectedMedico) //Constructor con un objeto como parametro ==> Modificarlo.
 		{
 			InitializeComponent();
 			SelectedMedico = selectedMedico;
@@ -19,7 +19,7 @@ namespace ClinicaMedica {
 		}
 		
 
-		//---------------------botones.GuardarCambios-------------------//
+		//--------------------AsegurarInput-------------------//
 		private bool CamposCompletadosCorrectamente(){
 			if (
 				this.txtSueldoMinimoGarantizado.Text is null 
@@ -97,6 +97,9 @@ namespace ClinicaMedica {
 				this.Cerrar(); // this.NavegarA<Medicos>();
 			}
 		}
+		
+		
+		
 		//---------------------botones.Salida-------------------//
 		private void ButtonCancelar(object sender, RoutedEventArgs e) {
 			this.Cerrar(); // this.NavegarA<Medicos>();
