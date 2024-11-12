@@ -58,10 +58,9 @@ namespace ClinicaMedica {
 				App.SoundOn = false;
 			}
         }
-		
-		
-		
-		
-		
-    }
+
+		// private void MetodoEliminarDatabase(object sender, RoutedEventArgs e) {
+			// App.BaseDeDatos.EliminarDatabaseExitosamente();
+		// }
+	}
 }

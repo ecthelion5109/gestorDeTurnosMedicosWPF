@@ -48,6 +48,8 @@ namespace ClinicaMedica {
 			return DictMedicos.Values.Select(medico => medico.Especialidad).Distinct().ToList();
 		}
 
+		//------------------------settings----------------------//
+		// public abstract bool EliminarDatabaseExitosamente();
 
 	}
 	

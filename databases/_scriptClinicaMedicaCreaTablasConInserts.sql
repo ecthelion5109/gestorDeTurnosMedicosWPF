@@ -1,4 +1,6 @@
-﻿-- Create Medico table
+﻿IF OBJECT_ID('Medico', 'U') IS NOT NULL
+    DROP TABLE Medico;
+	
 CREATE TABLE Medico (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Dni NCHAR(8) NOT NULL UNIQUE,
@@ -38,7 +40,8 @@ VALUES
 
 
 
-
+IF OBJECT_ID('Paciente', 'U') IS NOT NULL
+    DROP TABLE Paciente;
 -- Create Paciente table
 CREATE TABLE Paciente (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -70,6 +73,9 @@ VALUES
 
 
 -- Create Turno table
+
+IF OBJECT_ID('Turno', 'U') IS NOT NULL
+    DROP TABLE Turno;
 CREATE TABLE Turno (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     PacienteID INT NOT NULL,

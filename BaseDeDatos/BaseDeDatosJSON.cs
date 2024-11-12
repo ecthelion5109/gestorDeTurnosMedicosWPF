@@ -283,6 +283,11 @@ namespace ClinicaMedica {
 			}
 			return (maxId + 1).ToString();
 		}
+		//------------------------settings----------------------//
+		// settings
+		//public override bool EliminarDatabaseExitosamente() {
+			//return false;
+		//}
 		//------------------------Fin.BaseDeDatosJSON----------------------//
 	}
 }

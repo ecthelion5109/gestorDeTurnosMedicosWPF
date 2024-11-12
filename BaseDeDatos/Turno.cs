@@ -29,7 +29,7 @@ namespace ClinicaMedica {
 					return medicoRelacionado;
 				}
 				else{
-					MessageBox.Show("Error de integridad. No existe medico con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+					// MessageBox.Show("Error de integridad. No existe medico con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 					return null; 
 				}
 			}
@@ -42,7 +42,7 @@ namespace ClinicaMedica {
 					return pacienteRelacionado;
 				}
 				else{
-					MessageBox.Show("Error de integridad. No existe paciente con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
+					// MessageBox.Show("Error de integridad. No existe paciente con esa ID", "Error de integridad", MessageBoxButton.OK, MessageBoxImage.Error);
 					return null; 
 				}
 			}

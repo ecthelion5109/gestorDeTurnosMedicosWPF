@@ -402,7 +402,7 @@ namespace ClinicaMedica {
 					using (var sqlComando = new SqlCommand(consulta, conexion))
 					using (var reader = sqlComando.ExecuteReader()){
 						while (reader.Read()){
-							var medico = new Medico{
+							var medico = new Medico {
 								Id = reader["Id"]?.ToString(),
 								Name = reader["Name"]?.ToString(),
 								LastName = reader["LastName"]?.ToString(),
@@ -422,7 +422,7 @@ namespace ClinicaMedica {
 				}
 			} catch (Exception ex) {
 				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
+				return CrearLasTablasExitosamente();
 			}
 			return true;
 		}
@@ -453,8 +453,8 @@ namespace ClinicaMedica {
 					}
 				}
 			} catch (Exception ex) {
-				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
+				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Paciente: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return CrearLasTablasExitosamente();
 			}
 			return true;
 		}
@@ -479,8 +479,8 @@ namespace ClinicaMedica {
 					}
 				}
 			} catch (Exception ex) {
-				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Medico: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
-				return false;
+				MessageBox.Show($"Ocurrio un error al leer la tabla SQL de Turno: {ex.Message}", "Error de Database", MessageBoxButton.OK, MessageBoxImage.Error);
+				return CrearLasTablasExitosamente();
 			}
 			return true;
 		}
@@ -505,7 +505,7 @@ namespace ClinicaMedica {
 				return true;
 			}
 			catch (SqlException ex) when (ex.Number == 4060){
-                return CrearLaDatabaseExitosamente();
+				return CrearLaDatabaseExitosamente();
 			}
 			catch (SqlException ex) when (ex.Number == 53 || ex.Number == 40){
 				MessageBox.Show($"Error al conectar con el servidor. \n Mal tipeado, no existe o simplemente no se puede conectar. \n Cadena de conexion: {connectionString}", "Error de servidor", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -522,7 +522,7 @@ namespace ClinicaMedica {
 		}
 		
 
-        private bool CrearLaDatabaseExitosamente() {
+		private bool CrearLaDatabaseExitosamente() {
 			if (MessageBox.Show($"Database 'ClinicaMedica'no existe. Desea crearla?\n Se va a crear la tabla como 'master', y despuse se van a hacer las tablas y los inserts como 'ClinicaMedica'.", "Confirmar creación", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
 				return (
 					EjecutarScriptExitosamente(cadena: connectionString.Replace("Database=ClinicaMedica", "Database=master"), script: "CREATE DATABASE ClinicaMedica;")
@@ -531,23 +531,45 @@ namespace ClinicaMedica {
 				);
 			}
 			return false;
-        }
+		}
+	private bool CrearLasTablasExitosamente() {
+			if (MessageBox.Show($"Faltan tablas en la base de datos. Desea correr un script para regenerarlas, con algunos inserts?", "Confirmar creación", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
+				return (
+					EjecutarScriptExitosamente(cadena: connectionString, script: File.ReadAllText(_scriptClinicaMedicaCreaTablasConInserts))
+					&& CadenaDeConexionEsValida()
+				);
+			}
+			return false;
+		}
 
 		private bool EjecutarScriptExitosamente(string cadena, string script){
 			try {
 				using (SqlConnection connection = new SqlConnection(cadena)){
 					connection.Open();
+					// MessageBox.Show($"Conexion establecida: {cadena}", "Confirmar acción");
 					using (SqlCommand command = new SqlCommand(script, connection)){
 						command.ExecuteNonQuery();
 					}
 				}
 			} catch (Exception ex) {
-                MessageBox.Show($"Error inesperado. {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
+				MessageBox.Show($"Error inesperado. {ex.Message}", "Error SQL", MessageBoxButton.OK, MessageBoxImage.Error);
+				return false;
+			}
 			return true;
 		}
 		
+		
+
+		//------------------------settings----------------------//
+		// public override bool EliminarDatabaseExitosamente() {
+			// if (MessageBox.Show($"Desea eliminar la Database 'ClinicaMedica'?. Cadena actual: {connectionString}", "Confirmar acción", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK) {
+				// return (
+					// EjecutarScriptExitosamente(cadena: connectionString.Replace("Database=ClinicaMedica", "Database=master"), script: "DROP DATABASE ClinicaMedica;")
+					// && CadenaDeConexionEsValida()
+				// );
+			// }
+			// return false;
+		// }
 		//------------------------Fin.BaseDeDatosSQL----------------------//
 	}
 }
